@@ -1,0 +1,99 @@
+{
+  "name": "Affidavit Evidence Website",
+  "description": "Official Affidavit of Evidence for Charles Tanauan Case - Master Kanor",
+  "deployments": {
+    "production": {
+      "domain": "masterkanorcase.online",
+      "subdomain": "admin",
+      "ssl": {
+        "mode": "full_strict",
+        "certificate": "universal",
+        "tls_version": "1.3",
+        "always_https": true
+      },
+      "build": {
+        "command": "pnpm run build",
+        "output_directory": "dist",
+        "root_directory": "."
+      },
+      "environment_variables": {
+        "VITE_APP_ID": "MANUS_OAUTH_APP_ID",
+        "VITE_APP_TITLE": "Official Affidavit of Evidence",
+        "VITE_APP_LOGO": "https://masterkanorcase.online/logo.png",
+        "VITE_OAUTH_PORTAL_URL": "MANUS_OAUTH_PORTAL_URL",
+        "VITE_FRONTEND_FORGE_API_URL": "MANUS_FORGE_API_URL",
+        "VITE_FRONTEND_FORGE_API_KEY": "MANUS_FORGE_API_KEY",
+        "DATABASE_URL": "SUPABASE_DATABASE_URL",
+        "JWT_SECRET": "JWT_SECRET_KEY",
+        "OAUTH_SERVER_URL": "MANUS_OAUTH_SERVER_URL",
+        "OPENROUTER_API_KEY": "OPENROUTER_API_KEY",
+        "GEMINI_API_KEY": "GOOGLE_GEMINI_API_KEY"
+      },
+      "health_checks": {
+        "main_domain": "https://masterkanorcase.online",
+        "admin_domain": "https://admin.masterkanorcase.online",
+        "timeout": 30,
+        "expected_status": 200
+      },
+      "monitoring": {
+        "enabled": true,
+        "slack_webhook": "SLACK_WEBHOOK_URL",
+        "email_alerts": "tanauancharles1@gmail.com"
+      }
+    }
+  },
+  "ai_orchestration": {
+    "primary_provider": "google_gemini",
+    "failover_providers": [
+      {
+        "name": "openrouter_gemini",
+        "model": "google/gemini-2.0-flash-lite",
+        "cost_tier": "free"
+      },
+      {
+        "name": "openrouter_claude",
+        "model": "anthropic/claude-3-haiku",
+        "cost_tier": "paid"
+      }
+    ],
+    "cost_limits": {
+      "daily_limit_usd": 5.0,
+      "alert_threshold_usd": 4.5
+    }
+  },
+  "maintenance_jobs": {
+    "database_cleanup": {
+      "schedule": "0 3 * * *",
+      "tasks": [
+        "clean_case_logs_older_than_7_days",
+        "summarize_new_evidence",
+        "record_maintenance_activity"
+      ]
+    },
+    "cache_refresh": {
+      "schedule": "0 */6 * * *",
+      "tasks": [
+        "clear_ai_cache",
+        "reset_cache_statistics"
+      ]
+    }
+  },
+  "security": {
+    "rate_limiting": {
+      "enabled": true,
+      "requests_per_minute": 100
+    },
+    "cors": {
+      "allowed_origins": [
+        "https://masterkanorcase.online",
+        "https://admin.masterkanorcase.online"
+      ]
+    },
+    "headers": {
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "x-xss-protection": "1; mode=block",
+      "strict-transport-security": "max-age=31536000; includeSubDomains"
+    }
+  }
+}
