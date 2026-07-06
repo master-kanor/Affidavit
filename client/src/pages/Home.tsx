@@ -1,13 +1,66 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { FileText, Lock, Share2, Download, ArrowRight } from "lucide-react";
+import { FileText, Lock, Share2, Download, ArrowRight, User, LogOut } from "lucide-react";
 import { useLocation } from "wouter";
+import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Home() {
   const [, setLocation] = useLocation();
+  const { user, logout } = useAuth();
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      {/* Header with User Icon */}
+      <header className="bg-white border-b border-slate-200 px-4 py-4 sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-slate-900">Master Kanor Affidavit</h1>
+          <div className="flex items-center gap-4">
+            {user ? (
+              <div className="relative">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-100 transition"
+                >
+                  <div className="w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center">
+                    <User className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-slate-700 hidden sm:inline">{user.email}</span>
+                </button>
+                {showUserMenu && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white border border-slate-200 rounded-lg shadow-lg z-50">
+                    <div className="px-4 py-3 border-b border-slate-200">
+                      <p className="text-sm font-medium text-slate-900">{user.email}</p>
+                      <p className="text-xs text-slate-500 mt-1">Signed in</p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        logout();
+                        setShowUserMenu(false);
+                      }}
+                      className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 flex items-center gap-2 transition"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      Sign Out
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Button
+                size="sm"
+                className="bg-slate-900 hover:bg-slate-800"
+                onClick={() => window.location.href = `/login`}
+              >
+                <User className="w-4 h-4 mr-2" />
+                Sign In
+              </Button>
+            )}
+          </div>
+        </div>
+      </header>
+
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-slate-900 to-slate-800 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
@@ -29,14 +82,16 @@ export default function Home() {
               View Evidence Dossier
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-slate-900"
-              onClick={() => setLocation("/admin")}
-            >
-              Admin Dashboard
-            </Button>
+            {user && (
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-slate-900"
+                onClick={() => setLocation("/admin")}
+              >
+                Admin Dashboard
+              </Button>
+            )}
           </div>
         </div>
       </section>
