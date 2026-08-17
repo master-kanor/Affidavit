@@ -4146,3 +4146,7 @@
 - [ ] Make the Cloudflare credential validation test deterministic by separating network validation from the default local test suite
 - [ ] Re-run the full local typecheck and Vitest suite after the test harness fix
 - [ ] Preserve an explicit opt-in external Cloudflare validation command for deployment checks
+- [x] Correct the Cloudflare Pages Git-connected build output directory from `dist` to Vite's `dist/public` and verify the canonical production deployment
+- [x] Replace the account-wide Cloudflare Access `all_workers` application with application-level Supabase protection for `/admin` and `/dossier`, then verify the public homepage and auth routes
+- [ ] Add a package `test` script that runs the Vitest suite so local and CI validation use one reproducible command
+- [ ] Fix the canonical production `/auth` direct-navigation 404 so Supabase login is reachable without first visiting the homepage

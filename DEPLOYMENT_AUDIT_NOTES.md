@@ -90,3 +90,14 @@ Cloudflare's Workers Access documentation confirms that `all_workers` protects e
 The account currently has one self-hosted Access application named `All Workers` with an `all_workers` destination and account-member/email-domain allow policies. The production domain is currently receiving Cloudflare Access authentication before the React application. The next change must be narrowly scoped: preserve unrelated account protection, make only the requested public Pages hostname available to the public if the Pages/Workers Access precedence supports it, and leave Supabase authentication as the application-level login provider.
 
 No token, secret, password, or redirect parameter is stored in this note. Any Access mutation must be verified against the exact Cloudflare account, Pages project, and canonical hostname before execution.
+
+
+## Final Verification — 2026-08-17
+
+The Cloudflare Pages project `affidavit` was updated through the official Pages API so its Git-connected build output is `dist/public`, matching the repository's Vite output. The GitHub `main` branch now points to commit `2cc4f03fa8ad3da020d0b9fcf46a50879c66107e` (`fix: synchronize Cloudflare Pages deployment`), and Cloudflare recorded a successful production deployment for that commit.
+
+The account-level Access application named `All Workers` was confirmed as the source of the domain-wide login wall and was removed. The canonical homepage was then independently opened and rendered the React application directly, with no Cloudflare Access redirect. Supabase remains the application-level authentication provider, and the admin dashboard continues to use the Supabase `useAdminCheck` role guard.
+
+The current live verification is limited to public homepage rendering and deployment metadata. Supabase email/Google/GitHub sign-in, non-admin denial, admin access, and evidence media playback still require an authenticated end-to-end test account or manual browser verification.
+
+No secret values, Access tokens, cookies, or credential-bearing URLs are stored in this audit record.

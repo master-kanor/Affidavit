@@ -24,4 +24,12 @@ describe("Cloudflare Pages deployment workflow", () => {
     expect(workflow).toContain("curl -f -sS https://masterkanorcase.online/");
     expect(workflow).not.toContain("/api/health");
   });
+
+  it("keeps the SPA fallback in the Vite public directory", () => {
+    const redirectsPath = fileURLToPath(
+      new URL("../public/_redirects", import.meta.url),
+    );
+    const redirects = readFileSync(redirectsPath, "utf8");
+    expect(redirects).toContain("/*    /index.html   200");
+  });
 });
