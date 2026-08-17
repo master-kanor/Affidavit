@@ -20,8 +20,8 @@ describe("Cloudflare Pages deployment workflow", () => {
     expect(workflow).not.toContain("projectName: masterkanor-affidavit");
     expect(workflow).not.toContain("directory: dist/public");
     expect(workflow).not.toContain("productionBranch:");
-    expect(workflow).toContain("mkdir -p dist/public");
-    expect(workflow).toContain("find dist -maxdepth 1 ! -name public ! -name dist");
+    expect(workflow).toContain("mkdir -p dist");
+    expect(workflow).toContain("find dist/public -maxdepth 1");
   });
 
   it("does not ignore the TypeScript check", () => {

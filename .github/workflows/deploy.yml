@@ -31,8 +31,8 @@ jobs:
       - name: Build application
         run: |
           pnpm build
-          mkdir -p dist/public
-          find dist -maxdepth 1 ! -name public ! -name dist -exec cp -r {} dist/public/ \; || true
+          mkdir -p dist
+          find dist/public -maxdepth 1 -exec cp -r {} dist/ \; || true
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
