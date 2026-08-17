@@ -18,6 +18,7 @@ describe("Cloudflare Pages deployment workflow", () => {
     expect(workflow).toContain("directory: dist\n");
     expect(workflow).not.toContain("projectName: masterkanor-affidavit");
     expect(workflow).not.toContain("directory: dist/public");
+    expect(workflow).not.toContain("productionBranch:");
   });
 
   it("does not ignore the TypeScript check", () => {

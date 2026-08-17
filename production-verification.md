@@ -28,3 +28,7 @@ The fix introduces stable auth-gated shell components. The outer route component
 ## GitHub Actions Smoke Check Correction — 2026-08-17
 
 The first workflow run for the hook-order fix built the application but failed only in the final smoke step because the GitHub-hosted runner received HTTP 403 from the canonical edge. The same canonical domain returned HTTP 200 from the sandbox and the Pages origin is the reliable deployment target. The smoke check now requires HTTP 200 from `https://affidavit-abo.pages.dev/`, reports the canonical response for diagnosis, and does not falsely mark a successful Pages publish as failed solely because of runner-specific edge protection.
+
+## Successful React Fix Deployment — 2026-08-17
+
+Commit `8e0e487f6563fdacb59f842b4e7c7612ae40d761` passed the GitHub Actions install, TypeScript, build, Cloudflare Pages publish, and Pages-origin smoke check. The canonical edge returned a runner-specific 403 during the first workflow attempt, so the workflow now validates `affidavit-abo.pages.dev` as the deployment origin and reports the canonical status separately. The remaining workflow annotation identified an unsupported `productionBranch` input; it has been removed in the follow-up source change.
