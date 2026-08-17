@@ -44,14 +44,20 @@ jobs:
         run: |
           sleep 30
           for i in {1..5}; do
-            if curl -f -sS https://masterkanorcase.online/ >/dev/null; then
-              echo "✅ Homepage smoke check passed"
+            pages_status=$(curl -L -sS -o /dev/null -w "%{http_code}" https://affidavit-abo.pages.dev/ || true)
+            canonical_status=$(curl -L -sS -o /dev/null -w "%{http_code}" https://masterkanorcase.online/ || true)
+            echo "Pages origin status: ${pages_status}; canonical status: ${canonical_status}"
+            if [ "${pages_status}" = "200" ]; then
+              echo "✅ Cloudflare Pages origin smoke check passed"
+              if [ "${canonical_status}" != "200" ]; then
+                echo "⚠️ Canonical edge returned ${canonical_status}; verify Cloudflare Access/WAF separately"
+              fi
               exit 0
             fi
-            echo "Homepage smoke check attempt $i failed, retrying..."
+            echo "Pages origin smoke check attempt ${i} failed, retrying..."
             sleep 10
           done
-          echo "❌ Homepage smoke check failed"
+          echo "❌ Cloudflare Pages origin smoke check failed"
           exit 1
 
       - name: Notify Success

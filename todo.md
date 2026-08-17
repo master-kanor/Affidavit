@@ -4163,3 +4163,4 @@
 - [ ] Diagnose and fix production minified React error #310 shown on masterkanorcase.online
 - [ ] Add regression coverage for stable hook ordering in protected evidence and admin routes
 - [ ] Verify the repaired production bundle and synchronize the fix through GitHub and Cloudflare
+- [ ] Replace the GitHub Actions homepage smoke check that receives a runner-specific Cloudflare 403 with a reliable deployment verification that does not falsely fail an otherwise successful Pages publish

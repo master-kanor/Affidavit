@@ -25,8 +25,10 @@ describe("Cloudflare Pages deployment workflow", () => {
     expect(workflow).not.toContain("pnpm run check || true");
   });
 
-  it("smoke-checks the canonical homepage instead of an unavailable Express health route", () => {
-    expect(workflow).toContain("curl -f -sS https://masterkanorcase.online/");
+  it("smoke-checks the Pages origin and diagnoses canonical edge responses", () => {
+    expect(workflow).toContain("https://affidavit-abo.pages.dev/");
+    expect(workflow).toContain("canonical_status");
+    expect(workflow).not.toContain("curl -f -sS https://masterkanorcase.online/");
     expect(workflow).not.toContain("/api/health");
   });
 

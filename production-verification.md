@@ -24,3 +24,7 @@ After the successful `dist` deployment, direct browser checks of `/dossier` and 
 The mobile screenshot showed minified React error #310 and a blank page. Source tracing found that both `EvidenceDossier` and `AdminDashboard` returned during Supabase admin-loading or denial states before executing their page-level hooks. When authentication state changed, React saw a different hook sequence on the next render, producing the minified hook-order failure.
 
 The fix introduces stable auth-gated shell components. The outer route components now call only the authentication guard and render loading/denial states; the authorized child components contain the state, effect, query, and memo hooks. Local Vitest, TypeScript checking, and the production Vite build pass after the change. A mobile preview of `/`, `/auth`, `/dossier`, and `/admin` renders without the React crash; protected routes correctly show the Supabase admin login screen when no session is present.
+
+## GitHub Actions Smoke Check Correction — 2026-08-17
+
+The first workflow run for the hook-order fix built the application but failed only in the final smoke step because the GitHub-hosted runner received HTTP 403 from the canonical edge. The same canonical domain returned HTTP 200 from the sandbox and the Pages origin is the reliable deployment target. The smoke check now requires HTTP 200 from `https://affidavit-abo.pages.dev/`, reports the canonical response for diagnosis, and does not falsely mark a successful Pages publish as failed solely because of runner-specific edge protection.
