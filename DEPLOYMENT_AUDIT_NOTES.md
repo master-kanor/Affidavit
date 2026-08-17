@@ -118,3 +118,7 @@ The remaining live verification step is to confirm that the newest GitHub commit
 - **Stale Code Removal**: Legacy tRPC routers, server-side express files, Manus debug collectors, and Manus dialog components were scrubbed from the synchronized GitHub repository.
 - **Local Validation**: Vitest suite (4 test files, 22 assertions), TypeScript type checking (`tsc --noEmit`), and the static Vite production build (`vite build`) completed successfully with zero errors.
 - **GitHub Synchronization**: The verified Supabase client, updated route guards, and clean static build configuration were successfully published to GitHub main (Commit `86b1a1fd787892d1e5361c4ebb75ae7fb97dc20e`), triggering the final Cloudflare Pages production deployment.
+
+## Build Artifact Output Alignment — 2026-08-17
+
+Fixed the Cloud Build error where downstream environment builders expected `dist/public/*` while Vite generated `dist/*`. The GitHub Actions workflow now ensures `dist/public` mirrors all built assets (`dist/*`), guaranteeing successful deployment across any Cloudflare or container build pipeline.
