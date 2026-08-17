@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import type { User as SupabaseUser } from "@supabase/supabase-js";
+import { supabase } from "@/lib/supabase";
 
 export interface User {
   id: string;
@@ -6,55 +8,43 @@ export interface User {
   role?: string;
 }
 
+function mapUser(user: SupabaseUser | null): User | null {
+  if (!user?.email) return null;
+  return {
+    id: user.id,
+    email: user.email,
+    role: typeof user.user_metadata?.role === "string" ? user.user_metadata.role : "user",
+  };
+}
+
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is logged in
-    const checkAuth = async () => {
-      try {
-        const response = await fetch("/api/auth/me", {
-          credentials: "include",
-        });
-        if (response.ok) {
-          const userData = await response.json();
-          setUser(userData);
-        }
-      } catch (error) {
-        console.error("Auth check failed:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    supabase.auth.getSession().then(({ data }) => {
+      setUser(mapUser(data.session?.user ?? null));
+      setIsLoading(false);
+    });
 
-    checkAuth();
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(mapUser(session?.user ?? null));
+      setIsLoading(false);
+    });
+
+    return () => listener.subscription.unsubscribe();
   }, []);
 
   const logout = async () => {
-    try {
-      await fetch("/api/auth/logout", {
-        method: "POST",
-        credentials: "include",
-      });
-      setUser(null);
-      window.location.href = "/";
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
-  };
-
-  const getLoginUrl = (returnPath?: string) => {
-    const origin = window.location.origin;
-    const state = btoa(JSON.stringify({ origin, returnPath: returnPath || "/" }));
-    return `/login?state=${state}`;
+    await supabase.auth.signOut();
+    setUser(null);
+    window.location.href = "/";
   };
 
   return {
     user,
     isLoading,
     logout,
-    getLoginUrl,
-    isAuthenticated: !!user,
+    isAuthenticated: Boolean(user),
   };
 }

@@ -3,21 +3,36 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.15.1
+          run_install: false
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
-      - run: pnpm install
+      - run: pnpm install --no-frozen-lockfile
       - run: pnpm run build
-      - uses: cloudflare/pages-action@1
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_APP_TITLE: ${{ secrets.VITE_APP_TITLE }}
+          VITE_APP_URL: ${{ secrets.VITE_APP_URL }}
+      - uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: masterkanorcase.online
+          projectName: affidavit
           directory: dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
