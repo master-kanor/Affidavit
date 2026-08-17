@@ -6,6 +6,9 @@ const workflowPath = fileURLToPath(
   new URL("../../.github/workflows/deploy.yml", import.meta.url),
 );
 const workflow = readFileSync(workflowPath, "utf8");
+const appSource = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
+const mainSource = readFileSync(new URL("./main.tsx", import.meta.url), "utf8");
+const authHookSource = readFileSync(new URL("./hooks/useAuth.ts", import.meta.url), "utf8");
 
 describe("Cloudflare Pages deployment workflow", () => {
   it("deploys the intended Pages project and GitHub artifact output", () => {
@@ -31,5 +34,15 @@ describe("Cloudflare Pages deployment workflow", () => {
     );
     const redirects = readFileSync(redirectsPath, "utf8");
     expect(redirects).toContain("/*    /index.html   200");
+  });
+
+  it("keeps protected routes and authentication in Supabase client code", () => {
+    expect(appSource).toContain('path={"/auth"}');
+    expect(appSource).toContain('path={"/dossier"}');
+    expect(appSource).toContain('path={"/admin"}');
+    expect(mainSource).toContain("QueryClientProvider");
+    expect(mainSource).not.toContain("getLoginUrl");
+    expect(authHookSource).toContain("@/lib/supabaseClient");
+    expect(authHookSource).not.toContain("/api/auth/");
   });
 });

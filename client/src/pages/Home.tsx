@@ -51,7 +51,7 @@ export default function Home() {
               <Button
                 size="sm"
                 className="bg-slate-900 hover:bg-slate-800"
-                onClick={() => window.location.href = `/login`}
+                onClick={() => setLocation("/auth")}
               >
                 <User className="w-4 h-4 mr-2" />
                 Sign In
@@ -77,7 +77,7 @@ export default function Home() {
             <Button
               size="lg"
               className="bg-amber-600 hover:bg-amber-700 text-white"
-              onClick={() => setLocation("/")}
+              onClick={() => setLocation("/dossier")}
             >
               View Evidence Dossier
               <ArrowRight className="ml-2 w-5 h-5" />
@@ -194,7 +194,7 @@ export default function Home() {
                   Secure Access & Authentication
                 </h2>
                 <p className="text-slate-600 mb-4">
-                  This evidence dossier is protected with secure authentication. Admin users have access to content management features and export functionality. All data is encrypted and stored securely.
+                  This evidence dossier is protected with Supabase authentication. Admin users have access to content management features and export functionality. All data is encrypted and stored securely.
                 </p>
                 <p className="text-slate-600">
                   Exports are automatically saved to cloud storage and can be accessed anytime from your export history. All formats include full metadata and are ready for sharing or archival.
@@ -217,7 +217,7 @@ export default function Home() {
           <Button
             size="lg"
             className="bg-amber-600 hover:bg-amber-700 text-white"
-            onClick={() => setLocation("/")}
+            onClick={() => setLocation("/dossier")}
           >
             View Dossier Now
             <ArrowRight className="ml-2 w-5 h-5" />

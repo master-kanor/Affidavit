@@ -4152,3 +4152,8 @@
 - [ ] Fix the canonical production `/auth` direct-navigation 404 so Supabase login is reachable without first visiting the homepage
 - [ ] Fix the GitHub `pnpm-workspace.yaml` so Cloudflare Pages can run pnpm install without the `packages field missing or empty` failure
 - [ ] Align the GitHub-connected Vite build, Cloudflare Pages destination, and deployment workflow on the actual GitHub artifact directory `dist`
+- [ ] Synchronize the complete Supabase-authenticated route shell, auth pages, admin/evidence pages, and required client components into GitHub
+- [ ] Remove any production Manus OAuth/client authentication imports from the GitHub-built application while preserving development-only tooling
+- [ ] Verify the GitHub-built application compiles with the Supabase environment variable contract and direct routes
+- [ ] Align the Supabase auth success redirect with the registered evidence route and preserve `/dossier` as the canonical protected path
+- [ ] Replace the evidence tRPC dependency in the production client with direct Supabase queries or a verified Supabase-compatible API path

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
 import type { User as SupabaseUser } from "@supabase/supabase-js";
-import { supabase } from "@/lib/supabase";
 
 export interface User {
   id: string;
@@ -8,12 +8,11 @@ export interface User {
   role?: string;
 }
 
-function mapUser(user: SupabaseUser | null): User | null {
-  if (!user?.email) return null;
+function mapUser(user: SupabaseUser): User {
   return {
     id: user.id,
-    email: user.email,
-    role: typeof user.user_metadata?.role === "string" ? user.user_metadata.role : "user",
+    email: user.email ?? "",
+    role: user.user_metadata?.role ?? user.app_metadata?.role,
   };
 }
 
@@ -22,29 +21,49 @@ export function useAuth() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setUser(mapUser(data.session?.user ?? null));
+    let mounted = true;
+
+    supabase.auth.getUser().then(({ data, error }) => {
+      if (!mounted) return;
+      if (error || !data.user) {
+        setUser(null);
+      } else {
+        setUser(mapUser(data.user));
+      }
       setIsLoading(false);
     });
 
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(mapUser(session?.user ?? null));
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!mounted) return;
+      setUser(session?.user ? mapUser(session.user) : null);
       setIsLoading(false);
     });
 
-    return () => listener.subscription.unsubscribe();
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
   }, []);
 
   const logout = async () => {
-    await supabase.auth.signOut();
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error("Supabase sign out failed:", error);
+      throw error;
+    }
     setUser(null);
     window.location.href = "/";
   };
+
+  const getLoginUrl = () => "/auth";
 
   return {
     user,
     isLoading,
     logout,
-    isAuthenticated: Boolean(user),
+    getLoginUrl,
+    isAuthenticated: !!user,
   };
 }

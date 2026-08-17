@@ -1,10 +1,11 @@
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
+import { jsxLocPlugin } from "@builder.io/vite-plugin-jsx-loc";
 import path from "node:path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(), jsxLocPlugin()],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -17,5 +18,21 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
+  },
+  server: {
+    port: 3000,
+    strictPort: false,
+    host: true,
+    proxy: {
+      "/api": {
+        target: "http://localhost:3001",
+        changeOrigin: true,
+      },
+    },
+    allowedHosts: ["localhost", "127.0.0.1"],
+    fs: {
+      strict: true,
+      deny: ["**/.*"],
+    },
   },
 });

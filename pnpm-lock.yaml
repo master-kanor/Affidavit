@@ -273,9 +273,6 @@ importers:
       vite:
         specifier: ^5.0.0
         version: 5.4.21(@types/node@20.19.43)(lightningcss@1.32.0)
-      vite-plugin-manus-runtime:
-        specifier: ^0.0.58
-        version: 0.0.58
       vitest:
         specifier: ^2.1.4
         version: 2.1.9(@types/node@20.19.43)(lightningcss@1.32.0)
@@ -1099,9 +1096,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
-
-  '@medv/finder@4.0.2':
-    resolution: {integrity: sha512-RraNY9SCcx4KZV0Dh6BEW6XEW2swkqYca74pkFFRw6hHItSHiy+O/xMnpbofjYbzXj0tSpBGthUF1hHTsr3vIQ==}
 
   '@mermaid-js/parser@1.2.0':
     resolution: {integrity: sha512-oYPyv8A4As1yH5Bx+04iQEQxXuIQDe0GKCNSRgao6z8AM9jixXIfP0vsppRLvGf+nKIOb9/LdpWA4YuJiVvESA==}
@@ -3508,9 +3502,6 @@ packages:
   mitt@3.0.1:
     resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
 
-  modern-screenshot@4.7.0:
-    resolution: {integrity: sha512-9YxN+ddPSMMlhylOv25VHzXrl9u67QRxoh7+SEewGtgUw7t6hHTrjptSDJUSne9oG4Xk/h2cwG15nIt4Hc9ujg==}
-
   motion-dom@12.42.2:
     resolution: {integrity: sha512-5gIMWLp/PycBtJRJWRgjxke5n8dlvkSn2DrYW+tr3XcqAZY1xZh6BJyooJXCM8wdfM7wfMjkBJNLge1CKPUIRA==}
 
@@ -4115,9 +4106,6 @@ packages:
     resolution: {integrity: sha512-AM9aQ/IPrW/6ENLQg3AGY4K1N2TGZdR5e4gu/MmmR2xR3Ll1+dib+nook92g4TV3PXVyeyxdWwtaCAiUL0hMxA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
-
-  vite-plugin-manus-runtime@0.0.58:
-    resolution: {integrity: sha512-1dtoSyqiqpFtRhth4ODu/cgoBF25IGs1yOpq5EGDefv7LQoQvAnQ4mhTgOrpSk7POfOxL+/Olxx+vo/LMNODXA==}
 
   vite@5.4.21:
     resolution: {integrity: sha512-o5a9xKjbtuhY6Bi5S3+HvbRERmouabWbyUcpXXUA1u+GNUKoROi9byOJ8M0nHbHYHkYICiMlqxkg1KkYmm25Sw==}
@@ -4876,8 +4864,6 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
-
-  '@medv/finder@4.0.2': {}
 
   '@mermaid-js/parser@1.2.0':
     dependencies:
@@ -7625,8 +7611,6 @@ snapshots:
 
   mitt@3.0.1: {}
 
-  modern-screenshot@4.7.0: {}
-
   motion-dom@12.42.2:
     dependencies:
       motion-utils: 12.39.0
@@ -8344,16 +8328,6 @@ snapshots:
       - sugarss
       - supports-color
       - terser
-
-  vite-plugin-manus-runtime@0.0.58:
-    dependencies:
-      '@medv/finder': 4.0.2
-      clsx: 2.1.1
-      modern-screenshot: 4.7.0
-      nanoid: 5.1.16
-      react: 19.2.7
-      react-dom: 19.2.7(react@19.2.7)
-      tailwind-merge: 3.6.0
 
   vite@5.4.21(@types/node@20.19.43)(lightningcss@1.32.0):
     dependencies:
