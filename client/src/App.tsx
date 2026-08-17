@@ -6,6 +6,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
+import AuthCallback from "./pages/AuthCallback";
 import AdminDashboard from "./pages/AdminDashboard";
 import { EvidenceDossier } from "./pages/EvidenceDossier";
 
@@ -15,6 +16,7 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/auth"} component={Auth} />
+      <Route path={"/auth/callback"} component={AuthCallback} />
       <Route path={"/dossier"} component={EvidenceDossier} />
       <Route path={"/admin"} component={AdminDashboard} />
       <Route path={"/404"} component={NotFound} />

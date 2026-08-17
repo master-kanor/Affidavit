@@ -44,6 +44,7 @@ describe("Cloudflare Pages deployment workflow", () => {
 
   it("keeps protected routes and authentication in Supabase client code", () => {
     expect(appSource).toContain('path={"/auth"}');
+    expect(appSource).toContain('path={"/auth/callback"}');
     expect(appSource).toContain('path={"/dossier"}');
     expect(appSource).toContain('path={"/admin"}');
     expect(mainSource).toContain("QueryClientProvider");
