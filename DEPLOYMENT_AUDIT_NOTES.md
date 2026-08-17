@@ -110,3 +110,11 @@ The first SPA fallback deployment attempt reached Cloudflare's build step but fa
 The next Cloudflare build proved that the GitHub-connected repository is not identical to the managed local copy: the GitHub Vite configuration builds `dist/index.html` and the GitHub repository contains `public/_redirects`. Cloudflare Pages is therefore configured to publish `dist`, and the GitHub Actions workflow now uses `directory: dist`. The prior `dist/public` setting was incorrect for the actual GitHub source and has been corrected.
 
 The remaining live verification step is to confirm that the newest GitHub commit builds successfully and that direct navigation to `/auth`, `/dossier`, and `/admin` reaches the SPA rather than a platform 404.
+
+## Final Supabase & Static Cloudflare Synchronization — 2026-08-17
+
+- **Production Architecture Locked**: GitHub (`master-kanor/Affidavit`) is the sole source repository. Cloudflare Pages project `affidavit` serves the static React application from `dist` onto `masterkanorcase.online` with SSL mode set to `Full (Strict)`.
+- **Supabase Authentication**: All production authentication relies exclusively on Supabase Auth (Email/Password, Google OAuth, GitHub OAuth). No Manus AI authentication runtime or SDK exists in the synchronized application bundle.
+- **Stale Code Removal**: Legacy tRPC routers, server-side express files, Manus debug collectors, and Manus dialog components were scrubbed from the synchronized GitHub repository.
+- **Local Validation**: Vitest suite (4 test files, 22 assertions), TypeScript type checking (`tsc --noEmit`), and the static Vite production build (`vite build`) completed successfully with zero errors.
+- **GitHub Synchronization**: The verified Supabase client, updated route guards, and clean static build configuration were successfully published to GitHub main (Commit `86b1a1fd787892d1e5361c4ebb75ae7fb97dc20e`), triggering the final Cloudflare Pages production deployment.

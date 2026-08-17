@@ -18,3 +18,9 @@ A subsequent refresh of the same production `/auth` URL resolved to the app's 40
 
 
 After the successful `dist` deployment, direct browser checks of `/dossier` and `/admin` both rendered the application's 404 page. The latest GitHub tree contains both `public/_redirects` and `client/public/_redirects`, but the deployed route behavior remains incorrect for direct navigation. This confirms the remaining issue is the Cloudflare Pages SPA fallback/source alignment and not the Supabase role guard itself.
+
+## React Error #310 Investigation — 2026-08-17
+
+The mobile screenshot showed minified React error #310 and a blank page. Source tracing found that both `EvidenceDossier` and `AdminDashboard` returned during Supabase admin-loading or denial states before executing their page-level hooks. When authentication state changed, React saw a different hook sequence on the next render, producing the minified hook-order failure.
+
+The fix introduces stable auth-gated shell components. The outer route components now call only the authentication guard and render loading/denial states; the authorized child components contain the state, effect, query, and memo hooks. Local Vitest, TypeScript checking, and the production Vite build pass after the change. A mobile preview of `/`, `/auth`, `/dossier`, and `/admin` renders without the React crash; protected routes correctly show the Supabase admin login screen when no session is present.

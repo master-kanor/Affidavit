@@ -9,6 +9,8 @@ const workflow = readFileSync(workflowPath, "utf8");
 const appSource = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
 const mainSource = readFileSync(new URL("./main.tsx", import.meta.url), "utf8");
 const authHookSource = readFileSync(new URL("./hooks/useAuth.ts", import.meta.url), "utf8");
+const evidenceSource = readFileSync(new URL("./pages/EvidenceDossier.tsx", import.meta.url), "utf8");
+const adminSource = readFileSync(new URL("./pages/AdminDashboard.tsx", import.meta.url), "utf8");
 
 describe("Cloudflare Pages deployment workflow", () => {
   it("deploys the intended Pages project and GitHub artifact output", () => {
@@ -44,5 +46,12 @@ describe("Cloudflare Pages deployment workflow", () => {
     expect(mainSource).not.toContain("getLoginUrl");
     expect(authHookSource).toContain("@/lib/supabaseClient");
     expect(authHookSource).not.toContain("/api/auth/");
+  });
+
+  it("keeps protected-page hooks stable across auth loading transitions", () => {
+    expect(evidenceSource).toContain("AuthorizedEvidenceDossier");
+    expect(evidenceSource).toContain("return <AuthorizedEvidenceDossier user={user} />;");
+    expect(adminSource).toContain("AuthorizedAdminDashboard");
+    expect(adminSource).toContain("return <AuthorizedAdminDashboard />;");
   });
 });

@@ -8,8 +8,7 @@ import MasterKanorChatAgent from "@/components/MasterKanorChatAgent";
 
 export default function AdminDashboard() {
   const { isAdmin, isLoading: adminLoading } = useAdminCheck();
-  
-  // Show loading while checking admin status
+
   if (adminLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -17,8 +16,7 @@ export default function AdminDashboard() {
       </div>
     );
   }
-  
-  // Redirect if not admin
+
   if (!isAdmin) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -29,7 +27,11 @@ export default function AdminDashboard() {
       </div>
     );
   }
-  
+
+  return <AuthorizedAdminDashboard />;
+}
+
+function AuthorizedAdminDashboard() {
   const [metrics, setMetrics] = useState({
     totalEvidence: 331,
     activeCases: 1,

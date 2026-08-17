@@ -4157,3 +4157,9 @@
 - [ ] Verify the GitHub-built application compiles with the Supabase environment variable contract and direct routes
 - [ ] Align the Supabase auth success redirect with the registered evidence route and preserve `/dossier` as the canonical protected path
 - [ ] Replace the evidence tRPC dependency in the production client with direct Supabase queries or a verified Supabase-compatible API path
+- [x] Synchronize the complete Supabase-authenticated route shell, auth pages, admin/evidence pages, and required client components into GitHub
+- [x] Remove any production Manus OAuth/client authentication imports from the GitHub-built application while preserving development-only tooling
+- [x] Verify the GitHub-built application compiles with the Supabase environment variable contract and direct routes
+- [ ] Diagnose and fix production minified React error #310 shown on masterkanorcase.online
+- [ ] Add regression coverage for stable hook ordering in protected evidence and admin routes
+- [ ] Verify the repaired production bundle and synchronize the fix through GitHub and Cloudflare

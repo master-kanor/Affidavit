@@ -12,28 +12,6 @@ import { Download, Share2, Loader2, Filter } from "lucide-react";
 export const EvidenceDossier: React.FC = () => {
   const { user } = useAuth();
   const { isAdmin, isLoading: adminLoading } = useAdminCheck();
-  const [activeTab, setActiveTab] = useState("gallery");
-  const [selectedSection, setSelectedSection] = useState<string | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
-  const [showFilters, setShowFilters] = useState(false);
-
-  const evidenceQuery = useEvidenceSearch(searchQuery, startDate, endDate, {
-    limit: 100,
-    enabled: isAdmin && !adminLoading,
-  });
-
-  const filteredEvidence = React.useMemo(() => {
-    if (!evidenceQuery.data?.evidence) return [];
-    if (!selectedCategory) return evidenceQuery.data.evidence;
-    return evidenceQuery.data.evidence.filter(
-      (e: any) => e.category === selectedCategory,
-    );
-  }, [evidenceQuery.data?.evidence, selectedCategory]);
-
-  const categoriesQuery = useEvidenceCategories(isAdmin && !adminLoading);
 
   if (adminLoading) {
     return (
@@ -53,6 +31,33 @@ export const EvidenceDossier: React.FC = () => {
       </div>
     );
   }
+
+  return <AuthorizedEvidenceDossier user={user} />;
+};
+
+const AuthorizedEvidenceDossier: React.FC<{ user: any }> = ({ user }) => {
+  const [activeTab, setActiveTab] = useState("gallery");
+  const [selectedSection, setSelectedSection] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
+  const [showFilters, setShowFilters] = useState(false);
+
+  const evidenceQuery = useEvidenceSearch(searchQuery, startDate, endDate, {
+    limit: 100,
+    enabled: true,
+  });
+
+  const filteredEvidence = React.useMemo(() => {
+    if (!evidenceQuery.data?.evidence) return [];
+    if (!selectedCategory) return evidenceQuery.data.evidence;
+    return evidenceQuery.data.evidence.filter(
+      (e: any) => e.category === selectedCategory,
+    );
+  }, [evidenceQuery.data?.evidence, selectedCategory]);
+
+  const categoriesQuery = useEvidenceCategories(true);
 
   // Transform evidence into testimony sections
   const testimonySections: TestimonySection[] = React.useMemo(() => {
