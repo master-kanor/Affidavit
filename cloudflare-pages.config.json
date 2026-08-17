@@ -9,7 +9,7 @@
   "security_metadata": {},
   "production_build": {
     "command": "pnpm exec vite build",
-    "output_directory": "dist/public"
+    "output_directory": "dist"
   },
   "environment_variables": {
     "VITE_SUPABASE_URL": "",
