@@ -4151,3 +4151,4 @@
 - [ ] Add a package `test` script that runs the Vitest suite so local and CI validation use one reproducible command
 - [ ] Fix the canonical production `/auth` direct-navigation 404 so Supabase login is reachable without first visiting the homepage
 - [ ] Fix the GitHub `pnpm-workspace.yaml` so Cloudflare Pages can run pnpm install without the `packages field missing or empty` failure
+- [ ] Align the GitHub-connected Vite build, Cloudflare Pages destination, and deployment workflow on the actual GitHub artifact directory `dist`

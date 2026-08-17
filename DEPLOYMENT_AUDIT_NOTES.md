@@ -101,3 +101,12 @@ The account-level Access application named `All Workers` was confirmed as the so
 The current live verification is limited to public homepage rendering and deployment metadata. Supabase email/Google/GitHub sign-in, non-admin denial, admin access, and evidence media playback still require an authenticated end-to-end test account or manual browser verification.
 
 No secret values, Access tokens, cookies, or credential-bearing URLs are stored in this audit record.
+
+
+## GitHub Artifact Alignment — 2026-08-17
+
+The first SPA fallback deployment attempt reached Cloudflare's build step but failed because the GitHub repository's `pnpm-workspace.yaml` declared no `packages` field. After adding the root workspace package, the next build installed dependencies but failed because the workspace's stale `patchedDependencies` declaration did not match the lockfile. The stale patch configuration was removed, the lockfile was regenerated, and the exact frozen install passed locally.
+
+The next Cloudflare build proved that the GitHub-connected repository is not identical to the managed local copy: the GitHub Vite configuration builds `dist/index.html` and the GitHub repository contains `public/_redirects`. Cloudflare Pages is therefore configured to publish `dist`, and the GitHub Actions workflow now uses `directory: dist`. The prior `dist/public` setting was incorrect for the actual GitHub source and has been corrected.
+
+The remaining live verification step is to confirm that the newest GitHub commit builds successfully and that direct navigation to `/auth`, `/dossier`, and `/admin` reaches the SPA rather than a platform 404.

@@ -37,7 +37,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: affidavit
-          directory: dist/public
+          directory: dist
           productionBranch: main
 
       - name: Smoke Check

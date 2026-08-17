@@ -8,11 +8,11 @@ const workflowPath = fileURLToPath(
 const workflow = readFileSync(workflowPath, "utf8");
 
 describe("Cloudflare Pages deployment workflow", () => {
-  it("deploys the intended Pages project and Vite static output", () => {
+  it("deploys the intended Pages project and GitHub artifact output", () => {
     expect(workflow).toContain("projectName: affidavit");
-    expect(workflow).toContain("directory: dist/public");
+    expect(workflow).toContain("directory: dist\n");
     expect(workflow).not.toContain("projectName: masterkanor-affidavit");
-    expect(workflow).not.toContain("directory: dist\n");
+    expect(workflow).not.toContain("directory: dist/public");
   });
 
   it("does not ignore the TypeScript check", () => {
@@ -25,7 +25,7 @@ describe("Cloudflare Pages deployment workflow", () => {
     expect(workflow).not.toContain("/api/health");
   });
 
-  it("keeps the SPA fallback in the Vite public directory", () => {
+  it("keeps the local SPA fallback in the Vite public directory", () => {
     const redirectsPath = fileURLToPath(
       new URL("../public/_redirects", import.meta.url),
     );
