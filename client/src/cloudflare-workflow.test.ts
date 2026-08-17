@@ -16,6 +16,7 @@ describe("Cloudflare Pages deployment workflow", () => {
   it("deploys the intended Pages project and GitHub artifact output", () => {
     expect(workflow).toContain("projectName: affidavit");
     expect(workflow).toContain("directory: dist\n");
+    expect(workflow).toContain("branch: main\n");
     expect(workflow).not.toContain("projectName: masterkanor-affidavit");
     expect(workflow).not.toContain("directory: dist/public");
     expect(workflow).not.toContain("productionBranch:");

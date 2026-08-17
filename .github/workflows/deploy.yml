@@ -38,6 +38,7 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: affidavit
           directory: dist
+          branch: main
 
       - name: Smoke Check
         run: |

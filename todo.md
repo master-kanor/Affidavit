@@ -4165,3 +4165,4 @@
 - [ ] Verify the repaired production bundle and synchronize the fix through GitHub and Cloudflare
 - [ ] Replace the GitHub Actions homepage smoke check that receives a runner-specific Cloudflare 403 with a reliable deployment verification that does not falsely fail an otherwise successful Pages publish
 - [ ] Remove the unsupported `productionBranch` input from the Cloudflare Pages GitHub Action workflow and retain an explicit regression assertion for supported inputs
+- [ ] Force the Cloudflare Pages Action to deploy the GitHub `main` branch to production with its supported `branch` input, then verify the live asset hash changes
