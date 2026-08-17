@@ -4150,3 +4150,4 @@
 - [x] Replace the account-wide Cloudflare Access `all_workers` application with application-level Supabase protection for `/admin` and `/dossier`, then verify the public homepage and auth routes
 - [ ] Add a package `test` script that runs the Vitest suite so local and CI validation use one reproducible command
 - [ ] Fix the canonical production `/auth` direct-navigation 404 so Supabase login is reachable without first visiting the homepage
+- [ ] Fix the GitHub `pnpm-workspace.yaml` so Cloudflare Pages can run pnpm install without the `packages field missing or empty` failure
