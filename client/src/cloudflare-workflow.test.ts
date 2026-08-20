@@ -51,8 +51,10 @@ const homeSource = readFileSync(new URL("./pages/Home.tsx", import.meta.url), "u
 
   it("does not present simulated production truth on the public or admin surfaces", () => {
     expect(homeSource).not.toContain("canonicalCase");
-    expect(adminSource).toContain("Trusted authorization is active");
+    expect(adminSource).toContain("Owner authority remains protected at the database layer");
+    expect(adminSource).toMatch(/Every\s+access change is recorded in the audit log/);
     expect(adminSource).not.toContain("Math.random");
     expect(adminSource).not.toContain("totalEvidence: 331");
   });
 });
+
