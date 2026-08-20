@@ -1,0 +1,21 @@
+{
+  "name": "master-kanor-affidavit",
+  "description": "Affidavit application for master-kanor",
+  "production_domain": "masterkanorcase.online",
+  "admin_subdomain": "admin.masterkanorcase.online",
+  "health_checks": {
+    "canonical_homepage": "https://masterkanorcase.online/",
+    "admin_hostname": "https://admin.masterkanorcase.online/"
+  },
+  "ai_orchestration": {},
+  "maintenance_jobs": [],
+  "security_metadata": {},
+  "production_build": {
+    "command": "pnpm exec vite build",
+    "output_directory": "dist/public"
+  },
+  "environment_variables": {
+    "VITE_SUPABASE_URL": "",
+    "VITE_SUPABASE_ANON_KEY": ""
+  }
+}

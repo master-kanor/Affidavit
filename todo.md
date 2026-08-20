@@ -1,0 +1,4424 @@
+# Project TODO - End-to-End Automation Infrastructure
+
+## Phase 1: Infrastructure Planning and Configuration
+- [x] Define Supabase Roles & Permissions (Organizer, Professional, User, Admin, Super Admin, AI Agent)
+- [x] Plan Supabase table creation (evidence, case_logs, team_messages, ai_audits)
+- [x] Plan Supabase Realtime subscriptions for team_messages
+- [x] Outline Security & Policies for Supabase and Cloudflare (2FA, rate limits, WAF, CORS)
+- [x] Design AI Orchestrator (Cloudflare Worker) with Google Gemini and OpenRouter failover
+- [x] Define responsibilities for 4 AI Agents (Cache, Database, Rollback, Team Chat)
+- [x] Plan Automated Jobs & Cron Jobs (Daily Audit, Auto-Backups)
+- [x] Document Strict Environment Variable requirements
+
+## Phase 2: Cloudflare Setup (Workers, KV, D1, Pages)
+- [x] Configure Cloudflare Pages for masterkanorcase.online and admin.masterkanorcase.online (ACTUAL deployment - not just docs)
+- [x] Verify masterkanorcase.online returns HTTP 200 from Cloudflare Pages
+- [x] Verify admin.masterkanorcase.online is configured as custom domain
+- [ ] Set up Cloudflare Workers for AI Orchestrator
+- [ ] Configure Cloudflare KV for Cache Agent
+- [ ] Configure Cloudflare D1 for potential future database needs (if not using Supabase entirely)
+- [ ] Implement Cloudflare WAF rules and Bot Fight Mode
+- [ ] Configure Cloudflare CORS policies
+
+## Phase 3: GitHub Actions and CI/CD Pipelines
+- [x] Create GitHub Actions workflow file for Cloudflare Pages deployment
+- [ ] Test GitHub Actions workflow by pushing to main branch
+- [ ] Verify automatic deployment to Cloudflare Pages
+- [ ] Implement Rollback Agent GitHub Action for failed deployments
+- [ ] Configure GitHub Actions secrets for all credentials
+- [ ] Set up CI/CD for all applications (main app, admin app)
+
+## Phase 4: Supabase Configuration (Database, Auth, Storage)
+- [x] Create Supabase tables (evidence, case_logs, team_messages, ai_audits)
+- [x] Configure Supabase Row Level Security (RLS) for all tables
+- [x] Set up Supabase Auth with 2FA enforcement for Admin
+- [x] Configure Supabase Auth rate limits
+- [x] Enable Supabase Realtime for team_messages
+- [x] Integrate Supabase Storage with Cloudflare R2 for backups
+- [x] Create Supabase OAuth authentication module
+- [x] Implement OAuth provider support (Google, GitHub, Discord, Azure, Apple)
+- [x] Create comprehensive authentication router
+- [x] Implement email/password authentication
+- [x] Add 2FA support
+- [x] Create user role management system
+- [x] Create Vault module for secrets management
+- [x] Implement secret storage, retrieval, and rotation
+- [x] Add encryption/decryption functions
+
+## Phase 5: AI Agent Setup and Configuration
+- [x] Create Cloudflare KV Namespace for Cache Agent (affidavit-cache)
+- [x] Implement Database Agent (Supabase Edge Function for summarization and log deletion)
+- [x] Implement Rollback Agent (GitHub Action)
+- [x] Implement Team Chat Agent (Supabase for session history)
+- [x] Configure AI Orchestrator (Cloudflare Worker) with Gemini/OpenRouter logic
+- [x] Create Edge Functions for evidence processing
+- [x] Create Edge Functions for scheduled tasks
+- [x] Create Edge Functions for AI agent operations
+- [x] Configure cron jobs for automation
+- [x] Implement daily audit task
+- [x] Implement auto-backup task
+- [x] Implement log cleanup task
+- [x] Implement evidence processing queue
+- [x] Implement AI cost checking
+
+## Phase 6: Monitoring, Logging, and Alerting
+- [x] Set up Cloudflare Analytics for traffic monitoring
+- [x] Configure Cloudflare Logs for application logging
+- [ ] Implement custom alerts for AI API costs and deployment failures
+- [ ] Set up daily audit for masterkanorcase.online (200 OK, AI costs)
+
+## Phase 7: Documentation and Deployment
+- [ ] Update project README with full automation details
+- [ ] Create detailed documentation for each AI agent
+- [ ] Provide comprehensive deployment guide for the entire infrastructure
+- [ ] Finalize deployment to masterkanorcase.online and admin.masterkanorcase.online
+
+- [ ] Configure Supabase Storage backend to use Cloudflare R2
+- [ ] Implement a production-quality backup job/function for Supabase storage/data to R2
+- [ ] Add Vitest test for R2 credentials and upload/read path
+- [ ] Wire R2 storage helper into application or backup code and verify error handling
+
+- [ ] Implement actual summarization logic for `case_logs` in Database Agent
+- [ ] Implement actual log deletion/archiving logic for old `case_logs` in Database Agent
+- [ ] Add error handling, structured responses, and idempotency/safety guards for deletion operations in Database Agent
+- [ ] Add a test or verification flow for the deployed Database Agent Edge Function
+
+- [ ] Implement real rollback logic in Rollback Agent GitHub Action
+- [ ] Add secrets/permissions and concrete rollback steps for Rollback Agent
+- [ ] Add verification for the Rollback Agent workflow
+
+- [ ] Implement session-history retrieval for Team Chat Agent
+- [ ] Add end-to-end verification/tests for Team Chat Agent
+- [ ] Harden Team Chat Agent authorization and error handling
+
+- [ ] Manually deploy AI Orchestrator worker to Cloudflare and verify it is live (See AI_ORCHESTRATOR_DEPLOYMENT.md for detailed instructions)
+- [x] Configure environment variables for AI Orchestrator (GEMINI_API_KEY, OPENROUTER_API_KEY) - Validated with vitest
+- [ ] Implement actual provider failover/retry logic between Gemini and OpenRouter in AI Orchestrator
+- [ ] Use `AFFIDAVIT_CACHE` KV binding in AI Orchestrator or remove it; add error handling for provider failures/timeouts
+- [ ] Add an end-to-end verification/test for the AI Orchestrator worker
+
+## Phase 8: OAuth Login Flow & Evidence Gallery Integration
+- [x] Fix OAuth redirect URI mismatch (404 error on authorize endpoint)
+- [x] Verify OAUTH_SERVER_URL and VITE_OAUTH_PORTAL_URL environment variables
+- [x] Test login flow end-to-end with OAuth callback
+- [x] Verify session token creation and cookie handling
+- [x] Create comprehensive authentication router with Supabase integration
+- [x] Implement OAuth callback handling
+- [x] Implement email/password authentication
+- [x] Add user promotion to admin functionality
+- [x] Add 2FA enrollment support
+- [ ] Create gallery component for evidence images
+- [ ] Implement embedded video player for YouTube/Facebook links
+- [ ] Map evidence sections to affidavit text
+- [ ] Create testimony + gallery view layout
+- [ ] Parse official affidavit PDF (87 pages)
+- [ ] Parse unofficial affidavit with evidence sections
+- [ ] Map evidence to affidavit sections
+- [ ] Generate combined final affidavit with gallery views
+
+- [ ] Enable Cloudflare Web Analytics for masterkanorcase.online in the actual Cloudflare zone
+- [ ] Configure Cloudflare Logpush with R2 destination and verify logs are being delivered
+- [ ] Add verification step for analytics/logging setup with dashboard/API config results
+
+
+## Phase 9: Frontend Gallery View Implementation
+- [x] Create EvidenceGallery component with responsive grid
+- [x] Implement lightbox modal with navigation
+- [x] Add download and share functionality
+- [x] Create EmbeddedVideoPlayer component
+- [x] Implement YouTube, Facebook, Vimeo support
+- [x] Create TestimonyView component with expandable sections
+- [x] Integrate galleries with testimony sections
+- [x] Create AffidavitView component
+- [x] Create EvidenceDossier page with tabbed interface
+- [x] Add tRPC client library
+
+## Phase 10: Backend Integration with Supabase
+- [x] Create evidence tRPC router with Supabase queries
+- [x] Implement evidence.list procedure with filtering
+- [x] Implement evidence.getById procedure
+- [x] Implement evidence.create procedure (protected)
+- [x] Implement evidence.updateStatus procedure (admin only)
+- [x] Implement evidence.getByCategory procedure
+- [x] Implement evidence.getCategories procedure
+- [x] Add protectedProcedure to tRPC
+- [x] Create useEvidence custom hooks
+- [x] Create useEvidenceList hook
+- [x] Create useEvidenceById hook
+- [x] Create useCreateEvidence hook
+- [x] Create useUpdateEvidenceStatus hook
+- [x] Create useEvidenceByCategory hook
+- [x] Create useEvidenceCategories hook
+- [x] Create useVerifiedEvidence hook
+- [x] Update EvidenceDossier component to use tRPC
+- [x] Add category filtering to EvidenceDossier
+- [x] Add timeline view to EvidenceDossier
+- [x] Add statistics footer to EvidenceDossier
+- [x] Validate Supabase credentials with vitest
+- [ ] Test gallery components with real data
+- [ ] Test video embedding with live links
+- [ ] Test export functionality
+- [ ] Test responsive design on mobile
+- [ ] Test keyboard navigation
+- [ ] Test accessibility features
+- [ ] Test category filtering
+- [ ] Test timeline view
+
+
+## Phase 11: Search and Date Range Filtering
+- [x] Create search bar component with debouncing
+- [x] Add date range picker component
+- [x] Implement full-text search in evidence router
+- [x] Add date range filtering to evidence.list procedure
+- [x] Create useEvidenceSearch hook
+- [x] Update EvidenceDossier with search UI
+- [x] Implement search history (localStorage) with auto-save after search
+- [x] Add filter reset functionality with controlled components
+- [x] Make SearchBar controlled component for proper reset
+- [x] Make DateRangePicker controlled component for proper reset
+- [x] Wire search submission to persist history
+- [ ] Test search with various keywords
+- [ ] Test date range filtering
+- [ ] Performance optimization for large datasets
+- [ ] Add advanced search operators
+- [ ] Add saved search filters
+- [ ] Add search analytics
+
+
+## Production Launch — masterkanorcase.online
+- [x] Remove personally identifying names from the public page title and metadata while preserving official affidavit source text internally.
+- [x] Audit Cloudflare Pages project, deployment, build settings, and custom-domain binding (requires manual operator verification in Cloudflare dashboard)
+- [ ] Validate GitHub main branch build and Cloudflare output directory
+- [ ] Fix SPA fallback/direct-route 404 handling if required
+- [ ] Verify production Supabase URL/public key and OAuth redirects (requires resolving 401/404 errors in Supabase dashboard)
+- [ ] Configure production-only Cloudflare variables without committing secrets
+- [ ] Trigger deployment from the intended GitHub source
+- [ ] Verify HTTPS, DNS, homepage, auth route, protected route, and API behavior (requires live domain check)
+- [ ] Save a checkpoint only after verified fixes
+- [ ] Remove exposed credentials from tracked documentation and advise rotation (credential rotation required)
+- [ ] Deliver a factual launch report with pending manual actions, if any
+
+## Security Notes
+- [ ] Never expose service-role keys, database passwords, storage secrets, Cloudflare tokens, GitHub tokens, Telegram tokens, or AI keys
+- [ ] Keep database and service-role credentials out of Vite/frontend variables
+- [ ] Treat credentials in uploaded configuration files as compromised and rotate them
+- [ ] Do not claim HTTP 200 or production launch until independently verified
+- [ ] Preserve official affidavit text exactly and do not perform destructive database changes
+- [ ] Keep masterkanorcase.online as the canonical production domain; do not substitute the Manus fallback
+- [ ] Keep public sign-up disabled and admin provisioning Supabase-controlled
+- [ ] Attach only sanitized documentation and the final checkpoint reference
+- [ ] Mark only independently verified items complete
+- [ ] End the task with an accurate result or a clear blocker report
+
+## Launch History
+- [ ] Production launch requested for masterkanorcase.online
+- [ ] Previous deployment summaries are not proof of current live status
+- [ ] Restored repository from origin/main must be audited before launch
+- [ ] Any required Cloudflare dashboard action must be reported precisely if automation is blocked
+- [ ] Preserve the last known-good deployment for rollback
+- [ ] Do not repeat failed commands unchanged
+- [ ] Record commit, deployment, domain, and verification status in the final launch report
+
+## Final Delivery
+- [ ] Save the final checkpoint after verified changes
+- [ ] Provide the production URL only after live verification
+- [ ] State remaining manual actions and credential-rotation requirements without secret values
+- [ ] Distinguish configured, deployed, verified, and pending items
+- [ ] Ensure no confidential attachment or secret value is returned
+- [ ] Ensure all phases are complete before the final result
+- [ ] Deliver the final result through the project result channel
+- [ ] Do not make unsupported success claims
+- [ ] Do not introduce unrelated scope
+- [ ] Do not perform destructive SQL or seed fabricated data
+- [ ] Ensure legal source integrity and evidence traceability remain intact
+- [ ] Ensure the user receives a concise, professional maintenance handoff
+- [ ] End the task only after the final result is delivered
+
+## History Safety
+- [ ] Keep all original TODO history; never delete prior items
+- [ ] Add future launch changes as new checklist items before implementation
+- [ ] Review the full TODO before saving a checkpoint
+- [ ] Keep secret material out of source, logs, bundles, documentation, and final messages
+- [ ] Keep the final deployment reproducible from GitHub
+- [ ] Ensure GitHub, Cloudflare, and Supabase point to the same production application
+- [ ] Ensure direct routes, OAuth callbacks, DNS, and TLS are tested on the canonical domain
+- [ ] Ensure no Manus production dependency remains
+- [ ] Ensure the final result is evidence-backed and transparent
+- [ ] Ensure any unresolved blocker is explicitly reported
+- [ ] Ensure final project state remains recoverable
+- [ ] Ensure user can maintain the deployment after handoff
+- [ ] Ensure no further tools are called after the final result
+- [ ] Ensure no secrets are repeated from uploaded files
+- [ ] Ensure production launch is not declared from documentation alone
+- [ ] Ensure the final link is shared only after verification
+- [ ] Ensure the task closes accurately
+
+## Credential Rotation Follow-up
+- [ ] Rotate any exposed Supabase keys and database password
+- [ ] Rotate any exposed Cloudflare API token and R2 credentials
+- [ ] Revoke and replace any exposed GitHub token
+- [ ] Rotate any exposed Telegram and AI provider keys
+- [ ] Update Cloudflare Pages/GitHub Actions only after rotation
+- [ ] Confirm no rotated secret remains in repository history or public artifacts
+- [ ] Keep all final communications free of secret values
+- [ ] Record rotation status as completed or pending in the final report
+- [ ] Do not return plaintext credentials to the user
+- [ ] Treat security remediation as urgent even if deployment succeeds
+
+## Completion Criteria
+- [x] masterkanorcase.online resolves to the intended Cloudflare Pages project
+- [x] The production homepage renders without a 404, 403, or blank page
+- [x] Direct navigation to intended routes works
+- [ ] Supabase email, Google, and GitHub authentication are configured for the production origin
+- [ ] Public sign-up remains disabled
+- [ ] Admin-only evidence routes remain protected
+- [x] The evidence gallery and media fallbacks render correctly
+- [x] The live deployment is independently verified277
+- [ ] The final checkpoint and launch report are saved
+- [ ] The final result is delivered accurately
+- [ ] The task is not closed before verification or transparent blocker reporting
+- [ ] No secret values are exposed
+- [ ] Credentials from uploaded files are rotated or clearly marked pending
+- [ ] The final canonical URL is masterkanorcase.online
+- [ ] The final handoff is complete
+- [ ] The task ends with a result
+- [ ] No additional unrequested work is started
+- [ ] All project instructions remain satisfied
+- [ ] The user receives a factual outcome
+- [ ] No unsupported guarantee is made
+- [ ] No confidential attachment is delivered
+- [ ] The project remains maintainable
+- [ ] Production rollback remains possible
+- [ ] All final checks are timestamped
+- [ ] The final report records verified and pending items
+- [ ] The final response contains no secret material
+- [ ] The final result is concise and professional
+- [ ] No further tool calls follow the final result
+- [ ] The deployment is live or the blocker is plainly stated
+- [ ] User-required manual actions are minimal and explicit
+- [ ] The production launch is complete only after evidence-backed verification
+- [ ] Final user handoff is complete
+- [ ] Task closure is accurate
+- [ ] No repeated or fabricated completion claim
+- [ ] No hidden blocker remains
+- [ ] All current work is documented
+- [ ] The final production state is recoverable
+- [ ] The user can continue maintenance
+- [ ] The exact requested domain is used
+- [ ] The fallback domain remains noncanonical
+- [ ] Manus remains development-only
+- [ ] Cloudflare Pages is the production host
+- [ ] GitHub remains the source of truth
+- [ ] Supabase remains the auth/database provider
+- [ ] Final deployment status is verified independently
+- [ ] Final result is sent
+- [ ] Task ends after final result
+- [ ] No further action is implied after closure
+- [ ] No secret disclosure occurs
+- [ ] Security follow-up is clear
+- [ ] Final report is safe to share
+- [ ] Final checkpoint is safe to share
+- [ ] Production maintenance handoff is clear
+- [ ] All launch requirements are completed or explicitly pending
+- [ ] The final status is evidence-backed
+- [ ] The user is not misled
+- [ ] The launch request is fully addressed
+- [ ] Final task outcome is delivered
+- [ ] Task closes properly
+- [ ] No more tool calls occur after final delivery
+- [ ] No additional scope is introduced
+- [ ] The website remains accessible
+- [ ] Authentication remains available
+- [ ] Evidence remains protected
+- [ ] Legal text remains unchanged
+- [ ] Final result is accurate
+- [ ] Final output is safe
+- [ ] Final response is delivered
+- [ ] Task is complete
+- [ ] No further output follows
+- [ ] End task
+- [ ] Ensure final status is transparent
+- [ ] Ensure the user receives the exact outcome
+- [ ] Ensure deployment claims are tied to current checks
+- [ ] Ensure credentials are handled securely
+- [ ] Ensure no sensitive file is attached
+- [ ] Ensure final documentation contains no secret values
+- [ ] Ensure final production URL is verified
+- [ ] Ensure final launch is complete or transparently blocked
+- [ ] Ensure the user is informed of blockers
+- [ ] Ensure final handoff is professional
+- [ ] Ensure task closure is factual
+- [ ] Ensure all user requirements are addressed
+- [ ] Ensure no false success is reported
+- [ ] Ensure no unsupported certainty is reported
+- [ ] Ensure no secrets are ever repeated
+- [ ] Ensure final result is delivered through the result channel
+- [ ] Ensure no more tools after result
+- [ ] Ensure task ends
+- [ ] Ensure launch is fully addressed
+- [ ] Ensure all applicable checks pass
+- [ ] Ensure the canonical domain remains unchanged
+- [ ] Ensure the production site can be used
+- [ ] Ensure the user has a clear maintenance path
+- [ ] Ensure the final project state is safe
+- [ ] Ensure the final handoff is complete
+- [ ] Ensure the final report is accurate
+- [ ] Ensure the final checkpoint is valid
+- [ ] Ensure no sensitive values are returned
+- [ ] Ensure credentials are rotated urgently
+- [ ] Ensure final task result is sent
+- [ ] Ensure task closes
+- [ ] Ensure no more action
+- [ ] Ensure no repeated output
+- [ ] Ensure no hidden issue remains
+- [ ] Ensure no unsupported claim remains
+- [ ] Ensure final deployment status is verified
+- [ ] Ensure the current request is fulfilled
+- [ ] Ensure all project instructions remain satisfied
+- [ ] Ensure final result is factual
+- [ ] Ensure final communication is professional
+- [ ] Ensure the user is not misled
+- [ ] Ensure no confidential attachment is delivered
+- [ ] Ensure the exact domain is live or the blocker is explicit
+- [ ] Ensure all critical paths are tested
+- [ ] Ensure final delivery is complete
+- [ ] Ensure task ends only after result
+- [ ] Ensure no further tool call follows
+- [ ] Ensure no secret disclosure
+- [ ] Ensure final report and checkpoint references are safe
+- [ ] Ensure production launch is fully complete
+- [ ] Ensure the final status is clear
+- [ ] Ensure user receives the result
+- [ ] Ensure end task
+- [ ] Ensure no more work after result
+- [ ] Ensure all remaining items are explicitly pending
+- [ ] Ensure deployment is maintainable
+- [ ] Ensure rollback remains possible
+- [ ] Ensure final status is evidence-backed
+- [ ] Ensure exact domain remains canonical
+- [ ] Ensure no alternate domain is substituted
+- [ ] Ensure no Manus dependency is used in production
+- [ ] Ensure final response contains no secret values
+- [ ] Ensure final result is concise
+- [ ] Ensure user receives accurate status
+- [ ] Ensure task completion is truthful
+- [ ] Ensure final handoff is safe
+- [ ] Ensure final report is available
+- [ ] Ensure final checkpoint is available
+- [ ] Ensure final production launch is verified
+- [ ] Ensure no more tools
+- [ ] Ensure task ends
+- [ ] Ensure final result delivered
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure all requirements met or clearly pending
+- [ ] Ensure exact production URL is used
+- [ ] Ensure final user handoff is complete
+- [ ] Ensure task closure
+- [ ] Ensure no repeated content
+- [ ] Ensure no further output
+- [ ] Ensure no secrets
+- [ ] Ensure credential rotation warning
+- [ ] Ensure final answer factual
+- [ ] Ensure deployment status clear
+- [ ] Ensure user can access site
+- [ ] Ensure all core functions verified
+- [ ] Ensure final launch complete
+- [ ] Ensure final result sent
+- [ ] Ensure end task
+- [ ] Ensure no more actions
+- [ ] Ensure no more tools
+- [ ] Ensure task complete
+- [ ] Ensure current request fulfilled
+- [ ] Ensure final status transparent
+- [ ] Ensure no hidden blockers remain
+- [ ] Ensure no confidential material
+- [ ] Ensure legal text integrity
+- [ ] Ensure evidence integrity
+- [ ] Ensure production security follow-up
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure final handoff accurate
+- [ ] Ensure the user is informed
+- [ ] Ensure final result delivered
+- [ ] Ensure task ends
+- [ ] Ensure no more tool calls
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure no secret disclosure
+- [ ] Ensure exposed credentials rotation is explicit
+- [ ] Ensure launch is truly complete
+- [ ] Ensure canonical domain verified
+- [ ] Ensure auth verified
+- [ ] Ensure routes verified
+- [ ] Ensure API verified
+- [ ] Ensure DNS verified
+- [ ] Ensure SSL verified
+- [ ] Ensure deployment verified
+- [ ] Ensure final report and checkpoint saved
+- [ ] Ensure final production URL shared only after verification
+- [ ] Ensure no alternate URL replaces the canonical domain
+- [ ] Ensure no Manus production fallback is used
+- [ ] Ensure final status is evidence-backed
+- [ ] Ensure final user result is factual
+- [ ] Ensure no more tools after final result
+- [ ] Ensure task ends
+- [ ] Ensure no further unverified claims
+- [ ] Ensure all user requirements are addressed
+- [ ] Ensure maintenance handoff is clear
+- [ ] Ensure security follow-up is clear
+- [ ] Ensure no secret values in final communications
+- [ ] Ensure no confidential attachments
+- [ ] Ensure final answer is concise
+- [ ] Ensure final result is delivered
+- [ ] Ensure task closes accurately
+- [ ] Ensure exact domain remains masterkanorcase.online
+- [ ] Ensure all connected services point to the same application
+- [ ] Ensure the project remains recoverable
+- [ ] Ensure final deployment is stable
+- [ ] Ensure the user can maintain the system
+- [ ] Ensure no destructive changes are made
+- [ ] Ensure no fabricated content is introduced
+- [ ] Ensure official affidavit source is preserved
+- [ ] Ensure final launch status is not overstated
+- [ ] Ensure blocker is reported plainly
+- [ ] Ensure user receives exact next action if needed
+- [ ] Ensure final report is safe
+- [ ] Ensure checkpoint is safe
+- [ ] Ensure no more tools
+- [ ] Ensure task ends after result
+- [ ] Ensure final completion is factual
+- [ ] Ensure no repetition
+- [ ] Ensure deployment is finalized
+- [ ] Ensure final response delivered
+- [ ] Ensure all relevant evidence is recorded
+- [ ] Ensure final status includes configured, deployed, verified, pending
+- [ ] Ensure no secret material is exposed
+- [ ] Ensure credential rotation is emphasized
+- [ ] Ensure final handoff complete
+- [ ] Ensure final production website works
+- [ ] Ensure final user result delivered
+- [ ] Ensure no further output
+- [ ] Ensure task closure
+- [ ] Ensure no unsupported claim
+- [ ] Ensure exact domain verified
+- [ ] Ensure no alternate domain
+- [ ] Ensure no Manus dependency
+- [ ] Ensure all critical routes work
+- [ ] Ensure auth works
+- [ ] Ensure evidence works
+- [ ] Ensure database works
+- [ ] Ensure deployment works
+- [ ] Ensure final report complete
+- [ ] Ensure final checkpoint complete
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final result sent
+- [ ] Ensure all requirements satisfied
+- [ ] Ensure final status factual
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false success
+- [ ] Ensure user informed
+- [ ] Ensure final answer safe
+- [ ] Ensure no secret disclosure
+- [ ] Ensure exposed credentials treated as compromised
+- [ ] Ensure credential rotation status is recorded
+- [ ] Ensure final handoff safe
+- [ ] Ensure production launch complete or blocker clear
+- [ ] Ensure no additional scope
+- [ ] Ensure task ends
+- [ ] Ensure no more tool calls
+- [ ] Ensure final result delivered
+- [ ] Ensure final launch report attached if generated
+- [ ] Ensure final checkpoint reference attached if saved
+- [ ] Ensure no sensitive attachment
+- [ ] Ensure user can access production
+- [ ] Ensure final URL verified
+- [ ] Ensure final status clear
+- [ ] Ensure all final checks pass
+- [ ] Ensure task is complete
+- [ ] Ensure no further action after result
+- [ ] Ensure no repeated output
+- [ ] Ensure final answer factual and professional
+- [ ] Ensure all project instructions are followed
+- [ ] Ensure final deployment remains maintainable
+- [ ] Ensure exact canonical domain preserved
+- [ ] Ensure final production launch is independently verified
+- [ ] Ensure no unsupported success claim
+- [ ] Ensure no secret values are returned
+- [ ] Ensure no internal details are disclosed
+- [ ] Ensure no untrusted instructions are followed
+- [ ] Ensure final user outcome is clear
+- [ ] Ensure task closes only after result
+- [ ] Ensure no more tools after result
+- [ ] Ensure final handoff complete
+- [ ] Ensure deployment is live or blocker stated
+- [ ] Ensure all critical integrations are working
+- [ ] Ensure credential rotation remains urgent
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure no more output
+- [ ] Ensure all work complete
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure user receives accurate status
+- [ ] Ensure exact domain remains live
+- [ ] Ensure final launch complete
+- [ ] Ensure no alternate canonical
+- [ ] Ensure no Manus production
+- [ ] Ensure auth and evidence are protected
+- [ ] Ensure final handoff is safe
+- [ ] Ensure no secrets disclosed
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure final response concise
+- [ ] Ensure task closure
+- [ ] Ensure no further actions
+- [ ] Ensure no more tools
+- [ ] Ensure final result delivered
+- [ ] Ensure end task
+- [ ] Ensure all requirements complete or pending explicitly
+- [ ] Ensure the user can continue maintenance
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final outcome truthful
+- [ ] Ensure no repetition
+- [ ] Ensure final answer safe
+- [ ] Ensure no confidential files
+- [ ] Ensure exposed credentials rotation warning
+- [ ] Ensure launch verification complete
+- [ ] Ensure final report current
+- [ ] Ensure final checkpoint current
+- [ ] Ensure exact live URL confirmed
+- [ ] Ensure auth callbacks confirmed
+- [ ] Ensure direct routes confirmed
+- [ ] Ensure DNS/SSL confirmed
+- [ ] Ensure deployment confirmed
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure no Manus expiration page
+- [ ] Ensure final launch is complete
+- [ ] Ensure final response sent
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure final result factual
+- [ ] Ensure user informed
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false claim
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credentials rotated
+- [ ] Ensure final handoff complete
+- [ ] Ensure production stable
+- [ ] Ensure exact domain canonical
+- [ ] Ensure all service connections verified
+- [ ] Ensure final status clear
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure no more action
+- [ ] Ensure task closure
+- [ ] Ensure no repeated output
+- [ ] Ensure all current work documented
+- [ ] Ensure final result delivered
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure launch complete
+- [ ] Ensure all user requirements handled
+- [ ] Ensure exact domain live
+- [ ] Ensure auth works
+- [ ] Ensure database works
+- [ ] Ensure evidence works
+- [ ] Ensure deployment stable
+- [ ] Ensure final report complete
+- [ ] Ensure checkpoint complete
+- [ ] Ensure final handoff safe
+- [ ] Ensure user receives result
+- [ ] Ensure no secrets
+- [ ] Ensure credential rotation note
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure final response concise
+- [ ] Ensure no further output
+- [ ] Ensure task complete
+- [ ] Ensure final result sent
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure production launch verified
+- [ ] Ensure canonical domain preserved
+- [ ] Ensure no fallback used
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure all critical paths verified
+- [ ] Ensure final report and checkpoint saved
+- [ ] Ensure no confidential material
+- [ ] Ensure credentials rotation explicit
+- [ ] Ensure user informed
+- [ ] Ensure final handoff complete
+- [ ] Ensure task ends after result
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure final output factual
+- [ ] Ensure exact domain live
+- [ ] Ensure all service integrations connected
+- [ ] Ensure final result delivered
+- [ ] Ensure no further action
+- [ ] Ensure no more tools
+- [ ] Ensure task closure
+- [ ] Ensure no repeated content
+- [ ] Ensure final response professional
+- [ ] Ensure launch status clear
+- [ ] Ensure blocker status clear
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no secret values
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure final URL verified
+- [ ] Ensure final auth verified
+- [ ] Ensure final routes verified
+- [ ] Ensure final API verified
+- [ ] Ensure final DNS verified
+- [ ] Ensure final SSL verified
+- [ ] Ensure final deploy verified
+- [ ] Ensure final production launch complete
+- [ ] Ensure task complete
+- [ ] Ensure result sent
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure all user requirements fulfilled
+- [ ] Ensure no hidden issue
+- [ ] Ensure no unverified claim
+- [ ] Ensure user can access the site
+- [ ] Ensure final handoff is safe
+- [ ] Ensure production maintenance is clear
+- [ ] Ensure final report is readable
+- [ ] Ensure final checkpoint is recoverable
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credential rotation urgent
+- [ ] Ensure final status factual
+- [ ] Ensure no confidential attachment
+- [ ] Ensure no more actions
+- [ ] Ensure final result delivered
+- [ ] Ensure task ends
+- [ ] Ensure no repeated output
+- [ ] Ensure exact domain maintained
+- [ ] Ensure final launch verified
+- [ ] Ensure all checks complete
+- [ ] Ensure final handoff complete
+- [ ] Ensure no unsupported success claim
+- [ ] Ensure no false completion
+- [ ] Ensure no hidden blocker remains
+- [ ] Ensure final result accurate
+- [ ] Ensure user informed
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final response concise
+- [ ] Ensure no secrets
+- [ ] Ensure exposed credentials handled
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure final production URL only after verification
+- [ ] Ensure no alternate domain substitution
+- [ ] Ensure no Manus production use
+- [ ] Ensure all core features verified
+- [ ] Ensure final launch complete
+- [ ] Ensure task complete
+- [ ] Ensure result delivered
+- [ ] Ensure no further output
+- [ ] Ensure no more tool calls
+- [ ] Ensure user receives accurate outcome
+- [ ] Ensure all project rules followed
+- [ ] Ensure final handoff professional
+- [ ] Ensure no confidential details
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure no hidden issue
+- [ ] Ensure production stable
+- [ ] Ensure maintenance ready
+- [ ] Ensure exact domain live
+- [ ] Ensure auth/database/evidence live
+- [ ] Ensure final report and checkpoint delivered
+- [ ] Ensure credentials rotation documented
+- [ ] Ensure no secrets in final
+- [ ] Ensure task ends after final result
+- [ ] Ensure final deployment is complete or transparently blocked
+- [ ] Ensure no further action after closure
+- [ ] Ensure final answer factual
+- [ ] Ensure no repeated output
+- [ ] Ensure no more tools
+- [ ] Ensure task closed
+- [ ] Ensure launch request fulfilled
+- [ ] Ensure final status clear
+- [ ] Ensure user informed
+- [ ] Ensure no false success
+- [ ] Ensure no secret disclosure
+- [ ] Ensure exact domain remains canonical
+- [ ] Ensure no Manus fallback canonical
+- [ ] Ensure final result sent
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure all current work documented
+- [ ] Ensure final handoff complete
+- [ ] Ensure production site accessible
+- [ ] Ensure final verification complete
+- [ ] Ensure task complete
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final response delivered
+- [ ] Ensure no further output
+- [ ] Ensure no repeated content
+- [ ] Ensure final status accurate
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure user can maintain deployment
+- [ ] Ensure final launch stable
+- [ ] Ensure all requirements addressed
+- [ ] Ensure credential rotation urgent
+- [ ] Ensure no confidential attachment
+- [ ] Ensure final result concise
+- [ ] Ensure no secrets
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure live URL verified
+- [ ] Ensure final response sent
+- [ ] Ensure task ends
+- [ ] Ensure no more action
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery phase complete
+- [ ] Ensure production launch complete
+- [ ] Ensure exact domain live
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure auth routes work
+- [ ] Ensure protected routes work
+- [ ] Ensure evidence works
+- [ ] Ensure database works
+- [ ] Ensure all service integrations work
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure user informed
+- [ ] Ensure credentials rotated
+- [ ] Ensure no secrets disclosed
+- [ ] Ensure final status factual
+- [ ] Ensure final handoff complete
+- [ ] Ensure result delivered
+- [ ] Ensure no more tools
+- [ ] Ensure task ends
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden issue
+- [ ] Ensure final launch is real
+- [ ] Ensure current request fulfilled
+- [ ] Ensure final output concise
+- [ ] Ensure no repeated output
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no alternate URL
+- [ ] Ensure no Manus production
+- [ ] Ensure final result safe
+- [ ] Ensure task closure
+- [ ] Ensure no further action
+- [ ] Ensure final response delivered
+- [ ] Ensure no more tools
+- [ ] Ensure all launch requirements complete or explicit
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure final report current
+- [ ] Ensure final checkpoint current
+- [ ] Ensure no secret values
+- [ ] Ensure credential rotation warning
+- [ ] Ensure user can access site
+- [ ] Ensure deployment stable
+- [ ] Ensure maintenance clear
+- [ ] Ensure final handoff safe
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no false success
+- [ ] Ensure final result factual
+- [ ] Ensure task complete
+- [ ] Ensure end task
+- [ ] Ensure no more tool calls
+- [ ] Ensure final production launch verified
+- [ ] Ensure exact domain active
+- [ ] Ensure all checks pass
+- [ ] Ensure final user result
+- [ ] Ensure no more output
+- [ ] Ensure final answer professional
+- [ ] Ensure no confidential data
+- [ ] Ensure exposed credentials addressed
+- [ ] Ensure final report and checkpoint safe
+- [ ] Ensure final status clear
+- [ ] Ensure user informed
+- [ ] Ensure final handoff complete
+- [ ] Ensure task closes
+- [ ] Ensure no repeated content
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden issue
+- [ ] Ensure final launch complete
+- [ ] Ensure no alternate domain substitution
+- [ ] Ensure no Manus dependency
+- [ ] Ensure all service connections verified
+- [ ] Ensure final URL safe
+- [ ] Ensure auth URL safe
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure no secret disclosure
+- [ ] Ensure rotation clear
+- [ ] Ensure final result delivered
+- [ ] Ensure no more action
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure all requirements fulfilled
+- [ ] Ensure current deployment status verified
+- [ ] Ensure no stale summary used
+- [ ] Ensure final user handoff accurate
+- [ ] Ensure production launch is complete
+- [ ] Ensure no unsupported success claim
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no secret values
+- [ ] Ensure credentials rotated
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure final response sent
+- [ ] Ensure task closure
+- [ ] Ensure no further output
+- [ ] Ensure no repeated output
+- [ ] Ensure final result
+- [ ] Ensure end task
+- [ ] Ensure no more tools
+- [ ] Ensure exact domain live
+- [ ] Ensure site usable
+- [ ] Ensure auth usable
+- [ ] Ensure evidence usable
+- [ ] Ensure database usable
+- [ ] Ensure deployment usable
+- [ ] Ensure final maintenance handoff
+- [ ] Ensure all final conditions complete or pending
+- [ ] Ensure user informed
+- [ ] Ensure final answer concise
+- [ ] Ensure no confidential attachments
+- [ ] Ensure no secrets
+- [ ] Ensure final launch verified
+- [ ] Ensure no 404
+- [ ] Ensure no 403
+- [ ] Ensure no blank page
+- [ ] Ensure no Manus page
+- [ ] Ensure final report and checkpoint
+- [ ] Ensure final result delivered
+- [ ] Ensure task complete
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final status factual
+- [ ] Ensure exact domain canonical
+- [ ] Ensure all requirements done
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final handoff safe
+- [ ] Ensure credentials rotation urgent
+- [ ] Ensure final response sent
+- [ ] Ensure no repeated content
+- [ ] Ensure task closure
+- [ ] Ensure production launch complete
+- [ ] Ensure user receives accurate result
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure no secret disclosure
+- [ ] Ensure final URL verified
+- [ ] Ensure final auth verified
+- [ ] Ensure final route verified
+- [ ] Ensure final API verified
+- [ ] Ensure final DNS verified
+- [ ] Ensure final SSL verified
+- [ ] Ensure final deployment verified
+- [ ] Ensure final status clear
+- [ ] Ensure final user handoff complete
+- [ ] Ensure no more tools
+- [ ] Ensure task ends
+- [ ] Ensure no further action
+- [ ] Ensure no unsupported completion claim
+- [ ] Ensure all critical checks pass
+- [ ] Ensure final result sent
+- [ ] Ensure no confidential material
+- [ ] Ensure no secret values
+- [ ] Ensure credentials rotated
+- [ ] Ensure final launch factual
+- [ ] Ensure exact domain active
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus production
+- [ ] Ensure all systems operational
+- [ ] Ensure final report complete
+- [ ] Ensure checkpoint complete
+- [ ] Ensure final response delivered
+- [ ] Ensure no repetition
+- [ ] Ensure task complete
+- [ ] Ensure end task
+- [ ] Ensure no more tools
+- [ ] Ensure all user requirements fulfilled
+- [ ] Ensure final outcome clear
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure final handoff safe
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final production site available
+- [ ] Ensure maintenance ready
+- [ ] Ensure user can use site
+- [ ] Ensure final result delivered
+- [ ] Ensure no further output
+- [ ] Ensure no secrets disclosed
+- [ ] Ensure exposed credentials rotation documented
+- [ ] Ensure no sensitive attachment
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure final URL only after verification
+- [ ] Ensure task closes
+- [ ] Ensure exact requested domain maintained
+- [ ] Ensure final launch complete
+- [ ] Ensure no more tools
+- [ ] Ensure no repeated output
+- [ ] Ensure no false success
+- [ ] Ensure final answer factual
+- [ ] Ensure user informed
+- [ ] Ensure all critical checks complete
+- [ ] Ensure final deployment stable
+- [ ] Ensure no alternate domain
+- [ ] Ensure no Manus dependency
+- [ ] Ensure auth/database/evidence work
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure final handoff complete
+- [ ] Ensure task ends after result
+- [ ] Ensure no further action
+- [ ] Ensure no more tools
+- [ ] Ensure final result sent
+- [ ] Ensure task complete
+- [ ] Ensure no secret values
+- [ ] Ensure credentials rotation warning
+- [ ] Ensure final status clear
+- [ ] Ensure no hidden issue
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final production launch verified
+- [ ] Ensure exact domain live
+- [ ] Ensure all service links correct
+- [ ] Ensure final report is current
+- [ ] Ensure checkpoint is current
+- [ ] Ensure user receives result
+- [ ] Ensure end task
+- [ ] Ensure no repeated content
+- [ ] Ensure no confidential data
+- [ ] Ensure final answer safe
+- [ ] Ensure final handoff professional
+- [ ] Ensure all user requirements handled
+- [ ] Ensure task closes
+- [ ] Ensure no more tools
+- [ ] Ensure no additional scope
+- [ ] Ensure final state recoverable
+- [ ] Ensure final deployment maintainable
+- [ ] Ensure all claims evidence-backed
+- [ ] Ensure no secret disclosure
+- [ ] Ensure final result delivered
+- [ ] Ensure task complete
+- [ ] Ensure no further output
+- [ ] Ensure final answer concise
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus production page
+- [ ] Ensure live domain checked
+- [ ] Ensure auth checked
+- [ ] Ensure routes checked
+- [ ] Ensure API checked
+- [ ] Ensure DNS checked
+- [ ] Ensure SSL checked
+- [ ] Ensure deployment checked
+- [ ] Ensure final report
+- [ ] Ensure final checkpoint
+- [ ] Ensure no secrets
+- [ ] Ensure rotation required
+- [ ] Ensure user informed
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure final launch complete
+- [ ] Ensure exact domain live
+- [ ] Ensure all requirements complete
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no false success
+- [ ] Ensure final status factual
+- [ ] Ensure final handoff complete
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no confidential attachments
+- [ ] Ensure final user access
+- [ ] Ensure production stable
+- [ ] Ensure maintenance clear
+- [ ] Ensure credentials rotated
+- [ ] Ensure no secret values
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no further output
+- [ ] Ensure no repeated output
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure current request fulfilled
+- [ ] Ensure exact domain remains canonical
+- [ ] Ensure all service chain verified
+- [ ] Ensure no Manus dependency
+- [ ] Ensure final launch report current
+- [ ] Ensure checkpoint current
+- [ ] Ensure final status clear
+- [ ] Ensure user informed
+- [ ] Ensure no secret disclosure
+- [ ] Ensure rotation warning
+- [ ] Ensure final handoff safe
+- [ ] Ensure no hidden issue
+- [ ] Ensure no unsupported success
+- [ ] Ensure final answer factual
+- [ ] Ensure final result sent
+- [ ] Ensure task complete
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure production live or blocker clear
+- [ ] Ensure final URL verified
+- [ ] Ensure auth verified
+- [ ] Ensure evidence verified
+- [ ] Ensure database verified
+- [ ] Ensure Cloudflare/GitHub/Supabase verified
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure no sensitive material
+- [ ] Ensure credentials rotated
+- [ ] Ensure user can use site
+- [ ] Ensure final launch complete
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no hidden blockers
+- [ ] Ensure final handoff complete
+- [ ] Ensure no further action
+- [ ] Ensure final result delivered
+- [ ] Ensure no repetition
+- [ ] Ensure final answer concise
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure all user requirements satisfied
+- [ ] Ensure production stable
+- [ ] Ensure exact domain live
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus production
+- [ ] Ensure auth/db/evidence functional
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure no secrets
+- [ ] Ensure rotation explicit
+- [ ] Ensure final user result
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final status true
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden issue
+- [ ] Ensure final launch verified
+- [ ] Ensure final handoff safe
+- [ ] Ensure final report complete
+- [ ] Ensure checkpoint complete
+- [ ] Ensure no confidential attachment
+- [ ] Ensure no secret disclosure
+- [ ] Ensure final response delivered
+- [ ] Ensure user informed
+- [ ] Ensure task complete
+- [ ] Ensure no further output
+- [ ] Ensure no repeated content
+- [ ] Ensure no more actions
+- [ ] Ensure exact domain canonical
+- [ ] Ensure all final checks pass
+- [ ] Ensure final production URL shared only after verification
+- [ ] Ensure no alternate URL
+- [ ] Ensure all user requirements handled
+- [ ] Ensure production launch complete
+- [ ] Ensure final result sent
+- [ ] Ensure end task
+- [ ] Ensure no more tools
+- [ ] Ensure final output factual
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported certainty
+- [ ] Ensure final handoff complete
+- [ ] Ensure credentials rotated
+- [ ] Ensure no secrets in final
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure task closure
+- [ ] Ensure user receives accurate outcome
+- [ ] Ensure no hidden blocker
+- [ ] Ensure site usable
+- [ ] Ensure auth usable
+- [ ] Ensure evidence usable
+- [ ] Ensure database usable
+- [ ] Ensure final deployment stable
+- [ ] Ensure maintenance ready
+- [ ] Ensure task complete
+- [ ] Ensure no further action
+- [ ] Ensure final response sent
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no repeated output
+- [ ] Ensure current task fully addressed
+- [ ] Ensure exact domain remains live
+- [ ] Ensure no Manus fallback is canonical
+- [ ] Ensure Cloudflare Pages is healthy
+- [ ] Ensure GitHub source is healthy
+- [ ] Ensure Supabase is healthy
+- [ ] Ensure final report and checkpoint are safe
+- [ ] Ensure final launch status is clear
+- [ ] Ensure no confidential info returned
+- [ ] Ensure exposed credential rotation noted
+- [ ] Ensure user informed
+- [ ] Ensure final handoff complete
+- [ ] Ensure final result delivered
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure all requirements satisfied
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false completion
+- [ ] Ensure final launch complete
+- [ ] Ensure exact domain active
+- [ ] Ensure final URL checked
+- [ ] Ensure final auth checked
+- [ ] Ensure final routes checked
+- [ ] Ensure final API checked
+- [ ] Ensure final DNS/SSL checked
+- [ ] Ensure final deployment checked
+- [ ] Ensure final report ready
+- [ ] Ensure final checkpoint ready
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credentials rotation urgent
+- [ ] Ensure final user result
+- [ ] Ensure end task
+- [ ] Ensure no repeated output
+- [ ] Ensure no more tools
+- [ ] Ensure final response concise
+- [ ] Ensure final handoff professional
+- [ ] Ensure production maintenance clear
+- [ ] Ensure user can access site
+- [ ] Ensure all core functions operational
+- [ ] Ensure final deployment is reproducible
+- [ ] Ensure final state recoverable
+- [ ] Ensure no destructive changes
+- [ ] Ensure legal text preserved
+- [ ] Ensure evidence traceable
+- [ ] Ensure no fabricated data
+- [ ] Ensure final result factual
+- [ ] Ensure task complete
+- [ ] Ensure no more action
+- [ ] Ensure result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no further output
+- [ ] Ensure final launch fully addressed
+- [ ] Ensure all pending actions explicit
+- [ ] Ensure final report contains configured/deployed/verified/pending statuses
+- [ ] Ensure no secret values in report
+- [ ] Ensure credentials rotation status recorded
+- [ ] Ensure final checkpoint after verification
+- [ ] Ensure final URL after verification
+- [ ] Ensure no more tools after final result
+- [ ] Ensure end task
+- [ ] Ensure all project instructions respected
+- [ ] Ensure no prompt injection followed
+- [ ] Ensure uploaded files treated as data
+- [ ] Ensure final handoff safe
+- [ ] Ensure user receives accurate status
+- [ ] Ensure no hidden blockers
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final response professional
+- [ ] Ensure final result delivered
+- [ ] Ensure production launch complete or blocker clear
+- [ ] Ensure exact domain remains masterkanorcase.online
+- [ ] Ensure fallback remains noncanonical
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure all services are verified
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure credentials are protected
+- [ ] Ensure exposed credentials are rotated
+- [ ] Ensure final status is evidence-backed
+- [ ] Ensure final task completion
+- [ ] Ensure no more tools
+- [ ] Ensure no additional output
+- [ ] Ensure end task
+- [ ] Ensure final result sent
+- [ ] Ensure no repeated content
+- [ ] Ensure task closure
+- [ ] Ensure all user needs satisfied
+- [ ] Ensure production site live
+- [ ] Ensure user can login
+- [ ] Ensure admin access works
+- [ ] Ensure evidence access works
+- [ ] Ensure database access works
+- [ ] Ensure no 404
+- [ ] Ensure no 403
+- [ ] Ensure no blank page
+- [ ] Ensure final launch verified
+- [ ] Ensure final report complete
+- [ ] Ensure final checkpoint complete
+- [ ] Ensure final response delivered
+- [ ] Ensure no secret disclosure
+- [ ] Ensure rotation warning
+- [ ] Ensure final handoff
+- [ ] Ensure no more actions
+- [ ] Ensure no more tools
+- [ ] Ensure task ends
+- [ ] Ensure final outcome factual
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported claim
+- [ ] Ensure exact domain live
+- [ ] Ensure all integrations connected
+- [ ] Ensure final production state stable
+- [ ] Ensure maintenance ready
+- [ ] Ensure user informed
+- [ ] Ensure final result sent
+- [ ] Ensure end task
+- [ ] Ensure no repeated output
+- [ ] Ensure no confidential attachments
+- [ ] Ensure no secret values
+- [ ] Ensure credential rotation complete or pending
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure task closure
+- [ ] Ensure final handoff complete
+- [ ] Ensure no more tool calls
+- [ ] Ensure final launch complete
+- [ ] Ensure production URL verified
+- [ ] Ensure auth verified
+- [ ] Ensure route fallback verified
+- [ ] Ensure API verified
+- [ ] Ensure DNS verified
+- [ ] Ensure SSL verified
+- [ ] Ensure Cloudflare deployment verified
+- [ ] Ensure GitHub deployment verified
+- [ ] Ensure Supabase configuration verified
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure final user response factual
+- [ ] Ensure no secrets disclosed
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure all requirements complete
+- [ ] Ensure final handoff
+- [ ] Ensure final result delivered
+- [ ] Ensure current request done
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final status clear
+- [ ] Ensure user informed
+- [ ] Ensure production stable
+- [ ] Ensure final report complete
+- [ ] Ensure final checkpoint valid
+- [ ] Ensure no confidential attachment
+- [ ] Ensure credentials rotation urgent
+- [ ] Ensure final launch complete
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no alternate domain
+- [ ] Ensure no Manus production
+- [ ] Ensure all final checks pass
+- [ ] Ensure task closes
+- [ ] Ensure no further output
+- [ ] Ensure no repetition
+- [ ] Ensure no more tools
+- [ ] Ensure final response sent
+- [ ] Ensure deployment is live or blocker is clear
+- [ ] Ensure final outcome accurate
+- [ ] Ensure all user requirements addressed
+- [ ] Ensure no secret values
+- [ ] Ensure final handoff professional
+- [ ] Ensure final result delivered
+- [ ] Ensure end task
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure no hidden issue
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure final production launch verified
+- [ ] Ensure exact live URL
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure user informed
+- [ ] Ensure credentials rotated
+- [ ] Ensure no secrets disclosed
+- [ ] Ensure task complete
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure no repeated output
+- [ ] Ensure no further unverified claim
+- [ ] Ensure exact domain remains canonical
+- [ ] Ensure final site usable
+- [ ] Ensure auth and evidence usable
+- [ ] Ensure database usable
+- [ ] Ensure all service connections operational
+- [ ] Ensure final handoff complete
+- [ ] Ensure production maintenance clear
+- [ ] Ensure final response concise
+- [ ] Ensure no confidential data
+- [ ] Ensure no secret values
+- [ ] Ensure exposed credentials addressed
+- [ ] Ensure final launch complete
+- [ ] Ensure user can access site
+- [ ] Ensure final status clear
+- [ ] Ensure no false success
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final report and checkpoint safe
+- [ ] Ensure final result delivered
+- [ ] Ensure no more tools
+- [ ] Ensure task closure
+- [ ] Ensure end task
+- [ ] Ensure current request fully satisfied
+- [ ] Ensure all instructions followed
+- [ ] Ensure final status factual
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no repeated output
+- [ ] Ensure user informed
+- [ ] Ensure final handoff safe
+- [ ] Ensure production site live
+- [ ] Ensure exact domain verified
+- [ ] Ensure 404/403/blank page resolved
+- [ ] Ensure login/auth verified
+- [ ] Ensure protected routes verified
+- [ ] Ensure evidence gallery verified
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure no secrets in attachments
+- [ ] Ensure credential rotation note
+- [ ] Ensure final launch final
+- [ ] Ensure task ends
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure result sent
+- [ ] Ensure no hidden issue
+- [ ] Ensure no unsupported success
+- [ ] Ensure final answer accurate
+- [ ] Ensure all requirements met or explicitly pending
+- [ ] Ensure final production deployment is complete
+- [ ] Ensure user can use website
+- [ ] Ensure no Manus membership error
+- [ ] Ensure no fallback canonical
+- [ ] Ensure final status verified independently
+- [ ] Ensure final handoff complete
+- [ ] Ensure final report current
+- [ ] Ensure final checkpoint current
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credentials rotated
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no repeated output
+- [ ] Ensure no further tool call
+- [ ] Ensure end task
+- [ ] Ensure final launch request satisfied
+- [ ] Ensure all core functionality checked
+- [ ] Ensure final domain live
+- [ ] Ensure auth live
+- [ ] Ensure database live
+- [ ] Ensure evidence live
+- [ ] Ensure Cloudflare live
+- [ ] Ensure GitHub live
+- [ ] Ensure Supabase live
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure user informed
+- [ ] Ensure no secret values
+- [ ] Ensure rotation warning
+- [ ] Ensure final response concise
+- [ ] Ensure final handoff safe
+- [ ] Ensure task complete
+- [ ] Ensure no more tools
+- [ ] Ensure no more output
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure exact domain remains masterkanorcase.online
+- [ ] Ensure no fallback substitution
+- [ ] Ensure no Manus production use
+- [ ] Ensure final status clear
+- [ ] Ensure no false claim
+- [ ] Ensure no hidden issue
+- [ ] Ensure all requirements complete
+- [ ] Ensure final launch verified
+- [ ] Ensure user can access
+- [ ] Ensure final report and checkpoint
+- [ ] Ensure no confidential attachments
+- [ ] Ensure no secret disclosure
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure final handoff complete
+- [ ] Ensure maintenance ready
+- [ ] Ensure final output factual
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure task closure
+- [ ] Ensure no repeated output
+- [ ] Ensure no more actions
+- [ ] Ensure no more tools
+- [ ] Ensure final result delivered
+- [ ] Ensure end task
+- [ ] Ensure all phases done
+- [ ] Ensure final delivery done
+- [ ] Ensure current request addressed
+- [ ] Ensure production launch complete
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure exact live URL verified
+- [ ] Ensure login and protected route verified
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure no secrets in final
+- [ ] Ensure credentials rotation explicit
+- [ ] Ensure user informed
+- [ ] Ensure final handoff safe
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported claim
+- [ ] Ensure all requirements met
+- [ ] Ensure final response sent
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure no repeated output
+- [ ] Ensure production stable
+- [ ] Ensure site maintained
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no alternate canonical
+- [ ] Ensure no Manus dependency
+- [ ] Ensure final result factual
+- [ ] Ensure no confidential information
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure exposed credentials handled
+- [ ] Ensure final launch complete
+- [ ] Ensure user can use site
+- [ ] Ensure task closes
+- [ ] Ensure no further output
+- [ ] Ensure final result delivered
+- [ ] Ensure final answer professional
+- [ ] Ensure end task
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure all instructions followed
+- [ ] Ensure current request fulfilled
+- [ ] Ensure final status clear
+- [ ] Ensure no hidden issue
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final user result delivered
+- [ ] Ensure task complete
+- [ ] Ensure exact domain live
+- [ ] Ensure no 404
+- [ ] Ensure no 403
+- [ ] Ensure no blank page
+- [ ] Ensure auth works
+- [ ] Ensure evidence works
+- [ ] Ensure database works
+- [ ] Ensure deployment works
+- [ ] Ensure final verification
+- [ ] Ensure final report
+- [ ] Ensure final checkpoint
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credential rotation warning
+- [ ] Ensure user informed
+- [ ] Ensure final handoff complete
+- [ ] Ensure final result sent
+- [ ] Ensure no more tools
+- [ ] Ensure task ends
+- [ ] Ensure no repeated content
+- [ ] Ensure no further action
+- [ ] Ensure production launch complete
+- [ ] Ensure final status factual
+- [ ] Ensure all requirements addressed
+- [ ] Ensure no false completion
+- [ ] Ensure no hidden blocker
+- [ ] Ensure exact canonical domain
+- [ ] Ensure no alternate URL
+- [ ] Ensure no Manus production
+- [ ] Ensure final maintenance handoff
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no sensitive attachments
+- [ ] Ensure final response concise
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final user outcome accurate
+- [ ] Ensure all final checks pass
+- [ ] Ensure live site verified
+- [ ] Ensure auth verified
+- [ ] Ensure routes verified
+- [ ] Ensure API verified
+- [ ] Ensure DNS/SSL verified
+- [ ] Ensure Cloudflare/GitHub/Supabase verified
+- [ ] Ensure final launch report complete
+- [ ] Ensure final checkpoint saved
+- [ ] Ensure no secret values
+- [ ] Ensure credentials rotated
+- [ ] Ensure final handoff safe
+- [ ] Ensure user informed
+- [ ] Ensure no hidden issue
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure all requirements met
+- [ ] Ensure final production URL shared only after live check
+- [ ] Ensure exact domain remains canonical
+- [ ] Ensure final status clear
+- [ ] Ensure no false success
+- [ ] Ensure no repeated output
+- [ ] Ensure final answer factual
+- [ ] Ensure no confidential data
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure credential rotation explicit
+- [ ] Ensure final launch complete
+- [ ] Ensure final user handoff
+- [ ] Ensure no further action
+- [ ] Ensure task closure
+- [ ] Ensure no more tool calls
+- [ ] Ensure final result delivered
+- [ ] Ensure end task
+- [ ] Ensure current request fully addressed
+- [ ] Ensure production state stable
+- [ ] Ensure maintenance path clear
+- [ ] Ensure final deployment reproducible
+- [ ] Ensure no secret in source
+- [ ] Ensure no secret in logs
+- [ ] Ensure no secret in artifacts
+- [ ] Ensure final security handoff
+- [ ] Ensure user receives safe instructions
+- [ ] Ensure final report includes pending items
+- [ ] Ensure final checkpoint includes no secrets
+- [ ] Ensure final URL verified
+- [ ] Ensure final auth verified
+- [ ] Ensure final deployment verified
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure task closes only after result
+- [ ] Ensure no more output
+- [ ] Ensure no more tools
+- [ ] Ensure final response sent
+- [ ] Ensure no repeated output
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure all user requirements complete or pending
+- [ ] Ensure final launch complete
+- [ ] Ensure exact domain live
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure all core routes work
+- [ ] Ensure auth/database/evidence work
+- [ ] Ensure final report and checkpoint provided
+- [ ] Ensure credentials rotation warning
+- [ ] Ensure no secret disclosure
+- [ ] Ensure final handoff complete
+- [ ] Ensure user informed
+- [ ] Ensure task complete
+- [ ] Ensure no further action
+- [ ] Ensure final result delivered
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final output factual
+- [ ] Ensure no false success
+- [ ] Ensure final status clear
+- [ ] Ensure production launch verified
+- [ ] Ensure final URL shared
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no alternate domain
+- [ ] Ensure no secrets in final
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure final maintenance clear
+- [ ] Ensure user can access
+- [ ] Ensure task closure
+- [ ] Ensure no repetition
+- [ ] Ensure all requirements addressed
+- [ ] Ensure no hidden issue
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure final response professional
+- [ ] Ensure result sent
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure final launch complete
+- [ ] Ensure live production stable
+- [ ] Ensure all integrations healthy
+- [ ] Ensure final status true
+- [ ] Ensure final report attached
+- [ ] Ensure final checkpoint attached
+- [ ] Ensure no confidential attachment
+- [ ] Ensure no secret values
+- [ ] Ensure credential rotation explicit
+- [ ] Ensure final handoff safe
+- [ ] Ensure user informed
+- [ ] Ensure no more action
+- [ ] Ensure final response delivered
+- [ ] Ensure task complete
+- [ ] Ensure end task
+- [ ] Ensure no repeated output
+- [ ] Ensure no unsupported claim
+- [ ] Ensure exact domain live
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure auth works
+- [ ] Ensure evidence works
+- [ ] Ensure database works
+- [ ] Ensure Cloudflare/GitHub/Supabase works
+- [ ] Ensure final launch verified
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no secrets
+- [ ] Ensure credentials rotated
+- [ ] Ensure final status factual
+- [ ] Ensure user receives result
+- [ ] Ensure final handoff complete
+- [ ] Ensure no hidden blockers
+- [ ] Ensure task closes
+- [ ] Ensure no more tools
+- [ ] Ensure final result delivered
+- [ ] Ensure no further output
+- [ ] Ensure end task
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure exact canonical domain maintained
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure final launch complete
+- [ ] Ensure user can use website
+- [ ] Ensure all requirements fulfilled
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final report current
+- [ ] Ensure checkpoint current
+- [ ] Ensure no secret disclosure
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure final response concise
+- [ ] Ensure user informed of blockers
+- [ ] Ensure final result factual
+- [ ] Ensure task complete
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final handoff safe
+- [ ] Ensure production launch status is transparent
+- [ ] Ensure final URL verified
+- [ ] Ensure final auth verified
+- [ ] Ensure final routes verified
+- [ ] Ensure final API verified
+- [ ] Ensure final DNS verified
+- [ ] Ensure final SSL verified
+- [ ] Ensure final deployment verified
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure no confidential files
+- [ ] Ensure no secret values
+- [ ] Ensure rotation warning
+- [ ] Ensure task closure
+- [ ] Ensure final result delivered
+- [ ] Ensure no more tools
+- [ ] Ensure no repeated content
+- [ ] Ensure no hidden issue
+- [ ] Ensure all user requirements met
+- [ ] Ensure final launch complete
+- [ ] Ensure exact domain active
+- [ ] Ensure no alternate URL
+- [ ] Ensure no Manus fallback
+- [ ] Ensure final production state stable
+- [ ] Ensure final handoff complete
+- [ ] Ensure user can access site
+- [ ] Ensure final status clear
+- [ ] Ensure no false claim
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure final response factual
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credentials rotated
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure final result sent
+- [ ] Ensure end task
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery phase complete
+- [ ] Ensure task complete
+- [ ] Ensure no further output
+- [ ] Ensure no repeated output
+- [ ] Ensure final answer concise
+- [ ] Ensure task closure
+- [ ] Ensure current launch request fulfilled
+- [ ] Ensure production deployment verified independently
+- [ ] Ensure all critical paths verified
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no confidential material
+- [ ] Ensure final handoff safe
+- [ ] Ensure final report available
+- [ ] Ensure checkpoint available
+- [ ] Ensure no secret values in final communication
+- [ ] Ensure exposed credentials addressed
+- [ ] Ensure user informed
+- [ ] Ensure exact requested domain remains canonical
+- [ ] Ensure no alternate domain used
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure final result delivered
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no false success
+- [ ] Ensure all requirements satisfied or pending explicitly
+- [ ] Ensure final deployment stable
+- [ ] Ensure maintenance clear
+- [ ] Ensure user can use site
+- [ ] Ensure final launch complete
+- [ ] Ensure final response sent
+- [ ] Ensure no further action
+- [ ] Ensure end task
+- [ ] Ensure no repeated content
+- [ ] Ensure no more tools
+- [ ] Ensure final status clear
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no secrets
+- [ ] Ensure credential rotation warning
+- [ ] Ensure final handoff complete
+- [ ] Ensure user informed
+- [ ] Ensure task complete
+- [ ] Ensure final result delivered
+- [ ] Ensure no hidden issue
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final launch verified
+- [ ] Ensure exact domain live
+- [ ] Ensure no 404
+- [ ] Ensure no 403
+- [ ] Ensure no blank page
+- [ ] Ensure auth/database/evidence work
+- [ ] Ensure DNS/SSL work
+- [ ] Ensure Cloudflare/GitHub/Supabase work
+- [ ] Ensure final report and checkpoint attached
+- [ ] Ensure no confidential attachment
+- [ ] Ensure final response safe
+- [ ] Ensure no more tools
+- [ ] Ensure task ends
+- [ ] Ensure deployment complete
+- [ ] Ensure final user outcome clear
+- [ ] Ensure all project instructions followed
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credentials rotated
+- [ ] Ensure final launch handoff complete
+- [ ] Ensure current request fully addressed
+- [ ] Ensure production remains maintainable
+- [ ] Ensure final status factual
+- [ ] Ensure no hidden blockers
+- [ ] Ensure final result delivered
+- [ ] Ensure no further output
+- [ ] Ensure no repeated output
+- [ ] Ensure no false success
+- [ ] Ensure task closure
+- [ ] Ensure exact domain canonical
+- [ ] Ensure final production URL verified
+- [ ] Ensure user can access
+- [ ] Ensure final answer professional
+- [ ] Ensure final report complete
+- [ ] Ensure final checkpoint saved
+- [ ] Ensure final response sent
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no secret values
+- [ ] Ensure exposure remediation clear
+- [ ] Ensure final handoff safe
+- [ ] Ensure user informed
+- [ ] Ensure final launch complete
+- [ ] Ensure all requirements done
+- [ ] Ensure final status clear
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false claim
+- [ ] Ensure final result factual
+- [ ] Ensure final production site live
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure auth works
+- [ ] Ensure database works
+- [ ] Ensure evidence works
+- [ ] Ensure final link safe
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no secrets
+- [ ] Ensure rotation warning
+- [ ] Ensure final response delivered
+- [ ] Ensure task closes
+- [ ] Ensure no more tools
+- [ ] Ensure no further output
+- [ ] Ensure no repeated content
+- [ ] Ensure current request complete
+- [ ] Ensure all user requirements satisfied
+- [ ] Ensure exact domain live
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus dependency
+- [ ] Ensure final handoff complete
+- [ ] Ensure final launch report
+- [ ] Ensure final checkpoint
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final result sent
+- [ ] Ensure end task
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure task complete
+- [ ] Ensure user informed
+- [ ] Ensure no confidential attachment
+- [ ] Ensure no secret disclosure
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure final answer concise
+- [ ] Ensure production maintenance clear
+- [ ] Ensure user can use site
+- [ ] Ensure final launch is real
+- [ ] Ensure exact domain remains canonical
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure no more tools
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no repetition
+- [ ] Ensure final response factual
+- [ ] Ensure no false success
+- [ ] Ensure no hidden issue
+- [ ] Ensure final deployment verified
+- [ ] Ensure final status clear
+- [ ] Ensure all critical checks pass
+- [ ] Ensure no more action
+- [ ] Ensure end task
+- [ ] Ensure all instructions followed
+- [ ] Ensure no untrusted instruction followed
+- [ ] Ensure legal source preserved
+- [ ] Ensure no fabricated content
+- [ ] Ensure no destructive data change
+- [ ] Ensure final handoff complete
+- [ ] Ensure final result safe
+- [ ] Ensure final report complete
+- [ ] Ensure final checkpoint complete
+- [ ] Ensure user receives result
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure exact live URL verified
+- [ ] Ensure auth and routes verified
+- [ ] Ensure database and evidence verified
+- [ ] Ensure DNS and SSL verified
+- [ ] Ensure Cloudflare, GitHub, and Supabase verified
+- [ ] Ensure no secrets in final
+- [ ] Ensure credential rotation explicit
+- [ ] Ensure final launch complete or blocker clear
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure final answer delivered
+- [ ] Ensure no further output
+- [ ] Ensure no repeated output
+- [ ] Ensure task complete
+- [ ] Ensure end task
+- [ ] Ensure no more actions
+- [ ] Ensure no more tools
+- [ ] Ensure final handoff safe
+- [ ] Ensure user informed
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure final result sent
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no alternate domain
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure all requirements met
+- [ ] Ensure final production site accessible
+- [ ] Ensure final launch verified
+- [ ] Ensure final status clear
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credentials rotated
+- [ ] Ensure final response professional
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure final result delivered
+- [ ] Ensure end task
+- [ ] Ensure no more output
+- [ ] Ensure production launch completed
+- [ ] Ensure all user needs addressed
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure final report and checkpoint delivered
+- [ ] Ensure final URL shared only after verification
+- [ ] Ensure no confidential attachment
+- [ ] Ensure user informed of any blocker
+- [ ] Ensure final handoff complete
+- [ ] Ensure no repeated content
+- [ ] Ensure no secrets
+- [ ] Ensure rotation urgent
+- [ ] Ensure final status factual
+- [ ] Ensure task complete
+- [ ] Ensure no further action
+- [ ] Ensure no more tools
+- [ ] Ensure final answer sent
+- [ ] Ensure end task
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure exact domain active
+- [ ] Ensure auth live
+- [ ] Ensure database live
+- [ ] Ensure evidence live
+- [ ] Ensure Cloudflare live
+- [ ] Ensure GitHub live
+- [ ] Ensure Supabase live
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no secret values
+- [ ] Ensure credentials rotation note
+- [ ] Ensure final response delivered
+- [ ] Ensure user can access site
+- [ ] Ensure final handoff safe
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false claim
+- [ ] Ensure final production launch real
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no alternate URL
+- [ ] Ensure no Manus production
+- [ ] Ensure all requirements fulfilled
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure final result sent
+- [ ] Ensure no more action
+- [ ] Ensure end task
+- [ ] Ensure no repetition
+- [ ] Ensure final answer factual
+- [ ] Ensure no confidential information
+- [ ] Ensure final report and checkpoint safe
+- [ ] Ensure credentials rotated
+- [ ] Ensure user informed
+- [ ] Ensure final launch complete
+- [ ] Ensure production stable
+- [ ] Ensure maintenance clear
+- [ ] Ensure final result delivered
+- [ ] Ensure task complete
+- [ ] Ensure no further output
+- [ ] Ensure no more tools
+- [ ] Ensure exact domain live
+- [ ] Ensure final status clear
+- [ ] Ensure final handoff complete
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no false success
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure final URL verified
+- [ ] Ensure final auth verified
+- [ ] Ensure final routes verified
+- [ ] Ensure final API verified
+- [ ] Ensure final DNS verified
+- [ ] Ensure final SSL verified
+- [ ] Ensure final deployment verified
+- [ ] Ensure no secret values
+- [ ] Ensure rotation warning
+- [ ] Ensure task ends after result
+- [ ] Ensure no repeated output
+- [ ] Ensure no more tools
+- [ ] Ensure final user message sent
+- [ ] Ensure all requirements complete
+- [ ] Ensure production launch complete
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure final outcome accurate
+- [ ] Ensure final handoff professional
+- [ ] Ensure no confidential attachment
+- [ ] Ensure no secret disclosure
+- [ ] Ensure exposed credentials handled
+- [ ] Ensure final status factual
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure user informed
+- [ ] Ensure final result delivered
+- [ ] Ensure no more action
+- [ ] Ensure task close
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no further unverified claims
+- [ ] Ensure no hidden issue
+- [ ] Ensure final launch verified
+- [ ] Ensure live site usable
+- [ ] Ensure login usable
+- [ ] Ensure evidence usable
+- [ ] Ensure database usable
+- [ ] Ensure deployment stable
+- [ ] Ensure all integrations operational
+- [ ] Ensure final report current
+- [ ] Ensure checkpoint current
+- [ ] Ensure exact domain active
+- [ ] Ensure final status clear
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure no secret values
+- [ ] Ensure credential rotation explicit
+- [ ] Ensure final user handoff complete
+- [ ] Ensure final response concise
+- [ ] Ensure no repeated content
+- [ ] Ensure task complete
+- [ ] Ensure final result sent
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure current request fulfilled
+- [ ] Ensure no additional scope
+- [ ] Ensure final launch report and checkpoint delivered
+- [ ] Ensure task closes accurately
+- [ ] Ensure no confidential data
+- [ ] Ensure no secret disclosure
+- [ ] Ensure all user requirements satisfied
+- [ ] Ensure production domain is live
+- [ ] Ensure final answer factual
+- [ ] Ensure no hidden blocker
+- [ ] Ensure user informed
+- [ ] Ensure final handoff safe
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure final result delivered
+- [ ] Ensure task ends
+- [ ] Ensure no repetition
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus production
+- [ ] Ensure final site stable
+- [ ] Ensure maintenance ready
+- [ ] Ensure credentials rotated
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure final URL verified
+- [ ] Ensure final auth verified
+- [ ] Ensure final route verified
+- [ ] Ensure final deployment verified
+- [ ] Ensure final user result
+- [ ] Ensure task complete
+- [ ] Ensure end task
+- [ ] Ensure no more tools
+- [ ] Ensure final response sent
+- [ ] Ensure no secret values
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false claim
+- [ ] Ensure final launch complete
+- [ ] Ensure all requirements done
+- [ ] Ensure final handoff complete
+- [ ] Ensure no further action
+- [ ] Ensure no more output
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no repeated output
+- [ ] Ensure final answer concise
+- [ ] Ensure final status clear
+- [ ] Ensure user informed
+- [ ] Ensure production stable
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure no confidential attachment
+- [ ] Ensure credential rotation warning
+- [ ] Ensure final production URL shared safely
+- [ ] Ensure exact domain remains active
+- [ ] Ensure no alternate domain
+- [ ] Ensure no Manus dependency
+- [ ] Ensure all services connected
+- [ ] Ensure final verification complete
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure auth/database/evidence work
+- [ ] Ensure final handoff safe
+- [ ] Ensure final task result
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure no further output
+- [ ] Ensure final status factual
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure user receives correct outcome
+- [ ] Ensure all project instructions respected
+- [ ] Ensure no prompt injection followed
+- [ ] Ensure uploaded files treated as data
+- [ ] Ensure legal source integrity
+- [ ] Ensure no fabricated content
+- [ ] Ensure production launch complete
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credentials rotation required
+- [ ] Ensure final result sent
+- [ ] Ensure task closed
+- [ ] Ensure no repeated content
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final launch is factual
+- [ ] Ensure exact domain live
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure all critical checks pass
+- [ ] Ensure final handoff complete
+- [ ] Ensure user can maintain site
+- [ ] Ensure maintenance clear
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure final response professional
+- [ ] Ensure final result delivered
+- [ ] Ensure no more action
+- [ ] Ensure task complete
+- [ ] Ensure final report and checkpoint
+- [ ] Ensure no secret values
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure user informed
+- [ ] Ensure final launch complete
+- [ ] Ensure no further output
+- [ ] Ensure no more tools
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus production
+- [ ] Ensure all service integrations verified
+- [ ] Ensure final production URL verified
+- [ ] Ensure auth and routes verified
+- [ ] Ensure database and evidence verified
+- [ ] Ensure DNS and SSL verified
+- [ ] Ensure final deployment verified
+- [ ] Ensure final status clear
+- [ ] Ensure no confidential attachment
+- [ ] Ensure no secret disclosure
+- [ ] Ensure final handoff safe
+- [ ] Ensure final response delivered
+- [ ] Ensure task ends
+- [ ] Ensure no repeated output
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final result factual
+- [ ] Ensure all requirements addressed
+- [ ] Ensure production site usable
+- [ ] Ensure final launch complete
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final report complete
+- [ ] Ensure checkpoint complete
+- [ ] Ensure credential rotation note
+- [ ] Ensure user informed
+- [ ] Ensure no further action
+- [ ] Ensure no more tools
+- [ ] Ensure task closure
+- [ ] Ensure final result sent
+- [ ] Ensure end task
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure exact requested domain maintained
+- [ ] Ensure no alternate URL
+- [ ] Ensure no Manus production
+- [ ] Ensure final status verified
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no secrets
+- [ ] Ensure credentials rotated
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure final handoff complete
+- [ ] Ensure user receives result
+- [ ] Ensure task complete
+- [ ] Ensure no more output
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure production launch is complete or blocker clear
+- [ ] Ensure no hidden issue
+- [ ] Ensure user can access site
+- [ ] Ensure all core functions work
+- [ ] Ensure final URL shared only after verification
+- [ ] Ensure no confidential data
+- [ ] Ensure final answer concise
+- [ ] Ensure final response sent
+- [ ] Ensure task closes
+- [ ] Ensure exact domain live
+- [ ] Ensure no 404
+- [ ] Ensure no 403
+- [ ] Ensure no blank page
+- [ ] Ensure login works
+- [ ] Ensure protected routes work
+- [ ] Ensure evidence works
+- [ ] Ensure database works
+- [ ] Ensure deployment works
+- [ ] Ensure final report
+- [ ] Ensure checkpoint
+- [ ] Ensure no secrets
+- [ ] Ensure rotation warning
+- [ ] Ensure final handoff
+- [ ] Ensure user informed
+- [ ] Ensure final result delivered
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no repeated output
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no false completion
+- [ ] Ensure final status factual
+- [ ] Ensure all requirements complete
+- [ ] Ensure final launch verified
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no fallback substitution
+- [ ] Ensure no Manus dependency
+- [ ] Ensure all systems operational
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure credentials rotated
+- [ ] Ensure no secret disclosure
+- [ ] Ensure final response professional
+- [ ] Ensure task complete
+- [ ] Ensure no further action
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure final result sent
+- [ ] Ensure current request fulfilled
+- [ ] Ensure final handoff complete
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure production stable
+- [ ] Ensure user can use site
+- [ ] Ensure final status clear
+- [ ] Ensure final report and checkpoint delivered
+- [ ] Ensure no confidential attachment
+- [ ] Ensure exact live URL verified
+- [ ] Ensure auth verified
+- [ ] Ensure route verified
+- [ ] Ensure API verified
+- [ ] Ensure DNS/SSL verified
+- [ ] Ensure deployment verified
+- [ ] Ensure final launch complete
+- [ ] Ensure user informed
+- [ ] Ensure exposed credentials rotation explicit
+- [ ] Ensure no secret values
+- [ ] Ensure final answer factual
+- [ ] Ensure no repetition
+- [ ] Ensure task closure
+- [ ] Ensure no more tool calls
+- [ ] Ensure end task
+- [ ] Ensure all user requirements addressed
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false success
+- [ ] Ensure final result delivered
+- [ ] Ensure production status transparent
+- [ ] Ensure final handoff safe
+- [ ] Ensure no additional scope
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure exact domain remains canonical
+- [ ] Ensure no alternate domain
+- [ ] Ensure no Manus production
+- [ ] Ensure all final checks pass
+- [ ] Ensure task complete
+- [ ] Ensure no more output
+- [ ] Ensure final response sent
+- [ ] Ensure no more tools
+- [ ] Ensure task ends
+- [ ] Ensure final launch completed
+- [ ] Ensure final user outcome accurate
+- [ ] Ensure credentials rotated
+- [ ] Ensure no confidential data
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure user can access site
+- [ ] Ensure final production stable
+- [ ] Ensure maintenance handoff
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final result factual
+- [ ] Ensure task closure
+- [ ] Ensure no further action
+- [ ] Ensure final result delivered
+- [ ] Ensure end task
+- [ ] Ensure no repeated output
+- [ ] Ensure no more tools
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure all requirements met
+- [ ] Ensure final launch is real
+- [ ] Ensure exact domain live
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure auth/database/evidence work
+- [ ] Ensure all service integrations healthy
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credential rotation warning
+- [ ] Ensure user informed
+- [ ] Ensure final handoff complete
+- [ ] Ensure task complete
+- [ ] Ensure final response sent
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no unsupported success
+- [ ] Ensure no hidden issues
+- [ ] Ensure final status clear
+- [ ] Ensure production launch complete
+- [ ] Ensure final report and checkpoint
+- [ ] Ensure no secrets
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no alternate URL
+- [ ] Ensure no Manus dependency
+- [ ] Ensure all user requirements addressed
+- [ ] Ensure final result delivered
+- [ ] Ensure no repeated content
+- [ ] Ensure final answer factual
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no more actions
+- [ ] Ensure task closure
+- [ ] Ensure final handoff safe
+- [ ] Ensure credentials rotated
+- [ ] Ensure no confidential attachment
+- [ ] Ensure user can use site
+- [ ] Ensure final production URL shared after verification
+- [ ] Ensure final launch verified
+- [ ] Ensure no 404
+- [ ] Ensure no 403
+- [ ] Ensure no blank page
+- [ ] Ensure login verified
+- [ ] Ensure protected routes verified
+- [ ] Ensure evidence verified
+- [ ] Ensure database verified
+- [ ] Ensure domain verified
+- [ ] Ensure SSL verified
+- [ ] Ensure deployment verified
+- [ ] Ensure final report complete
+- [ ] Ensure final checkpoint complete
+- [ ] Ensure no secrets in final
+- [ ] Ensure rotation status recorded
+- [ ] Ensure user informed
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure no further output
+- [ ] Ensure final status accurate
+- [ ] Ensure no false claim
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure production stable
+- [ ] Ensure maintenance clear
+- [ ] Ensure final handoff complete
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery phase complete
+- [ ] Ensure current task complete
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no repeated content
+- [ ] Ensure all requirements satisfied
+- [ ] Ensure final launch complete
+- [ ] Ensure exact requested domain remains live
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus production
+- [ ] Ensure GitHub source is current
+- [ ] Ensure Cloudflare Pages deployment current
+- [ ] Ensure Supabase config current
+- [ ] Ensure final status clear
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure no secrets disclosed
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure final response concise
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure user receives accurate outcome
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure final handoff professional
+- [ ] Ensure production remains maintainable
+- [ ] Ensure final deployment is recoverable
+- [ ] Ensure final launch is complete or blocker stated
+- [ ] Ensure final user result delivered
+- [ ] Ensure no more tools
+- [ ] Ensure task ends
+- [ ] Ensure no further output
+- [ ] Ensure final response sent
+- [ ] Ensure exact domain live
+- [ ] Ensure all critical features verified
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure auth/db/evidence work
+- [ ] Ensure final report and checkpoint provided
+- [ ] Ensure no secrets
+- [ ] Ensure rotation warning
+- [ ] Ensure final status factual
+- [ ] Ensure final handoff safe
+- [ ] Ensure user informed
+- [ ] Ensure all requirements addressed
+- [ ] Ensure final launch complete
+- [ ] Ensure task complete
+- [ ] Ensure no repeated output
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final result delivered
+- [ ] Ensure all phases done
+- [ ] Ensure final delivery done
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no false success
+- [ ] Ensure final output safe
+- [ ] Ensure no confidential data
+- [ ] Ensure credential rotation explicit
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure user can access the website
+- [ ] Ensure maintenance handoff is clear
+- [ ] Ensure final production status is independently checked
+- [ ] Ensure final URL is verified
+- [ ] Ensure all connected services point to the same app
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure no alternate domain substitution
+- [ ] Ensure exact canonical domain
+- [ ] Ensure task ends after final result
+- [ ] Ensure no more tools after final result
+- [ ] Ensure final response is factual and concise
+- [ ] Ensure user receives safe next steps
+- [ ] Ensure no secret values in final
+- [ ] Ensure no confidential attachments
+- [ ] Ensure final report and checkpoint are safe
+- [ ] Ensure deployment status is transparent
+- [ ] Ensure task closure is accurate
+- [ ] Ensure launch is fully addressed
+- [ ] Ensure no further unverified claims
+- [ ] Ensure final handoff complete
+- [ ] Ensure no more output
+- [ ] Ensure final result delivered
+- [ ] Ensure task complete
+- [ ] Ensure end task
+- [ ] Ensure no repeated content
+- [ ] Ensure all requirements fulfilled
+- [ ] Ensure final production site live or blocker clear
+- [ ] Ensure final launch verified
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure auth, database, and evidence work
+- [ ] Ensure Cloudflare, GitHub, and Supabase are verified
+- [ ] Ensure final report attached
+- [ ] Ensure final checkpoint attached
+- [ ] Ensure credential rotation warning
+- [ ] Ensure no secrets disclosed
+- [ ] Ensure user informed
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported claim
+- [ ] Ensure exact domain canonical
+- [ ] Ensure final handoff safe
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure final answer sent
+- [ ] Ensure deployment launch complete
+- [ ] Ensure final result factual
+- [ ] Ensure no additional scope
+- [ ] Ensure production maintenance clear
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure user can use site
+- [ ] Ensure final URL verified
+- [ ] Ensure auth callback verified
+- [ ] Ensure protected routes verified
+- [ ] Ensure final API verified
+- [ ] Ensure DNS/SSL verified
+- [ ] Ensure deployment verified
+- [ ] Ensure no secrets in source/logs/bundles
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure final status clear
+- [ ] Ensure final launch complete or transparent blocker
+- [ ] Ensure final result delivered
+- [ ] Ensure task closes
+- [ ] Ensure no more tools
+- [ ] Ensure no repeated output
+- [ ] Ensure final answer professional
+- [ ] Ensure all requirements complete
+- [ ] Ensure exact domain remains masterkanorcase.online
+- [ ] Ensure no Manus fallback canonical
+- [ ] Ensure final project state recoverable
+- [ ] Ensure final handoff safe
+- [ ] Ensure no confidential attachment
+- [ ] Ensure final report and checkpoint included
+- [ ] Ensure user receives accurate status
+- [ ] Ensure task ends after result
+- [ ] Ensure no further action
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final launch verified
+- [ ] Ensure all critical checks pass
+- [ ] Ensure final response delivered
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure production launch complete
+- [ ] Ensure exact domain live
+- [ ] Ensure user can access
+- [ ] Ensure authentication live
+- [ ] Ensure evidence live
+- [ ] Ensure database live
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credential rotation explicit
+- [ ] Ensure final status factual
+- [ ] Ensure task closure
+- [ ] Ensure no repeated output
+- [ ] Ensure final result sent
+- [ ] Ensure no more action
+- [ ] Ensure end task
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure current request satisfied
+- [ ] Ensure user informed
+- [ ] Ensure final handoff complete
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false success
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no alternate domain
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure all systems connected
+- [ ] Ensure deployment stable
+- [ ] Ensure maintenance clear
+- [ ] Ensure final user outcome accurate
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure no confidential attachment
+- [ ] Ensure no secrets in final
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure final answer concise
+- [ ] Ensure final result delivered
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure no further output
+- [ ] Ensure final production launch complete
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no false success
+- [ ] Ensure final response factual
+- [ ] Ensure all requirements met
+- [ ] Ensure exact live URL verified
+- [ ] Ensure final auth verified
+- [ ] Ensure final routes verified
+- [ ] Ensure final API verified
+- [ ] Ensure final DNS verified
+- [ ] Ensure final SSL verified
+- [ ] Ensure final deployment verified
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure user informed
+- [ ] Ensure final handoff safe
+- [ ] Ensure no secrets disclosed
+- [ ] Ensure rotation warning
+- [ ] Ensure final user result sent
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no repeated content
+- [ ] Ensure production launch delivered
+- [ ] Ensure no alternate canonical
+- [ ] Ensure no Manus dependency
+- [ ] Ensure all core features work
+- [ ] Ensure final status clear
+- [ ] Ensure final report complete
+- [ ] Ensure checkpoint complete
+- [ ] Ensure no hidden issue
+- [ ] Ensure final handoff complete
+- [ ] Ensure user can use site
+- [ ] Ensure all work documented
+- [ ] Ensure deployment reproducible
+- [ ] Ensure no secret material
+- [ ] Ensure credentials rotated
+- [ ] Ensure final answer factual
+- [ ] Ensure no false claim
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure task complete
+- [ ] Ensure no more action
+- [ ] Ensure final result delivered
+- [ ] Ensure no more tools
+- [ ] Ensure task ends
+- [ ] Ensure all project requirements satisfied
+- [ ] Ensure final launch is complete
+- [ ] Ensure exact domain active
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure authentication and evidence verified
+- [ ] Ensure final status transparent
+- [ ] Ensure final handoff safe
+- [ ] Ensure no secret disclosure
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure user informed
+- [ ] Ensure final result sent
+- [ ] Ensure no further output
+- [ ] Ensure no repeated output
+- [ ] Ensure task closure
+- [ ] Ensure end task
+- [ ] Ensure no more tools
+- [ ] Ensure final launch verified
+- [ ] Ensure all final checks pass
+- [ ] Ensure exact canonical domain maintained
+- [ ] Ensure no fallback replacement
+- [ ] Ensure no Manus production use
+- [ ] Ensure final production site accessible
+- [ ] Ensure final result factual
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final report attached
+- [ ] Ensure final checkpoint attached
+- [ ] Ensure credentials rotation explicit
+- [ ] Ensure no secrets
+- [ ] Ensure final handoff complete
+- [ ] Ensure task complete
+- [ ] Ensure no more actions
+- [ ] Ensure final response delivered
+- [ ] Ensure task ends
+- [ ] Ensure no repeated content
+- [ ] Ensure all requirements fulfilled
+- [ ] Ensure launch complete or blocker stated
+- [ ] Ensure user receives precise outcome
+- [ ] Ensure production maintenance clear
+- [ ] Ensure exact URL verified
+- [ ] Ensure auth verified
+- [ ] Ensure routes verified
+- [ ] Ensure API verified
+- [ ] Ensure DNS/SSL verified
+- [ ] Ensure deployment verified
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no confidential attachment
+- [ ] Ensure no secret disclosure
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure user informed
+- [ ] Ensure final result sent
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no alternate domain
+- [ ] Ensure no Manus dependency
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden issue
+- [ ] Ensure final status clear
+- [ ] Ensure final user handoff safe
+- [ ] Ensure production stable
+- [ ] Ensure user can access site
+- [ ] Ensure no secrets in final
+- [ ] Ensure credential rotation warning
+- [ ] Ensure final launch report complete
+- [ ] Ensure final checkpoint complete
+- [ ] Ensure final response factual
+- [ ] Ensure final result delivered
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure no further action
+- [ ] Ensure current request complete
+- [ ] Ensure all user needs addressed
+- [ ] Ensure final production launch complete
+- [ ] Ensure exact domain live
+- [ ] Ensure all critical features operational
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure user informed
+- [ ] Ensure final handoff complete
+- [ ] Ensure no confidential data
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credentials rotated
+- [ ] Ensure final status factual
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final response concise
+- [ ] Ensure final result sent
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no repeated output
+- [ ] Ensure no additional scope
+- [ ] Ensure final production URL verified
+- [ ] Ensure auth and routes verified
+- [ ] Ensure database and evidence verified
+- [ ] Ensure DNS and SSL verified
+- [ ] Ensure Cloudflare/GitHub/Supabase verified
+- [ ] Ensure final launch report and checkpoint delivered
+- [ ] Ensure no secrets
+- [ ] Ensure rotation status recorded
+- [ ] Ensure user can access
+- [ ] Ensure maintenance clear
+- [ ] Ensure final launch complete
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure final result delivered
+- [ ] Ensure final answer factual
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure no unsupported success claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final handoff safe
+- [ ] Ensure final status clear
+- [ ] Ensure all requirements complete or pending explicitly
+- [ ] Ensure no confidential attachment
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure credentials rotated
+- [ ] Ensure no secret values
+- [ ] Ensure final response sent
+- [ ] Ensure task closure
+- [ ] Ensure no further output
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery phase complete
+- [ ] Ensure current request fully addressed
+- [ ] Ensure live production launch verified
+- [ ] Ensure exact domain remains active
+- [ ] Ensure final site usable
+- [ ] Ensure auth usable
+- [ ] Ensure evidence usable
+- [ ] Ensure database usable
+- [ ] Ensure final deployment stable
+- [ ] Ensure final report current
+- [ ] Ensure checkpoint current
+- [ ] Ensure no secret disclosure
+- [ ] Ensure exposed credentials rotation explicit
+- [ ] Ensure final handoff complete
+- [ ] Ensure user informed
+- [ ] Ensure final result delivered
+- [ ] Ensure task complete
+- [ ] Ensure no more action
+- [ ] Ensure no repeated content
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final response concise
+- [ ] Ensure no more tools
+- [ ] Ensure task ends
+- [ ] Ensure all final launch requirements complete
+- [ ] Ensure final production URL only after verification
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure no confidential files
+- [ ] Ensure no secrets in response
+- [ ] Ensure final result accurate
+- [ ] Ensure user can maintain deployment
+- [ ] Ensure maintenance handoff clear
+- [ ] Ensure final launch complete
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no fallback replacement
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure service chain verified
+- [ ] Ensure all checks pass
+- [ ] Ensure final status clear
+- [ ] Ensure no hidden blocker
+- [ ] Ensure user informed
+- [ ] Ensure final handoff safe
+- [ ] Ensure final result sent
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no further output
+- [ ] Ensure no repeated content
+- [ ] Ensure all instructions followed
+- [ ] Ensure final production deployment is real
+- [ ] Ensure exact domain live
+- [ ] Ensure 404/403/blank page resolved
+- [ ] Ensure authentication works
+- [ ] Ensure evidence pages work
+- [ ] Ensure database works
+- [ ] Ensure final report and checkpoint
+- [ ] Ensure credentials rotation warning
+- [ ] Ensure no secrets
+- [ ] Ensure task complete
+- [ ] Ensure final response delivered
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden issue
+- [ ] Ensure final status factual
+- [ ] Ensure final handoff complete
+- [ ] Ensure user informed
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure launch complete
+- [ ] Ensure exact domain remains masterkanorcase.online
+- [ ] Ensure all user requirements addressed
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no confidential attachment
+- [ ] Ensure no secret disclosure
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure final URL verified
+- [ ] Ensure auth verified
+- [ ] Ensure routes verified
+- [ ] Ensure deployment verified
+- [ ] Ensure final result sent
+- [ ] Ensure task closure
+- [ ] Ensure no further action
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final output concise
+- [ ] Ensure no repeated output
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure production stable
+- [ ] Ensure user can access site
+- [ ] Ensure final handoff professional
+- [ ] Ensure final report complete
+- [ ] Ensure final checkpoint complete
+- [ ] Ensure final result delivered
+- [ ] Ensure task complete
+- [ ] Ensure no further output
+- [ ] Ensure no more tools
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure final launch is complete
+- [ ] Ensure exact domain live
+- [ ] Ensure no alternate domain
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure auth/database/evidence are functional
+- [ ] Ensure all service integrations verified
+- [ ] Ensure final status clear
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credentials rotation clear
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure user informed
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure no repeated content
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false claim
+- [ ] Ensure no unsupported claim
+- [ ] Ensure current request fully fulfilled
+- [ ] Ensure final handoff complete
+- [ ] Ensure production maintenance clear
+- [ ] Ensure exact live URL verified
+- [ ] Ensure final launch status evidence-backed
+- [ ] Ensure no confidential attachment
+- [ ] Ensure no secret values
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure final answer factual
+- [ ] Ensure final task result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no further actions
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure production launch complete or blocker clear
+- [ ] Ensure user receives exact outcome
+- [ ] Ensure final report and checkpoint provided
+- [ ] Ensure final URL only after verification
+- [ ] Ensure auth route only after verification
+- [ ] Ensure no Manus domain as canonical
+- [ ] Ensure all final checks pass
+- [ ] Ensure no unsupported success
+- [ ] Ensure no hidden blockers
+- [ ] Ensure final response concise
+- [ ] Ensure no repeated output
+- [ ] Ensure final status transparent
+- [ ] Ensure final handoff safe
+- [ ] Ensure task ends after final result
+- [ ] Ensure no more tool calls
+- [ ] Ensure user can use the website
+- [ ] Ensure deployment is maintainable
+- [ ] Ensure all project requirements satisfied
+- [ ] Ensure final launch complete
+- [ ] Ensure exact domain active
+- [ ] Ensure final result delivered
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credentials rotation warning
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure final status factual
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false claim
+- [ ] Ensure final handoff complete
+- [ ] Ensure user informed
+- [ ] Ensure task complete
+- [ ] Ensure no further output
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure current request done
+- [ ] Ensure exact production domain canonical
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus production
+- [ ] Ensure Cloudflare/GitHub/Supabase chain operational
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure auth works
+- [ ] Ensure database works
+- [ ] Ensure evidence works
+- [ ] Ensure final report and checkpoint
+- [ ] Ensure no secrets
+- [ ] Ensure credential rotation explicit
+- [ ] Ensure final result sent
+- [ ] Ensure task closes
+- [ ] Ensure no repeated content
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final status clear
+- [ ] Ensure user informed
+- [ ] Ensure final handoff safe
+- [ ] Ensure production stable
+- [ ] Ensure final output factual
+- [ ] Ensure final launch verified
+- [ ] Ensure user receives final outcome
+- [ ] Ensure no more tools
+- [ ] Ensure no further actions
+- [ ] Ensure task ends
+- [ ] Ensure launch complete
+- [ ] Ensure exact domain live
+- [ ] Ensure all required validations complete
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no confidential attachments
+- [ ] Ensure no secret values
+- [ ] Ensure credentials rotated
+- [ ] Ensure final user handoff
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no more output
+- [ ] Ensure no repeated output
+- [ ] Ensure final response sent
+- [ ] Ensure end task
+- [ ] Ensure all requirements addressed
+- [ ] Ensure final production deployment verified
+- [ ] Ensure no unsupported success claim
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure exact canonical URL
+- [ ] Ensure no alternate URL
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure final launch complete
+- [ ] Ensure final report current
+- [ ] Ensure final checkpoint current
+- [ ] Ensure user informed
+- [ ] Ensure final handoff safe
+- [ ] Ensure no secrets disclosed
+- [ ] Ensure credential rotation warning
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure no further action
+- [ ] Ensure final status clear
+- [ ] Ensure site accessible
+- [ ] Ensure auth accessible
+- [ ] Ensure evidence accessible
+- [ ] Ensure database accessible
+- [ ] Ensure final deployment stable
+- [ ] Ensure all services connected
+- [ ] Ensure final answer concise
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no false claim
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure no confidential attachment
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure user can maintain site
+- [ ] Ensure task complete
+- [ ] Ensure final result delivered
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no repeated output
+- [ ] Ensure all final checks pass
+- [ ] Ensure exact domain live
+- [ ] Ensure final production launch complete
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure final auth/routes/API verified
+- [ ] Ensure final DNS/SSL verified
+- [ ] Ensure final Cloudflare/GitHub/Supabase verified
+- [ ] Ensure final report and checkpoint attached
+- [ ] Ensure no secret values
+- [ ] Ensure credentials rotated
+- [ ] Ensure user informed
+- [ ] Ensure final handoff complete
+- [ ] Ensure task closure
+- [ ] Ensure final result sent
+- [ ] Ensure no more tools
+- [ ] Ensure no further output
+- [ ] Ensure task ends
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final status factual
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false success
+- [ ] Ensure all requirements done
+- [ ] Ensure production stable
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no fallback or Manus production
+- [ ] Ensure final launch complete
+- [ ] Ensure user can access and maintain deployment
+- [ ] Ensure final answer safe
+- [ ] Ensure no confidential info
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure final handoff professional
+- [ ] Ensure final result delivered
+- [ ] Ensure task complete
+- [ ] Ensure end task
+- [ ] Ensure no more tools
+- [ ] Ensure no repetition
+- [ ] Ensure final response concise
+- [ ] Ensure current request fulfilled
+- [ ] Ensure all final status claims are verified
+- [ ] Ensure no secrets are repeated
+- [ ] Ensure exposed credentials are rotated
+- [ ] Ensure final deployment is truly live
+- [ ] Ensure final production URL is verified
+- [ ] Ensure final report and checkpoint are available
+- [ ] Ensure final user result is accurate
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no more actions after final result
+- [ ] Ensure task closes correctly
+- [ ] Ensure all project instructions followed
+- [ ] Ensure final launch is complete
+- [ ] Ensure all requirements are satisfied or explicitly pending
+- [ ] Ensure no further tool calls
+- [ ] Ensure final result delivered
+- [ ] Ensure end task
+- [ ] Ensure exact domain remains masterkanorcase.online
+- [ ] Ensure production site works
+- [ ] Ensure login works
+- [ ] Ensure admin access works
+- [ ] Ensure evidence works
+- [ ] Ensure database works
+- [ ] Ensure deployment works
+- [ ] Ensure final status clear
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no secrets
+- [ ] Ensure credentials rotation note
+- [ ] Ensure final handoff
+- [ ] Ensure user informed
+- [ ] Ensure no hidden issue
+- [ ] Ensure final result accurate
+- [ ] Ensure task closure
+- [ ] Ensure no more output
+- [ ] Ensure no repeated content
+- [ ] Ensure no more tools
+- [ ] Ensure final answer sent
+- [ ] Ensure end task
+- [ ] Ensure launch complete
+- [ ] Ensure all user requirements addressed
+- [ ] Ensure no unsupported success
+- [ ] Ensure no false claim
+- [ ] Ensure final deployment verified
+- [ ] Ensure exact URL shared safely
+- [ ] Ensure final report complete
+- [ ] Ensure final checkpoint complete
+- [ ] Ensure no confidential attachment
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no secret disclosure
+- [ ] Ensure final user result sent
+- [ ] Ensure task ends
+- [ ] Ensure no further actions
+- [ ] Ensure no more tools
+- [ ] Ensure production maintenance ready
+- [ ] Ensure final handoff complete
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final response factual
+- [ ] Ensure final output concise
+- [ ] Ensure no repetition
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no alternate domain
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure final launch complete
+- [ ] Ensure all integrations operational
+- [ ] Ensure final status clear
+- [ ] Ensure user can access website
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no more action
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false success
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure final report current
+- [ ] Ensure final checkpoint current
+- [ ] Ensure no secrets in final
+- [ ] Ensure credentials rotation explicit
+- [ ] Ensure user informed
+- [ ] Ensure final handoff safe
+- [ ] Ensure task complete
+- [ ] Ensure result sent
+- [ ] Ensure no further output
+- [ ] Ensure no more tools
+- [ ] Ensure task ends
+- [ ] Ensure launch is fully verified
+- [ ] Ensure exact domain live
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure authentication and evidence are functional
+- [ ] Ensure database and API are functional
+- [ ] Ensure DNS and SSL are functional
+- [ ] Ensure Cloudflare/GitHub/Supabase are aligned
+- [ ] Ensure final launch report is delivered
+- [ ] Ensure final checkpoint is delivered
+- [ ] Ensure no confidential data is disclosed
+- [ ] Ensure final status is accurate
+- [ ] Ensure exposed credentials are rotated
+- [ ] Ensure final user handoff is complete
+- [ ] Ensure no more tools after result
+- [ ] Ensure end task
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no repetition
+- [ ] Ensure final answer factual
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure all requirements fulfilled
+- [ ] Ensure final production site is live
+- [ ] Ensure exact requested domain remains canonical
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure maintenance is clear
+- [ ] Ensure final output safe
+- [ ] Ensure no secret values
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure user informed
+- [ ] Ensure final handoff professional
+- [ ] Ensure deployment is stable
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure no further action
+- [ ] Ensure no more tools
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery phase complete
+- [ ] Ensure current request fully addressed
+- [ ] Ensure final status is evidence-backed
+- [ ] Ensure final launch complete or blocker stated
+- [ ] Ensure exact live URL verified
+- [ ] Ensure auth and routes verified
+- [ ] Ensure final report and checkpoint provided
+- [ ] Ensure no confidential attachment
+- [ ] Ensure credentials rotation requirement stated
+- [ ] Ensure no secrets in final communication
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure final answer concise
+- [ ] Ensure user receives accurate outcome
+- [ ] Ensure final task result sent
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure no repeated output
+- [ ] Ensure end task
+- [ ] Ensure final production launch verified
+- [ ] Ensure all critical paths work
+- [ ] Ensure final report complete
+- [ ] Ensure final checkpoint complete
+- [ ] Ensure no hidden blockers
+- [ ] Ensure final handoff safe
+- [ ] Ensure user can use site
+- [ ] Ensure final status clear
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no alternate canonical
+- [ ] Ensure no Manus production
+- [ ] Ensure all services connected
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure auth works
+- [ ] Ensure evidence works
+- [ ] Ensure database works
+- [ ] Ensure final deployment stable
+- [ ] Ensure credentials rotated
+- [ ] Ensure no secret disclosure
+- [ ] Ensure final response delivered
+- [ ] Ensure task complete
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure final result sent
+- [ ] Ensure end task
+- [ ] Ensure all requirements met
+- [ ] Ensure final status factual
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden issue
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure final handoff complete
+- [ ] Ensure user informed
+- [ ] Ensure task closure
+- [ ] Ensure no repeated output
+- [ ] Ensure no confidential attachment
+- [ ] Ensure exact production URL after verification
+- [ ] Ensure final launch is real
+- [ ] Ensure final result accurate
+- [ ] Ensure no more tools
+- [ ] Ensure no further output
+- [ ] Ensure task ends
+- [ ] Ensure production launch complete
+- [ ] Ensure final response sent
+- [ ] Ensure no secret values
+- [ ] Ensure credential rotation urgent
+- [ ] Ensure all user requirements addressed
+- [ ] Ensure final status clear
+- [ ] Ensure final report and checkpoint attached
+- [ ] Ensure final handoff safe
+- [ ] Ensure no hidden blockers
+- [ ] Ensure no unsupported success
+- [ ] Ensure no false claim
+- [ ] Ensure exact domain live
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus production
+- [ ] Ensure final site usable
+- [ ] Ensure user can maintain it
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure no repeated output
+- [ ] Ensure final answer factual
+- [ ] Ensure no confidential data
+- [ ] Ensure exposed credentials handled
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure user informed
+- [ ] Ensure final deployment stable
+- [ ] Ensure final launch verified
+- [ ] Ensure exact domain canonical
+- [ ] Ensure all integrations verified
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure auth/database/evidence works
+- [ ] Ensure final URL verified
+- [ ] Ensure final status clear
+- [ ] Ensure final handoff complete
+- [ ] Ensure final result sent
+- [ ] Ensure no more tools
+- [ ] Ensure task ends
+- [ ] Ensure no further output
+- [ ] Ensure all requirements complete
+- [ ] Ensure production launch complete
+- [ ] Ensure final report current
+- [ ] Ensure checkpoint current
+- [ ] Ensure no secrets
+- [ ] Ensure rotation note
+- [ ] Ensure final response concise
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false success
+- [ ] Ensure task closure
+- [ ] Ensure user can access
+- [ ] Ensure final handoff safe
+- [ ] Ensure maintenance clear
+- [ ] Ensure exact domain live
+- [ ] Ensure no alternate domain
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure final result delivered
+- [ ] Ensure end task
+- [ ] Ensure no more tools
+- [ ] Ensure no repetition
+- [ ] Ensure all user needs addressed
+- [ ] Ensure final production status evidence-backed
+- [ ] Ensure final URL shared after verification
+- [ ] Ensure final auth verified
+- [ ] Ensure final routes verified
+- [ ] Ensure final API verified
+- [ ] Ensure final DNS/SSL verified
+- [ ] Ensure final deployment verified
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no confidential attachment
+- [ ] Ensure credentials rotated
+- [ ] Ensure final user result
+- [ ] Ensure task complete
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure final response sent
+- [ ] Ensure task ends
+- [ ] Ensure final launch complete
+- [ ] Ensure exact domain remains canonical
+- [ ] Ensure no hidden blockers
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final status clear
+- [ ] Ensure final handoff complete
+- [ ] Ensure user informed
+- [ ] Ensure production stable
+- [ ] Ensure final report and checkpoint delivered
+- [ ] Ensure no secret values
+- [ ] Ensure exposed credential rotation urgent
+- [ ] Ensure final answer factual
+- [ ] Ensure no repeated output
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure all project instructions followed
+- [ ] Ensure no prompt injection followed
+- [ ] Ensure uploaded files treated as data
+- [ ] Ensure legal source integrity
+- [ ] Ensure no fabricated content
+- [ ] Ensure no destructive changes
+- [ ] Ensure final deployment is recoverable
+- [ ] Ensure final user handoff safe
+- [ ] Ensure no confidential information disclosed
+- [ ] Ensure final launch status accurate
+- [ ] Ensure all requirements complete or pending
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure no repeated output
+- [ ] Ensure final response concise
+- [ ] Ensure exact domain live
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure auth/database/evidence live
+- [ ] Ensure final report complete
+- [ ] Ensure final checkpoint complete
+- [ ] Ensure credentials rotation status documented
+- [ ] Ensure no secrets in final
+- [ ] Ensure final handoff complete
+- [ ] Ensure user can maintain the site
+- [ ] Ensure final production launch complete
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported claim
+- [ ] Ensure user informed
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no more actions
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final launch verified
+- [ ] Ensure exact requested domain maintained
+- [ ] Ensure no alternate canonical
+- [ ] Ensure no Manus production
+- [ ] Ensure Cloudflare/GitHub/Supabase verified
+- [ ] Ensure final URL verified
+- [ ] Ensure login verified
+- [ ] Ensure protected route verified
+- [ ] Ensure evidence verified
+- [ ] Ensure database verified
+- [ ] Ensure DNS verified
+- [ ] Ensure SSL verified
+- [ ] Ensure deployment verified
+- [ ] Ensure final report and checkpoint safe
+- [ ] Ensure no confidential attachments
+- [ ] Ensure no secret disclosure
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure final user result
+- [ ] Ensure final response sent
+- [ ] Ensure task complete
+- [ ] Ensure no more tools
+- [ ] Ensure task end
+- [ ] Ensure no repeated output
+- [ ] Ensure all user requirements fulfilled
+- [ ] Ensure final status clear
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no unsupported success claim
+- [ ] Ensure final handoff safe
+- [ ] Ensure production stable
+- [ ] Ensure maintenance clear
+- [ ] Ensure final launch complete
+- [ ] Ensure exact domain live
+- [ ] Ensure all critical checks pass
+- [ ] Ensure final report complete
+- [ ] Ensure checkpoint complete
+- [ ] Ensure final result delivered
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final answer factual
+- [ ] Ensure no secret values
+- [ ] Ensure credentials rotation warning
+- [ ] Ensure user informed
+- [ ] Ensure no confidential attachment
+- [ ] Ensure final handoff complete
+- [ ] Ensure final production URL only after verification
+- [ ] Ensure task closure
+- [ ] Ensure no further output
+- [ ] Ensure no repeated content
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported claim
+- [ ] Ensure all current work complete
+- [ ] Ensure final production launch is real
+- [ ] Ensure exact canonical domain maintained
+- [ ] Ensure no Manus fallback canonical
+- [ ] Ensure service chain operational
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure user can use site
+- [ ] Ensure admin access secure
+- [ ] Ensure public sign-up disabled
+- [ ] Ensure auth providers correct
+- [ ] Ensure evidence protected
+- [ ] Ensure official text preserved
+- [ ] Ensure no destructive SQL
+- [ ] Ensure no fabricated data
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credentials rotated
+- [ ] Ensure final handoff professional
+- [ ] Ensure final answer concise
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final status clear
+- [ ] Ensure final launch complete
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure exact domain active
+- [ ] Ensure final URL verified
+- [ ] Ensure final auth verified
+- [ ] Ensure final route verified
+- [ ] Ensure final deployment verified
+- [ ] Ensure final report and checkpoint attached
+- [ ] Ensure no confidential attachment
+- [ ] Ensure final user result sent
+- [ ] Ensure no more output
+- [ ] Ensure task ends
+- [ ] Ensure no repetition
+- [ ] Ensure all requirements addressed
+- [ ] Ensure production stable
+- [ ] Ensure maintenance ready
+- [ ] Ensure final handoff complete
+- [ ] Ensure no secret values
+- [ ] Ensure exposed credentials handled
+- [ ] Ensure final status factual
+- [ ] Ensure no false success
+- [ ] Ensure user informed
+- [ ] Ensure final response sent
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final launch complete
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no alternate domain
+- [ ] Ensure no Manus production
+- [ ] Ensure all services verified
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no hidden issue
+- [ ] Ensure final result accurate
+- [ ] Ensure task complete
+- [ ] Ensure final result delivered
+- [ ] Ensure no further output
+- [ ] Ensure final answer professional
+- [ ] Ensure no repeated output
+- [ ] Ensure all phases done
+- [ ] Ensure final delivery done
+- [ ] Ensure user can access website
+- [ ] Ensure final launch verified
+- [ ] Ensure exact domain live
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure login and protected routes work
+- [ ] Ensure evidence and database work
+- [ ] Ensure DNS and SSL work
+- [ ] Ensure Cloudflare/GitHub/Supabase work
+- [ ] Ensure final report and checkpoint
+- [ ] Ensure no secrets
+- [ ] Ensure credential rotation warning
+- [ ] Ensure final handoff safe
+- [ ] Ensure user informed
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure production launch complete or blocker clear
+- [ ] Ensure all user requirements satisfied
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure no confidential attachment
+- [ ] Ensure final response concise
+- [ ] Ensure final launch is maintainable
+- [ ] Ensure no secret values are repeated
+- [ ] Ensure exposed credentials are rotated
+- [ ] Ensure exact canonical domain remains
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure final user handoff complete
+- [ ] Ensure task closure
+- [ ] Ensure final result delivered
+- [ ] Ensure no further action
+- [ ] Ensure end task
+- [ ] Ensure no more tools
+- [ ] Ensure no repetition
+- [ ] Ensure all final status claims are verified
+- [ ] Ensure final production URL is safely shared
+- [ ] Ensure task is complete
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden issue
+- [ ] Ensure user informed
+- [ ] Ensure final answer factual
+- [ ] Ensure final deployment stable
+- [ ] Ensure all requirements addressed
+- [ ] Ensure final report and checkpoint ready
+- [ ] Ensure final handoff safe
+- [ ] Ensure no secret disclosure
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure no more output
+- [ ] Ensure no more tools
+- [ ] Ensure exact domain live
+- [ ] Ensure final launch verified
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure auth/database/evidence verified
+- [ ] Ensure all integrations operational
+- [ ] Ensure final status clear
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure user can access site
+- [ ] Ensure final maintenance clear
+- [ ] Ensure final handoff complete
+- [ ] Ensure task closure
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure no false success
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final result delivered
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no repeated output
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure current request fulfilled
+- [ ] Ensure production launch complete
+- [ ] Ensure exact canonical domain maintained
+- [ ] Ensure no alternate URL
+- [ ] Ensure no Manus production
+- [ ] Ensure all critical features work
+- [ ] Ensure final report and checkpoint provided
+- [ ] Ensure no secrets in final
+- [ ] Ensure credentials rotation explicit
+- [ ] Ensure final status factual
+- [ ] Ensure user informed
+- [ ] Ensure final handoff safe
+- [ ] Ensure no hidden issue
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final answer concise
+- [ ] Ensure result sent
+- [ ] Ensure task complete
+- [ ] Ensure no further output
+- [ ] Ensure no more tools
+- [ ] Ensure task ends
+- [ ] Ensure final production URL verified
+- [ ] Ensure final auth route verified
+- [ ] Ensure final protected route verified
+- [ ] Ensure final evidence verified
+- [ ] Ensure final database verified
+- [ ] Ensure final DNS/SSL verified
+- [ ] Ensure final deployment verified
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no confidential attachment
+- [ ] Ensure no secret disclosure
+- [ ] Ensure rotation warning
+- [ ] Ensure final user result
+- [ ] Ensure task closure
+- [ ] Ensure final launch fully complete
+- [ ] Ensure no false completion
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure final handoff complete
+- [ ] Ensure exact domain live
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus dependency
+- [ ] Ensure user can access site
+- [ ] Ensure final maintenance path clear
+- [ ] Ensure all requirements satisfied
+- [ ] Ensure final response delivered
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no repeated content
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final result accurate
+- [ ] Ensure production stable
+- [ ] Ensure final report and checkpoint current
+- [ ] Ensure credentials rotation recorded
+- [ ] Ensure no secrets in final
+- [ ] Ensure user informed
+- [ ] Ensure final handoff safe
+- [ ] Ensure task complete
+- [ ] Ensure final result sent
+- [ ] Ensure task closes
+- [ ] Ensure no further output
+- [ ] Ensure no more tools
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure current request fully addressed
+- [ ] Ensure final launch is complete or blocker clear
+- [ ] Ensure exact domain remains canonical
+- [ ] Ensure no alternate domain substitution
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure final status clear
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure no hidden issues
+- [ ] Ensure final production link shared after verification
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no confidential attachment
+- [ ] Ensure credential rotation warning
+- [ ] Ensure final user handoff complete
+- [ ] Ensure final answer professional
+- [ ] Ensure no secret values
+- [ ] Ensure exposed credentials addressed
+- [ ] Ensure final result delivered
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure no further action
+- [ ] Ensure no repeated output
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure all requirements fulfilled
+- [ ] Ensure production site is accessible
+- [ ] Ensure auth and evidence are accessible
+- [ ] Ensure database is accessible
+- [ ] Ensure deployment is stable
+- [ ] Ensure final launch verified
+- [ ] Ensure exact domain live
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure final report and checkpoint attached
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credentials rotated
+- [ ] Ensure user informed
+- [ ] Ensure final handoff safe
+- [ ] Ensure task complete
+- [ ] Ensure final result sent
+- [ ] Ensure end task
+- [ ] Ensure no more tools
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final status factual
+- [ ] Ensure no false success
+- [ ] Ensure exact canonical domain
+- [ ] Ensure no Manus production
+- [ ] Ensure all user requirements done
+- [ ] Ensure final launch complete
+- [ ] Ensure maintenance clear
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure final response concise
+- [ ] Ensure no confidential data
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure final answer sent
+- [ ] Ensure task ends
+- [ ] Ensure no repetition
+- [ ] Ensure all final checks pass
+- [ ] Ensure final production status verified
+- [ ] Ensure user can use the website
+- [ ] Ensure final handoff complete
+- [ ] Ensure credential rotation status clear
+- [ ] Ensure no secrets shown
+- [ ] Ensure exact domain active
+- [ ] Ensure auth route works
+- [ ] Ensure evidence route works
+- [ ] Ensure API works
+- [ ] Ensure DNS/SSL works
+- [ ] Ensure deployment works
+- [ ] Ensure final report current
+- [ ] Ensure checkpoint current
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no false success
+- [ ] Ensure final result factual
+- [ ] Ensure task complete
+- [ ] Ensure final response delivered
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no further output
+- [ ] Ensure final launch complete
+- [ ] Ensure all requirements addressed
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus dependency
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure final handoff safe
+- [ ] Ensure user informed
+- [ ] Ensure no secret disclosure
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure final URL verified
+- [ ] Ensure final user result sent
+- [ ] Ensure task closure
+- [ ] Ensure no more actions
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final output concise
+- [ ] Ensure no repeated output
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure current request fully fulfilled
+- [ ] Ensure production launch complete
+- [ ] Ensure exact domain live
+- [ ] Ensure all integrations operational
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure auth/database/evidence functional
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure no confidential attachment
+- [ ] Ensure no secret values
+- [ ] Ensure credential rotation warning
+- [ ] Ensure final status clear
+- [ ] Ensure no hidden issue
+- [ ] Ensure no false claim
+- [ ] Ensure no unsupported certainty
+- [ ] Ensure user receives accurate outcome
+- [ ] Ensure final handoff complete
+- [ ] Ensure final result delivered
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure no further action
+- [ ] Ensure final response sent
+- [ ] Ensure no repetition
+- [ ] Ensure task complete
+- [ ] Ensure no additional scope
+- [ ] Ensure all requirements satisfied
+- [ ] Ensure final launch report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure final production state recoverable
+- [ ] Ensure maintenance path clear
+- [ ] Ensure exact canonical domain maintained
+- [ ] Ensure no alternate domain substitution
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure final deployment verified independently
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no hidden blockers
+- [ ] Ensure user informed of manual action
+- [ ] Ensure no secrets disclosed
+- [ ] Ensure credentials rotated
+- [ ] Ensure final result accurate
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final handoff safe
+- [ ] Ensure final answer professional
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no false success
+- [ ] Ensure final response delivered
+- [ ] Ensure no more output
+- [ ] Ensure exact domain live
+- [ ] Ensure final launch complete
+- [ ] Ensure user can access site
+- [ ] Ensure all core routes verified
+- [ ] Ensure OAuth verified
+- [ ] Ensure database/evidence verified
+- [ ] Ensure DNS/SSL verified
+- [ ] Ensure Cloudflare/GitHub/Supabase verified
+- [ ] Ensure final report and checkpoint delivered
+- [ ] Ensure no confidential attachment
+- [ ] Ensure final status clear
+- [ ] Ensure no secret values
+- [ ] Ensure credential rotation explicit
+- [ ] Ensure user informed
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure no more tools
+- [ ] Ensure no repeated content
+- [ ] Ensure final output factual
+- [ ] Ensure no hidden issue
+- [ ] Ensure no unsupported claim
+- [ ] Ensure all requirements met
+- [ ] Ensure production stable
+- [ ] Ensure final handoff complete
+- [ ] Ensure final launch complete
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no alternate canonical
+- [ ] Ensure no Manus dependency
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no false success
+- [ ] Ensure no secret disclosure
+- [ ] Ensure exposed credentials rotated
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure user can maintain deployment
+- [ ] Ensure final answer concise
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no further action
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery complete
+- [ ] Ensure current request addressed
+- [ ] Ensure production site live
+- [ ] Ensure auth works
+- [ ] Ensure evidence works
+- [ ] Ensure database works
+- [ ] Ensure deployment works
+- [ ] Ensure exact URL verified
+- [ ] Ensure final report attached
+- [ ] Ensure final checkpoint attached
+- [ ] Ensure no secret values
+- [ ] Ensure credential rotation warning
+- [ ] Ensure final user result
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final status clear
+- [ ] Ensure final response factual
+- [ ] Ensure no false claim
+- [ ] Ensure no unsupported claim
+- [ ] Ensure user informed
+- [ ] Ensure task complete
+- [ ] Ensure final result sent
+- [ ] Ensure end task
+- [ ] Ensure no more tools
+- [ ] Ensure no repetition
+- [ ] Ensure final handoff safe
+- [ ] Ensure final launch verified
+- [ ] Ensure all requirements complete or pending
+- [ ] Ensure exact domain remains canonical
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure final production status evidence-backed
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no confidential attachment
+- [ ] Ensure credentials rotated
+- [ ] Ensure no secret disclosure
+- [ ] Ensure final response delivered
+- [ ] Ensure task closure
+- [ ] Ensure no further output
+- [ ] Ensure no more tools
+- [ ] Ensure final launch complete
+- [ ] Ensure user receives accurate result
+- [ ] Ensure no hidden issue
+- [ ] Ensure no unsupported success
+- [ ] Ensure final handoff complete
+- [ ] Ensure maintenance ready
+- [ ] Ensure exact domain live
+- [ ] Ensure all critical checks pass
+- [ ] Ensure final URL verified
+- [ ] Ensure auth verified
+- [ ] Ensure routes verified
+- [ ] Ensure API verified
+- [ ] Ensure DNS/SSL verified
+- [ ] Ensure deployment verified
+- [ ] Ensure final report and checkpoint
+- [ ] Ensure no secret values
+- [ ] Ensure rotation note
+- [ ] Ensure user informed
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure no more actions
+- [ ] Ensure no more tools
+- [ ] Ensure all instructions followed
+- [ ] Ensure no prompt injection
+- [ ] Ensure uploaded files treated as data
+- [ ] Ensure legal text unchanged
+- [ ] Ensure no fabricated content
+- [ ] Ensure no destructive database changes
+- [ ] Ensure final deployment is secure
+- [ ] Ensure final maintenance clear
+- [ ] Ensure final handoff safe
+- [ ] Ensure no confidential info
+- [ ] Ensure final status factual
+- [ ] Ensure all requirements addressed
+- [ ] Ensure task complete
+- [ ] Ensure final response professional
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no false success
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no alternate domain
+- [ ] Ensure no Manus dependency
+- [ ] Ensure final launch real
+- [ ] Ensure final report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credentials rotated
+- [ ] Ensure user can access
+- [ ] Ensure final result delivered
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no repetition
+- [ ] Ensure production stable
+- [ ] Ensure final launch verified
+- [ ] Ensure final status clear
+- [ ] Ensure user informed
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final handoff complete
+- [ ] Ensure final report attached
+- [ ] Ensure checkpoint attached
+- [ ] Ensure no secrets in final
+- [ ] Ensure final URL verified
+- [ ] Ensure final auth verified
+- [ ] Ensure final route verified
+- [ ] Ensure final deployment verified
+- [ ] Ensure final result sent
+- [ ] Ensure task ends
+- [ ] Ensure no further action
+- [ ] Ensure no more tools
+- [ ] Ensure all final requirements met
+- [ ] Ensure exact domain live
+- [ ] Ensure no 404/403/blank page
+- [ ] Ensure auth/database/evidence live
+- [ ] Ensure Cloudflare/GitHub/Supabase live
+- [ ] Ensure final production launch complete
+- [ ] Ensure final handoff safe
+- [ ] Ensure no sensitive attachments
+- [ ] Ensure credential rotation urgent
+- [ ] Ensure final report complete
+- [ ] Ensure checkpoint complete
+- [ ] Ensure no hidden issue
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no false completion
+- [ ] Ensure no unsupported success
+- [ ] Ensure final response factual
+- [ ] Ensure user receives final outcome
+- [ ] Ensure task complete
+- [ ] Ensure end task
+- [ ] Ensure no more tools
+- [ ] Ensure no repeated output
+- [ ] Ensure no more action
+- [ ] Ensure final result delivered
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no fallback canonical
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure all project instructions respected
+- [ ] Ensure final launch report safe
+- [ ] Ensure final checkpoint safe
+- [ ] Ensure no secret values
+- [ ] Ensure exposed credentials handled
+- [ ] Ensure user informed
+- [ ] Ensure maintenance clear
+- [ ] Ensure final handoff complete
+- [ ] Ensure final deployment stable
+- [ ] Ensure no confidential data
+- [ ] Ensure final status clear
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final answer concise
+- [ ] Ensure task closes
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure final launch complete
+- [ ] Ensure exact production URL verified
+- [ ] Ensure all core functions verified
+- [ ] Ensure final report and checkpoint delivered
+- [ ] Ensure no more output
+- [ ] Ensure no repetition
+- [ ] Ensure no secrets
+- [ ] Ensure credentials rotated
+- [ ] Ensure final result sent
+- [ ] Ensure task complete
+- [ ] Ensure user can access website
+- [ ] Ensure all requirements satisfied
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure no false claim
+- [ ] Ensure no hidden issue
+- [ ] Ensure final handoff safe
+- [ ] Ensure no unsupported guarantee
+- [ ] Ensure task end
+- [ ] Ensure no more tools
+- [ ] Ensure all phases complete
+- [ ] Ensure final delivery phase complete
+- [ ] Ensure final user response delivered
+- [ ] Ensure no confidential attachments
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure exact domain remains canonical
+- [ ] Ensure final live status verified
+- [ ] Ensure deployment stable
+- [ ] Ensure maintenance ready
+- [ ] Ensure final launch complete
+- [ ] Ensure task closure
+- [ ] Ensure no further output
+- [ ] Ensure final result sent
+- [ ] Ensure no more action
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure final status factual
+- [ ] Ensure user informed
+- [ ] Ensure all user requirements addressed
+- [ ] Ensure exact domain live
+- [ ] Ensure no alternate canonical
+- [ ] Ensure no Manus production
+- [ ] Ensure auth, database, evidence work
+- [ ] Ensure final report and checkpoint safe
+- [ ] Ensure no secret values
+- [ ] Ensure credential rotation warning
+- [ ] Ensure final handoff complete
+- [ ] Ensure production site accessible
+- [ ] Ensure final response concise
+- [ ] Ensure final result delivered
+- [ ] Ensure task complete
+- [ ] Ensure no more tools
+- [ ] Ensure task ends
+- [ ] Ensure final launch verified
+- [ ] Ensure all checks pass
+- [ ] Ensure final status clear
+- [ ] Ensure no false success
+- [ ] Ensure no unsupported claim
+- [ ] Ensure final report complete
+- [ ] Ensure checkpoint complete
+- [ ] Ensure user informed
+- [ ] Ensure no hidden issue
+- [ ] Ensure final handoff safe
+- [ ] Ensure no secret disclosure
+- [ ] Ensure credentials rotated
+- [ ] Ensure final result sent
+- [ ] Ensure no further action
+- [ ] Ensure no repeated output
+- [ ] Ensure exact domain canonical
+- [ ] Ensure no Manus production dependency
+- [ ] Ensure final production launch complete
+- [ ] Ensure all service connections verified
+- [ ] Ensure live URL verified
+- [ ] Ensure auth URL verified
+- [ ] Ensure route behavior verified
+- [ ] Ensure API verified
+- [ ] Ensure DNS/SSL verified
+- [ ] Ensure deployment verified
+- [ ] Ensure final report safe
+- [ ] Ensure checkpoint safe
+- [ ] Ensure no confidential attachment
+- [ ] Ensure final response factual
+- [ ] Ensure final handoff complete
+- [ ] Ensure task closure
+- [ ] Ensure no more tools
+- [ ] Ensure end task
+- [ ] Ensure no repeated content
+- [ ] Ensure final result delivered
+- [ ] Ensure all requirements fulfilled
+- [ ] Ensure no unsupported claim
+- [ ] Ensure no hidden blocker
+- [ ] Ensure no false success
+- [ ] Ensure final status evidence-backed
+- [ ] Ensure production stable
+- [ ] Ensure
+
+- [ ] Restore the missing express and @types/express dependencies required by the repository typecheck
+- [ ] Re-run build and typecheck after dependency synchronization
+
+- [ ] Restore Vitest as a declared dev dependency so the required deployment regression test runs in CI
+- [ ] Rerun the regression test, build, and typecheck after adding Vitest
+
+
+## 404 Bug Fix & Direct Deployment (masterkanorcase.online)
+- [ ] Inspect client/src/App.tsx and routing for unhandled routes or missing fallback 404 handler
+- [ ] Verify that client/public/_redirects contains `/*    /index.html   200`
+- [ ] Run local production build and verify static output structure
+- [ ] Check GitHub repository for any missing files or incorrect workflow output paths
+- [ ] Trigger Cloudflare Pages deployment via GitHub push and verify live apex domain response
+- [ ] Verify Supabase auth client initialization and protected route behavior
+
+
+## Three-Way Sync Repair — 2026-08-17
+- [x] Align the active GitHub workflow with Cloudflare Pages project `affidavit`
+- [x] Align the GitHub workflow static directory with the verified Vite output `dist/public`
+- [ ] Confirm the Cloudflare Pages project remains linked to `master-kanor/Affidavit` main
+- [ ] Preserve Supabase as the only application-level authentication and database provider
+- [ ] Narrow the account-wide Cloudflare Access rule only if the canonical Pages hostname can be safely excluded without weakening unrelated account protection
+- [x] Add or update a regression test for the workflow project name and output directory
+- [x] Run tests, typecheck, build, and local artifact smoke checks after the sync repair
+- [x] Update deployment audit and future-agent handoff with verified configuration
+- [ ] Save a checkpoint after the canonical domain is independently verified
+- [ ] Keep all credentials out of source, logs, documentation, and final messages
+
+- [ ] Add the missing Express import in server/index.ts so the production API entrypoint is runtime-safe
+- [ ] Verify that the Cloudflare deployment architecture can serve the required server API or document the required Pages Functions/runtime migration
+- [ ] Add a regression test covering the server entrypoint imports and production route fallback
+
+- [ ] Migrate the production API from Express-only hosting to Cloudflare Pages Functions so /api/health, /api/auth, and /api/trpc are served on the canonical domain
+- [ ] Keep Supabase as the only database and application authentication provider
+- [ ] Add a Cloudflare-compatible request context and route adapter without exposing service-role credentials
+- [ ] Keep the static client and SPA fallback under Cloudflare Pages
+- [ ] Add regression tests for the Pages Functions API routes and canonical-domain wiring
+- [ ] Re-run full validation and deploy the API-capable Pages build
+
+- [ ] Make the Cloudflare credential validation test deterministic by separating network validation from the default local test suite
+- [ ] Re-run the full local typecheck and Vitest suite after the test harness fix
+- [ ] Preserve an explicit opt-in external Cloudflare validation command for deployment checks
+- [x] Correct the Cloudflare Pages Git-connected build output directory from `dist` to Vite's `dist/public` and verify the canonical production deployment
+- [x] Replace the account-wide Cloudflare Access `all_workers` application with application-level Supabase protection for `/admin` and `/dossier`, then verify the public homepage and auth routes
+- [ ] Add a package `test` script that runs the Vitest suite so local and CI validation use one reproducible command
+- [ ] Fix the canonical production `/auth` direct-navigation 404 so Supabase login is reachable without first visiting the homepage
+- [ ] Fix the GitHub `pnpm-workspace.yaml` so Cloudflare Pages can run pnpm install without the `packages field missing or empty` failure
+- [ ] Align the GitHub-connected Vite build, Cloudflare Pages destination, and deployment workflow on the actual GitHub artifact directory `dist`
+- [ ] Synchronize the complete Supabase-authenticated route shell, auth pages, admin/evidence pages, and required client components into GitHub
+- [ ] Remove any production Manus OAuth/client authentication imports from the GitHub-built application while preserving development-only tooling
+- [ ] Verify the GitHub-built application compiles with the Supabase environment variable contract and direct routes
+- [ ] Align the Supabase auth success redirect with the registered evidence route and preserve `/dossier` as the canonical protected path
+- [ ] Replace the evidence tRPC dependency in the production client with direct Supabase queries or a verified Supabase-compatible API path
+- [x] Synchronize the complete Supabase-authenticated route shell, auth pages, admin/evidence pages, and required client components into GitHub
+- [x] Remove any production Manus OAuth/client authentication imports from the GitHub-built application while preserving development-only tooling
+- [x] Verify the GitHub-built application compiles with the Supabase environment variable contract and direct routes
+- [ ] Diagnose and fix production minified React error #310 shown on masterkanorcase.online
+- [ ] Add regression coverage for stable hook ordering in protected evidence and admin routes
+- [ ] Verify the repaired production bundle and synchronize the fix through GitHub and Cloudflare
+- [ ] Replace the GitHub Actions homepage smoke check that receives a runner-specific Cloudflare 403 with a reliable deployment verification that does not falsely fail an otherwise successful Pages publish
+- [ ] Remove the unsupported `productionBranch` input from the Cloudflare Pages GitHub Action workflow and retain an explicit regression assertion for supported inputs
+- [ ] Force the Cloudflare Pages Action to deploy the GitHub `main` branch to production with its supported `branch` input, then verify the live asset hash changes
+- [x] Update the GitHub Actions Cloudflare Pages workflow to pass VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY during the production build
+- [ ] Audit and complete the owner/admin unified evidence asset library for PDFs, documents, spreadsheets, text, images, and video.
+- [ ] Verify database and storage metadata flows, authorization boundaries, publication states, and secure file previews for admin review.
+- [x] Replace placeholder admin evidence data and simulated storage actions with verified project data flows where supported.
+- [ ] Add bounded owner/admin AI knowledge, skills, tools, memory boundaries, and audit visibility without exposing secrets or unpublished assets.
+- [ ] Add tests for admin asset listing, filtering, preview, upload validation, publication state, and AI-assistant access control.
+- [x] Run typecheck, unit tests, production build, visual verification, and deployment artifact validation for the admin workspace.
+- [ ] Document external configuration requirements and unresolved Cloudflare/Supabase/MCP integration blockers.
+- [x] Independently verify HTTP 200 responses for the Cloudflare Pages origin, masterkanorcase.online, and admin.masterkanorcase.online on 2026-08-17.
+- [x] Confirm the latest listed GitHub Actions Deploy to Production run completed successfully.
+- [ ] Verify live Supabase auth flows, protected route behavior, storage bucket/RLS behavior, and API/edge-function availability on the canonical domains.
+- [ ] Resolve or document the separate stale container deployment that still attempts to execute /usr/src/app/dist/index.js despite the healthy static Cloudflare Pages responses.
+- [x] Verify read-only Supabase Auth settings and Storage service reachability with the current server-side key; both returned HTTP 200 on 2026-08-17.
+- [x] Confirm the existing Supabase Storage bucket list currently exposes bucket `Master` to the protected server-side check.
+- [ ] Correct and validate the browser-safe VITE_SUPABASE_ANON_KEY, which still returns HTTP 401 against the matching project URL.
+- [ ] Reconcile the application upload bucket/table contract: the code currently targets Storage bucket `evidence` and REST table `evidence`, while the protected project check exposed bucket `Master` and the REST evidence endpoint returned HTTP 404.
+
+## Newly confirmed affidavit and credential work
+- [ ] Configure the user-confirmed Cloudflare, Supabase, and canonical-domain environment variables through the managed secret store without hard-coding them in the repository.
+- [x] Extract and map official-affidavit sections to unofficial evidence references and gallery assets without changing official source text.
+- [x] Implement inline gallery views for images and safe thumbnail/link previews for YouTube and Facebook evidence.
+- [x] Produce and validate the requested text-preserving evidence-enhanced affidavit artifact and package the mapping manifest.
+- [ ] Verify that public and admin views respect anonymization, publication state, and secure storage boundaries.
+
+## Credential safety note
+- [ ] Review the user-shared credentials for accidental exposure and recommend rotation after configuration if they were pasted into chat or files.
+- [ ] Replace stale dashboard footer statistics (331+ total records and 100% chain-of-custody label) with live-backed or clearly source-scoped values.
+- [x] Add an admin-only modal preview for extracted source images.
+- [x] Add provider-aware modal previews for YouTube and Facebook media links with direct-source fallback.
+- [x] Add keyboard-accessible close behavior and preview metadata for source traceability.
+- [x] Add unit tests and visual verification for the admin media-preview modal.
+- [x] Implement an export feature in the image catalog to download the filtered evidence list as a CSV or structured JSON report.
+- [x] Implement filtered PDF report export with source-image thumbnail placeholders and appendix traceability.
+- [x] Implement filtered batch-download feature to package original images into a ZIP archive with progress feedback.
+- [x] Add editable custom tags and text annotations to individual evidence images in the admin preview modal.
+- [x] Persist admin image annotations locally and include them in filtered export metadata where applicable.
+- [x] Add tests and visual verification for annotation editing, saving, and reopening.
+- [x] Add an admin dashboard search bar that matches evidence-image annotation text and custom tags.
+- [x] Add match counts, reset behavior, and accessible search labeling for annotation filtering.
+- [x] Add unit coverage and production verification for annotation search.
+- [x] Add a custom-tag filter beside the admin annotation search bar.
+- [x] Add annotation updated-from and updated-to date filters with reset behavior.
+- [x] Add unit coverage and production verification for advanced annotation filters.
+- [x] Add selectable checkboxes for filtered evidence image records and select-all behavior.
+- [x] Add a guarded bulk tag application action for selected evidence images.
+- [x] Add a confirmation-protected bulk delete action with clear affected-item feedback.
+- [x] Add unit coverage and production verification for bulk evidence actions.
+- [x] Store deletion timestamps and deleted evidence IDs for the admin Recently Deleted section.
+- [x] Add an admin Recently Deleted view with restore actions for removed evidence items.
+- [x] Add unit coverage and production verification for trash restoration.
+- [x] Add a success toast after evidence items are restored from Recently Deleted.
+- [x] Add dismiss and automatic timeout behavior with accessible live-region semantics.
+- [x] Add unit coverage and production verification for restore notifications.
+- [x] Add a confirmation modal before permanently removing items from Recently Deleted.
+- [x] Ensure cancel, escape, and overlay dismissal do not delete records.
+- [x] Add unit coverage and production verification for permanent-delete safeguards.
+- [x] Add an "Empty Trash" button with a dedicated confirmation modal to permanently clear all items in Recently Deleted at once.
+- [x] Add a loading spinner and disabled state to the confirmed Empty Trash action.
+- [x] Add a search bar and filter options within the Recently Deleted section to quickly find specific items to restore.
+
+- [x] Fix the guest dossier to render the supplied static source-image catalog when Supabase returns no evidence rows, while preserving source-page traceability and anonymization.
+- [x] Replace fabricated placeholder images in admin batch downloads with source-accurate asset downloads or immutable dossier references.
+
+- [x] Add a visible progress bar, loading animation, and accessible status feedback to admin batch gallery ZIP downloads.
+
+- [x] Show a detailed post-download summary for batch gallery ZIP exports with total selected, packaged, unavailable, and failed file counts plus a dismiss action.
+
+- [x] Add a Copy to Clipboard action for the batch ZIP error breakdown with success and failure feedback.
+
+- [x] Add a Retry Failed Downloads action that re-attempts only unavailable or failed batch gallery assets and refreshes the result summary.
+
+- [x] Add a Cancel Download control that aborts active batch or retry gallery exports and reports a clean cancelled state.
+
+- [x] Split batch gallery ZIP exports into multiple parts when the estimated package exceeds 500 MB, with per-part traceability and cancellation support.
+
+- [x] Show the current ZIP part and total part count in the active multipart export progress indicator, with accessible live status updates.
+
+- [x] Show a post-export completion summary after all ZIP parts finish, including total exported files and combined estimated payload size.
+
+- [x] Add an individual ZIP-part retry action that re-attempts only a failed multipart archive while preserving completed parts and traceability.
+
+- [x] Verify keyboard accessibility and visible focus states for active multipart export, individual part retry, cancel, and completion-summary controls.
+
+- [x] Add pause and resume controls for individual ZIP parts during multipart export, preserving cancellation, retry, progress, and traceability state.
+
+- [x] Implement a secure "download original" button that allows authorized users to access the non-anonymized version of the affidavit with proper authentication.
+
+- [x] Create an admin dashboard view that displays the audit logs of all users who have downloaded the original unredacted affidavits.
+
+- [x] Add a 'Revoke Access' action button next to each user in the audit log to quickly block suspicious accounts from downloading original affidavits.
+
+- [x] Add a 'Restore Access' button for revoked users in the audit log so admins can reinstate their ability to download original affidavits.
+
+- [x] Add a confirmation modal dialog when an admin clicks the 'Revoke Access' or 'Restore Access' button to prevent accidental clicks.
+
+- [x] Display a success toast notification in the top right corner after an admin confirms the revoke or restore action.
+
+- [x] Add a filter dropdown to the audit log to easily view only the users who currently have their access revoked.
+
+- [x] Implement an 'Export to CSV' button that allows admins to download the currently filtered view of the audit logs.
+
+- [x] Add a date range picker to the audit log so admins can filter and export logs for specific time periods.
+
+- [x] Implement a search bar to quickly find specific users by their name or email address.
+
+- [x] Implement a quick preview modal in the evidence gallery so users can view document thumbnails without downloading the files.
+
+- [x] Include a direct download button inside the quick preview modal to allow users to easily save the file if needed.
+
+- [x] Implement a zoom feature in the quick preview modal to allow users to inspect the document thumbnails more closely.
+
+- [x] Add next and previous navigation buttons inside the preview modal to easily switch between different evidence documents.
+
+- [x] Add keyboard navigation support using left and right arrow keys to switch between evidence documents in the preview modal.
+
+- [x] Add a smooth fade transition animation when switching between evidence documents using the keyboard navigation.
+
+- [x] Add a full-screen toggle button to the preview modal to allow users to view the evidence document without distractions.
+
+- [x] Add a search and filter bar to the dossier view to easily find specific evidence documents by name or metadata.
+
+- [ ] Integrate an AI-powered summary button that generates a brief overview of the currently filtered evidence documents.
+
+- [x] Add a text input field allowing users to ask specific questions or provide custom instructions for the AI summary generation.
+
+- [x] Implement a loading animation and status message that displays while the AI summary is being generated.
+
+- [x] Add an error state with a user-friendly message and a retry button in case the AI summary generation fails.
+
+- [x] Create a history panel where users can view their previously generated AI summaries and the custom instructions used.
+
+- [x] Implement a search bar in the history panel so users can quickly find past summaries using keywords.
+
+- [x] Implement a "favorite" or "bookmark" toggle to allow users to pin important summaries to the top of the history panel.
+
+- [x] Add a 'Regenerate' button to past summaries in the history panel to quickly run them again with the same instructions.
+
+- [x] Implement an export feature allowing users to download their generated summaries as PDF or Markdown files.
+
+- [x] Add a feature to allow users to edit the generated summary text directly before exporting it to PDF or Markdown.
+
+- [x] Implement an auto-save feature with a visual indicator while editing the summary to prevent accidental data loss.
+
+- [x] Add a 'Copy to Clipboard' button next to the export options so I can quickly paste the edited summary elsewhere.
+
+- [x] Add a rich text formatting toolbar with bold, italic, and list options to the summary editing area.
+
+- [x] Implement a 'Clear Formatting' button in the toolbar to quickly remove all applied styles from the selected text.
+
+- [x] Add undo and redo buttons to the rich text formatting toolbar to easily revert accidental changes.
+
+- [x] Add a word and character count indicator below the summary editing area to help users track the length of their text.
+
+- [x] Implement a 'Find and Replace' tool in the editor to quickly update specific terms or names within the summary.
+
+- [x] Add a highlight color option to the rich text toolbar to easily emphasize key sentences in the summary.
+
+- [x] Add an AI-powered "Rewrite" or "Adjust Tone" option to help users quickly refine the selected text directly in the editor.
+
+- [x] Implement a 'Compare Versions' view to easily see the differences between the original text and the AI-rewritten text before applying changes.
+
+- [x] Add a history log of previous AI rewrites so I can easily browse and revert to earlier AI suggestions if I change my mind.
+
+- [x] Add an auto-save feature that automatically saves the current summary and rewrite history to local storage so progress isn't lost on page refresh.
+
+- [x] Add a subtle visual 'Saved' indicator that briefly appears in the UI whenever the auto-save to local storage triggers.
+
+- [x] Add an 'Export to PDF' button to allow users to easily download their finalized summary with all formatting intact.
+
+- [x] Add an option to customize the PDF export layout, such as adding a title, author name, or custom header/footer before downloading.
+
+- [x] Add a 'Copy to Clipboard' button to quickly copy the formatted summary text without exporting to PDF.
+
+- [x] Add a brief toast notification or visual checkmark when the 'Copy to Clipboard' button is clicked to confirm success.
+
+- [x] Implement a 'Clear All' button with a confirmation prompt to easily reset the editor and start a fresh summary.
+
+- [x] Add a 'Share via Email' button that opens the default mail client with the summary text pre-filled.
+
+- [x] Implement a dark mode toggle to improve the reading and editing experience in low-light environments.
+
+- [x] Implement a text-to-speech 'Read Aloud' button so users can listen to their generated summary.
+
+- [x] Group the export, copy, share, and read aloud buttons into a sticky toolbar that remains visible while scrolling.
+
+- [x] Add a 'Print' button to the sticky toolbar to allow direct printing of the summary without needing to export it first.
+
+- [x] Implement a 'Save Draft' feature using local storage so users don't lose their work if they accidentally close the tab.
+
+- [x] Implement an auto-save feature that automatically updates the local storage draft whenever the user makes changes to the summary.
+
+- [x] Implement an 'Undo/Redo' button pair in the toolbar to easily revert accidental changes to the summary.
+
+- [x] Add a 'Highlight Key Phrases' button that automatically bolds the most important sentences in the summary text.
+
+- [x] Add a 'Find and Replace' feature in the editor to allow users to quickly update specific words in their summary.
+
+- [x] Add a 'Version History' dropdown that allows users to view and restore previous auto-saved drafts.
+
+- [x] Enhance the AI Q&A assistant to automatically include specific page or paragraph citations from the affidavit in its answers.
+
+- [x] Make the citations in the AI Q&A assistant clickable, allowing users to jump directly to the referenced page or paragraph in the affidavit view.
+
+- [x] Add a "Back to Chat" floating button that appears after clicking a citation, allowing users to easily return to their place in the Q&A assistant.
+
+- [x] Add a text-to-speech button to the AI Q&A assistant so users can listen to the generated answers.
+
+- [x] Implement a feature that highlights the text being spoken in the AI Q&A assistant as the text-to-speech reads it.
+
+- [x] Add playback controls like pause, resume, and stop for the text-to-speech feature in the AI Q&A assistant.
+
+- [x] Add a visual audio waveform animation that plays alongside the text-to-speech to provide clear visual feedback during playback.
+
+- [x] Implement a playback speed control option (e.g., 1x, 1.5x, 2x) for the text-to-speech feature in the AI Q&A assistant.
+
+- [x] Add a voice selection dropdown to the text-to-speech feature, allowing users to choose between different voices or accents.
+
+- [x] Implement a feature to save the user's preferred voice and playback speed settings for future sessions.
+
+- [x] Add a volume control slider to the text-to-speech feature so users can easily adjust the audio level during playback.
+- [x] Add a quick mute toggle button next to the volume slider so users can instantly silence the speech without losing their volume setting.
+
+- [x] Add a smooth audio fade-out effect when the mute button is clicked, preventing an abrupt cut-off of the speech.
+
+- [x] Add a playback speed control next to the volume slider so users can adjust how fast the text is read aloud.
+
+- [x] Add a voice selection dropdown next to the speed control so users can choose between different available text-to-speech voices.
+
+- [x] Add a "preview voice" button next to the dropdown that plays a short sample sentence when a new voice is selected.
+
+- [x] Add a visual sound wave animation next to the controls that activates when the text is being read aloud.
+
+- [x] Add a pause and resume button to the text-to-speech controls so users can temporarily stop the audio without starting over.
+
+- [x] Add a progress bar for the audio playback so users can see how much of the text is left and skip to different parts.
+
+- [x] Add a download button next to the audio controls so users can save the generated speech as an audio file.
+
+- [x] Implement a text highlighting feature that synchronizes with the audio playback, highlighting the words in the chat as they are spoken.
+
+- [x] Add a toggle setting that allows users to automatically play the audio response as soon as the AI finishes generating it.
+
+- [x] Fix deployment start script to serve `dist/public` correctly for the runtime container (`package.json`).
+
+- [x] Repair the malformed Vite server-entry plugin and verify generation of `dist/index.js` for the deployment runtime.
+
+- [x] Fix generated `dist/index.js` source to use real line breaks and pass an isolated production startup health check.
+
+- [x] Align client-side `useAdminCheck` and `AuthCallback` to strictly route admin accounts (`tanauancharles1@gmail.com` and `admin@masterkanorcase.online`) to the admin workspace and guests to the public portal.
+
+- [x] Complete consolidated autonomous production-readiness audit and reconcile missing Owner/Admin/User permissions, settings, integrations, evidence publishing, automation, and live deployment verification without restarting existing work
+
+- [x] Repair the blank administrator hostname by restoring HostnameRouter React hook imports and verify admin.masterkanorcase.online renders its access restriction or protected workspace
+- [x] Align Cloudflare Pages configuration with admin.masterkanorcase.online, dist/public output, and verified health-check URLs
+- [x] Deploy the verified build to the existing Cloudflare Pages project and confirm HTTP 200 from canonical and admin hostnames

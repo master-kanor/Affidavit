@@ -1,0 +1,444 @@
+# DONE FULL FINAL WITH EVIDENCE TESTIMONY: THE STORY OF MASTER KANOR CASE PRESENTATION 2025
+
+AKO AY BIKTIMA NG CYBERCRIME, HINDI AWTORISADONG SPRIMENTASYON, AT NG GRUPONG IT SHADOW, BUSINESS MIRROR, AT MANIPULASYONG MAY KINALAMAN SA CYBERSECURITY SCHEME.
+
+Ako si Charles Tanauan, a.k.a. Master Kanor, isang gaming content creator na taga Brgy. 49 Hillside Ville, Tacloban City, Leyte. Nagkakilala kami ni Cris Abadines, isang miyembro ng LGBTQ (live-in partner), noong 2014 at nanirahan ako sa kanilang tahanan mula 2015 hanggang sa kasalukuyan.
+
+Dahil meron sila Cris internet connection o WiFi, doon ako nagsimula mag-search online kung paano kumita ng pera online tulad ng play-to-earn na mga application. At Naging gaming content creator din ako sa Mobile Legends gamit lamang ang cellphone. Meron din akong Social media  channels,
+
+[SOCIAL MEDIA CHANNELS](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/SOCIAL%20MEDIA%20CHANNELS%2023f1958629d6802f83d7ed2a1cdd96dd.md)
+
+pero dahil di pa ako marunong kung paano ito kumikita ay pumasok lang muna ako sa pag buy and sell. Kung saan bumibili ako ng mga produkto sa Shopee at ibinbenta ko sa Facebook at Shopee. Nakapag-invest ako ng isang laptop at nagkaroon kami ng pwesto sa night market dito sa Tacloban.
+
+[ONLINE STORES](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/ONLINE%20STORES%2023f1958629d68056aa96d29718c2acef.md)
+
+Dahil sa COVID-19 noong 2020, napilitan kaming magsara ng aming physical store at online store dahil sa lockdown at hirap sa pag-restock ng mga produkto.
+
+Kaya naisipan kong bumalik sa pagiging content creator sa Facebook at YouTube. Dahil cellphone lang at low specs na laptop ang gamit ko, nag-isip ako ng paraan kung paano ko maia-upgrade ang mga gamit ko sa paggawa ng content. Sakto naman at umuso sa panahong iyon ang barter, kaya na-trade ko ang aking lumang cellphone para sa isang computer at pina-setup ko ito sa pamangkin ni Cris na si Carl Justin Pagaspas.
+
+[FIRST COMPUTER](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/FIRST%20COMPUTER%2023f1958629d68074a002f72a9e9318c8.md)
+
+At doon na ako nag-focus bilang isang Gaming Content Creator. Dahil nakaabot sa milyon ang views ng aking mga videos sa YouTube, nagsimula na rin akong kumita. Ginamit ko ang aking revenue mula sa YouTube para makapag-invest sa mas magandang computer na nagkakahalaga ng isang daang libong piso (₱100,000) — mga gaming computers na gagamitin ko sa trabaho.
+
+[CHANNELS  REVENUE](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/CHANNELS%20REVENUE%2023f1958629d680099653fc59aac41470.md)
+
+Ang pamangkin ni Cris na si Carl Justin Pagaspas, isang IT technician, ang nag-build ng mga computers na iyon. Siya rin lagi ang kinukuha ko para sa pag-aayos ng mga PC, internet, at troubleshooting dahil siya lang ang kilala kong IT technician na kaibigan ko at pamangkin pa ni Cris.
+
+[COMPUTER BUILDING](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/COMPUTER%20BUILDING%202401958629d680bb899cc3f3d4adeaae.md)
+
+Dahil sa Dumami na ang aking Engagement Sa Social Media Channels, doon na rin nagsimulang pumasok ang mga promotion. Sa umpisa, wala pa munang sumubok dahil marami na ang na-scam at na-hack ang kanilang social media channel. Ngunit hindi pa rin ako tumigil hangga’t may nakita akong mga legit na promotion.
+
+[CASINO PROMOTION](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/CASINO%20PROMOTION%202401958629d68018af5fca6205d92c0b.md)
+
+Dahil napatunayan ko na may mga legit promotion, doon na ako nagsimulang mag-recommend sa mga kaibigan kong Gaming Content Creator din na tulad ko. Hanggang sa pumasok na rin ang mga casino promotion, at doon ako naging agent na siyang taga-recommend ng mga kapwa ko content creator sa mga casino owner para mag-promote ng kanilang Casino platform.
+
+Yung talent fee ko noon sa umpisa ay five hundred (₱500) pesos bawat isang successful cooperation para sa promotion.
+
+[CASINO SPONSORED](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/CASINO%20SPONSORED%202401958629d680e3a7bac93db0550355.md)
+
+Taong 2021, noong pumanaw ang aking Tito sa Maynila, napagpasyahan kong pumunta roon. Doon ko muling nakita si Mario Nalda Cadisal na nakilala ko pa noong kabataan ko. Nagtanong ako sa kanya kung meron ba siyang trabaho at kung marunong siyang gumamit ng computer. Ayon sa kanya, wala siyang alam sa paggamit nito, kahit sa simpleng pag-Facebook gamit ang computer.
+
+[PAG PUNTA SA MANILA](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/PAG%20PUNTA%20SA%20MANILA%202401958629d6805985e7f9b6daa4dafc.md)
+
+Pag-uwi ko sa Tacloban, lalo pang dumami ang engagement ko bilang content creator kaya kinuha ko ang pinsan kong si Mario Nalda Cadisal upang mabigyan siya ng trabaho bilang aking assistant at support sa promotions. Dahil wala siyang kaalaman sa computer, matiyaga ko siyang tinuruan. Siya ang na-assign at nakikipag-communicate sa mga nagpapa-promote sa aking channel, habang ako naman ang nag-e-edit ng mga content.
+
+[MARIO TUTORIAL](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/MARIO%20TUTORIAL%202401958629d6802a83bccaafdcc55e98.md)
+
+Hanggang sa dumami na ang aking mga casino promotion at nakapag-invest na rin ako ng isa pang computer para kay Mario Nalda Cadisal. Si Carl Justin Pagaspas muli ang nag-build ng PC. Dito na kami nagsimula bilang isang Influencer Manager team, kung saan naghahanap kami ng mga brand owner o casino owner na gustong magpa-promote sa mga Social Media Influencer.
+
+[PREVIOUS CASINO](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/PREVIOUS%20CASINO%202401958629d68048aaa0f24861d5ecf3.md)
+
+Kapag may nahanap kaming gustong magpa-promote ng kanilang brand o casino platform, nagbibigay kami ng listahan ng mga influencer na available para sa promotion. Dahil sa patuloy na pagdami ng aming engagements, si Mario na ang aking pinagkatiwalaan sa ibang mga gawain habang ako ang naka-focus sa pag-edit ng content, research, at business development.
+
+[RESEARCH & DEVELOPMENT](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/RESEARCH%20&%20DEVELOPMENT%202401958629d680b8b055eeba19065560.md)
+
+At dahil lumalago na rin ang kita ko, kinuha ko si Lawrence Daria upang tumulong din sa akin bilang sideline niya pagkatapos ng kanyang trabaho bilang merchandiser. Nagpa-build pa ako muli ng isang computer set kay Carl Justin Pagaspas para kay Lawrence Daria at tinuruan ko rin siya kung paano namin ginagawa ang aming trabaho.
+
+[LAWRENCE TUTORIAL](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/LAWRENCE%20TUTORIAL%202401958629d68053bee9e3577809f71e.md)
+
+Sa kagustuhan kong makatulong sa iba, nakita ko sa Facebook ang mga local vloggers sa Tacloban na sina Simoy at Sadam, kilala bilang “Mga Kawawang Nilalang.” Ini-invite ko sila upang matulungan na ma-improve ang kanilang content at mabigyan ng promotion, lalo na’t si Simoy ay aking kababata.
+
+Habang nagtatrabaho si Mario sa akin, ako ang sumasagot sa kanyang pagkain at tirahan, kasama na rin ang ₱10,000 na buwanang sahod. Si Lawrence naman ay regular na nakatatanggap ng kanyang komisyon.
+
+Ganoon din ang mga vlogger na sina Simoy at Sadam—lagi silang nasa akin upang maghintay ng promotion. May mga pagkakataon din na nagkakasama kami upang mag-bonding o kumain sa labas kasama ang iba pa naming mga kaibigan.
+
+[MGA KAWAWANG NILALANG](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/MGA%20KAWAWANG%20NILALANG%202401958629d6801bb343e46c1eb67b18.md)
+
+Napagplanuhan namin na gumawa ng iisang page at YouTube channel. Naisipan namin ito dahil tuwing lumalabas kami o may outing, makakagawa kami ng content at hindi masasayang ang mga labas naming magkakaibigan.
+
+Dahil sa marami kami at walang mga service ang iba sa kanila, napagpasyahan kong mag-invest ng sasakyan na binili namin sa Maynila para magamit sa trabaho at paggawa ng content tuwing may lakad o outing.
+
+[TACLOBAN VINES](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/TACLOBAN%20VINES%202401958629d6804fb6bad250f00220dc.md)
+
+Noong Mayo 2023, pagkabalik namin ni Mario galing Maynila, nagplano kami na magpa-blessing ng sasakyan sa Sulangan, Eastern Samar, kasama sina Mario at Lawrence. Ngunit hindi sila sumama sa kung anu-anong dahilan.
+
+Umuwi si Mario mag-isa sa Samar. Nagduda ako, kaya agad kong chineck ang computer na ginagamit niya. Doon ko nakita ang mga aktibidad at ang pondo sa Coinbase Crypto Wallet, pati na rin ang mga invoice na may kinalaman sa trabaho—nag-ooperate na pala sila ng mga casino sa pamamagitan ng revenue share at meron na rin silang sariling mga casino platforms, applications, at physical businesses. gamit ang perang nakuha mula sa hindi awtorisadong transaksyon sa negosyo.
+
+[TRANSACTION  & HISTORY](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/TRANSACTION%20&%20HISTORY%202401958629d68051976ffb5813dc67df.md)
+
+Bukod pa rito, meron din silang mga online store na gumagamit ng dropshipping system sa Shopee, Lazada, at TikTok. Hindi lang iyon—may sarili na rin silang mga agencies tulad ng influencer marketing service providers na konektado sa mga casino platforms.
+
+Mas nakakabahala, nakita ko rin ang mga transaksyon nila sa Telegram kung saan pinapalusot nila ang pera na galing sa cuts ng influencer at commissions mula sa platform. Ginagamit nila ang Telegram para itago ang kanilang mga usapan at iligal na galaw, kaya doon ko tuluyang nakumpirma na matagal na pala nila akong ginamit at pinaikot para makabuo sila ng sarili nilang negosyo sa likod ko.
+
+Sinabihan ko si Cris tungkol sa ginawa nila at ni-report ito sa kapatid niyang pulis. Kinompronta ko sila sa pamamagitan ng chat at pareho nilang inamin na isang beses lang nila ginawa iyon.
+
+[PROOF NG PAG AMIN](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/PROOF%20NG%20PAG%20AMIN%202401958629d6800f8e7bf14a98061b49.md)
+
+Simula noon, hindi na bumalik sa akin sina Mario at Lawrence. Pero base sa aking pagsisiyasat, mula pa noong taong 2021 na natuto si Mario, matagal na pala nila itong ginagawa.
+
+# BUSINESS INCOME CONCEPT
+
+[MKASINO MARKETING AGENCY SERVICES](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/MKASINO%20MARKETING%20AGENCY%20SERVICES%2023f1958629d6804b882bfafee70408ee.md)
+
+## INFLUENCER MARKETING
+
+Kapag may na-settle na kaming kasunduan sa pagitan ng brand owner at influencer, tinatanong namin ang brand owner kung magkano ang kanilang nakalaang talent fee para sa isang video o livestream.
+
+## EXAMPLE:
+
+Naka-settle kami ng isang influencer para sa 1-week contract na may tatlong (3) video uploads.
+
+Ang official price range mula sa brand owner ay ₱100,000.00 Plus Platform Commissions
+
+Pagkatapos, si Influencer Manager ang nagne-negotiate sa talent fee ng influencer depende sa kanilang bilang ng viewers at followers.
+
+[PROOF OF TRANSACTION](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/PROOF%20OF%20TRANSACTION%202401958629d680b49194edd7def74804.md)
+
+## **PAGPASOK NI ARIEL LACAMBRA**
+
+Sa loob ng tatlong (3) buwan na pagkawala ni Mario, saka naman pumasok sa akin si Ariel Lacambra noong August 5, 2023. Tinuruan ko si Ariel kung paano ang trabaho naming tatlo nina Mario at Lawrence. Inipon namin ni Ariel ang lahat ng mga files para sa mga casino, dahil meron na ring casino owner na gustong makipag-meeting sa Maynila. Hanggang sa nagpunta kami ni Ariel sa Maynila para sa meeting.
+
+[BUSINESS MEETING](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/BUSINESS%20MEETING%202401958629d680c5ab55cada3a752897.md)
+
+Pagkalipas ng tatlong buwan mula noong May 2023, muli kong pinabalik si Mario dahil merong offer sa amin ang isang POGO Operator sa Maynila para doon magtrabaho. Pero nagdesisyon ako na ipagpatuloy ang pagiging Influencer Marketing Agency Service Providers, Dahil sapat naman ang aming kinikita.
+
+Nag-team up kaming muli—ako, si Mario, at si Ariel. Ngunit pagkatapos lamang ng tatlong araw ay bigla na lang nagdesisyon si Ariel na huminto sa pagtatrabaho dahil umano’y nakahanap na siya ng bagong trabaho. Pero ginamit niya lamang ito bilang dahilan.
+
+Pagkatapos noon, kami na lang muli ni Mario ang naiwan na gumagawa ng mga trabaho namin bilang Influencer Marketing Agency Service Providers.
+
+Noong December 2023, wala akong alam na lahat ng aking activity mula sa cellphone, CCTV, at desktop ay naka-link na pala sa kanila.
+
+December 28, 2023 — umuwi si Mario sa Samar. Plinano ko sanang lagyan ng monitoring tool ang computer na ginagamit niya, pero nalaman ko na mismong desktop at mga CCTV ang naka-monitor pala sa kanya. Nilock niya ang mouse ng computer na dahilan upang hindi ko ito magamit.
+
+January 5, 2024 — bumalik si Mario dito sa Tacloban galing Samar pagkatapos ng aming Christmas break. Kinuha ko ang cellphone niya, at doon ko nakumpirma na naka-remote na pala ang lahat ng aking activity sa desktop, cellphone, at CCTV.
+
+[DEVICE LINKED](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/DEVICE%20LINKED%202401958629d680a78601ef90034b17b6.md)
+
+Sinubukan kong kumuha ng mga ebidensya mula sa cellphone niya sa pamamagitan ng pag-screenshot at screen recording, pero may bigla agad na nagbubura ng mga ito. Doon ako nagduda na may kasabwat silang IT.
+
+Simula noon, pinalabas ko muna si Mario sa bootcamp kung saan naka-pwesto ang mga computer. Sa labas ng bootcamp, meron doon higaan at doon siya nakatambay — katabi lang ng mismong bootcamp.
+
+Agad akong nag-install ng spy camera detector at nilibot ko ang buong bootcamp pati na rin ang lugar na tinatambayan ni Mario. Pagkatapos noon, lumabas ako sandali. Pagbalik ko, naabutan ko si Mario na may tinatali sa isang plastic.
+
+Pumasok ako sa bootcamp at sumunod naman agad si Mario sa akin. Pagkatapos, pumunta ako sa pwesto niya para tingnan kung ano ang tinatali niya sa plastic — at doon ko nakita ang panlason para sa daga.
+
+Nang makuha ko iyon, ibinigay ko ito kay Cris upang ipasuri. Doon nakita sa laman ng plastic na bagong bukas na panlason sa daga ang laman.
+
+Dahil nalaman na nina Mario na alam ko na ang mga ginagawa nila, tinangka niya akong lasunin gamit ang panlason ng daga.
+
+January 8, 2024, Lunes — nagpatulong ako sa pamangkin ni Cris na si Carl Justine Pagaspas, isang Information Technologist, dahil siya ang nag-set up ng aming mga desktop at WiFi, at siya lang din ang kilala naming IT technician.
+
+Una niyang inayos ang aking laptop at sinabi niya na kailangan itong i-reformat. Nagtaka ako dahil pagkatapos niya itong i-reformat, hindi na niya ito ginamit. Ang dahilan daw ay hindi ito makakonekta sa computer na gamit ni Mario.
+
+Hiniram niya ang laptop ni Yanyan, kapatid ni Cris, at iyon na lang daw ang gagamitin niya para ma-access ang computer ni Mario. Pagkatapos, hiniram niya ang dalawang cellphone ko — isang bagong Android at isang gamit kung iOS — para raw maka-connect siya sa internet. Sabi niya, magko-clone daw siya ng mga files galing sa computer sa pamamagitan ng USB.
+
+Kinabukasan, dahil may trabaho si Carl Justine Pagaspas, ni-remote niya na lang ang computer ni Mario Nalda Cadisal gamit ang AnyDesk para ma-retrieve ang mga deleted files.
+
+Nung na-remote na niya ang computer ni Mario, nag-install siya ng isang application na nagpapalabas ng “Yes” or “No” sa screen. Doon, matagal na naka-tambay ang PC at yung mouse ay walang galaw, kaya pala — dahil meron pala siyang ginagamit na pointer mouse sa likod ng unit. Nakita ko ito nang pinindot ko ang “Yes,” at bigla siyang nag-chat sa akin na huwag ko raw galawin ang computer.
+
+Tinanong ko siya kung anong oras siya lalabas sa trabaho. Sabi niya, 7:00 AM daw kaya sabi ko, aantayin kita, kakain tayo. Pero bandang 4:00 AM, bigla siyang nag-chat na “teka lang” daw at lalabas muna siya papuntang Andok’s kasi inutusan daw siya ng amo niya na bumili ng pagkain.
+
+Pinuntahan ko agad siya sa Andok’s at nadatnan ko siyang kumakain. Kumain na rin ako kasama niya. Pagkatapos naming kumain, wala siyang dalang kahit ano, kaya bumalik na ako sa bootcamp.
+
+Pagkatapos noon, yung mga na-retrieve niyang files na binigay sa akin ay mula lamang sa December 29, 2023 hanggang January 2024. Yung mga files mula December 29 history pababa ay ginawa niyang RSS files na hindi ko ma-open.
+
+Sinabi ko sa kanya, “I-open mo muna itong RSS files para makapag-review ako ng mga na-delete na files.” Sagot niya, kailangan daw ng alternative tool para ma-open iyon.
+
+Pina-open ko sa kanya mismo pero hindi rin niya ito na-open. Doon na ako nagtaka dahil hindi rin niya alam kung anong eksaktong petsa umuwi si Mario sa Samar. At ang mga files na binigay niya sa akin ay limitado lang mula December 29, 2023 hanggang January 2024.
+
+Sinabi ko ito kay Cris na may duda ako kay Carl Justin Pagaspas dahil yung mga files na binigay sa akin na naka-save sa USB ay mula lamang sa December 29, 2023 hanggang January 2024. Yung mga files mula December 29, 2023 history pababa ng mas naunang mga aktibidad ay hindi ibinigay sa akin. Pero ang sagot ni Cris ay hindi raw iyon posible dahil pamangkin niya raw si Carl Justin Pagaspas at kakampi raw natin siya.
+
+Kaya kinabukasan, binigay ko sa kanya ang dalawang cellphone para tanggalin ang naka-remote access sa mga ito at para rin buksan ang WPS Office na naka-encrypt. Nabuksan niya ito at sinabi sa akin na wala raw laman.
+
+Sinubukan naming maghanap ni Cris ng ibang IT technician, pero dahil wala kaming mahanap, si Carl Justin Pagaspas pa rin ang pinapunta ko. Subalit dahil meron siyang duty sa trabaho niya, hindi raw siya makakapunta at sinabi na sa Sabado at Linggo na lang dahil wala siyang pasok sa mga araw na iyon.
+
+Pinuntahan ko siya noong Sabado, January 13, 2024, sa kanilang bahay, pagkatapos ng ilang araw, para magpatulong na magpa-retrieve muli ng mga deleted na files sa computer na ginamit ni Mario Nalda Cadisal at mai-save ito sa USB gamit ang sarili niyang computer.
+
+Pero napansin ko na parang may delaying tactics siyang ginagawa para hindi matuloy ang pag-retrieve ng mga naburang files. Sinabi ko sa kanya na tutulong ako kung ano man ang kailangan para mapabilis, kaya hiniram niya ang laptop ng kapatid niya.
+
+Dahil hindi nagbubukas ang laptop na hiniram niya sa kapatid niya sa mga oras na iyon, napagdesisyunan ko na kunin ko na lang ang sarili kong laptop.
+
+Pagkabalik ko sa kanila, gumagana na ang laptop ng kapatid niya kaya hindi ko na itinuloy ang pagbukas ng sarili kong laptop. Yung laptop ng kapatid niya na ang ginamit ko, pero connected na pala ito sa personal computer niya.
+
+Matatapos na sana ang pag-transfer ng mga files na na-retrieve papunta sa USB, pero pinacancel niya ito dahil madaling araw na raw. Kaya iniwan ko na lang ang USB sa kanya para siya na lang ang magtapos ng pag-retrieve ng files.
+
+Ngunit hindi pa rin niya ito tinapos, ang dahilan daw ay may inaayos siyang computer nila. Kaya hiningi ko na lang muli ang USB at Tiningnan ko ito sa isang computer shop.
+
+Doon ko na nakita na wala nang laman ang ibang files sa USB at corrupted na ito.
+
+Nang hiniram naman ang laptop ng isa pang pamangkin ni Cris na babae na si Desiree, doon na namin nalaman na hindi na rin ito mabuksan. Kaya ipinaayos namin ito sa isang technician na kakilala ni Cris.
+
+Doon na kami nagsimulang magkaroon ng malalim na duda na may alam si Carl Justine Pagaspas sa pagha-hack ng aking mga files. Imbes na maayos ang problema, mas lalo pang lumala ang pagkawala ng mga files pati ang pagkasira ng aking computer at gadgets.
+
+[DELETED FILES](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/DELETED%20FILES%202401958629d6800380aeda18e96fe01f.md)
+
+## PORMAL NA REKLAMO / PAHAYAG NG BIKTIMA NG CYBERCRIME
+
+Enero 5, 2024: Pormal na Reklamo
+
+Nagsampa ako ng kaso sa Tacloban City laban sa mga taong sangkot. Sa proseso ng pagsasampa, nakaharap ko ang dalawang PNP officer sa RACU Region 8. Sa halip na matulungan, ako ay ginulo sa sikolohikal na paraan.
+
+Enero 2024: Matapos ang Kawalan ng Aksyon
+
+Dahil sa kakulangan ng aksyon mula sa RACU Region 8, nagtungo ako sa Maynila at dumulog sa Raffy Tulfo in Action, na nag-refer sa akin sa NBI Quezon City. Ngunit muli, walang malinaw na aksyon ang isinagawa.
+
+Kaya pumunta Ulit ako sa NBI Cavite dahil sa kakulangan daw nila ng kagamitan para sa Cybercrime Investigation kaya ni recommend kami sa PNP Cybercrime Office ng Bacoor, Cavite. Pinabalik lamang ako sa Tacloban dahil doon daw nangyari ang krimen.
+
+[MGA HAKBANG](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/MGA%20HAKBANG%202401958629d680159b8ddcccc2dae533.md)
+
+Dahil wala pa ring nangyayari sa kaso ko, ipinagpatuloy ko muna ang pagtatrabaho. Kasama ko si Gab sa loob ng anim na buwan—nakilala ko siya noon sa Maynila nang pumunta kami ni Ariel para sa meeting sa Casino Operations.
+
+Habang may katuwang ako sa trabaho, patuloy din akong nagre-recover ng mga credentials, database, at mga casino platform. Kasabay nito, naghahanap ako ng pondo at nagsi-setup ng mga bagong online na pagkakakitaan.
+
+Pero hinarangan pa rin nila ang mga galaw ko—sila ang pilit na nagpo-provide ng mga tools, applications, at third-party agencies na ginagamit nila para mabilis nilang manakaw ang lahat ng database at mga negosyo kong dinevelop.
+
+Dahil tuloy-tuloy ang online na pag-atake sa akin, patuloy akong nagdedepensa upang hindi sila makapasok. Napagpasyahan kong magpa-setup ng isang organization dahil alam kong eksperto sila sa Microsoft at Google Workspace. Nag-hire ako ng IT online para mag-setup ng Zoho One organization, at agad ko siyang binayaran ng down payment na nagkaka halaga ng ₱30,000. Ngunit tila sila pa rin ang nagpanggap na IT, o kaya’y kinasabwat nila ito, o maaaring binayaran para hindi tapusin ang pag-setup ng organization sa Zoho One.
+
+Dahil dito, napagpasyahan kong gumawa na lamang ng sarili kong security system, tools, applications, third-party agencies, CRM website, at AI agencies. Sa kabila nito, patuloy pa rin nilang ninanakaw ang mga na-develop kong tools at negosyo. Ganon pa rin ang sitwasyon—tinatamper nila at hinaharangan ang mga sistema ko. Dahil sa walang tigil na pag-atake para sa pagnanakaw, napagpasyahan ko na lamang na bumalik sa Tacloban upang ipagpatuloy ang kaso.
+
+[RESEARCH DEVELOPMENT](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/RESEARCH%20DEVELOPMENT%202401958629d6801281f4d59e58350453.md)
+
+Pagbalik ko sa Tacloban, natuklasan ko na sina Mario Nalda Cadisal at Lawrence Daria ay naging mga insider, habang si Carl Justin Pagaspas ay nag-apply sa cybersecurity sa Region 8 hindi upang tumulong, kundi upang makakuha ng access at credentials — para matakpan ang mga krimen na ginawa nila, at kung mabisto man sila, ay makontrol nila ang kaso.
+
+Ginamit ni Carl Justin Pagaspas ang aking pagkakakilanlan ng walang pahintulot. Siya rin ang nag-remote at nag-lock sa mga personal account ko at identity gamit ang crypto fundraising digital wallets, bank accounts, mga credentials accounts ko, Kinontrol ang Fund ko at iba pang sensitibong impormasyon. Ni-remote ito sa akin at ni-lock gamit ang sarili kong identity at pangalan.
+
+Hindi na ako nakabalik sa RACU Region 8. Dahil Binabytime ako — sinadyang abalahin sa trabaho at mino-monitor ang kilos ko upang harangin ang pagsampa ko ng kaso sa RACU Region 8.
+
+Hanggang sa natunton ko ang pondo na nasa Binance crypto wallet at agad ko itong na-deactivate. Humihingi lang ako ng bahagi mula sa pondong iyon para magamit sa iba’t ibang proyekto, habang nag-aantay ako ng malinaw na desisyon kung paano ito kukunin, hahatiin, o gagamitin.
+
+Tumagal ng halos isang buwan ang aking paghihintay, ngunit wala pa rin silang ibinibigay na tugon o malinaw na desisyon.
+
+Kaya agad akong nakipag-ugnayan sa NBI, subalit nabigo silang magsagawa ng imbestigasyon at hindi nila sineryoso ang pormal kong reklamo. Maaaring minanipula o sinadyang hindi pansinin ang aking kaso.
+
+Nagpunta rin ako sa DICT para humingi ng tulong, ngunit hanggang ngayon, wala pa rin akong natatanggap na tugon o solusyon.
+
+Nadiskubre ko na may grupong pang-cybersecurity na tinatawag na “IT Shadow” o “Business Mirror” na lihim na kumikilos sa likod ng mga insidente sa Tacloban City. Sila ang mukhang may buong kontrol sa aking kaso at aktibong humahadlang sa pag-usad ng imbestigasyon.
+
+Ang mga cybersecurity IT admin ang grupong ito ang may hawak at kontrol sa mga devices ng mga politiko, NBI, PNP, DICT, at iba pang ahensya. Tila nagpapanggap pa sila bilang mga mataas na opisyal ng gobyerno gaya ng PNP, NBI, o mga politiko upang malinlang ang mga tao at manipulahin ang buong proseso ng imbestigasyon.
+
+## OBSERBASYON: PAGMAMANIPULA NG KATAWAN AT KAISIPAN (UNDER INVESTIGATION MANIPULATION)
+
+Binacktrack nila ang buong online at personal history ko. Hinahanapan nila ako ng mga kasalanan na maaaring gamitin laban sa akin.
+
+Nilagyan rin nila ako ng chip — hinack ang utak ko gamit ang teknolohiyang kayang bumasa ng iniisip. Ginawa ito sa pamamagitan ng panlilinlang, posibleng sa pamamagitan ng kinakasama kong si Cris, o isa sa mga kaibigan ko na maaaring minanipula o sinuhulan upang makainom ako ng kung anong substance habang kami ay nag-iinuman.
+
+Simula noon, napansin kong ako ay tila patuloy na inoobserbahan. Sinusundan nila ang bawat iniisip ko. Minamanipula nila ang aking mental na estado gamit ang brain reader chip technology.
+
+Ginagamit din nila ang mga imahe ng ari ng mga batang lalaki at babae bilang bahagi ng psychological warfare — bilang paraan ng pananakot, paninira, o pag-frame sa akin.
+
+Nakikita nila ang mga nakikita ko. Naririnig nila ang mga naririnig ko. Nababasa nila ang iniisip ko — in real time.
+
+Layunin nilang gawin akong mukhang baliw upang mawalan ako ng kredibilidad at walang maniwala sa akin, kahit ako pa ang tunay na biktima.
+
+[Surveillance Brain reader chips ](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/Surveillance%20Brain%20reader%20chips%202511958629d68031b97efd66c229207a.md)
+
+Ito ay isang classic na IT Shadow–Business Mirror strategy at bahagi ng hindi awtorisadong eksperimento na layuning paglaruan ako at gawing katatawanan ang sitwasyon. Isang tinatawag na sixthyNine“ Strategy.
+
+Halimbawa: Kung lalabas ako ng bahay lalabas rin sila ng bahay, kung kakain ako ng tae hindi sila kakain ng tae, Pinipili lang nila ang gagayahin saakin at mga babaliktarin.
+
+Baliktaran: Kung ano ang gusto ko, yun ang ayaw nila mangyari sa akin. Kung ano ang ayaw ko, yun ang gusto nilang mangyari sa akin.
+
+Binabaliktad para isetup ako. Hinaharang ang mga ginagawa ko. Lahat ng sinasabi ko o mga naririnig ko at mga nakikita ko ay gagamitin saakin o dikaya babaliktarin para gamitin saakin. lahat ng mga kaibigan ko or mga pinpuntahan ko para humingi ng tulong ay manipulate o dikaya sinsuholan nila ito para gamitin saakin.
+
+Pinahiya nila ako sa publiko — tulad ng pagpapalabas ng mga malalaswang video para ma-pressure akong umalis ng Tacloban, upang hindi ko maasikaso ang aking kaso at mapilitang huminto sa sarili kong business.
+
+## PLAN A PRESENTATION:
+
+Minanipula nila ang mga kaibigan ko, pati ang ilang miyembro ng gobyerno sa Tacloban City. Dahil sa kagustuhan ni Cris na magkaanak kami, tila ginawa nila itong parang teleserye—kunwari’y inuudyok nila akong mapalapit sa pamangkin niyang babae na si Desiree, na sinasabi nilang nasa Charles Town, Australia. Ipinapalabas nilang doon ang “destiny” naming dalawa ni Desiree, na tila itinalaga upang ipalit kay Cris.
+
+## THE ORIGINAL HIDDEN PLAN B:
+
+Dahil sa nahawakan ko ang pondo sa Binance crypto wallet, pinagplanuhan na nila akong sirain. Papahirapan ako, aagawin ang trabaho ko o ang online business ko, at pababalikin ako sa dati kong mga trabaho tulad ng construction at pagpadyak ng pedicab. Bubulukin ang katawan ko, sa pamamgitan ng pagkakaroon ng kati sa balat, babaliwin ako, ipaparalyze, at kukunin ang aking identity, mga credentials, at crypto wallet—at pagkatapos, ako ay papatayin.
+
+Nalaman ko na meron na palang constant threats sa akin. Dahil sa sinet-up ako sa Women and Children’s para gawing dahilan ng aking pagkamatay.
+
+Nalaman ko rin na ginagamit nila ito bilang dahilan para manipulahin ang mga tao at maging ang gobyerno dahil diumano’y “Children Abuse.”
+
+Mga Naranasan Ko:
+
+Nilason ako at Dahil sa tumatabi sa akin sa pagtulog ang pusa at ang tuta, inutusan ni Carl Justin Pagaspas ang tito niya na si Rek Pagaspas para painumin ng battery ang pusa at ng controller, para ito ay tumae nang tumae sa higaan namin hanggang sa mamatay ito.
+
+Ang tuta naman, pinainom rin ng controller at nilagyan ng pampakati sa katawan para mahawaan ako.
+
+Tinatakot nila ako sa tuwing nag-aasikaso ako o nagsusulat ako ng mga pangyayari sa akin.
+
+Hindi rin ako pinapatulog — tuwing matutulog na ako, may mga paraan silang ginagawa para mapuyat ako at hindi ako makapag-asikaso ng aking kaso. Ginagawa ito para palabasin na ako ay paranoid lamang.
+
+Sinusuhulan nila ang mga kapitbahay ko para magpatugtog ng malalakas at nakakairitang ingay, habang may mga taong nagbabantay sa akin physically.
+
+Pinag-uutosan rin nila ang mga ito para gumawa ng ingay, manakot, at para sundan ako sa tuwing ako ay lalabas ng bahay.
+
+Dahil dito, hindi ako makatulog ng maayos sa inuupahan naming bahay.
+
+Pumunta ako sa Matues Motel kasama si Cris para sana makatulog nang maayos. Pero kahit nandoon na kami, hindi pa rin ako nakatulog nang maayos dahil ramdam kong may mga taong sumusunod sa akin. Pakiramdam ko ay may naka-set up na tangkang pagpatay sa akin at ginagamit ang motel bilang lugar para isagawa ito. May mga ginagamit silang dahilan para manipulahin ang sitwasyon, kabilang na ang panunuhol sa bantay ng motel. Napansin ko na pansamantalang pinalitan ang cashier/receptionist, na posibleng bahagi ng plano.
+
+Tahimik ang buong lugar, at sinasabi nilang “fully booked” ang lahat ng kwarto, pero halatang walang ibang tao sa paligid. Malakas ang kutob ko na inuupahan nila lahat ng kwarto para walang ibang makasaksi sa mga posibleng mangyari. Pati ang staff ng motel ay tila kinokontrol.
+
+Buti na lang at kasama ko si Cris kaya hindi natuloy ang tangkang pagpatay sa akin.
+
+Bumalik kami ni cris sa Sabang, sa inuupahan naming bahay. Pero ganoon pa rin ang naranasan ko — tuwing bumabalik ako, ako ay pinag tatawanan, dinuduraan, tinatakot, at pinaiingay ang mga tao sa paligid ng bahay para hindi ako makatulog ng maayos. Kahit makatulog man ako, saglit lang dahil sa pagod at puyat. Pero paulit-ulit pa rin ang ganitong nangyayari.
+
+Dahil sa patuloy na puyat at mental na pag-atake, napilitan akong umalis ulit at pumunta ng motel para sana makabawi sa tulog at makapagpahinga kahit saglit. Ngunit hindi rin naging ligtas ang mga motel dahil tila ginagamit din ito bilang bahagi ng plano laban sa akin.
+
+Pumunta ako sa Batchmate Motel sa pangalawang pagkakataon. Pero tulad ng una, may naka-setup nanaman na tangkang pagpatay sa akin. Inuupahan nila ang lahat ng kwarto para palabasing “fully booked,” kahit wala namang ibang guests. Pinapaalis nila ang naka-check in na tao at ginagamit ulit ang parehong sistema ng panunuhol para manipulahin ang mga tao sa paligid.
+
+Habang naroon ako, may naka-single motor na nakasabay sa akin at naka-check in sa katabing kwarto. Dahil sa nararamdaman kong banta, agad akong umalis pabalik sa Sabang para isama si Cris at bumalik sa motel. Nang kasama ko na si Cris, hindi natuloy ang plano kaya umalis ang hired killer at pinalitan ng grupo ng mga teenage boys na sakay ng sidecar. Ang mga ito ang naging bantay ko — pinagtatawanan ako, ginugulo, at pinaiingay ang paligid para hindi ako makatulog at mapuyat ako ulit.
+
+Hanggang umaga, hindi ako nakatulog dahil pinakinggan ko ang usapan nila. Narinig ko silang nakikipag-video call kay Carl Justin Pagaspas at nagtatawanan. May narinig akong isang teenage boy na nagsabing “ano nalang daw magiging trabaho ko” — babalik raw ako sa pag-huhurnal o construction. Hindi niya alam na papatayin pala talaga ako; ibang dahilan ang sinabi sa kanya. Ang tunay na killer ay umalis na matapos makita na magkasama kami ni Cris.
+
+Pagbalik namin ni Cris sa Sabang, tuloy pa rin ang psychological harassment. Pinaglaruan ako ng mga tao sa paligid, pinaparinggan, dinuduraan, at ginugulo ang kapaligiran tuwing sinusubukan kong matulog. Kapag gising ako, tahimik ang paligid — pero pag matutulog na ako, biglang may lalapit para mag-ingay at guluhin ako.
+
+May mga nakabantay kung tulog na ako o hindi, sumisilip sa dingding para tingnan ang mga galaw ko. May utos pa sa magnanakaw para nakawin ang mga sulat kong credentials, mga device, at ebidensiyang gusto nilang burahin.
+
+Dahil hindi ako makatulog at lumalala ang mga banta, nagdesisyon akong magmotor papunta sa isang kakilala kong pulis para sana iwan ang YubiKey ko. may tumawag sa kanya at narinig ko ang usapan nila pinatatanggap yung YubiKey dahil may laman raw itong million at plano raw nila akong patulugin sa parking lot at doon ako papatayin. Puputulin ang daliri ko para gamitin ang fingerprint.
+
+Hindi ako pinagbuksan ng pintuan kaya pumunta ako sa bahay ng kaibigan ko sa Utap. Doon ako nagpalipas ng oras at ikinuwento ko ang mga nangyayari. Iniwan ko ang bag ko na may mga ebidensiya, devices, at laptop. Gumawa ako ng decoy sa pamamagitan ng pagpapanggap na itinatapon o itinatago ko ang YubiKey sa iba’t ibang lugar. Isinama ko ang kaibigan ko papuntang Hillside Ville at doon ako umakyat sa bundok at pumunta sa bukid. Tumatakbo ako habang bitbit ang YubiKey dahil ramdam kong may sumusunod sa akin. dahil walang CCTV sa lugar, naisipan kong bumalik sa Utap. Pagbalik ko, napansin kong may isang single na motor na nakaparada at tila nag-aabang sa akin sa daanan. Dahil dito, hindi ako tumuloy at agad akong bumalik sa bukirin. Habang nakaluhod ako sa tubig at putik, hawak ko ang YubiKey. Inihanda ko ito dahil pinapatay na ako para kung sakaling patayin man ako, mahuhulog ito sa putik at hindi na mapakinabangan. Dahil dito, hindi natuloy ang tangkang pagpatay.
+
+Buti na lang, hawak ko ang pondo sa Binance crypto wallet na nagkakahalaga ng million. Na-deactivate ko ito Kung hindi ko ito na-deactivate, pinatay na sana ako para makuha ito at puputulin ang daliri ko para sa fingerprint.
+
+Pinatawagan ko si Cris para puntahan ako sa Hillside at bumalik ulit kami sa Sabang. Dahil nalaman ng mama ko sa Manila ang nangyayari, agad siyang pumunta ng Tacloban. Ikinuwento ko sa kanya ang lahat. Pero kahit nandoon na siya, hindi pa rin ako makatulog nang maayos sa Sabang. Kaya pumunta kami sa bodega sa Abucay kung saan nagtatrabaho si Ninang, para sana doon ako makatulog. Nagpasama ako kay Mama para bantayan ako. Doon ako nakatulog saglit. Dumating si Cris at diretso ulit kaming dalawa ni mama sa Matues Motel dahil hindi pa sapat ang tulog ko. Bumalik si Cris sa Sabang.
+
+Ngunit kahit nandoon kami, hindi pa rin ako makatulog ng maayos. Ramdam ko ulit na may naka-setup na tangkang pagpatay. May naririnig akong nakikinig sa kabilang kwarto, may kausap sa cellphone, at nagkakasa ng baril. Pinapunta ko ulit si Cris para doon matulog kasama namin. Kahit nandoon na siya, hindi pa rin ako makatulog May mga nakapaligid sa room namin at walang ibang guests na naka-check-in. Ang cashier na nakita ko dati ay siya ring nakita ko ulit na nakabantay sa casher.
+
+Pagka-sapit ng umaga, bumalik kami ulit sa Sabang kasama si Cris at si Mama para magtipon ng mga gamit at damit ko. Pagkatapos noon, MAYO, agad akong sumama kay Mama papuntang Maynila para makaiwas sa tangkang pagpatay sa akin. Irekomenda ng tatay ni Diseree na si Onding na makisakay na lang daw kami sa kapatid niya na bumibiyahe ng gulay papuntang Maynila. Dahil sa hapon pa ang dating nito sa Tacloban, napagdesisyunan naming mag-bus na lang ni Mama.
+
+Hinatid kami ni Onding papunta sa Basey, Samar dahil doon daw nakapila ang mga bus papuntang Maynila, dahil inaayos ang San Juanico Bridge. Pagdating namin sa pilahan ng bus, nagtaka ako kung bakit ang bago kong lighter na binili ay hiningi at pinalitan ng posporo. Nagduda ulit ako na hindi talaga ako tinatantanan. Hindi rin kami agad nakasakay ng bus dahil dine-delay ito at pinuno (fully booked) lahat ng bus para hindi kami makaalis agad ni Mama at para umabot ang open truck na kargado ng gulay na siyang gusto nilang sakyan namin.
+
+Sa huli, doon nga kami napilitang sumakay sa open truck. May isa itong kasamang lalaki na kunwari makikisabay papuntang Maynila.
+
+Pero nagtaka ako kung bakit parang may ibang pakay. Dahil sa nadarama kong panganib at panlilinlang, tinawagan ko si Cris at pinasama ko siya pa-Maynila para masigurong hindi matutuloy ang masamang plano. Sumama naman si Cris patungong Maynila. Dahil sa gutom at pagod, tahimik lang akong nakamasid at naririnig ko ang usapan nila sa unahan habang bumibiyahe kami—na nagmamadali silang patayin ako.
+
+Habang nasa biyahe, paulit-ulit nilang ginagawa ang taktika ng biglang paghinto sa madidilim na lugar at sa mga tulay. Bumababa sila at nag-uusap-usap, may kausap sa cellphone. Paulit-ulit ang ganitong sitwasyon kaya hindi ako mapakali. Tila may sinusunod silang oras at koordinasyon.
+
+Pagdating namin sa Maynila, hindi parin ako kampante. Ramdam kong may nakaabang pa ring panganib at sinusundan pa rin kami.
+
+## **PSYCHOLOGICAL TORTURE & ILLEGAL MIND CONTROL**
+
+Hanggang dito sa Maynila, patuloy ko pa ring nararanasan ang Cyber Harassment at Sikolohikal na Pang-aabuso sa pamamagitan ng digital manipulation, walang tigil na monitoring, at paulit-ulit na sikolohikal na pagpapahirap. Isang chips na pinaniniwalaang na-implant o remotely controlled ang ginamit upang paglaruan, manipulahin ang aking mga panaginip, iniisip, at kalinawan ng isipan. Tila may sumasabay sa isip ko tuwing nagsasalita ako may mga AI na naka-setup na awtomatikong bumubuo ng narrative batay sa kung ano ang iniisip ko o binabanggit ko. Naipasok ito sa katawan ko nang walang sapat na paliwanag o pahintulot.
+
+Mga Nararanasan Ko:
+
+- Nagkakausap kami sa loob ng isip ko—parang may kausap ako na hindi ko nakikita.
+- Nababasa at natatanggap nila ang iniisip ko gamit ang device o computer.
+- Ginagaya nila ang mga iniisip ko at kilos ko para lituhin ako at palabasin na ako’y nababaliw.
+- Paulit-ulit akong tinutorture mentally at emosyonal para mawalan ako ng lakas, kumpiyansa, at kredibilidad.
+
+Patuloy akong dumaranas ng matinding trauma, paranoia, at emosyonal na pinsala. Binabantaan din ako na kung magsusumbong ako, papatayin nila ako gamit mismo ang brain reader chips na sa katawan ko.
+
+Hindi rin nila ako pinapatulog ng 3 days hanggang 4 na araw akong gising. Sa loob ng higit 3 buwan, dalang-dala ko na ang hirap sa katawan at isipan. Hindi na ako mapakali. Gustong-gusto ko nang matanggal ang chip sa katawan ko dahil pakiramdam ko ay araw-araw akong pinahihirapan, sinusundan, at kinokontrol.
+
+[Health Damage](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/Health%20Damage%202551958629d6803898a3e2b200fbc843.md)
+
+Nawalan na rin ako ng pagkakakitaan at hindi na ako makapagtrabaho hanggang ngayon. Dahil sa patuloy na kontrol at panghaharang sa aking mga account, system, at digital assets, tuluyan akong na-paralisa sa aking hanapbuhay. Sinira nila ang kabuhayan ko at inalis ang lahat ng paraan para makabangon o makapagpatuloy sa anumang online na trabaho o proyekto.
+
+Dahil dito, napilitan akong ibenta ang lahat ng mga naipundar ko habang inaasikaso ang kasong ito — kabilang ang aking sasakyan, motorsiklo, MacBook, cellphone, at computer.
+
+[Mga Na Benta](DONE%20FULL%20FINAL%20WITH%20EVIDENCE%20TESTIMONY%20THE%20STORY%20/Mga%20Na%20Benta%202551958629d680fda780dc844d537018.md)
+
+### CASE CONTINUE – HULYO 28, 2025
+
+Nagpunta ulit ako sa NBI Bacoor, Cavite upang sundan ang aking kaso. Ngunit ganoon ulit ang nangyari—wala raw silang sapat na kagamitan para sa Cybercrime Investigation. Pinababalik na naman kami sa PNP Cybercrime dahil meron na raw kaming existing record doon. Walang malinaw na tugon, walang konkretong aksyon, at tila walang direksyon ang proseso ng hustisya para sa mga katulad kong biktima ng sistematikong cybercrime.
+
+# **CASE STORAGE**
+
+[https://drive.google.com/drive/folders/1Fi5y-6nKKhnwGDVbtQ0aKbM3F4QzNCoJ](https://drive.google.com/drive/folders/1Fi5y-6nKKhnwGDVbtQ0aKbM3F4QzNCoJ)
+
+### **PAHAYAG PARA SA AWTORIDAD**
+
+Kailangan ninyong malaman ang buong katotohanan tungkol sa nangyayari sa akin. Hindi lang ito simpleng hacking—ito ay tungkol sa aking buhay, kaligtasan, kalusugan, at kalayaan na unti-unting kinukuha sa akin.
+
+Ako ang biktima ng isang sinadyang atake na mukhang “inside job.” May mga taong may kaalaman at access sa akin at sa aking sistema ang ginagamit ang kapangyarihan nila para manahimik ako, kontrolin ako, at sirain ang pagkatao ko.
+
+**Narito ang buong sitwasyon:**
+
+- Ako ay minamanmanan—online at pisikal. Ito ay iligal na surveillance. Hindi na ito simpleng cyberattack. Binabantayan at kinokontrol ako kahit sa tunay na buhay.
+- Sinasabotahe ang negosyo ko gamit ang cyber security na ipinatutupad dito sa Region 8 (Tacloban City). Layunin nilang patahimikin ako at palayasin ako sa sarili kong negosyo.
+- Involved ang pera at posibleng may koneksyon sa gobyerno o pribadong organisasyon.
+- Pinaglalabanan ko ito mag-isa. Lahat ng kaibigan ko at koneksyon ay kontrolado o manipulahin na.
+- Gusto nila akong palabasin na baliw para wala nang maniwala sa akin at para ma-transfer ang identity ko at makuha ang lahat ng credentials ko.
+- In-experimentohan nila ako ng walang pahintulot—sa mental, emosyonal, teknikal, at posibleng pisikal na aspeto. Apektado ang aking kalusugan. Hindi ako makatulog ng normal. May mga banta sa buhay ko at pinapahiya ako sa publiko.
+- Binabaliktad nila ang sitwasyon. Lahat ng account ko ay binubuksan nila para gamitin laban sa akin. Maging ang pamilya ko at konektado sa akin ay minomonitor at kontrolado.
+- Gusto nilang i-force quit ako sa negosyo ko. Pinapahirapan ako, pinaglalaruan, at gustong-gusto nilang makuha ang lahat ng meron ako.
+- Kapag nakuha na nila ang buong Credentials  ko, may posibilidad na papatayin nila ako.
+
+**Ito ay malinaw na pag-abuso sa kapangyarihan at karapatang pantao.**
+
+**Hindi ito imahinasyon. Hindi ako nagpapalaki ng kwento. Totoo ito.**
+
+Ako ay nabubura sa sarili kong buhay Ang kwento ko ay pilit binabaon.
+
+Pero hindi ako mananahimik. Lumalaban pa rin ako para sa katotohanan, hustisya, at karapatan kong mabuhay ng mapayapa.
+
+Makiisa kayo sa akin. Kailangan ko ang suporta ninyo ngayon—higit kailanman.
+
+Hindi ako baliw. Ako ay lumalaban upang manatiling buhay, panatilihin ang aking pagkakakilanlan, at ilantad ang katotohanan.
+
+Nais kong maunawaan ninyo kung ano talaga ang nangyayari sa akin.
+
+Ako ang biktima sa sitwasyong ito. Hindi lang ito simpleng pagkawala ng access sa isang account—mas malalim ito. Ako ay naging target, kinontrol, pinatahimik, at tinakot. Nawalan ako hindi lamang ng boses, kundi ng bahagi ng aking buhay dahil sa mga ginawa sa akin.
+
+Hindi ito isang random na atake. Alam ko kung sino ang hacker. Isa itong “inside job”—isang taong may access, malapit sa akin, o may alam sa aking sistema. Ginamit nila ang kanilang kapangyarihan hindi para protektahan ako, kundi upang abusuhin at manipulahin ako.
+
+Ako ay parang ginawang eksperimento—hindi man sa isang laboratoryong siyentipiko—pero sa isip, damdamin, at marahil pati teknikal na paraan. Kinuha ang aking kalayaan sa mga paraang mahirap ipaliwanag. Pakiramdam ko’y ako ay minamanmanan, kinokontrol, at hindi pinapayagang mamuhay nang normal. 
+
+Kailangan kong paniwalaan ninyo ako. Hindi ito guni-guni. Hindi ito pagdradrama. Totoo ang nangyayari. At kailangan ko ang inyong suporta, hindi ang inyong paghusga. Patuloy akong lumalaban para sa aking boses, para sa katarungan, at para sa karapatang mamuhay nang tahimik.
+
+Kailangan ninyong malaman ang buong katotohanan. Hindi lang ito tungkol sa hacking—ito ay tungkol sa pagnanakaw ng aking buhay, kaligtasan, kalusugan, at kalayaan.
+
+gumagamit ng advanced cybersecurity tools, posibleng may antas ng access o impluwensiya gaya ng sa gobyerno, upang patahimikin at kontrolin ako.
+
+Ang sinasabi ko ay napakaseryoso, masakit, at nakakatakot. Kabilang sa mga ginagawa sa akin ang mga sumusunod:
+
+- Panggamit ng cybersecurity sa Region 8 (Tacloban City) upang kontrolin ako
+- Ilegal na pagmamanman at pagnanakaw ng pagkakakilanlan
+- Mental at emosyonal na manipulasyon, kabilang ang pagpapalabas na ako’y “baliw”
+- Hindi awtorisadong eksperimento sa aking katawan o kalusugan
+- Publikong kahihiyan at personal na pagbabanta
+
+Hawak ko pa rin ang YubiKey—ang pisikal na access key ko—pero sinusubukan nila itong i-bypass. 
+
+Hindi na ito basta hacking. Ito ay isang buong pang-aabuso sa teknolohiya, at naniniwala akong may koneksyon ito sa mga lokal na sistema sa Region 8. 
+
+Wala akong ibinigay na pahintulot. Wala akong isinukong access, pagkakakilanlan, o pahintulot para sa anumang uri ng eksperimento. Ang lahat ng ito ay ginagawa nang walang akong kaalaman at puminsala na sa aking kalusugan. Nakakaranas ako ng matinding pagod, puyat, stress, kahihiyan, at tuloy-tuloy na pagbabanta.
+
+Hindi lang ito tungkol sa akin—ito ay tungkol sa pang-aabuso sa teknolohiya, paglabag sa karapatang pantao, at mapanganib na manipulasyon gamit ang digital power. Kung nagawa nila ito sa akin, magagawa rin nila ito sa iba.
+
+Ito ay hindi na basta isyu ng paglabag sa cybersecurity. Isa na itong kaso ng paglabag sa karapatang pantao. Ako ay digital na ikinulong, mentally pinahirapan, at pinagsamantalahan sa pinansyal na paraan. Ngayon, itinatayo ko ang aking tinig upang marinig, at upang makatulong sa iba na maiwasan ang katulad na pang-aabuso. Nawa’y makarating ang ulat na ito sa pinakamataas na antas ng pamahalaan at sa pandaigdigang komunidad.
+
+## **CALL FOR JUSTICE AND PUBLIC AWARENESS**
+
+Sa ating mahal na Pangulo, Senador, Congress, Cybercrime Division, NBI, PNP, at DOJ: Humihingi ako ng totoong imbestigasyon at proteksyon.
+
+Sa mga abogado at free legal advocates: Tulungan niyo akong ipanalo ang kasong ito laban sa mga nang-abuso sa akin gamit ang teknolohiya at kapangyarihan.
+
+Sa media at mamamayan: I-share ang kwento ko. Hindi lang ito tungkol sa akin—ito ay tungkol sa mga susunod pang mabibiktima ng ganitong klaseng tahimik pero mabisang cyber warfare.
+
+Sa mga tunay na alagad ng batas: Ito ay isang babala at panawagan. Ang cybercrime ay hindi lamang online scamming—ito ay umabot na sa pag-aagaw ng pagkatao, pagnanakaw ng digital identity, pananakot, at pagpatay gamit ang teknolohiya.
+
+[https://youtu.be/L0q0je4gJHM?feature=shared](https://youtu.be/L0q0je4gJHM?feature=shared)
+
+[https://youtu.be/p42RaLTwRDs?feature=shared](https://youtu.be/p42RaLTwRDs?feature=shared)
+
+[https://youtu.be/Ya2hhWPtlr4?feature=shared](https://youtu.be/Ya2hhWPtlr4?feature=shared)
+
+[https://youtu.be/jeQij7T9Xo8?feature=shared](https://youtu.be/jeQij7T9Xo8?feature=shared)
+
+[https://youtu.be/rAu7u4u9eXs?feature=shared](https://youtu.be/rAu7u4u9eXs?feature=shared)
+
+[https://youtu.be/jWjuNViS93o?feature=shared](https://youtu.be/jWjuNViS93o?feature=shared)
+
+[https://youtu.be/oD2uuXxt9DQ?feature=shared](https://youtu.be/oD2uuXxt9DQ?feature=shared)
+
+[https://youtu.be/1aQsyIbvawA?feature=shared](https://youtu.be/1aQsyIbvawA?feature=shared)
+
+[https://youtu.be/7pLaNUJD0Tk?feature=shared](https://youtu.be/7pLaNUJD0Tk?feature=shared)
