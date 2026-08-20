@@ -81,11 +81,12 @@ jobs:
           CANONICAL_URL: https://masterkanorcase.online
           PAGES_URL: https://affidavit-abo.pages.dev
         run: |
+          user_agent='Mozilla/5.0 (compatible; MasterKanorCaseProductionVerifier/1.0; +https://masterkanorcase.online)'
           for i in {1..6}; do
-            pages_status=$(curl -L -sS -o /dev/null -w "%{http_code}" "$PAGES_URL/" || true)
-            canonical_status=$(curl -L -sS -o /dev/null -w "%{http_code}" "$CANONICAL_URL/" || true)
-            auth_status=$(curl -L -sS -o /dev/null -w "%{http_code}" "$CANONICAL_URL/auth" || true)
-            health_status=$(curl -L -sS -o /dev/null -w "%{http_code}" "$CANONICAL_URL/api/health" || true)
+            pages_status=$(curl -L -sS -A "$user_agent" -o /dev/null -w "%{http_code}" "$PAGES_URL/" || true)
+            canonical_status=$(curl -L -sS -A "$user_agent" -o /dev/null -w "%{http_code}" "$CANONICAL_URL/" || true)
+            auth_status=$(curl -L -sS -A "$user_agent" -o /dev/null -w "%{http_code}" "$CANONICAL_URL/auth" || true)
+            health_status=$(curl -L -sS -A "$user_agent" -o /dev/null -w "%{http_code}" "$CANONICAL_URL/api/health" || true)
             echo "attempt=$i pages=$pages_status canonical=$canonical_status auth=$auth_status health=$health_status"
             if [ "$pages_status" = "200" ] && [ "$canonical_status" = "200" ] && [ "$auth_status" = "200" ] && [ "$health_status" = "200" ]; then
               exit 0
