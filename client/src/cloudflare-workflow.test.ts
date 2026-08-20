@@ -21,7 +21,9 @@ const homeSource = readFileSync(new URL("./pages/Home.tsx", import.meta.url), "u
     expect(workflow).toContain("pnpm install --frozen-lockfile");
     expect(workflow).toContain("pnpm run check");
     expect(workflow).toContain("pnpm test");
-    expect(workflow).toContain("wrangler-action@v3");
+    expect(workflow).toContain("npx --yes wrangler@3.90.0");
+    expect(workflow).toContain("CLOUDFLARE_API_TOKEN");
+    expect(workflow).toContain("CLOUDFLARE_ACCOUNT_ID");
     expect(workflow).toContain("/api/health");
     expect(workflow).toContain("VITE_SUPABASE_URL");
     expect(workflow).toContain("VITE_SUPABASE_ANON_KEY");
@@ -57,4 +59,3 @@ const homeSource = readFileSync(new URL("./pages/Home.tsx", import.meta.url), "u
     expect(adminSource).not.toContain("totalEvidence: 331");
   });
 });
-
