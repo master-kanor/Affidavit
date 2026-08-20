@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { jsxLocPlugin } from "@builder.io/vite-plugin-jsx-loc";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
@@ -154,6 +155,16 @@ const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(
 
 export default defineConfig({
   plugins,
+=======
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
+import { jsxLocPlugin } from "@builder.io/vite-plugin-jsx-loc";
+import path from "node:path";
+import { defineConfig } from "vite";
+
+export default defineConfig({
+  plugins: [react(), tailwindcss(), jsxLocPlugin()],
+>>>>>>> github/main
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -163,6 +174,7 @@ export default defineConfig({
   },
   envDir: path.resolve(import.meta.dirname),
   root: path.resolve(import.meta.dirname, "client"),
+<<<<<<< HEAD
   publicDir: path.resolve(import.meta.dirname, "client", "public"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
@@ -179,6 +191,30 @@ export default defineConfig({
       "localhost",
       "127.0.0.1",
     ],
+=======
+  build: {
+    outDir: path.resolve(import.meta.dirname, "dist/public"),
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        assetFileNames: "assets/[name]-[hash][extname]",
+        chunkFileNames: "assets/[name]-[hash].js",
+        entryFileNames: "assets/[name]-[hash].js",
+      },
+    },
+  },
+  server: {
+    port: 3000,
+    strictPort: false,
+    host: true,
+    proxy: {
+      "/api": {
+        target: "http://localhost:3001",
+        changeOrigin: true,
+      },
+    },
+    allowedHosts: ["localhost", "127.0.0.1"],
+>>>>>>> github/main
     fs: {
       strict: true,
       deny: ["**/.*"],

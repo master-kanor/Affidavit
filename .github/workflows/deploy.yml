@@ -1,0 +1,100 @@
+name: Build and deploy Affidavit to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: cloudflare-pages-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.4.1
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Scan tracked source for credential patterns
+        run: python3 scripts/scan-secrets.py
+
+      - name: Create build-time public environment
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_APP_TITLE: Master Kanor Case
+          VITE_APP_URL: https://masterkanorcase.online
+          VITE_ADMIN_APP_URL: https://admin.masterkanorcase.online
+        run: |
+          test -n "$VITE_SUPABASE_URL"
+          test -n "$VITE_SUPABASE_ANON_KEY"
+          {
+            printf 'VITE_SUPABASE_URL=%s\n' "$VITE_SUPABASE_URL"
+            printf 'VITE_SUPABASE_ANON_KEY=%s\n' "$VITE_SUPABASE_ANON_KEY"
+            printf 'VITE_APP_TITLE=%s\n' "$VITE_APP_TITLE"
+            printf 'VITE_APP_URL=%s\n' "$VITE_APP_URL"
+            printf 'VITE_ADMIN_APP_URL=%s\n' "$VITE_ADMIN_APP_URL"
+          } > .env.production
+
+      - name: TypeScript check
+        run: pnpm run check
+
+      - name: Test
+        run: pnpm test -- --run
+
+      - name: Build static application
+        run: pnpm build
+
+      - name: Verify Pages artifact
+        run: |
+          test -f dist/public/index.html
+          test -f dist/public/_redirects
+          rm -f .env.production
+
+      - name: Deploy production Pages project
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist/public --project-name=affidavit --branch=main
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Smoke check production origin and canonical domain
+        env:
+          CANONICAL_URL: https://masterkanorcase.online
+          PAGES_URL: https://affidavit-abo.pages.dev
+        run: |
+          for i in {1..6}; do
+            pages_status=$(curl -L -sS -o /dev/null -w "%{http_code}" "$PAGES_URL/" || true)
+            canonical_status=$(curl -L -sS -o /dev/null -w "%{http_code}" "$CANONICAL_URL/" || true)
+            auth_status=$(curl -L -sS -o /dev/null -w "%{http_code}" "$CANONICAL_URL/auth" || true)
+            health_status=$(curl -L -sS -o /dev/null -w "%{http_code}" "$CANONICAL_URL/api/health" || true)
+            echo "attempt=$i pages=$pages_status canonical=$canonical_status auth=$auth_status health=$health_status"
+            if [ "$pages_status" = "200" ] && [ "$canonical_status" = "200" ] && [ "$auth_status" = "200" ] && [ "$health_status" = "200" ]; then
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "Production smoke check failed. Preserve the previous successful Pages deployment and execute the documented rollback procedure."
+          exit 1

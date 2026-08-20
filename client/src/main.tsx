@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { trpc } from "@/lib/trpc";
 import { COOKIE_NAME, UNAUTHED_ERR_MSG } from '@shared/const';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -78,4 +79,17 @@ createRoot(document.getElementById("root")!).render(
       <App />
     </QueryClientProvider>
   </trpc.Provider>
+=======
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
+
+// QueryClientProvider is intentionally not mounted here: the current public case-review surface uses direct read-only source data, and the legacy provider caused a runtime hook failure in this repository preview.
+import "./index.css";
+
+createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+>>>>>>> github/main
 );

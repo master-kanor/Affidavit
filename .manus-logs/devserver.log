@@ -1,0 +1,73 @@
+[2026-07-06T10:17:22.308Z] 10:17:22 AM [vite] Internal server error: Cannot find module '/home/ubuntu/evidence-website/node_modules/.pnpm/vite@7.1.9_@types+node@24.7.0_jiti@2.6.1_lightningcss@1.30.1_tsx@4.20.6/node_modules/vite/dist/node/chunks/dep-CCSnTAeo.js' imported from /home/ubuntu/evidence-website/node_modules/.pnpm/vite@7.1.9_@types+node@24.7.0_jiti@2.6.1_lightningcss@1.30.1_tsx@4.20.6/node_modules/vite/dist/node/chunks/dep-Chhhsdoe.js
+[2026-07-06T10:17:22.308Z] at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+[2026-07-06T10:17:22.308Z] at moduleResolve (node:internal/modules/esm/resolve:932:10)
+[2026-07-06T10:17:22.309Z] at defaultResolve (node:internal/modules/esm/resolve:1056:11)
+[2026-07-06T10:17:22.309Z] at nextResolve (node:internal/modules/esm/hooks:748:28)
+[2026-07-06T10:17:22.309Z] at o (file:///home/ubuntu/evidence-website/node_modules/.pnpm/@tailwindcss+node@4.1.14/node_modules/@tailwindcss/node/dist/esm-cache.loader.mjs:1:69)
+[2026-07-06T10:17:22.309Z] at nextResolve (node:internal/modules/esm/hooks:748:28)
+[2026-07-06T10:17:22.309Z] at Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+[2026-07-06T10:17:22.309Z] at MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+[2026-07-06T10:17:22.309Z] at [nodejs.internal.kHybridDispatch] (node:internal/event_target:827:20)
+[2026-07-06T10:17:22.309Z] at MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+[2026-08-17T15:36:49.091Z] [0] 3:36:49 PM [vite] page reload src/cloudflare-deployment-config.test.ts
+[2026-08-20T06:18:28.949Z] 6:18:28 AM [vite] (client) page reload index.html
+[2026-08-20T06:18:28.952Z] 6:18:28 AM [vite] (client) hmr update /src/App.tsx, /src/index.css
+[2026-08-20T06:18:28.953Z] 6:18:28 AM [vite] (client) page reload src/const.ts
+[2026-08-20T06:18:28.954Z] 6:18:28 AM [vite] (client) hmr update /src/index.css, /src/components/ui/input.tsx, /src/components/ui/textarea.tsx
+[2026-08-20T06:18:28.954Z] 6:18:28 AM [vite] (client) page reload src/main.tsx
+[2026-08-20T06:18:28.955Z] 6:18:28 AM [vite] (client) hmr update /src/pages/Home.tsx, /src/index.css
+[2026-08-20T06:18:28.955Z] 6:18:28 AM [vite] (client) hmr update /src/pages/NotFound.tsx, /src/index.css
+[2026-08-20T06:18:29.047Z] 6:18:29 AM [tsx] change in ./drizzle/schema.ts Restarting...
+[2026-08-20T06:18:29.811Z] c
+[2026-08-20T06:18:29.811Z] node:internal/modules/run_main:122
+[2026-08-20T06:18:29.811Z] triggerUncaughtException(
+[2026-08-20T06:18:29.811Z] ^
+[2026-08-20T06:18:29.811Z] Error [TransformError]: Transform failed with 1 error:
+[2026-08-20T06:18:29.812Z] /home/ubuntu/affidavit-portal/drizzle/schema.ts:1:0: ERROR: Unexpected "<<"
+[2026-08-20T06:18:29.812Z] at failureErrorWithLog (/home/ubuntu/affidavit-portal/node_modules/.pnpm/esbuild@0.25.10/node_modules/esbuild/lib/main.js:1467:15)
+[2026-08-20T06:18:29.812Z] at /home/ubuntu/affidavit-portal/node_modules/.pnpm/esbuild@0.25.10/node_modules/esbuild/lib/main.js:736:50
+[2026-08-20T06:18:29.812Z] at responseCallbacks.<computed> (/home/ubuntu/affidavit-portal/node_modules/.pnpm/esbuild@0.25.10/node_modules/esbuild/lib/main.js:603:9)
+[2026-08-20T06:18:29.812Z] at handleIncomingPacket (/home/ubuntu/affidavit-portal/node_modules/.pnpm/esbuild@0.25.10/node_modules/esbuild/lib/main.js:658:12)
+[2026-08-20T06:18:29.812Z] at Socket.readFromStdout (/home/ubuntu/affidavit-portal/node_modules/.pnpm/esbuild@0.25.10/node_modules/esbuild/lib/main.js:581:7)
+[2026-08-20T06:18:29.812Z] at Socket.emit (node:events:524:28)
+[2026-08-20T06:18:29.812Z] at addChunk (node:internal/streams/readable:561:12)
+[2026-08-20T06:18:29.812Z] at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+[2026-08-20T06:18:29.812Z] at Readable.push (node:internal/streams/readable:392:5)
+[2026-08-20T06:18:29.812Z] at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+[2026-08-20T06:18:29.812Z] Node.js v22.13.0
+[2026-08-20T06:18:35.709Z] 6:18:35 AM [tsx] change in ./shared/const.ts Rerunning...
+[2026-08-20T06:18:35.907Z] cnode:internal/modules/package_json_reader:111
+[2026-08-20T06:18:35.907Z] const result = modulesBinding.getNearestParentPackageJSON(checkPath);
+[2026-08-20T06:18:35.907Z] ^
+[2026-08-20T06:18:35.907Z] Error: Invalid package config /home/ubuntu/affidavit-portal/package.json.
+[2026-08-20T06:18:35.907Z] at Object.getNearestParentPackageJSON (node:internal/modules/package_json_reader:111:33)
+[2026-08-20T06:18:35.907Z] at trySelf (node:internal/modules/cjs/loader:589:33)
+[2026-08-20T06:18:35.907Z] at Function._resolveFilename (node:internal/modules/cjs/loader:1221:24)
+[2026-08-20T06:18:35.907Z] at Function._load (node:internal/modules/cjs/loader:1070:27)
+[2026-08-20T06:18:35.907Z] at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2026-08-20T06:18:35.907Z] at wrapModuleLoad (node:internal/modules/cjs/loader:217:24)
+[2026-08-20T06:18:35.907Z] at Module.require (node:internal/modules/cjs/loader:1335:12)
+[2026-08-20T06:18:35.907Z] at node:internal/modules/cjs/loader:1834:12
+[2026-08-20T06:18:35.907Z] at loadPreloadModules (node:internal/process/pre_execution:726:5)
+[2026-08-20T06:18:35.907Z] at setupUserModules (node:internal/process/pre_execution:206:5) {
+[2026-08-20T06:18:35.907Z] code: 'ERR_INVALID_PACKAGE_CONFIG'
+[2026-08-20T06:18:35.907Z] }
+[2026-08-20T06:18:35.907Z] Node.js v22.13.0
+[2026-08-20T06:18:36.055Z] 6:18:36 AM [tsx] change in ./vite.config.ts Rerunning...
+[2026-08-20T06:18:36.088Z] cnode:internal/modules/package_json_reader:111
+[2026-08-20T06:18:36.088Z] const result = modulesBinding.getNearestParentPackageJSON(checkPath);
+[2026-08-20T06:18:36.088Z] ^
+[2026-08-20T06:18:36.088Z] Error: Invalid package config /home/ubuntu/affidavit-portal/package.json.
+[2026-08-20T06:18:36.088Z] at Object.getNearestParentPackageJSON (node:internal/modules/package_json_reader:111:33)
+[2026-08-20T06:18:36.088Z] at trySelf (node:internal/modules/cjs/loader:589:33)
+[2026-08-20T06:18:36.088Z] at Function._resolveFilename (node:internal/modules/cjs/loader:1221:24)
+[2026-08-20T06:18:36.088Z] at Function._load (node:internal/modules/cjs/loader:1070:27)
+[2026-08-20T06:18:36.088Z] at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2026-08-20T06:18:36.088Z] at wrapModuleLoad (node:internal/modules/cjs/loader:217:24)
+[2026-08-20T06:18:36.088Z] at Module.require (node:internal/modules/cjs/loader:1335:12)
+[2026-08-20T06:18:36.088Z] at node:internal/modules/cjs/loader:1834:12
+[2026-08-20T06:18:36.088Z] at loadPreloadModules (node:internal/process/pre_execution:726:5)
+[2026-08-20T06:18:36.088Z] at setupUserModules (node:internal/process/pre_execution:206:5) {
+[2026-08-20T06:18:36.088Z] code: 'ERR_INVALID_PACKAGE_CONFIG'
+[2026-08-20T06:18:36.088Z] }
+[2026-08-20T06:18:36.088Z] Node.js v22.13.0

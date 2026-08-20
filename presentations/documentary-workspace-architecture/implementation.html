@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Implementation Sequence Reduces Risk</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #ffffff; color: #2B3A42; font-family: Georgia, 'Times New Roman', serif; position: relative; }
+    .vline { position: absolute; top: 0; bottom: 0; width: 1px; background: #2B3A42; opacity: .30; }
+    .hline { position: absolute; left: 0; right: 0; height: 1px; background: #2B3A42; opacity: .30; }
+    .kicker { font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; letter-spacing: 1.8px; color: #8B2635; }
+    .headline { font-family: 'Courier New', monospace; font-size: 38px; font-weight: 700; line-height: 1.14; }
+    .subhead { margin-top: 13px; max-width: 860px; font-size: 16px; line-height: 1.4; color: #3E505B; }
+    .progress { position: absolute; left: 78px; right: 78px; top: 269px; height: 1px; background: #8B2635; }
+    .stage-row { position: absolute; left: 78px; top: 288px; width: 1124px; display: flex; gap: 10px; }
+    .stage { width: 179px; min-height: 220px; border: 1px solid #2B3A42; background: #ffffff; position: relative; }
+    .stage-num { width: 50px; height: 42px; border-right: 1px solid #2B3A42; border-bottom: 1px solid #2B3A42; display: flex; align-items: center; justify-content: center; font-family: 'Courier New', monospace; font-size: 16px; font-weight: 700; color: #8B2635; }
+    .stage-title { padding: 20px 14px 0 14px; font-family: 'Courier New', monospace; font-size: 14px; font-weight: 700; line-height: 1.25; letter-spacing: .2px; }
+    .stage-text { padding: 13px 14px 15px 14px; color: #3E505B; font-size: 13px; line-height: 1.34; }
+    .stage-marker { position: absolute; top: -26px; left: 76px; width: 9px; height: 9px; background: #8B2635; border: 1px solid #8B2635; }
+    .verify { position: absolute; left: 78px; right: 78px; bottom: 48px; min-height: 106px; border-top: 1px solid #2B3A42; border-bottom: 1px solid #2B3A42; display: flex; }
+    .verify-label { width: 205px; padding: 25px 18px 0 0; font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; letter-spacing: .8px; color: #8B2635; }
+    .verify-column { flex: 1; border-left: 1px solid #2B3A42; padding: 18px 15px 0 18px; }
+    .verify-column strong { font-family: 'Courier New', monospace; font-size: 12px; letter-spacing: .4px; }
+    .verify-column p { margin-top: 9px; color: #3E505B; font-size: 13px; line-height: 1.3; }
+    .note { position: absolute; right: 78px; top: 92px; border: 1px solid #8B2635; color: #8B2635; font-family: 'Courier New', monospace; font-size: 11px; font-weight: 700; letter-spacing: .55px; padding: 9px 11px; }
+    .folio { position: absolute; right: 78px; bottom: 28px; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 1px; color: #3E505B; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="vline" style="left: 5.7%;"></div><div class="vline" style="left: 50%;"></div><div class="vline" style="left: 94.3%;"></div>
+    <div class="hline" style="top: 8%;"></div><div class="hline" style="top: 92%;"></div>
+    <section style="position:absolute; left:78px; top:76px;">
+      <div class="kicker">09 / PROPOSED DELIVERY ORDER</div>
+      <h1 class="headline" style="margin-top:16px;">Implementation sequence reduces risk.</h1>
+      <p class="subhead">Build the persistent model and enforcement points first, then add editing capability, and only then permit a controlled approval and export flow.</p>
+    </section>
+    <div class="note">EACH STAGE HAS A VERIFICATION GATE</div>
+    <div class="progress"></div>
+    <section class="stage-row">
+      <div class="stage"><div class="stage-marker"></div><div class="stage-num">01</div><div class="stage-title">NORMALIZE THE DATA MODEL</div><div class="stage-text">Align documentary status enums, relationship approvals, and add document version fields.</div></div>
+      <div class="stage"><div class="stage-marker"></div><div class="stage-num">02</div><div class="stage-title">DEFINE API CONTRACTS</div><div class="stage-text">Shared DTOs, stable error envelope, authorization service, and transition validation.</div></div>
+      <div class="stage"><div class="stage-marker"></div><div class="stage-num">03</div><div class="stage-title">LOAD THE AGGREGATE</div><div class="stage-text">Workspace read endpoint, case-scoped resource search, and role-aware visibility tests.</div></div>
+      <div class="stage"><div class="stage-marker"></div><div class="stage-num">04</div><div class="stage-title">PERSIST STRUCTURE</div><div class="stage-text">Chapter/item CRUD, batch reorder, relationship review, and transactional audit writes.</div></div>
+      <div class="stage"><div class="stage-marker"></div><div class="stage-num">05</div><div class="stage-title">CONNECT THE UI</div><div class="stage-text">Replace static cards with data-backed components and conflict-aware mutation states.</div></div>
+      <div class="stage"><div class="stage-marker"></div><div class="stage-num">06</div><div class="stage-title">APPROVE + EXPORT</div><div class="stage-text">Readiness checks, reproducible snapshots, and end-to-end Owner/Admin/Guest flow testing.</div></div>
+    </section>
+    <section class="verify">
+      <div class="verify-label">EVIDENCE OF<br/>COMPLETION</div>
+      <div class="verify-column"><strong>SCHEMA + API</strong><p>Migration review, enum compatibility, authorization, validation, and error-contract unit tests.</p></div>
+      <div class="verify-column"><strong>WORKSPACE + MUTATIONS</strong><p>Aggregate-read, transaction, reorder, conflict, relationship, and audit assertions.</p></div>
+      <div class="verify-column"><strong>FINAL REVIEW FLOW</strong><p>Create → edit → submit → reject/modify → approve → export snapshot → audit verification.</p></div>
+    </section>
+    <div class="folio">DOCUMENTARY WORKSPACE / 10</div>
+  </div>
+</body>
+</html>

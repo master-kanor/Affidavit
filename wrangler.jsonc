@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "affidavit",
+  "pages_build_output_dir": "./dist/public",
+  "compatibility_date": "2026-08-20",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "CORS_ALLOWED_ORIGIN": "https://masterkanorcase.online"
+  }
+}

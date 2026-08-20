@@ -1,0 +1,1253 @@
+export const canonicalCase = {
+  "case": {
+    "id": "master-kanor-case",
+    "title": "MASTER KANOR CASE",
+    "subtitle": "AI KNOWLEDGE, MEMORY, EVIDENCE INTELLIGENCE, AFFIDAVIT BUILDER AND DOCUMENTARY SYSTEM",
+    "affiant": "CHARLES TANAUAN",
+    "sourceLabel": "Supplied unofficial evidence landing source mapped to supplied official affidavit text source",
+    "sourceIntegrityNote": "Source text is preserved exactly as extracted. Gallery labels and relationships are separate records and are not inserted into the text-only source."
+  },
+  "sections": [
+    {
+      "id": "s-intro",
+      "number": "INTRO",
+      "title": "Affidavit Header — Sworn Statement",
+      "badge": "OFFICIAL TEXT",
+      "sourceLabel": "Official Affidavit · Paragraph Opening",
+      "sourceText": [
+        {
+          "number": null,
+          "text": "Na ako po ay nagsasalaysay upang maghain ng \"Multiple Cybercrime Violations under R.A. 10175 involving Unauthorized Access, Data and System Interface, Computer-Related Fraud, Identity Theft, Cyber Harassment, and Qualified Theft; plus Violation of Human Rights due to Unauthorized Experimentation and Psychological Torture.\" laban kina CARL JUSTIN PAGASPAS, MARIO NALDA CADISAL, LAWRENCE DARIA ;"
+        },
+        {
+          "number": null,
+          "text": "Na, Ako ay ang kasalukuyang kinakasama ni CRIS ABADINES;"
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-intro-gallery-1",
+          "title": "📋 Evidence Exhibit — Affidavit Cover",
+          "items": [
+            {
+              "id": "affidavit-cover",
+              "title": "Affidavit Title Page",
+              "icon": "📄",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "filed-stamp",
+              "title": "Filed Stamp / Notary Seal",
+              "icon": "🗂",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-1",
+      "number": "§ 3–5",
+      "title": "Identity & Background — Social Media Channels · Online Stores",
+      "badge": "PHOTO EVIDENCE",
+      "sourceLabel": "Official Affidavit · Paragraphs 3–5",
+      "sourceText": [
+        {
+          "number": "3",
+          "text": "Dahil meron sila Cris internet connection o WiFi, doon ako nagsimula mag-search online kung paano kumita ng pera online tulad ng play-to-earn na mga application. At Naging gaming content creator din ako sa Mobile Legends gamit lamang ang cellphone. Meron din akong Social media channels,"
+        },
+        {
+          "number": "4",
+          "text": "pero dahil di pa ako marunong kung paano ito kumikita ay pumasok lang muna ako sa pag buy and sell. Kung saan bumibili ako ng mga produkto sa Shopee at ibinbenta ko sa Facebook at Shopee. Nakapag-invest ako ng isang laptop at nagkaroon kami ng pwesto sa night market dito sa Tacloban."
+        },
+        {
+          "number": "5",
+          "text": "Dahil sa COVID-19 noong 2020, napilitan kaming magsara ng aming physical store at online store dahil sa lockdown at hirap sa pag-restock ng mga produkto."
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-1-gallery-1",
+          "title": "📸 Evidence Gallery — SOCIAL MEDIA CHANNELS · ONLINE STORES",
+          "items": [
+            {
+              "id": "smc-1",
+              "title": "Social Media Channel Screenshot",
+              "icon": "📱",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "smc-2",
+              "title": "Shopee / Facebook Store",
+              "icon": "🛍",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "smc-3",
+              "title": "Night Market Stall",
+              "icon": "🏪",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "smc-4",
+              "title": "Laptop Investment",
+              "icon": "💻",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-2",
+      "number": "§ 6–8",
+      "title": "Gaming Career — First Computer · Channel Revenue · Computer Building",
+      "badge": "PHOTO EVIDENCE",
+      "sourceLabel": "Official Affidavit · Paragraphs 6–8",
+      "sourceText": [
+        {
+          "number": "6",
+          "text": "Kaya naisipan kong bumalik sa pagiging content creator sa Facebook at YouTube. Dahil cellphone lang at low specs na laptop ang gamit ko, nag-isip ako ng paraan kung paano ko maia-upgrade ang mga gamit ko sa paggawa ng content. Sakto naman at umuso sa panahong iyon ang barter, kaya na-trade ko ang aking lumang cellphone para sa isang computer at pina-setup ko ito sa pamangkin ni Cris na si Carl Justin Pagaspas."
+        },
+        {
+          "number": "7",
+          "text": "At doon na ako nag-focus bilang isang Gaming Content Creator. Dahil nakaabot sa milyon ang views ng aking mga videos sa YouTube, nagsimula na rin akong kumita. Ginamit ko ang aking revenue mula sa YouTube para makapag-invest sa mas magandang computer na nagkakahalaga ng isang daang libong piso (₱100,000) — mga gaming computers na gagamitin ko sa trabaho."
+        },
+        {
+          "number": "8",
+          "text": "Ang pamangkin ni Cris na si Carl Justin Pagaspas, isang IT technician, ang nag-build ng mga computers na iyon. Siya rin lagi ang kinukuha ko para sa pag-aayos ng mga PC, internet, at troubleshooting dahil siya lang ang kilala kong IT technician na kaibigan ko at pamangkin pa ni Cris."
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-2-gallery-1",
+          "title": "📸 Evidence Gallery — FIRST COMPUTER · CHANNELS REVENUE · COMPUTER BUILDING",
+          "items": [
+            {
+              "id": "fc-1",
+              "title": "First Computer Setup",
+              "icon": "🖥",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "fc-2",
+              "title": "YouTube Revenue Screenshot",
+              "icon": "📊",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "fc-3",
+              "title": "PC Build by Carl Justin",
+              "icon": "🔧",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "fc-4",
+              "title": "Gaming Setup ₱100,000",
+              "icon": "🎮",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-3",
+      "number": "§ 9–11",
+      "title": "Casino Promotions & Team Formation — Casino Promotion · Mario Tutorial · Lawrence Tutorial",
+      "badge": "PHOTO EVIDENCE",
+      "sourceLabel": "Official Affidavit · Paragraphs 9–11",
+      "sourceText": [
+        {
+          "number": "9",
+          "text": "Dahil sa Dumami na ang aking Engagement Sa Social Media Channels, doon na rin nagsimulang pumasok ang mga promotion. Dahil napatunayan ko na may mga legit promotion, doon na ako nagsimulang mag-recommend sa mga kaibigan kong Gaming Content Creator din na tulad ko. Hanggang sa pumasok na rin ang mga casino promotion, at doon ako naging agent na siyang taga-recommend ng mga kapwa ko content creator sa mga casino owner para mag-promote ng kanilang Casino platform. Yung talent fee ko noon sa umpisa ay five hundred (₱500) pesos bawat isang successful cooperation para sa promotion."
+        },
+        {
+          "number": "10",
+          "text": "Sa kagustuhan kong makatulong sa iba, nakita ko sa Facebook ang mga local vloggers sa Tacloban na sina Simoy at Sadam, kilala bilang \"Mga Kawawang Nilalang.\" Ini-invite ko sila upang matulungan na ma-improve ang kanilang content at mabigyan ng promotion, lalo na't si Simoy ay aking kababata."
+        },
+        {
+          "number": "11",
+          "text": "Habang nagtatrabaho si Mario sa akin, ako ang sumasagot sa kanyang pagkain at tirahan, kasama na rin ang ₱10,000 na buwanang sahod. Si Lawrence naman ay regular na nakatatanggap ng kanyang komisyon."
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-3-gallery-1",
+          "title": "📸 Evidence Gallery — CASINO PROMOTION · PREVIOUS CASINO · MARIO & LAWRENCE TUTORIAL",
+          "items": [
+            {
+              "id": "cas-1",
+              "title": "Casino Promotion Contract",
+              "icon": "🎰",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "cas-2",
+              "title": "Mario Tutorial Chats",
+              "icon": "💬",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "cas-3",
+              "title": "Lawrence Commission Records",
+              "icon": "📑",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "cas-4",
+              "title": "Influencer Manager Setup",
+              "icon": "🤝",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-4",
+      "number": "§ 12–15",
+      "title": "Vlogger Partners & Content Vehicle — Mga Kawawang Nilalang · Tacloban Vines",
+      "badge": "PHOTO EVIDENCE",
+      "sourceLabel": "Official Affidavit · Paragraphs 12–15",
+      "sourceText": [
+        {
+          "number": "12",
+          "text": "Ganoon din ang mga vlogger na sina Simoy at Sadam—lagi silang nasa akin upang maghintay ng promotion. May mga pagkakataon din na nagkakasama kami upang mag-bonding o kumain sa labas kasama ang iba pa naming mga kaibigan."
+        },
+        {
+          "number": "13",
+          "text": "Napagplanuhan namin na gumawa ng iisang page at YouTube channel. Naisipan namin ito dahil tuwing lumalabas kami o may outing, makakagawa kami ng content at hindi masasayang ang mga labas naming magkakaibigan."
+        },
+        {
+          "number": "14",
+          "text": "Dahil sa marami kami at walang mga service ang iba sa kanila, napagpasyahan kong mag-invest ng sasakyan na binili namin sa Maynila para magamit sa trabaho at paggawa ng content tuwing may lakad o outing."
+        },
+        {
+          "number": "15",
+          "text": "Noong Mayo 2023, pagkabalik namin ni Mario galing Maynila, nagplano kami na magpa-blessing ng sasakyan sa Sulangan, Eastern Samar, kasama sina Mario at Lawrence. Ngunit hindi sila sumama sa kung anu-anong dahilan."
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-4-gallery-1",
+          "title": "📸 Evidence Gallery — MGA KAWAWANG NILALANG · TACLOBAN VINES · PAG PUNTA SA MANILA",
+          "items": [
+            {
+              "id": "vlog-1",
+              "title": "Mga Kawawang Nilalang Page",
+              "icon": "🎥",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "vlog-2",
+              "title": "Service Vehicle Purchase",
+              "icon": "🚗",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "vlog-3",
+              "title": "Tacloban Vines Content",
+              "icon": "🗺",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "vlog-4",
+              "title": "Sulangan, Eastern Samar Trip",
+              "icon": "📍",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-5",
+      "number": "§ 16–19",
+      "title": "Discovery of Fraud & Admission — Transaction History · Proof ng Pag-Amin",
+      "badge": "⚠ KEY EVIDENCE",
+      "sourceLabel": "Official Affidavit · Paragraphs 16–19",
+      "sourceText": [
+        {
+          "number": "16",
+          "text": "Umuwi si Mario mag-isa sa Samar. Nagduda ako, kaya agad kong chineck ang computer na ginagamit niya. Doon ko nakita ang mga aktibidad at ang pondo sa Coinbase Crypto Wallet , pati na rin ang mga invoice na may kinalaman sa trabaho—nag-ooperate na pala sila ng mga casino sa pamamagitan ng revenue share at meron na rin silang sariling mga casino platforms, applications, gamit ang perang nakuha mula sa hindi awtorisadong transaksyon sa negosyo."
+        },
+        {
+          "number": "17",
+          "text": "Hindi lang iyon—may sarili na rin silang mga agencies tulad ng influencer marketing service providers na konektado sa mga casino platforms."
+        },
+        {
+          "number": "18",
+          "text": "Mas nakakabahala, nakita ko rin ang mga transaksyon nila sa Telegram kung saan pinapalusot nila ang pera na galing sa cuts ng influencer at commissions mula sa platform. Ginagamit nila ang Telegram para itago ang kanilang mga usapan at iligal na galaw, kaya doon ko tuluyang nakumpirma na matagal na pala nila akong ginamit at pinaikot para makabuo sila ng sarili nilang negosyo sa likod ko."
+        },
+        {
+          "number": "19",
+          "text": "Sinabihan ko si Cris tungkol sa ginawa nila at ni-report ito sa kapatid niyang pulis. Kinompronta ko sila sa pamamagitan ng chat at pareho nilang inamin na isang beses lang nila ginawa iyon."
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-5-gallery-1",
+          "title": "📸 Evidence Gallery — TRANSACTION & HISTORY · PROOF OF TRANSACTION · PROOF NG PAG AMIN",
+          "items": [
+            {
+              "id": "txn-1",
+              "title": "Coinbase Crypto Wallet Activity",
+              "icon": "₿",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "txn-2",
+              "title": "Telegram Transactions Screenshot",
+              "icon": "📱",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "txn-3",
+              "title": "Admission Chat Screenshot",
+              "icon": "💬",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "txn-4",
+              "title": "Casino Invoice Records",
+              "icon": "📋",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "txn-5",
+              "title": "Dropshipping Store Records",
+              "icon": "🏦",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "txn-6",
+              "title": "Revenue Share Evidence",
+              "icon": "📊",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-7",
+      "number": "§ 20–22",
+      "title": "Device Surveillance — Unauthorized Remote Access to Devices & CCTV",
+      "badge": "⚠ CRITICAL",
+      "sourceLabel": "Official Affidavit · Paragraphs 20–22",
+      "sourceText": [
+        {
+          "number": "20",
+          "text": "Noong December 2023, wala akong alam na lahat ng aking activity mula sa cellphone, CCTV, at desktop ay naka-link na pala sa kanila ."
+        },
+        {
+          "number": "21",
+          "text": "December 28, 2023 — umuwi si Mario sa Samar. Plinano ko sanang lagyan ng monitoring tool ang computer na ginagamit niya, pero nalaman ko na mismong desktop at mga CCTV ang naka-monitor pala sa kanya. Nilock niya ang mouse ng computer na dahilan upang hindi ko ito magamit."
+        },
+        {
+          "number": "22",
+          "text": "January 5, 2024 — bumalik si Mario dito sa Tacloban galing Samar pagkatapos ng aming Christmas break. Kinuha ko ang cellphone niya, at doon ko nakumpirma na naka-remote na pala ang lahat ng aking activity sa desktop, cellphone, at CCTV ."
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-7-gallery-1",
+          "title": "📸 Evidence Gallery — DEVICE LINKED · Remote Access Confirmation",
+          "items": [
+            {
+              "id": "dev-1",
+              "title": "CCTV Remote Access Proof",
+              "icon": "📹",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "dev-2",
+              "title": "Desktop Monitor Linked",
+              "icon": "🖥",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "dev-3",
+              "title": "Cellphone Remote Evidence",
+              "icon": "📲",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "dev-4",
+              "title": "Mouse Locked Screenshot",
+              "icon": "🔒",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-8",
+      "number": "§ 23–27",
+      "title": "Attempted Poisoning — Spy Camera · Rat Poison Discovery",
+      "badge": "🚨 CRITICAL",
+      "sourceLabel": "Official Affidavit · Paragraphs 23–27",
+      "sourceText": [
+        {
+          "number": "23",
+          "text": "Simula noon, pinalabas ko muna si Mario sa bootcamp kung saan naka-pwesto ang mga computer. Sa labas ng bootcamp, meron doon higaan at doon siya nakatambay — katabi lang ng mismong bootcamp."
+        },
+        {
+          "number": "24",
+          "text": "Agad akong nag-install ng spy camera detector at nilibot ko ang buong bootcamp pati na rin ang lugar na tinatambayan ni Mario. Pagkatapos noon, lumabas ako sandali. Pagbalik ko, naabutan ko si Mario na may tinatali sa isang plastic."
+        },
+        {
+          "number": "25",
+          "text": "Pumasok ako sa bootcamp at sumunod naman agad si Mario sa akin. Pagkatapos, pumunta ako sa pwesto niya para tingnan kung ano ang tinatali niya sa plastic — at doon ko nakita ang panlason para sa daga ."
+        },
+        {
+          "number": "26",
+          "text": "Nang makuha ko iyon, ibinigay ko ito kay Cris upang ipasuri. Doon nakita sa laman ng plastic na bagong bukas na panlason sa daga ang laman."
+        },
+        {
+          "number": "27",
+          "text": "Dahil nalaman na nina Mario na alam ko na ang mga ginagawa nila, tinangka niya akong lasunin gamit ang panlason ng daga ."
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-8-gallery-1",
+          "title": "📸 Evidence Gallery — Rat Poison · Bootcamp · Spy Camera Detector",
+          "items": [
+            {
+              "id": "poi-1",
+              "title": "Rat Poison (Panlason) Photo",
+              "icon": "⚠",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "poi-2",
+              "title": "Spy Camera Detector Result",
+              "icon": "🔍",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "poi-3",
+              "title": "Bootcamp Location Photo",
+              "icon": "🏠",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "poi-4",
+              "title": "Plastic Bag Evidence",
+              "icon": "📸",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-9",
+      "number": "§ 28–37",
+      "title": "IT Sabotage by Carl Justin Pagaspas — AnyDesk · USB Tampering · Deleted Files",
+      "badge": "⚠ CRITICAL",
+      "sourceLabel": "Official Affidavit · Paragraphs 28–37",
+      "sourceText": [
+        {
+          "number": "28",
+          "text": "January 8, 2024, Lunes — nagpatulong ako sa pamangkin ni Cris na si Carl Justine Pagaspas , isang Information Technologist, dahil siya ang nag-set up ng aming mga desktop at WiFi, at siya lang din ang kilala naming IT technician."
+        },
+        {
+          "number": "29",
+          "text": "Una niyang inayos ang aking laptop at sinabi niya na kailangan itong i-reformat. Nagtaka ako dahil pagkatapos niya itong i-reformat, hindi na niya ito ginamit. Ang dahilan daw ay hindi ito makakonekta sa computer na gamit ni Mario."
+        },
+        {
+          "number": "30",
+          "text": "Hiniram niya ang laptop ni Yanyan, kapatid ni Cris, at iyon na lang daw ang gagamitin niya para ma-access ang computer ni Mario. Pagkatapos, hiniram niya ang dalawang cellphone ko — isang bagong Android at isang gamit kung iOS — para raw maka-connect siya sa internet. Sabi niya, magko-clone daw siya ng mga files galing sa computer sa pamamagitan ng USB."
+        },
+        {
+          "number": "31",
+          "text": "Kinabukasan, dahil may trabaho si Carl Justine Pagaspas, ni-remote niya na lang ang computer ni Mario Nalda Cadisal gamit ang AnyDesk para ma-retrieve ang mga deleted files."
+        },
+        {
+          "number": "32",
+          "text": "Nung na-remote na niya ang computer ni Mario, nag-install siya ng isang application na nagpapalabas ng \"Yes\" or \"No\" sa screen. Doon, matagal na naka-tambay ang PC at yung mouse ay walang galaw, kaya pala — dahil meron pala siyang ginagamit na pointer mouse sa likod ng unit."
+        },
+        {
+          "number": "33",
+          "text": "Tinanong ko siya kung anong oras siya lalabas sa trabaho. Sabi niya, 7:00 AM daw kaya sabi ko, aantayin kita, kakain tayo. Pero bandang 4:00 AM, bigla siyang nag-chat na \"teka lang\" daw at lalabas muna siya papuntang Andok's kasi inutusan daw siya ng amo niya na bumili ng pagkain."
+        },
+        {
+          "number": "34",
+          "text": "Pinuntahan ko agad siya sa Andok's at nadatnan ko siyang kumakain. Kumain na rin ako kasama niya. Pagkatapos naming kumain, wala siyang dalang kahit ano, kaya bumalik na ako sa bootcamp."
+        },
+        {
+          "number": "35",
+          "text": "Pagkatapos noon, yung mga na-retrieve niyang files na binigay sa akin ay mula lamang sa December 29, 2023 hanggang January 2024 . Yung mga files mula December 29 history pababa ay ginawa niyang RSS files na hindi ko ma-open."
+        },
+        {
+          "number": "36",
+          "text": "Sinabi ko sa kanya, \"I-open mo muna itong RSS files para makapag-review ako ng mga na-delete na files.\" Sagot niya, kailangan daw ng alternative tool para ma-open iyon."
+        },
+        {
+          "number": "37",
+          "text": "Pina-open ko sa kanya mismo pero hindi rin niya ito na-open. Doon na ako nagtaka dahil hindi rin niya alam kung anong eksaktong petsa umuwi si Mario sa Samar. At ang mga files na binigay niya sa akin ay limitado lang mula December 29, 2023 hanggang January 2024."
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-9-gallery-1",
+          "title": "📸 Evidence Gallery — DELETED FILES · AnyDesk Remote · USB Tampering",
+          "items": [
+            {
+              "id": "usb-1",
+              "title": "USB Contents (Corrupted)",
+              "icon": "💾",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "usb-2",
+              "title": "AnyDesk Remote Session",
+              "icon": "🖥",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "usb-3",
+              "title": "RSS Files (Inaccessible)",
+              "icon": "📂",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "usb-4",
+              "title": "Deleted Files Evidence",
+              "icon": "🗑",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "usb-5",
+              "title": "Chat: \"4:00 AM\" Andok's Excuse",
+              "icon": "💬",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "usb-6",
+              "title": "WPS Office Encrypted Files",
+              "icon": "🔑",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-10",
+      "number": "§ 38–49",
+      "title": "Continued Evidence Tampering — Laptop Corruption · Desiree's Device · Deep Suspicion",
+      "badge": "PHOTO EVIDENCE",
+      "sourceLabel": "Official Affidavit · Paragraphs 38–49",
+      "sourceText": [
+        {
+          "number": "38",
+          "text": "Sinabi ko ito kay Cris na may duda ako kay Carl Justin Pagaspas dahil yung mga files na binigay sa akin na naka-save sa USB ay mula lamang sa December 29, 2023 hanggang January 2024. Yung mga files mula December 29, 2023 history pababa ng mas naunang mga aktibidad ay hindi ibinigay sa akin. Pero ang sagot ni Cris ay hindi raw iyon posible dahil pamangkin niya raw si Carl Justin Pagaspas at kakampi raw natin siya."
+        },
+        {
+          "number": "39",
+          "text": "Kaya kinabukasan, binigay ko sa kanya ang dalawang cellphone para tanggalin ang naka-remote access sa mga ito at para rin buksan ang WPS Office na naka-encrypt. Nabuksan niya ito at sinabi sa akin na wala raw laman."
+        },
+        {
+          "number": "40",
+          "text": "Sinubukan naming maghanap ni Cris ng ibang IT technician, pero dahil wala kaming mahanap, si Carl Justin Pagaspas pa rin ang pinapunta ko. Subalit dahil meron siyang duty sa trabaho niya, hindi raw siya makakapunta at sinabi na sa Sabado at Linggo na lang dahil wala siyang pasok sa mga araw na iyon."
+        },
+        {
+          "number": "41",
+          "text": "Pinuntahan ko siya noong Sabado, January 13, 2024, sa kanilang bahay, pagkatapos ng ilang araw, para magpatulong na magpa-retrieve muli ng mga deleted na files sa computer na ginamit ni Mario Nalda Cadisal at mai-save ito sa USB gamit ang sarili niyang computer."
+        },
+        {
+          "number": "42",
+          "text": "Pero napansin ko na parang may delaying tactics siyang ginagawa para hindi matuloy ang pag-retrieve ng mga naburang files."
+        },
+        {
+          "number": "43",
+          "text": "Dahil matagal na nagbubukas ang laptop na hiniram niya sa kapatid niya sa mga oras na iyon, napagdesisyunan ko na kunin ko na lang ang sarili kong laptop."
+        },
+        {
+          "number": "44",
+          "text": "Pagkabalik ko sa kanila, gumagana na ang laptop ng kapatid niya kaya hindi ko na itinuloy ang pagbukas ng sarili kong laptop. Yung laptop ng kapatid niya na ang ginamit ko, pero connected na pala ito sa personal computer niya ."
+        },
+        {
+          "number": "45",
+          "text": "Matatapos na sana ang pag-transfer ng mga files na na-retrieve papunta sa USB, pero pinacancel niya ito dahil madaling araw na raw. Kaya iniwan ko na lang ang USB sa kanya para siya na lang ang magtapos ng pag-retrieve ng files."
+        },
+        {
+          "number": "46",
+          "text": "Ngunit hindi pa rin niya ito tinapos, ang dahilan daw ay may inaayos siyang computer nila. Kaya hiningi ko na lang muli ang USB at Tiningnan ko ito sa isang computer shop."
+        },
+        {
+          "number": "47",
+          "text": "Doon ko na nakita na wala nang laman ang ibang files sa USB at corrupted na ito ."
+        },
+        {
+          "number": "48",
+          "text": "Nang hiniram naman ang laptop ng isa pang pamangkin ni Cris na babae na si Desiree, doon na namin nalaman na hindi na rin ito mabuksan. Kaya ipinaayos namin ito sa isang technician na kakilala ni Cris."
+        },
+        {
+          "number": "49",
+          "text": "Doon na kami nagsimulang magkaroon ng malalim na duda na may alam si Carl Justine Pagaspas sa pagha-hack ng aking mga files. Imbes na maayos ang problema, mas lalo pang lumala ang pagkawala ng mga files pati ang pagkasira ng aking computer at gadgets."
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-10-gallery-1",
+          "title": "📸 Evidence Gallery — Corruption · Laptop Damage · Device Failures",
+          "items": [
+            {
+              "id": "dmg-1",
+              "title": "Corrupted USB Files",
+              "icon": "💥",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "dmg-2",
+              "title": "Desiree's Laptop (Cannot Open)",
+              "icon": "💻",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "dmg-3",
+              "title": "Technician Repair Receipt",
+              "icon": "🔧",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-11",
+      "number": "§ 50–53",
+      "title": "Insider Identities Revealed — Identity Theft · Crypto Wallet Control · RACU Obstruction",
+      "badge": "🚨 CRITICAL",
+      "sourceLabel": "Official Affidavit · Paragraphs 50–53",
+      "sourceText": [
+        {
+          "number": "50",
+          "text": "Pagbalik ko sa Tacloban, natuklasan ko na sina Mario Nalda Cadisal at Lawrence Daria ay naging mga insider sa loob ng aking sistema at negosyo. Samantala, si Carl Justin Pagaspas ay isa palang cybersecurity personnel sa Region 8 na nasuhulan upang burahin ang mga posibleng ebidensya, habang may mga grupo ng mga IT hacker na kasabwat nila sa likod ng mga pag-atake at manipulasyon sa aking mga account, data, at digital identity."
+        },
+        {
+          "number": "51",
+          "text": "Ginamit nila ang aking pagkakakilanlan nang walang pahintulot. Sila rin ang nag-remote at nag-lock sa aking mga personal account at digital identity gamit ang mga crypto fundraising digital wallets, bank accounts, at iba pang credentials accounts na nakapangalan sa akin. Kinontrol nila ang aking mga pondo at sensitibong impormasyon, at ni-remote ito pabalik sa akin gamit ang sarili kong pangalan at identity upang palabasing ako mismo ang may kontrol."
+        },
+        {
+          "number": "52",
+          "text": "Hindi na ako nakabalik sa RACU Region 8. Dahil Binabytime ako — sinadyang abalahin sa trabaho at mino-monitor ang kilos ko upang harangin ang pagsampa ko ng kaso sa RACU Region 8."
+        },
+        {
+          "number": "53",
+          "text": "Dahil dito, agad akong nakipag-ugnayan sa NBI, subalit nabigo silang magsagawa ng imbestigasyon. Nagpunta rin ako sa DICT upang humingi ng tulong, ngunit hanggang sa ngayon ay wala pa rin akong natatanggap na tugon o solusyon."
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-11-gallery-1",
+          "title": "📸 Evidence Gallery — Identity Theft · Crypto Accounts · NBI / DICT Visits",
+          "items": [
+            {
+              "id": "id-1",
+              "title": "Identity Theft Records",
+              "icon": "🆔",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "id-2",
+              "title": "Locked Bank/Crypto Accounts",
+              "icon": "🏦",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "id-3",
+              "title": "NBI Visit / Referral Docs",
+              "icon": "🏛",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "id-4",
+              "title": "DICT Visit Record",
+              "icon": "📝",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-12",
+      "number": "§ 54–62",
+      "title": "IT Shadow / Business Mirror Group — Surveillance · Brain Reader Chip · sixtyNine Strategy",
+      "badge": "⚠ INVESTIGATION",
+      "sourceLabel": "Official Affidavit · Paragraphs 54–62",
+      "sourceText": [
+        {
+          "number": "54",
+          "text": "Nadiskubre ko na may grupong pang tinatawag na \"IT Shadow\" o \"Business Mirror\" na lihim na kumikilos sa likod ng mga insidente sa Tacloban City."
+        },
+        {
+          "number": "55",
+          "text": "Binacktrack nila ang buong online at personal history ko. Hinanapan nila ako ng mga bagay na maaari nilang gamitin laban sa akin upang sirain ang aking reputasyon at kredibilidad. Nilagyan rin nila ako ng microchip — at mula noon, hinack nila ang aking utak gamit ang teknolohiyang may kakayahang bumasa ng iniisip. Ginawa ito sa pamamagitan ng panlilinlang, sa tulong ng isa sa mga kaibigan kong maaaring minanipula o sinuhulan upang makainom ako ng isang substance habang kami ay nag-iinuman."
+        },
+        {
+          "number": "56",
+          "text": "Pagkaraan noon, napansin kong ako ay patuloy na minamanmanan. May nakakabasa sa isip ko at sumusunod sa bawat iniisip at nararamdaman ko. Ramdam kong ginagamit nila ang surveillance brain reader chip technology upang kontrolin at manipulahin ang aking mental na estado. Naririnig nila ang mga naririnig ko, at nababasa nila ang iniisip ko — sa real time."
+        },
+        {
+          "number": "57",
+          "text": "Ang layunin nila ay sirain ang aking pagkatao, palabasin akong baliw, at alisin ang aking kredibilidad upang wala nang maniwala sa akin."
+        },
+        {
+          "number": "58",
+          "text": "Ito ay isang classic na IT Shadow–Business Mirror strategy at bahagi ng hindi awtorisadong eksperimento na layuning paglaruan ako at gawing katatawanan ang sitwasyon. Isang tinatawag na \"sixtyNine\" Strategy ."
+        },
+        {
+          "number": "59",
+          "text": "Halimbawa: Kung lalabas ako ng bahay lalabas rin sila ng bahay, kung kakain ako ng tae hindi sila kakain ng tae, Pinipili lang nila ang gagayahin saakin at mga babaliktarin."
+        },
+        {
+          "number": "60",
+          "text": "Baliktaran: Kung ano ang gusto ko, yun ang ayaw nila mangyari sa akin. Kung ano ang ayaw ko, yun ang gusto nilang mangyari sa akin."
+        },
+        {
+          "number": "61",
+          "text": "Binabaliktad para isetup ako. Hinaharang ang mga ginagawa ko. Lahat ng sinasabi ko o mga naririnig ko ay gagamitin saakin o dikaya babaliktarin para gamitin saakin. lahat ng mga kaibigan ko na pinpuntahan ko para humingi ng tulong ay manipulate o dikaya sinsuholan nila ito para gamitin saakin."
+        },
+        {
+          "number": "62",
+          "text": "Pinahiya nila ako sa mga taong malapit saakin para ma-pressure akong umalis ng Tacloban, upang hindi ko maasikaso ang aking kaso at mapilitang huminto sa sarili kong business."
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-12-gallery-1",
+          "title": "📸 Evidence Gallery — IT Shadow Group · Psychological Manipulation",
+          "items": [
+            {
+              "id": "shd-1",
+              "title": "IT Shadow Group Evidence",
+              "icon": "🕵",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "shd-2",
+              "title": "Unauthorized Experimentation",
+              "icon": "🧠",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "shd-3",
+              "title": "Public Humiliation Evidence",
+              "icon": "📣",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-13",
+      "number": "§ 63–72",
+      "title": "Death Threats & YubiKey Incident — Motel Attacks · YubiKey in Mud · Binance Wallet",
+      "badge": "🚨 CRITICAL",
+      "sourceLabel": "Official Affidavit · Paragraphs 63–72",
+      "sourceText": [
+        {
+          "number": "63",
+          "text": "Nalaman ko na meron na palang constant threats sa akin. Dahil sa sinet-up ako pinagplanuhan na nila akong sirain. Papahirapan ako, aagawin ang trabaho ko o ang online business ko, at pababalikin ako sa dati kong mga trabaho tulad ng construction at pagpadyak ng pedicab. babaliwin ako, ipaparalyze, at kukunin ang mga credentials, at pagkatapos, ako ay papatayin ."
+        },
+        {
+          "number": "64",
+          "text": "Tinatakot nila ako sa tuwing nag-aasikaso ako o nagsusulat ako ng mga pangyayari sa akin."
+        },
+        {
+          "number": "65",
+          "text": "Hindi rin ako pinapatulog — tuwing matutulog na ako, may mga paraan silang ginagawa para mapuyat ako at hindi ako makapag-asikaso ng aking kaso. Ginagawa ito para palabasin na ako ay paranoid lamang."
+        },
+        {
+          "number": "66",
+          "text": "Dahil dito, hindi ako makatulog ng maayos sa inuupahan naming bahay."
+        },
+        {
+          "number": "67",
+          "text": "Pumunta ako sa Matues Motel kasama si Cris para sana makatulog nang maayos. Pero kahit nandoon na kami, hindi pa rin ako nakatulog nang maayos dahil ramdam kong may mga taong sumusunod sa akin."
+        },
+        {
+          "number": "68",
+          "text": "Bumalik kami ni cris sa Sabang, sa inuupahan naming bahay. Pero ganoon pa rin ang naranasan ko — tuwing bumabalik ako,"
+        },
+        {
+          "number": "69",
+          "text": "Dahil sa patuloy na puyat at mental na pag-atake, napilitan akong umalis ulit at pumunta ng motel para sana makabawi sa tulog at makapagpahinga kahit saglit."
+        },
+        {
+          "number": "70",
+          "text": "Pagbalik namin ni Cris sa Sabang, tuloy pa rin ang psychological harassment."
+        },
+        {
+          "number": "71",
+          "text": "Dahil hindi ako makatulog at lumalala ang mga banta, nagdesisyon akong magmotor papunta sa isang kung kaibigan sa Utap. Doon ako nagpalipas ng oras at ikinuwento ko ang mga nangyayari. Iniwan ko ang bag ko na may mga ebidensiya, devices, at laptop. Isinama ko ang kaibigan ko papuntang Hillside Ville at doon ako umakyat sa bundok at pumunta sa bukid. Tumatakbo ako habang bitbit ang YubiKey dahil ramdam kong may sumusunod sa akin."
+        },
+        {
+          "number": "72",
+          "text": "agad akong bumalik sa bukirin. Habang nakaluhod ako sa tubig at putik, hawak ko ang YubiKey. Inihanda ko ito dahil pinapatay na ako para kung sakaling patayin man ako, mahuhulog ito sa putik at hindi na mapakinabangan."
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-13-gallery-1",
+          "title": "📸 Evidence Gallery — Motel Threats · YubiKey · Hillside Ville",
+          "items": [
+            {
+              "id": "thr-1",
+              "title": "Matues/Batchmate Motel",
+              "icon": "🏨",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "thr-2",
+              "title": "YubiKey Physical Evidence",
+              "icon": "🔑",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "thr-3",
+              "title": "Hillside Ville / Bukid Photo",
+              "icon": "🌾",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "thr-4",
+              "title": "Binance Wallet Deactivation",
+              "icon": "₿",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-14",
+      "number": "§ 73–81",
+      "title": "Manila Escape & Psychological Torture — Open Truck · Cyber Harassment · Mind Control",
+      "badge": "⚠ CRITICAL",
+      "sourceLabel": "Official Affidavit · Paragraphs 73–81",
+      "sourceText": [
+        {
+          "number": "73",
+          "text": "Pinatawagan ko si Cris para puntahan ako sa Hillside at bumalik ulit kami sa Sabang. Dahil nalaman ng mama ko sa Manila ang nangyayari, agad siyang pumunta ng Tacloban. Ikinuwento ko sa kanya ang lahat. Pero kahit nandoon na siya, hindi pa rin ako makatulog nang maayos sa Sabang. Kaya pumunta kami sa bodega sa Abucay kung saan nagtatrabaho si Ninang, para sana doon ako makatulog. Nagpasama ako kay Mama para bantayan ako. Doon ako nakatulog saglit. Dumating si Cris at diretso ulit kaming dalawa ni mama sa Matues Motel dahil hindi pa sapat ang tulog ko. Bumalik si Cris sa Sabang."
+        },
+        {
+          "number": "74",
+          "text": "Ngunit kahit nandoon kami, hindi pa rin ako makatulog ng maayos."
+        },
+        {
+          "number": "75",
+          "text": "Pagka-sapit ng umaga, bumalik kami ulit sa Sabang kasama si Cris at si Mama para magtipon ng mga gamit at damit ko. Pagkatapos noon, MAYO, agad akong sumama kay Mama papuntang Maynila para makaiwas sa tangkang pagpatay sa akin ."
+        },
+        {
+          "number": "76",
+          "text": "Irekomenda ni Onding bayaw ni cris na makisakay na lang daw kami sa kapatid niya na bumibiyahe ng gulay papuntang Maynila."
+        },
+        {
+          "number": "77",
+          "text": "doon nga kami napilitang sumakay sa open truck. tinawagan ko si Cris at pinasama ko siya pa-Maynila para masigurong hindi matutuloy ang masamang plano. Sumama naman si Cris patungong Maynila. Dahil sa gutom at pagod, tahimik lang akong nakamasid."
+        },
+        {
+          "number": "78",
+          "text": "Pagdating namin sa Maynila, hindi parin ako kampante. Ramdam kong may nakaabang pa ring panganib at sinusundan pa rin kami."
+        },
+        {
+          "number": "79",
+          "text": "Hanggang dito sa Maynila, patuloy ko pa ring nararanasan ang Cyber Harassment at Sikolohikal na Pang-aabuso sa pamamagitan ng digital manipulation, walang tigil na monitoring, at paulit-ulit na sikolohikal na pagpapahirap. Isang chips na pinaniniwalaang na-implant o remotely controlled ang ginamit upang paglaruan, manipulahin ang aking mga iniisip, at kalinawan ng isipan. Tila may mga naka program at sumasabay sa isip ko tuwing nagsasalita ako may mga AI na naka-setup na awtomatikong bumubuo ng narrative batay sa kung ano ang iniisip ko o binabanggit ko. Naipasok ito sa katawan ko nang walang sapat na paliwanag o pahintulot."
+        },
+        {
+          "number": null,
+          "text": "Nagkakausap kami sa loob ng isip ko—parang may kausap ako na hindi ko nakikita."
+        },
+        {
+          "number": null,
+          "text": "Nababasa at natatanggap nila ang iniisip ko gamit ang device o computer."
+        },
+        {
+          "number": null,
+          "text": "Ginagaya nila ang mga iniisip ko at kilos ko para lituhin ako at palabasin na ako'y nababaliw."
+        },
+        {
+          "number": null,
+          "text": "Paulit-ulit akong tinutorture mentally at emosyonal para mawalan ako ng lakas, kumpiyansa, at kredibilidad."
+        },
+        {
+          "number": null,
+          "text": "Kinukuryente ang ulo ko para magising ako gamit ang surveillance micro-chips brain reader."
+        },
+        {
+          "number": "92",
+          "text": "Patuloy akong dumaranas ng matinding trauma, paranoia, at emosyonal na pinsala. Binabantaan din ako na kung magsusumbong ako, babaliwin o papatayin nila ako gamit mismo ang micro-chips brain reader na sa katawan ko."
+        },
+        {
+          "number": "93",
+          "text": "Hindi rin nila ako pinapatulog ng 3 days hanggang 4 na araw akong gising. Sa loob ng higit 9 buwan, dalang-dala ko na ang hirap sa katawan at isipan. meron 247 na naka setup nag automatic na nag sasalita ng walang tigil sa tuwing nagigising ako hanggang sa pag tulog kaya araw araw ako umiinom ng medicine pampatulog, Hindi na ako mapakali. Gustong-gusto ko nang matanggal ang chip sa katawan ko dahil sa araw-araw akong pinahihirapan, kinokontrol, Experimental, Kinukotya, Minumura, Pinapahirapan, Pinaglalaruan, Pinagtatawan, Iniinis para maging Violence at naging result to suicide."
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-14-gallery-1",
+          "title": "📸 Evidence Gallery — Manila Escape · Health Damage · Sold Assets",
+          "items": [
+            {
+              "id": "man-1",
+              "title": "Open Truck (Basey, Samar)",
+              "icon": "🚛",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "man-2",
+              "title": "Health Damage / Medical Records",
+              "icon": "🏥",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "man-3",
+              "title": "Sold Motorcycle Receipt",
+              "icon": "🏍",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "man-4",
+              "title": "Sold MacBook / Computer",
+              "icon": "💻",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "man-5",
+              "title": "Sold Vehicle (Sasakyan)",
+              "icon": "🚗",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "man-6",
+              "title": "Sleep Medicine (Evidence of Torture)",
+              "icon": "💊",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-15",
+      "number": "§ 82–87",
+      "title": "Formal Complaints & Case Status — RACU · NBI · PNP · DICT · July 28, 2025",
+      "badge": "MGA HAKBANG",
+      "sourceLabel": "Official Affidavit · Paragraphs 82–87 (Final)",
+      "sourceText": [
+        {
+          "number": "82",
+          "text": "Noong Enero 5, 2024: Nagsampa ako ng kaso sa Tacloban City laban sa mga taong sangkot. Sa proseso ng pagsasampa, nakaharap ko ang dalawang PNP officer sa RACU Region 8. Sa halip na matulungan, ako ay ginulo sa sikolohikal na paraan ."
+        },
+        {
+          "number": "83",
+          "text": "Dahil sa kakulangan ng aksyon mula sa RACU Region 8, nagtungo ako sa Maynila at dumulog sa Raffy Tulfo in Action, na nag-refer sa akin sa NBI Quezon City. Ngunit muli, walang malinaw na aksyon ang isinagawa."
+        },
+        {
+          "number": "84",
+          "text": "Kaya pumunta Ulit ako sa NBI Cavite dahil sa kakulangan daw nila ng kagamitan para sa Cybercrime Investigation kaya ni recommend kami sa PNP Cybercrime Office ng Bacoor, Cavite. Pinabalik lamang ako sa Tacloban dahil doon daw nangyari ang krimen."
+        },
+        {
+          "number": "85",
+          "text": "Nawalan na rin ako ng pagkakakitaan at hindi na ako makapagtrabaho hanggang ngayon. Dahil sa patuloy na kontrol at panghaharang sa aking mga account, system, at digital assets, tuluyan akong na-paralisa sa aking hanapbuhay. Sinira nila ang kabuhayan ko at inalis ang lahat ng paraan para makabangon o makapagpatuloy sa anumang online na trabaho o proyekto."
+        },
+        {
+          "number": "86",
+          "text": "Dahil dito, napilitan akong ibenta ang lahat ng mga naipundar ko habang inaasikaso ang kasong ito — kabilang ang aking sasakyan, motorsiklo, alahas, Aircon, MacBook, cellphone, at computer ."
+        },
+        {
+          "number": "87",
+          "text": "Noong Hulyo 28, 2025, Nagpunta ulit ako sa NBI Bacoor, Cavite upang sundan ang aking kaso. Ngunit ganoon ulit ang nangyari—wala raw silang sapat na kagamitan para sa Cybercrime Investigation. Pinababalik na naman kami sa Cavite PNP Cybercrime dahil meron na raw kaming existing record doon. Walang malinaw na tugon, walang konkretong aksyon, at tila walang direksyon ang proseso ng hustisya para sa mga katulad kong biktima ng sistematikong cybercrime."
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-15-gallery-1",
+          "title": "📸 Evidence Gallery — RACU · NBI · PNP · DICT Complaints",
+          "items": [
+            {
+              "id": "leg-1",
+              "title": "RACU Region 8 Filing",
+              "icon": "📋",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "leg-2",
+              "title": "NBI QC / NBI Cavite Referral",
+              "icon": "🏛",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "leg-3",
+              "title": "PNP Cybercrime Record",
+              "icon": "👮",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "leg-4",
+              "title": "Raffy Tulfo in Action Referral",
+              "icon": "📺",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "leg-5",
+              "title": "July 28, 2025 NBI Visit",
+              "icon": "📅",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-video",
+      "number": "VID",
+      "title": "Video Evidence Gallery — YouTube Call for Justice",
+      "badge": "▶ 9 VIDEOS",
+      "sourceLabel": "From Official Document · Call for Justice and Public Awareness",
+      "sourceText": [
+        {
+          "number": null,
+          "text": "Sa ating mahal na Pangulo, Senador, Congress, Cybercrime Division, NBI, PNP, at DOJ: Humihingi ako ng totoong imbestigasyon at proteksyon."
+        },
+        {
+          "number": null,
+          "text": "Sa mga abogado at free legal advocates: Tulungan niyo akong ipanalo ang kasong ito laban sa mga nang-abuso sa akin gamit ang teknolohiya at kapangyarihan."
+        },
+        {
+          "number": null,
+          "text": "Sa media at mamamayan: I-share ang kwento ko. Hindi lang ito tungkol sa akin—ito ay tungkol sa mga susunod pang mabibiktima ng ganitong klaseng tahimik pero mabisang cyber warfare."
+        }
+      ],
+      "galleries": [
+        {
+          "id": "s-video-gallery-1",
+          "title": "▶ VIDEO EVIDENCE — Click thumbnail to play inline",
+          "items": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "s-drive",
+      "number": "📁",
+      "title": "Case Storage — Google Drive Evidence Repository",
+      "badge": "DRIVE",
+      "sourceLabel": "Official Document Reference",
+      "sourceText": [
+        {
+          "number": null,
+          "text": "Ang lahat ng ebidensya, screenshots, at mga dokumento ay nakaimbak sa sumusunod na Google Drive folder. Ang link na ito ay binanggit sa opisyal na dokumento bilang"
+        },
+        {
+          "number": null,
+          "text": "CASE STORAGE"
+        },
+        {
+          "number": null,
+          "text": "."
+        }
+      ],
+      "galleries": [],
+      "links": [
+        {
+          "label": "📁 CASE STORAGE — Google Drive https://drive.google.com/drive/folders/1Fi5y-6nKKhnwGDVbtQ0aKbM3F4QzNCoJ",
+          "url": "https://drive.google.com/drive/folders/1Fi5y-6nKKhnwGDVbtQ0aKbM3F4QzNCoJ"
+        }
+      ]
+    },
+    {
+      "id": "s-sig",
+      "number": "SGN",
+      "title": "Sworn Signature & Contact Information",
+      "badge": "OFFICIAL",
+      "sourceLabel": "",
+      "sourceText": [],
+      "galleries": [
+        {
+          "id": "s-sig-gallery-1",
+          "title": "📸 Signature Evidence",
+          "items": [
+            {
+              "id": "sig-1",
+              "title": "Signed Affidavit Page",
+              "icon": "✍",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "sig-2",
+              "title": "Notary Stamp",
+              "icon": "🔏",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            },
+            {
+              "id": "sig-3",
+              "title": "Affiant ID Photo",
+              "icon": "🆔",
+              "type": "image",
+              "verificationState": "unverified",
+              "source": "Unofficial affidavit evidence landing source"
+            }
+          ]
+        }
+      ],
+      "links": []
+    }
+  ],
+  "generatedFrom": "/home/ubuntu/projects/affidavit-f87b34c0/affidavit_evidence_landing.html"
+} as const;
