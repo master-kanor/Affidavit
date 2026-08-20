@@ -26,3 +26,21 @@ test.describe("public access gateway", () => {
     await expect(page.locator("body")).not.toContainText("AFFIDAVIT OF EVIDENCE");
   });
 });
+
+
+test("mounts every protected page behind an authentication guard", async ({ page }) => {
+  for (const path of [
+    "/dossier",
+    "/case-review",
+    "/official",
+    "/documentary",
+    "/admin",
+    "/evidence",
+    "/evidence-dossier",
+    "/components",
+  ]) {
+    await page.goto(path);
+    await expect(page.getByText("Private access gateway")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "404" })).toHaveCount(0);
+  }
+});
