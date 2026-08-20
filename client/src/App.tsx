@@ -1,19 +1,20 @@
-import { useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/NotFound";
 import { Route, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import AuthCallback from "./pages/AuthCallback";
-import AdminDashboard from "./pages/AdminDashboard";
-import CaseReview from "./pages/CaseReview";
-import ComponentShowcase from "./pages/ComponentShowcase";
-import EvidenceDossier from "./pages/EvidenceDossier";
 import { useAuth } from "./hooks/useAuth";
 import { useAuthorization } from "./hooks/useAuthorization";
+
+const Home = lazy(() => import("./pages/Home"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
+const UserDashboard = lazy(() => import("./pages/UserDashboard"));
+const CaseReview = lazy(() => import("./pages/CaseReview"));
+const ComponentShowcase = lazy(() => import("./pages/ComponentShowcase"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 function LoadingScreen() {
   return (
@@ -40,28 +41,11 @@ function AccessDenied({ message = "This account is not authorized to view this a
 }
 
 function RoleDestination() {
-  const [, setLocation] = useLocation();
   const { user, isLoading: authLoading } = useAuth();
   const { profile, isLoading: authorizationLoading } = useAuthorization();
-
-  useEffect(() => {
-    if (authLoading || authorizationLoading) return;
-    if (!user || !profile) {
-      setLocation("/auth");
-      return;
-    }
-
-    const adminOrigin = "https://admin.masterkanorcase.online";
-    if (profile.role === "owner") {
-      window.location.assign(window.location.hostname === "masterkanorcase.online" ? `${adminOrigin}/owner` : "/admin");
-    } else if (profile.role === "admin") {
-      window.location.assign(window.location.hostname === "masterkanorcase.online" ? `${adminOrigin}/dashboard` : "/admin");
-    } else {
-      setLocation("/dossier");
-    }
-  }, [authLoading, authorizationLoading, profile, setLocation, user]);
-
-  return <LoadingScreen />;
+  if (authLoading || authorizationLoading) return <LoadingScreen />;
+  if (!user || !profile) return <Auth />;
+  return profile.role === "owner" || profile.role === "admin" ? <AdminDashboard /> : <UserDashboard />;
 }
 
 function ProtectedCaseRoute() {
@@ -85,7 +69,7 @@ function ProtectedEvidenceRoute() {
   if (!can("can_view_dossier")) {
     return <AccessDenied message="Your account does not have permission to view verified evidence." />;
   }
-  return <EvidenceDossier />;
+  return <CaseReview />;
 }
 
 function ProtectedComponentShowcaseRoute() {
@@ -114,23 +98,25 @@ function ProtectedAdminRoute() {
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/auth" component={Auth} />
-      <Route path="/auth/callback" component={AuthCallback} />
-      <Route path="/auth/confirm" component={AuthCallback} />
-      <Route path="/dashboard" component={RoleDestination} />
-      <Route path="/dossier" component={ProtectedCaseRoute} />
-      <Route path="/case-review" component={ProtectedCaseRoute} />
-      <Route path="/official" component={ProtectedCaseRoute} />
-      <Route path="/documentary" component={ProtectedCaseRoute} />
-      <Route path="/evidence" component={ProtectedEvidenceRoute} />
-      <Route path="/evidence-dossier" component={ProtectedEvidenceRoute} />
-      <Route path="/components" component={ProtectedComponentShowcaseRoute} />
-      <Route path="/admin" component={ProtectedAdminRoute} />
-      <Route path="/404" component={NotFound} />
-      <Route component={NotFound} />
-    </Switch>
+    <Suspense fallback={<LoadingScreen />}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/auth" component={Auth} />
+        <Route path="/auth/callback" component={AuthCallback} />
+        <Route path="/auth/confirm" component={AuthCallback} />
+        <Route path="/dashboard" component={RoleDestination} />
+        <Route path="/dossier" component={ProtectedCaseRoute} />
+        <Route path="/case-review" component={ProtectedCaseRoute} />
+        <Route path="/official" component={ProtectedCaseRoute} />
+        <Route path="/documentary" component={ProtectedCaseRoute} />
+        <Route path="/evidence" component={ProtectedEvidenceRoute} />
+        <Route path="/evidence-dossier" component={ProtectedEvidenceRoute} />
+        <Route path="/components" component={ProtectedComponentShowcaseRoute} />
+        <Route path="/admin" component={ProtectedAdminRoute} />
+        <Route path="/404" component={NotFound} />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   );
 }
 
@@ -139,6 +125,7 @@ export default function App() {
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
+          <a href="#main-content" className="skip-link">Skip to main content</a>
           <Router />
           <Toaster />
         </TooltipProvider>
