@@ -2,20 +2,29 @@
 -- Preserve legacy tables, but remove them from the public Data/GraphQL API.
 
 do $$
+declare
+  relation_name text;
 begin
-  if to_regclass('public.legacy_affidavit_sections') is not null then
-    revoke all on table public.legacy_affidavit_sections from anon, authenticated;
-  end if;
+  foreach relation_name in array array[
+    'legacy_affidavit_sections',
+    'evidence_folders',
+    'evidence_files',
+    'content_exports',
+    'audit_logs',
+    'ai_audits',
+    'case_logs',
+    'team_messages',
+    'users'
+  ] loop
+    if to_regclass(format('public.%I', relation_name)) is not null then
+      execute format(
+        'revoke all on table public.%I from anon, authenticated',
+        relation_name
+      );
+    end if;
+  end loop;
 end
 $$;
-revoke all on table public.evidence_folders from anon, authenticated;
-revoke all on table public.evidence_files from anon, authenticated;
-revoke all on table public.content_exports from anon, authenticated;
-revoke all on table public.audit_logs from anon, authenticated;
-revoke all on table public.ai_audits from anon, authenticated;
-revoke all on table public.case_logs from anon, authenticated;
-revoke all on table public.team_messages from anon, authenticated;
-revoke all on table public.users from anon, authenticated;
 
 revoke execute on function public.current_app_role() from public, anon;
 revoke execute on function public.is_owner() from public, anon;
@@ -77,10 +86,28 @@ on conflict (id) do update set
   file_size_limit = excluded.file_size_limit,
   allowed_mime_types = excluded.allowed_mime_types;
 
-create index if not exists case_logs_user_id_idx on public.case_logs(user_id);
-create index if not exists evidence_user_id_idx on public.evidence(user_id);
-create index if not exists evidence_files_folder_id_idx on public.evidence_files(folder_id);
-create index if not exists team_messages_sender_id_idx on public.team_messages(sender_id);
-create index if not exists team_messages_recipient_id_idx on public.team_messages(recipient_id);
+do $$
+begin
+  if to_regclass('public.case_logs') is not null then
+    create index if not exists case_logs_user_id_idx on public.case_logs(user_id);
+  end if;
+  if to_regclass('public.evidence') is not null then
+    create index if not exists evidence_user_id_idx on public.evidence(user_id);
+  end if;
+  if to_regclass('public.evidence_files') is not null then
+    create index if not exists evidence_files_folder_id_idx on public.evidence_files(folder_id);
+  end if;
+  if to_regclass('public.team_messages') is not null then
+    create index if not exists team_messages_sender_id_idx on public.team_messages(sender_id);
+    create index if not exists team_messages_recipient_id_idx on public.team_messages(recipient_id);
+  end if;
+end
+$$;
 
-revoke execute on function public.rls_auto_enable() from public, anon, authenticated;
+do $$
+begin
+  if to_regprocedure('public.rls_auto_enable()') is not null then
+    revoke execute on function public.rls_auto_enable() from public, anon, authenticated;
+  end if;
+end
+$$;
