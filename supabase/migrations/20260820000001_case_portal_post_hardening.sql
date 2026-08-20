@@ -1,7 +1,13 @@
 -- Restrict the new legal-case workspace to authenticated, provisioned accounts.
 -- Preserve legacy tables, but remove them from the public Data/GraphQL API.
 
-revoke all on table public.legacy_affidavit_sections from anon, authenticated;
+do $$
+begin
+  if to_regclass('public.legacy_affidavit_sections') is not null then
+    revoke all on table public.legacy_affidavit_sections from anon, authenticated;
+  end if;
+end
+$$;
 revoke all on table public.evidence_folders from anon, authenticated;
 revoke all on table public.evidence_files from anon, authenticated;
 revoke all on table public.content_exports from anon, authenticated;
