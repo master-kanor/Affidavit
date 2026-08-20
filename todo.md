@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-
-- [x] Implement database schema updates for Owner/Admin/Guest Reviewer roles, evidence statuses (pending, verified, disputed, archived), and AUTO_DEPLOYMENT_LOG table
-- [x] Configure Manus OAuth role mapping and protected routes for Owner, Admin, and Guest Reviewer
-- [x] Build secure evidence management API with presigned S3 storage URLs and per-file access control
-- [x] Build dark legal-dossier UI with affidavit narrative, testimony sections, photo galleries, and embedded videos
-- [x] Implement AI Q&A agent grounded in authorized case materials using built-in LLM
-- [x] Implement Admin dashboard with audit logs, user management, and system health overview
-- [x] Implement midnight health check cron job logging to AUTO_DEPLOYMENT_LOG and triggering owner notifications on failure
-- [x] Build PDF report generation endpoint compiling evidence and affidavit content
-- [x] Implement notification system for audit failures, new evidence uploads, and user access requests
-- [x] Verify test suite with Vitest and prepare project for production deployment
-=======
 # Project TODO - End-to-End Automation Infrastructure
 
 ## Phase 1: Infrastructure Planning and Configuration
@@ -4179,4 +4166,3 @@
 - [ ] Replace the GitHub Actions homepage smoke check that receives a runner-specific Cloudflare 403 with a reliable deployment verification that does not falsely fail an otherwise successful Pages publish
 - [ ] Remove the unsupported `productionBranch` input from the Cloudflare Pages GitHub Action workflow and retain an explicit regression assertion for supported inputs
 - [ ] Force the Cloudflare Pages Action to deploy the GitHub `main` branch to production with its supported `branch` input, then verify the live asset hash changes
->>>>>>> github/main

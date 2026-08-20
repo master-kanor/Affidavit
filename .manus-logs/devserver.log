@@ -75,3 +75,5 @@
 [2026-08-20T06:49:46.384Z] c[OAuth] Initialized with baseURL: https://api.manus.im
 [2026-08-20T06:49:46.474Z] 6:49:46 AM [vite] (client) Re-optimizing dependencies because vite config has changed
 [2026-08-20T06:49:46.511Z] Server running on http://localhost:3000/
+[2026-08-20T07:14:19.068Z] 7:14:19 AM [vite] (client) page reload index.html
+[2026-08-20T07:14:25.903Z] 7:14:25 AM [vite] (client) page reload index.html

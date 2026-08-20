@@ -7,7 +7,7 @@ export interface CaseGallery { id: string; title: string; items: CaseGalleryItem
 export interface CaseSection { id: string; number: string; title: string; badge: string; sourceLabel: string; sourceText: CaseTextBlock[]; galleries: CaseGallery[]; links: Array<{ id: string; label: string; url: string; type: string }>; }
 export interface CanonicalCase { case: { id: string; title: string; subtitle: string; affiant: string; sourceIntegrityNote: string }; sections: CaseSection[]; access: { role: string; canViewEvidence: boolean; canViewDossier: boolean; canExport: boolean }; }
 
-interface WorkspacePayload {
+export interface WorkspacePayload {
   case: { id: string; title: string; description?: string | null };
   sections: Array<{ id: string; section_number?: string | null; title: string; source_label?: string | null; approval_status?: string }>;
   textVersions: Array<{ section_id: string; text_content: string; created_at: string }>;
@@ -15,7 +15,7 @@ interface WorkspacePayload {
   access: CanonicalCase["access"];
 }
 
-function normalize(payload: WorkspacePayload): CanonicalCase {
+export function normalizeWorkspacePayload(payload: WorkspacePayload): CanonicalCase {
   return {
     case: {
       id: payload.case.id,
@@ -68,7 +68,7 @@ export function useCaseWorkspaceQuery(caseId: string) {
         const response = await fetch(`/api/cases/${encodeURIComponent(caseId)}/workspace`, { headers: { Authorization: `Bearer ${token}` } });
         const payload = await response.json() as WorkspacePayload & { message?: string };
         if (!response.ok) throw new Error(payload.message ?? "The case workspace could not be loaded.");
-        if (mounted) setData(normalize(payload));
+        if (mounted) setData(normalizeWorkspacePayload(payload));
       } catch (cause) { if (mounted) setError(cause instanceof Error ? cause.message : "The case workspace could not be loaded."); }
       finally { if (mounted) setIsLoading(false); }
     };
