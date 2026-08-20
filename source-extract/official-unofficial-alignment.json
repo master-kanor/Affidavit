@@ -1,0 +1,218 @@
+{
+  "source_integrity": {
+    "official_path": "/home/ubuntu/upload/BACKUP_OFFICIAL_AFFIDAVIT_STATEMENT_OF_CHARLES_TANAUAN_CASE_PRESENTATION_2025_(1)(1).pdf",
+    "unofficial_path": "/home/ubuntu/upload/officialaffidavitwithevidence(1).pdf",
+    "official_page_count": 12,
+    "unofficial_page_count": 26,
+    "official_text_is_not_rewritten": true,
+    "matching_method": "casefolded whitespace-normalized page-text similarity; source bytes remain unchanged"
+  },
+  "page_alignment": [
+    {
+      "official_page": 1,
+      "best_unofficial_match": {
+        "unofficial_page": 1,
+        "similarity": 0.162845
+      }
+    },
+    {
+      "official_page": 2,
+      "best_unofficial_match": {
+        "unofficial_page": 2,
+        "similarity": 0.453602
+      }
+    },
+    {
+      "official_page": 3,
+      "best_unofficial_match": {
+        "unofficial_page": 5,
+        "similarity": 0.692717
+      }
+    },
+    {
+      "official_page": 4,
+      "best_unofficial_match": {
+        "unofficial_page": 8,
+        "similarity": 0.822394
+      }
+    },
+    {
+      "official_page": 5,
+      "best_unofficial_match": {
+        "unofficial_page": 9,
+        "similarity": 0.865815
+      }
+    },
+    {
+      "official_page": 6,
+      "best_unofficial_match": {
+        "unofficial_page": 10,
+        "similarity": 0.830546
+      }
+    },
+    {
+      "official_page": 7,
+      "best_unofficial_match": {
+        "unofficial_page": 11,
+        "similarity": 0.156409
+      }
+    },
+    {
+      "official_page": 8,
+      "best_unofficial_match": {
+        "unofficial_page": 14,
+        "similarity": 0.347164
+      }
+    },
+    {
+      "official_page": 9,
+      "best_unofficial_match": {
+        "unofficial_page": 15,
+        "similarity": 0.058459
+      }
+    },
+    {
+      "official_page": 10,
+      "best_unofficial_match": {
+        "unofficial_page": 26,
+        "similarity": 0.050984
+      }
+    },
+    {
+      "official_page": 11,
+      "best_unofficial_match": {
+        "unofficial_page": 20,
+        "similarity": 0.237888
+      }
+    },
+    {
+      "official_page": 12,
+      "best_unofficial_match": {
+        "unofficial_page": 21,
+        "similarity": 0.155774
+      }
+    }
+  ],
+  "candidate_sections": [
+    {
+      "official_page": 1,
+      "candidate_headings": []
+    },
+    {
+      "official_page": 2,
+      "candidate_headings": []
+    },
+    {
+      "official_page": 3,
+      "candidate_headings": []
+    },
+    {
+      "official_page": 4,
+      "candidate_headings": []
+    },
+    {
+      "official_page": 5,
+      "candidate_headings": []
+    },
+    {
+      "official_page": 6,
+      "candidate_headings": []
+    },
+    {
+      "official_page": 7,
+      "candidate_headings": []
+    },
+    {
+      "official_page": 8,
+      "candidate_headings": []
+    },
+    {
+      "official_page": 9,
+      "candidate_headings": []
+    },
+    {
+      "official_page": 10,
+      "candidate_headings": []
+    },
+    {
+      "official_page": 11,
+      "candidate_headings": []
+    },
+    {
+      "official_page": 12,
+      "candidate_headings": []
+    }
+  ],
+  "external_evidence_links": [
+    {
+      "provider": "google-drive",
+      "url": "https://drive.google.com/drive/folders/1Fi5y-6nKKhnwGDVbtQ0aKbM3F4QzNCoJ",
+      "unofficial_pages": [
+        21
+      ]
+    },
+    {
+      "provider": "youtube",
+      "url": "https://youtu.be/L0q0je4gJHM?feature=shared",
+      "unofficial_pages": [
+        24
+      ]
+    },
+    {
+      "provider": "youtube",
+      "url": "https://youtu.be/p42RaLTwRDs?feature=shared",
+      "unofficial_pages": [
+        24
+      ]
+    },
+    {
+      "provider": "youtube",
+      "url": "https://youtu.be/Ya2hhWPtlr4?feature=shared",
+      "unofficial_pages": [
+        25
+      ]
+    },
+    {
+      "provider": "youtube",
+      "url": "https://youtu.be/jeQij7T9Xo8?feature=shared",
+      "unofficial_pages": [
+        25
+      ]
+    },
+    {
+      "provider": "youtube",
+      "url": "https://youtu.be/rAu7u4u9eXs?feature=shared",
+      "unofficial_pages": [
+        25
+      ]
+    },
+    {
+      "provider": "youtube",
+      "url": "https://youtu.be/jWjuNViS93o?feature=shared",
+      "unofficial_pages": [
+        25
+      ]
+    },
+    {
+      "provider": "youtube",
+      "url": "https://youtu.be/oD2uuXxt9DQ?feature=shared",
+      "unofficial_pages": [
+        25
+      ]
+    },
+    {
+      "provider": "youtube",
+      "url": "https://youtu.be/1aQsyIbvawA?feature=shared",
+      "unofficial_pages": [
+        25
+      ]
+    },
+    {
+      "provider": "youtube",
+      "url": "https://youtu.be/7pLaNUJD0Tk?feature=shared",
+      "unofficial_pages": [
+        26
+      ]
+    }
+  ]
+}

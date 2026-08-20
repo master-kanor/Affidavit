@@ -1,0 +1,81 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: "9"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run TypeScript check
+        run: pnpm run check
+
+      - name: Run unit tests
+        run: pnpm run test
+
+      - name: Build application
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+        run: |
+          pnpm build
+          test -f dist/public/index.html
+          mkdir -p dist
+          cp -a dist/public/. dist/
+          test -f dist/index.html
+          test ! -f dist/index.js
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: affidavit
+          directory: dist
+          branch: main
+
+      - name: Smoke Check
+        run: |
+          sleep 30
+          for i in {1..5}; do
+            pages_status=$(curl -L -sS -o /dev/null -w "%{http_code}" https://affidavit-abo.pages.dev/ || true)
+            canonical_status=$(curl -L -sS -o /dev/null -w "%{http_code}" https://masterkanorcase.online/ || true)
+            echo "Pages origin status: ${pages_status}; canonical status: ${canonical_status}"
+            if [ "${pages_status}" = "200" ]; then
+              echo "✅ Cloudflare Pages origin smoke check passed"
+              if [ "${canonical_status}" != "200" ]; then
+                echo "⚠️ Canonical edge returned ${canonical_status}; verify Cloudflare Access/WAF separately"
+              fi
+              exit 0
+            fi
+            echo "Pages origin smoke check attempt ${i} failed, retrying..."
+            sleep 10
+          done
+          echo "❌ Cloudflare Pages origin smoke check failed"
+          exit 1
+
+      - name: Notify Success
+        if: success()
+        run: echo "✅ Deployment successful to https://masterkanorcase.online"
+
+      - name: Notify Failure
+        if: failure()
+        run: echo "❌ Deployment failed"
