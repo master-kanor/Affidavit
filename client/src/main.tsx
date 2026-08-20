@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { trpc } from "@/lib/trpc";
 import { COOKIE_NAME, UNAUTHED_ERR_MSG } from '@shared/const';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -44,10 +43,6 @@ const trpcClient = trpc.createClient({
       url: "/api/trpc",
       transformer: superjson,
       headers() {
-        // Preview auto-login fallback: when the browser blocks iframe cookies
-        // (Safari ITP / private browsing / WebView), the runtime mirrors the
-        // session into sessionStorage so we can forward it as a Bearer token.
-        // The regular OAuth cookie flow keeps working and takes priority server-side.
         try {
           const raw = sessionStorage.getItem("manus-cookie");
           if (raw) {
@@ -58,9 +53,7 @@ const trpcClient = trpc.createClient({
               return { Authorization: `Bearer ${token}` };
             }
           }
-        } catch {
-          // sessionStorage unavailable
-        }
+        } catch {}
         return {};
       },
       fetch(input, init) {
@@ -79,17 +72,4 @@ createRoot(document.getElementById("root")!).render(
       <App />
     </QueryClientProvider>
   </trpc.Provider>
-=======
-import React from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App";
-
-// QueryClientProvider is intentionally not mounted here: the current public case-review surface uses direct read-only source data, and the legacy provider caused a runtime hook failure in this repository preview.
-import "./index.css";
-
-createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
->>>>>>> github/main
 );

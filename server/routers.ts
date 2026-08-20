@@ -76,7 +76,8 @@ export const appRouter = router({
               { role: "user", content: input.prompt },
             ],
           });
-          return { reply: response };
+          const replyText = typeof response === "string" ? response : JSON.stringify(response);
+          return { reply: replyText };
         } catch (err: any) {
           return { reply: `AI analysis currently unavailable: ${err?.message || "Please try again later."}` };
         }

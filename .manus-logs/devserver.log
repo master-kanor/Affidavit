@@ -71,3 +71,7 @@
 [2026-08-20T06:18:36.088Z] code: 'ERR_INVALID_PACKAGE_CONFIG'
 [2026-08-20T06:18:36.088Z] }
 [2026-08-20T06:18:36.088Z] Node.js v22.13.0
+[2026-08-20T06:49:44.257Z] 6:49:44 AM [tsx] change in ./server/routers.ts Rerunning...
+[2026-08-20T06:49:46.384Z] c[OAuth] Initialized with baseURL: https://api.manus.im
+[2026-08-20T06:49:46.474Z] 6:49:46 AM [vite] (client) Re-optimizing dependencies because vite config has changed
+[2026-08-20T06:49:46.511Z] Server running on http://localhost:3000/
