@@ -14,7 +14,13 @@ revoke all on table public.documentary_chapters from anon;
 revoke all on table public.documentary_items from anon;
 revoke all on table public.case_relationships from anon;
 revoke all on table public.case_audit_log from anon;
-revoke all on table public.evidence from anon;
+do $$
+begin
+  if to_regclass('public.evidence') is not null then
+    revoke all on table public.evidence from anon;
+  end if;
+end
+$$;
 
 alter function public.touch_updated_at() set search_path = pg_catalog, public;
 alter function public.storage_case_id(text) set search_path = pg_catalog, public;
