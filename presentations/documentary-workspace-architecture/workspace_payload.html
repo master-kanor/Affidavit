@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>One Aggregate Payload Keeps State Coherent</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #ffffff; color: #2B3A42; font-family: Georgia, 'Times New Roman', serif; position: relative; }
+    .vline { position: absolute; top: 0; bottom: 0; width: 1px; background: #2B3A42; opacity: .28; }
+    .hline { position: absolute; left: 0; right: 0; height: 1px; background: #2B3A42; opacity: .28; }
+    .kicker { font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; letter-spacing: 1.8px; color: #8B2635; }
+    .headline { font-family: 'Courier New', monospace; font-size: 37px; font-weight: 700; line-height: 1.15; letter-spacing: -.6px; }
+    .subhead { margin-top: 13px; max-width: 1010px; font-size: 16px; line-height: 1.4; color: #3E505B; }
+    .schema { position: absolute; left: 78px; top: 188px; width: 708px; height: 446px; border: 1px solid #2B3A42; }
+    .schema-head { height: 66px; background: #2B3A42; color: #ffffff; display: flex; align-items: center; padding: 0 22px; font-family: 'Courier New', monospace; font-size: 20px; font-weight: 700; }
+    .schema-meta { position: absolute; right: 20px; font-size: 11px; letter-spacing: 1px; color: #d9e0e3; }
+    .tree { padding: 21px 22px 0 22px; font-family: 'Courier New', monospace; }
+    .root { font-size: 17px; font-weight: 700; color: #2B3A42; }
+    .branch { display: flex; align-items: stretch; min-height: 48px; margin-top: 9px; border: 1px solid #2B3A42; }
+    .branch-key { width: 210px; padding: 14px 12px 0 14px; border-right: 1px solid #2B3A42; font-size: 14px; font-weight: 700; color: #8B2635; }
+    .branch-val { padding: 12px 14px 0 14px; font-family: Georgia, 'Times New Roman', serif; font-size: 14px; line-height: 1.25; color: #3E505B; }
+    .branch-em { font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; color: #2B3A42; }
+    .right-col { position: absolute; left: 824px; top: 188px; width: 378px; }
+    .panel { border: 1px solid #2B3A42; margin-bottom: 16px; }
+    .panel-title { min-height: 45px; padding: 14px 15px 0 15px; font-family: 'Courier New', monospace; font-size: 14px; font-weight: 700; letter-spacing: .5px; color: #2B3A42; border-bottom: 1px solid #2B3A42; }
+    .panel-body { padding: 16px 16px 0 16px; font-size: 15px; line-height: 1.42; color: #3E505B; }
+    .outcome { min-height: 136px; background: #f4f6f6; }
+    .flow { min-height: 202px; }
+    .flow-step { display: flex; align-items: center; min-height: 44px; border-bottom: 1px solid #cbd4d8; font-family: 'Courier New', monospace; font-size: 12px; color: #2B3A42; }
+    .flow-step:last-child { border-bottom: 0; }
+    .step-num { width: 37px; text-align: center; color: #8B2635; font-weight: 700; }
+    .conflict { margin-top: 12px; border: 1px solid #8B2635; padding: 12px 13px 0 13px; min-height: 54px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.32; color: #8B2635; }
+    .folio { position: absolute; right: 78px; bottom: 39px; font-family: 'Courier New', monospace; font-size: 12px; letter-spacing: .8px; color: #3E505B; }
+    .baseline-note { position: absolute; left: 78px; bottom: 39px; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: .45px; color: #3E505B; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="vline" style="left: 5.7%;"></div><div class="vline" style="left: 50%;"></div><div class="vline" style="left: 94.3%;"></div>
+    <div class="hline" style="top: 8%;"></div><div class="hline" style="top: 92%;"></div>
+    <section style="position:absolute; left:78px; top:76px;">
+      <div class="kicker">06 / WORKSPACE CONTRACT</div>
+      <h1 class="headline" style="margin-top:16px;">One aggregate payload keeps state coherent.</h1>
+      <p class="subhead">The client loads a single authorized workspace snapshot, so chapters, evidence status, relationships, permissions, and audit context cannot drift apart in the interface.</p>
+    </section>
+    <section class="schema">
+      <div class="schema-head">DocumentaryWorkspace <span class="schema-meta">AUTHORIZED AGGREGATE RESPONSE</span></div>
+      <div class="tree">
+        <div class="root">{</div>
+        <div class="branch"><div class="branch-key">documentary</div><div class="branch-val"><span class="branch-em">status · version · title · updatedAt</span></div></div>
+        <div class="branch"><div class="branch-key">chapters[]</div><div class="branch-val"><span class="branch-em">metadata · narration · status · ordered items</span></div></div>
+        <div class="branch"><div class="branch-key">item.resource</div><div class="branch-val"><span class="branch-em">source · preview · provenance · verification</span></div></div>
+        <div class="branch"><div class="branch-key">item.relationship</div><div class="branch-val"><span class="branch-em">type · confidence · approval · reviewer</span></div></div>
+        <div class="branch"><div class="branch-key">permissions</div><div class="branch-val"><span class="branch-em">view · edit · review · export</span></div></div>
+        <div class="branch"><div class="branch-key">audit</div><div class="branch-val"><span class="branch-em">last action · actor · timestamp</span></div></div>
+      </div>
+    </section>
+    <section class="right-col">
+      <div class="panel outcome"><div class="panel-title">UI RESULT</div><div class="panel-body">One source of truth prevents detached evidence cards, missing relationship status, and permission rules that disagree across components.</div></div>
+      <div class="panel flow"><div class="panel-title">OPTIMISTIC CONCURRENCY</div><div class="panel-body" style="padding-top:8px;"><div class="flow-step"><div class="step-num">01</div><div>Load workspace with <b>version = 4</b></div></div><div class="flow-step"><div class="step-num">02</div><div>Mutate with <b>expectedVersion = 4</b></div></div><div class="flow-step"><div class="step-num">03</div><div>Server validates + records audit entry</div></div><div class="flow-step"><div class="step-num">04</div><div>Return updated snapshot or conflict</div></div><div class="conflict">409 — DOCUMENTARY_VERSION_CONFLICT<br/>REFETCH; NEVER SILENTLY OVERWRITE REVIEW WORK.</div></div></div>
+    </section>
+    <div class="baseline-note">SINGLE RESPONSE / EXPLICIT VERSION / NO UNTRACKED CLIENT STATE</div>
+    <div class="folio">DOCUMENTARY WORKSPACE / 07</div>
+  </div>
+</body>
+</html>

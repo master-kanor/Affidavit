@@ -1,235 +1,57 @@
-/**
- * Supabase Authentication UI Component
- * Admin-Only Authentication
- * Supports: Email (admin only), Google, GitHub
- * No public user sign up
- */
+import React, { useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Loader2, AlertCircle, LockKeyhole, ShieldCheck } from "lucide-react";
 
-import React, { useState } from 'react';
-import { supabase } from '@/lib/supabaseClient';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, Mail, Github, Chrome, AlertCircle, Info } from 'lucide-react';
+interface AuthUIProps { onSuccess?: () => void; redirectTo?: string; }
 
-interface AuthUIProps {
-  onSuccess?: () => void;
-  redirectTo?: string;
-}
-
-export function SupabaseAuthUI({ onSuccess, redirectTo }: AuthUIProps) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export function SupabaseAuthUI({ onSuccess }: AuthUIProps) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
 
-  const REDIRECT_URL = redirectTo || `${window.location.origin}/auth/callback`;
-
-  // Sign in with email/password (admin only)
-  const handleEmailSignIn = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleEmailSignIn = async (event: React.FormEvent) => {
+    event.preventDefault();
     setLoading(true);
     setError(null);
-
+    setMessage(null);
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password
-      });
-
-      if (error) throw error;
-
-      // Verify user is admin by checking custom claims or user metadata
-      if (data.user) {
-        setMessage('Signed in successfully');
-        setEmail('');
-        setPassword('');
-        onSuccess?.();
-      }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Sign in failed');
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+      if (signInError) throw signInError;
+      if (!data.user) throw new Error("Authentication did not return a user session.");
+      setMessage("Signed in. Verifying your authorized access…");
+      setEmail("");
+      setPassword("");
+      onSuccess?.();
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "Sign in failed");
     } finally {
       setLoading(false);
     }
   };
 
-  // OAuth sign in (Google & GitHub only)
-  const handleOAuthSignIn = async (provider: 'google' | 'github') => {
+  const handlePasswordReset = async () => {
     setLoading(true);
     setError(null);
-
+    setMessage(null);
     try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider,
-        options: {
-          redirectTo: REDIRECT_URL,
-          scopes: provider === 'github' ? 'user:email' : undefined
-        }
-      });
-
-      if (error) throw error;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : `${provider} sign in failed`);
-      setLoading(false);
-    }
-  };
-
-  // Magic link sign in (admin only)
-  const handleMagicLink = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-
-    try {
-      const { error } = await supabase.auth.signInWithOtp({
-        email,
-        options: {
-          emailRedirectTo: REDIRECT_URL
-        }
-      });
-
-      if (error) throw error;
-
-      setMessage('Check your email for the magic link');
-      setEmail('');
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Magic link failed');
+      if (!email) throw new Error("Enter your email address first.");
+      const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/auth/callback` });
+      if (resetError) throw resetError;
+      setMessage("If the account is eligible, a password-reset message has been sent.");
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "Password reset could not be requested");
     } finally {
       setLoading(false);
     }
   };
 
-  return (
-    <div className="w-full max-w-md mx-auto">
-      <Card>
-        <CardHeader>
-          <CardTitle>Master Kanor Affidavit</CardTitle>
-          <CardDescription>
-            Admin Authentication
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {/* Admin Notice */}
-          <Alert className="mb-4 bg-blue-50 border-blue-200">
-            <Info className="h-4 w-4 text-blue-600" />
-            <AlertDescription className="text-blue-800">
-              Admin access only. User accounts are created by administrators in Supabase.
-            </AlertDescription>
-          </Alert>
-
-          {error && (
-            <Alert variant="destructive" className="mb-4">
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
-
-          {message && (
-            <Alert className="mb-4 bg-green-50 border-green-200">
-              <AlertDescription className="text-green-800">{message}</AlertDescription>
-            </Alert>
-          )}
-
-          {/* Email/Password Sign In */}
-          <div className="space-y-4 mb-6">
-            <h3 className="text-sm font-semibold">Email Sign In</h3>
-            <form onSubmit={handleEmailSignIn} className="space-y-4">
-              <div>
-                <label className="text-sm font-medium">Email</label>
-                <Input
-                  type="email"
-                  placeholder="admin@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  disabled={loading}
-                />
-              </div>
-
-              <div>
-                <label className="text-sm font-medium">Password</label>
-                <Input
-                  type="password"
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  disabled={loading}
-                  minLength={6}
-                />
-              </div>
-
-              <Button type="submit" className="w-full" disabled={loading}>
-                {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Sign In
-              </Button>
-            </form>
-
-            {/* Magic Link Option */}
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">Or</span>
-              </div>
-            </div>
-
-            <form onSubmit={handleMagicLink} className="space-y-4">
-              <Button
-                type="submit"
-                variant="outline"
-                className="w-full"
-                disabled={loading || !email}
-              >
-                <Mail className="mr-2 h-4 w-4" />
-                Send Magic Link
-              </Button>
-            </form>
-          </div>
-
-          {/* OAuth Providers - Google & GitHub Only */}
-          <div className="space-y-3">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2">
-              <Button
-                variant="outline"
-                onClick={() => handleOAuthSignIn('google')}
-                disabled={loading}
-              >
-                <Chrome className="mr-2 h-4 w-4" />
-                Google
-              </Button>
-
-              <Button
-                variant="outline"
-                onClick={() => handleOAuthSignIn('github')}
-                disabled={loading}
-              >
-                <Github className="mr-2 h-4 w-4" />
-                GitHub
-              </Button>
-            </div>
-          </div>
-
-          {/* Terms */}
-          <p className="text-xs text-muted-foreground text-center mt-4">
-            By signing in, you agree to our Terms of Service and Privacy Policy
-          </p>
-        </CardContent>
-      </Card>
-    </div>
-  );
+  return <div className="mx-auto w-full max-w-md"><Card className="border-[#d4dde1] bg-[#fffdfa] shadow-[0_14px_40px_rgba(30,44,52,0.07)]"><CardHeader><div className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-[#356044]"><ShieldCheck className="h-4 w-4" /> Private access gateway</div><CardTitle className="font-serif text-3xl text-[#21313a]">Master Kanor Case</CardTitle><CardDescription>Secure Case Documentation Portal</CardDescription></CardHeader><CardContent><Alert className="mb-5 border-[#eadfce] bg-[#fbf6ee]"><LockKeyhole className="h-4 w-4 text-[#9a6b32]" /><AlertDescription className="text-[#66553f]">Accounts are manually provisioned. The system determines your role and permissions after authentication.</AlertDescription></Alert>{error && <Alert variant="destructive" className="mb-4"><AlertCircle className="h-4 w-4" /><AlertDescription>{error}</AlertDescription></Alert>}{message && <Alert className="mb-4 border-[#d8e8dc] bg-[#e6efe8]"><AlertDescription className="text-[#356044]">{message}</AlertDescription></Alert>}<form onSubmit={handleEmailSignIn} className="space-y-4"><div><label className="text-sm font-medium text-[#344a56]">Email</label><Input type="email" autoComplete="email" placeholder="name@example.com" value={email} onChange={(event) => setEmail(event.target.value)} required disabled={loading} /></div><div><label className="text-sm font-medium text-[#344a56]">Password</label><Input type="password" autoComplete="current-password" placeholder="Your password" value={password} onChange={(event) => setPassword(event.target.value)} required disabled={loading} minLength={6} /></div><Button type="submit" className="w-full bg-[#21313a] text-white hover:bg-[#344a56]" disabled={loading}>{loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}Sign In</Button></form><Button type="button" variant="link" className="mt-3 w-full text-[#7d5b32]" disabled={loading || !email} onClick={() => void handlePasswordReset()}>Forgot password?</Button><p className="mt-4 text-center text-xs leading-5 text-[#718089]">No public registration is available. Contact the Owner/Admin if you require authorized access.</p></CardContent></Card></div>;
 }
 
 export default SupabaseAuthUI;

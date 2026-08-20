@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>A Thin API Façade Protects the Record</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #ffffff; color: #2B3A42; font-family: Georgia, 'Times New Roman', serif; position: relative; }
+    .vline { position: absolute; top: 0; bottom: 0; width: 1px; background: #2B3A42; opacity: .30; }
+    .hline { position: absolute; left: 0; right: 0; height: 1px; background: #2B3A42; opacity: .30; }
+    .kicker { font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; letter-spacing: 1.8px; color: #8B2635; }
+    .headline { font-family: 'Courier New', monospace; font-size: 38px; font-weight: 700; line-height: 1.13; max-width: 760px; }
+    .subhead { margin-top: 15px; font-size: 17px; line-height: 1.38; color: #3E505B; max-width: 805px; }
+    .architecture { position: absolute; left: 78px; top: 270px; width: 1124px; display: flex; align-items: center; }
+    .node { width: 234px; min-height: 178px; border: 1px solid #2B3A42; background: #ffffff; }
+    .node.facade { border: 2px solid #8B2635; background: #fbf6f6; }
+    .node-num { height: 42px; border-bottom: 1px solid #2B3A42; display: flex; align-items: center; padding-left: 15px; font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1px; color: #3E505B; }
+    .facade .node-num { border-bottom-color: #8B2635; color: #8B2635; }
+    .node-content { padding: 20px 17px 18px 17px; }
+    .node-title { font-family: 'Courier New', monospace; font-size: 17px; font-weight: 700; line-height: 1.2; }
+    .facade .node-title { color: #8B2635; }
+    .node-text { margin-top: 13px; font-size: 14px; line-height: 1.34; color: #3E505B; }
+    .arrow { width: 58px; height: 1px; background: #2B3A42; position: relative; }
+    .arrow::after { content: '›'; position: absolute; right: -1px; top: -16px; font-family: Georgia, serif; font-size: 29px; color: #8B2635; }
+    .guardrail { position: absolute; left: 78px; top: 520px; width: 1124px; min-height: 112px; border-top: 1px solid #2B3A42; border-bottom: 1px solid #2B3A42; display: flex; }
+    .guard { width: 33.333%; padding: 18px 20px 16px 0; }
+    .guard + .guard { padding-left: 24px; border-left: 1px solid #2B3A42; }
+    .guard-label { font-family: 'Courier New', monospace; font-size: 11px; font-weight: 700; letter-spacing: 1.1px; color: #8B2635; }
+    .guard-text { margin-top: 8px; font-size: 14px; line-height: 1.34; color: #3E505B; }
+    .no-direct { position: absolute; right: 78px; top: 128px; border: 1px solid #8B2635; color: #8B2635; font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; letter-spacing: .7px; padding: 10px 12px; }
+    .folio { position: absolute; right: 78px; bottom: 34px; font-family: 'Courier New', monospace; font-size: 12px; letter-spacing: 1px; color: #3E505B; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="vline" style="left: 5.7%;"></div><div class="vline" style="left: 50%;"></div><div class="vline" style="left: 94.3%;"></div>
+    <div class="hline" style="top: 8%;"></div><div class="hline" style="top: 92%;"></div>
+    <section style="position:absolute; left:78px; top:82px;">
+      <div class="kicker">03 / CONTROL PATH</div>
+      <h1 class="headline" style="margin-top:17px;">A thin API façade protects the case record.</h1>
+      <p class="subhead">The workspace receives one authorized aggregate response. Every mutation is validated, review-gated, and audited before it reaches the canonical case database.</p>
+    </section>
+    <div class="no-direct">NO DIRECT BROWSER-TO-TABLE MUTATION</div>
+    <div class="architecture">
+      <div class="node"><div class="node-num">01 / PRESENTATION</div><div class="node-content"><div class="node-title">React Documentary Workspace</div><div class="node-text">Chapter editor, resource picker, relationship review, audit timeline, and export review.</div></div></div>
+      <div class="arrow"></div>
+      <div class="node"><div class="node-num">02 / CLIENT CONTRACT</div><div class="node-content"><div class="node-title">Typed API Client</div><div class="node-text">Sends session token, parses stable error envelopes, and handles version conflicts.</div></div></div>
+      <div class="arrow"></div>
+      <div class="node facade"><div class="node-num">03 / ENFORCEMENT POINT</div><div class="node-content"><div class="node-title">Authenticated API Façade</div><div class="node-text">Centralizes permission checks, validation, review transitions, audit writes, and request identity.</div></div></div>
+      <div class="arrow"></div>
+      <div class="node"><div class="node-num">04 / PERSISTENCE</div><div class="node-content"><div class="node-title">Supabase + Case Database</div><div class="node-text">Documentary tables, explicit relationships, immutable source versions, and RLS policies.</div></div></div>
+    </div>
+    <div class="guardrail">
+      <div class="guard"><div class="guard-label">AUTHORITY</div><div class="guard-text">Actor and role derive from the validated session — never from a browser-supplied field.</div></div>
+      <div class="guard"><div class="guard-label">INTEGRITY</div><div class="guard-text">Documentary routes may compose presentations but cannot update official affidavit text versions.</div></div>
+      <div class="guard"><div class="guard-label">TRACEABILITY</div><div class="guard-text">Each successful mutation records the before/after state, action, actor, and request context.</div></div>
+    </div>
+    <div class="folio">DOCUMENTARY WORKSPACE / 04</div>
+  </div>
+</body>
+</html>

@@ -1,42 +1,8 @@
-/**
- * Pure Supabase Authentication Page
- * Replaces all Manus OAuth with Supabase Auth
- */
-
-import React from 'react';
-import { useLocation } from 'wouter';
-import { SupabaseAuthUI } from '@/components/SupabaseAuthUI';
+import { useLocation } from "wouter";
+import { SupabaseAuthUI } from "@/components/SupabaseAuthUI";
 
 export function Auth() {
   const [, setLocation] = useLocation();
-
-  const handleAuthSuccess = () => {
-    // Redirect to evidence dossier after successful auth
-    setLocation('/dossier');
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800">
-      {/* Header */}
-      <header className="bg-slate-950 border-b border-slate-700 px-6 py-4">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-2xl font-bold text-white">Master Kanor Affidavit</h1>
-        </div>
-      </header>
-
-      {/* Auth Container */}
-      <div className="flex items-center justify-center min-h-[calc(100vh-80px)] px-4 py-12">
-        <SupabaseAuthUI onSuccess={handleAuthSuccess} />
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-slate-950 border-t border-slate-700 px-6 py-4 mt-12">
-        <div className="max-w-7xl mx-auto text-center text-sm text-slate-400">
-          <p>Powered by Supabase | Secure Authentication</p>
-        </div>
-      </footer>
-    </div>
-  );
+  return <div className="min-h-screen bg-[#f3f5f6]"><header className="border-b border-[#d6dde2] bg-[#21313a] px-6 py-5 text-white"><div className="mx-auto max-w-6xl"><button className="text-left" onClick={() => setLocation("/")}><div className="text-sm font-bold uppercase tracking-[0.2em]">Master Kanor Case</div><div className="mt-1 text-xs uppercase tracking-[0.14em] text-[#c7d1d5]">Secure Case Documentation Portal</div></button></div></header><main className="mx-auto flex min-h-[calc(100vh-155px)] max-w-6xl items-center justify-center px-6 py-16"><SupabaseAuthUI onSuccess={() => setLocation("/dashboard")} /></main><footer className="border-t border-[#d6dde2] bg-white px-6 py-6 text-center text-xs leading-6 text-[#728089]">Authorized accounts only · No public registration</footer></div>;
 }
-
 export default Auth;

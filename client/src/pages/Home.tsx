@@ -1,267 +1,43 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { FileText, Lock, Share2, Download, ArrowRight, User, LogOut } from "lucide-react";
+import { LockKeyhole, ShieldCheck } from "lucide-react";
 import { useLocation } from "wouter";
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function Home() {
   const [, setLocation] = useLocation();
-  const { user, logout } = useAuth();
-  const [showUserMenu, setShowUserMenu] = useState(false);
+  const { user, isLoading, logout } = useAuth();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      {/* Header with User Icon */}
-      <header className="bg-white border-b border-slate-200 px-4 py-4 sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-slate-900">Master Kanor Affidavit</h1>
-          <div className="flex items-center gap-4">
-            {user ? (
-              <div className="relative">
-                <button
-                  onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-100 transition"
-                >
-                  <div className="w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center">
-                    <User className="w-4 h-4 text-white" />
-                  </div>
-                  <span className="text-sm font-medium text-slate-700 hidden sm:inline">{user.email}</span>
-                </button>
-                {showUserMenu && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white border border-slate-200 rounded-lg shadow-lg z-50">
-                    <div className="px-4 py-3 border-b border-slate-200">
-                      <p className="text-sm font-medium text-slate-900">{user.email}</p>
-                      <p className="text-xs text-slate-500 mt-1">Signed in</p>
-                    </div>
-                    <button
-                      onClick={() => {
-                        logout();
-                        setShowUserMenu(false);
-                      }}
-                      className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 flex items-center gap-2 transition"
-                    >
-                      <LogOut className="w-4 h-4" />
-                      Sign Out
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <Button
-                size="sm"
-                className="bg-slate-900 hover:bg-slate-800"
-                onClick={() => setLocation("/auth")}
-              >
-                <User className="w-4 h-4 mr-2" />
-                Sign In
-              </Button>
-            )}
+    <div className="min-h-screen bg-[#f3f5f6] text-[#21313a]">
+      <header className="border-b border-[#d6dde2] bg-white">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+          <div>
+            <div className="text-sm font-bold uppercase tracking-[0.2em]">Master Kanor Case</div>
+            <div className="mt-1 text-xs uppercase tracking-[0.14em] text-[#728089]">Secure Case Documentation Portal</div>
           </div>
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#5e6c74]"><ShieldCheck className="h-4 w-4 text-[#356044]" /> Restricted access</div>
         </div>
       </header>
-
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-slate-900 to-slate-800 text-white py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 font-serif">
-            Official Affidavit of Evidence
-          </h1>
-          <p className="text-xl md:text-2xl text-slate-300 mb-8 font-light">
-            Charles Tanauan (a.k.a. Master Kanor)
-          </p>
-          <p className="text-lg text-slate-400 mb-8 max-w-2xl mx-auto">
-            Comprehensive legal documentation with 12 affidavit sections, 331+ evidence files, and professional case presentation
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-amber-600 hover:bg-amber-700 text-white"
-              onClick={() => setLocation("/dossier")}
-            >
-              View Evidence Dossier
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            {user && (
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-slate-900"
-                onClick={() => setLocation("/admin")}
-              >
-                Admin Dashboard
-              </Button>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 font-serif text-slate-900">
-            Complete Legal Documentation System
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <Card className="p-8 hover:shadow-lg transition-shadow border-0 bg-slate-50">
-              <div className="mb-4">
-                <FileText className="w-12 h-12 text-amber-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-slate-900">
-                12 Affidavit Sections
-              </h3>
-              <p className="text-slate-600">
-                Complete narrative structure covering identity, background, gaming career, computer setup, casino promotions, vlogger partnerships, fraud discovery, device surveillance, poisoning attempt, IT sabotage, evidence tampering, and threats.
-              </p>
-            </Card>
-
-            {/* Feature 2 */}
-            <Card className="p-8 hover:shadow-lg transition-shadow border-0 bg-slate-50">
-              <div className="mb-4">
-                <Share2 className="w-12 h-12 text-amber-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-slate-900">
-                331+ Evidence Files
-              </h3>
-              <p className="text-slate-600">
-                Organized evidence galleries across 26 folders including social media channels, online stores, computer documentation, casino promotions, vlogger partnerships, surveillance footage, and comprehensive case documentation.
-              </p>
-            </Card>
-
-            {/* Feature 3 */}
-            <Card className="p-8 hover:shadow-lg transition-shadow border-0 bg-slate-50">
-              <div className="mb-4">
-                <Download className="w-12 h-12 text-amber-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-slate-900">
-                Multi-Format Export
-              </h3>
-              <p className="text-slate-600">
-                Export complete dossier as JSON, CSV, Markdown, or HTML. All formats include full metadata and are ready for sharing, archival, or integration with other systems.
-              </p>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Case Information Section */}
-      <section className="py-20 px-4 bg-slate-50">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 font-serif text-slate-900">
-            Case Information
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-lg border border-slate-200">
-              <h3 className="text-lg font-bold text-slate-900 mb-4">Affiant</h3>
-              <p className="text-slate-600 mb-6">
-                Charles Tanauan (a.k.a. Master Kanor)
-              </p>
-
-              <h3 className="text-lg font-bold text-slate-900 mb-4">Respondents</h3>
-              <ul className="text-slate-600 space-y-2 mb-6">
-                <li>• Carl Justin Pagaspas</li>
-                <li>• Mario Nalda Cadisal</li>
-                <li>• Lawrence Daria</li>
-              </ul>
-            </div>
-
-            <div className="bg-white p-8 rounded-lg border border-slate-200">
-              <h3 className="text-lg font-bold text-slate-900 mb-4">Violations</h3>
-              <p className="text-slate-600 mb-6">
-                R.A. 10175 (Cybercrime Prevention Act)
-              </p>
-
-              <h3 className="text-lg font-bold text-slate-900 mb-4">Location</h3>
-              <p className="text-slate-600">
-                Imus, Cavite, Republic of the Philippines
-              </p>
+      <main className="mx-auto flex min-h-[calc(100vh-155px)] max-w-6xl items-center px-6 py-16">
+        <section className="grid w-full gap-12 border border-[#d4dde1] bg-[#fffdfa] p-8 shadow-[0_14px_40px_rgba(30,44,52,0.06)] lg:grid-cols-[1.15fr_.85fr] lg:p-14">
+          <div>
+            <div className="text-xs font-bold uppercase tracking-[0.18em] text-[#9a6b32]">Authorized access only</div>
+            <h1 className="mt-5 max-w-2xl font-serif text-5xl font-semibold leading-[1.08] text-[#21313a]">A private portal for controlled case review.</h1>
+            <p className="mt-6 max-w-xl text-base leading-8 text-[#5f6e77]">This system provides authorized reviewers with access to case documentation and evidence according to their assigned permissions. Private case materials are not displayed on the public gateway.</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {!isLoading && user ? <><Button onClick={() => setLocation("/dashboard")} className="gap-2 bg-[#21313a] text-white hover:bg-[#344a56]">Open authorized portal</Button><Button onClick={() => void logout()} variant="outline">Sign out</Button></> : <Button onClick={() => setLocation("/auth")} className="gap-2 bg-[#21313a] text-white hover:bg-[#344a56]"><LockKeyhole className="h-4 w-4" /> Sign in</Button>}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Security & Access Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-r from-slate-100 to-slate-50 p-12 rounded-lg border border-slate-200">
-            <div className="flex items-start gap-4 mb-6">
-              <Lock className="w-8 h-8 text-amber-600 flex-shrink-0 mt-1" />
-              <div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                  Secure Access & Authentication
-                </h2>
-                <p className="text-slate-600 mb-4">
-                  This evidence dossier is protected with Supabase authentication. Admin users have access to content management features and export functionality. All data is encrypted and stored securely.
-                </p>
-                <p className="text-slate-600">
-                  Exports are automatically saved to cloud storage and can be accessed anytime from your export history. All formats include full metadata and are ready for sharing or archival.
-                </p>
-              </div>
+          <div className="flex items-center border-l border-[#e0e5e7] pl-0 lg:pl-12">
+            <div className="w-full border border-[#d4dde1] bg-[#f7f8f8] p-6">
+              <div className="text-xs font-bold uppercase tracking-[0.15em] text-[#9a6b32]">Security notice</div>
+              <p className="mt-4 text-sm leading-7 text-[#5e6c74]">Access is provisioned manually. Your role and resource permissions are resolved from trusted authorization records after authentication.</p>
+              <div className="mt-6 border-t border-[#d4dde1] pt-5 text-xs leading-6 text-[#718089]">Do not use a URL, browser state, or hidden interface control as an authorization mechanism. Unauthorized requests are denied at the application and database layers.</div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-slate-900 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6 font-serif">
-            Access the Complete Evidence Dossier
-          </h2>
-          <p className="text-xl text-slate-300 mb-8">
-            View all 12 affidavit sections with organized evidence galleries and professional documentation
-          </p>
-          <Button
-            size="lg"
-            className="bg-amber-600 hover:bg-amber-700 text-white"
-            onClick={() => setLocation("/dossier")}
-          >
-            View Dossier Now
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-800 text-slate-400 py-12 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h4 className="font-bold text-white mb-4">About</h4>
-              <p className="text-sm">
-                Official affidavit and evidence documentation system for Charles Tanauan case
-              </p>
-            </div>
-            <div>
-              <h4 className="font-bold text-white mb-4">Documentation</h4>
-              <ul className="text-sm space-y-2">
-                <li><a href="#" className="hover:text-white transition">README</a></li>
-                <li><a href="#" className="hover:text-white transition">Deployment Guide</a></li>
-                <li><a href="#" className="hover:text-white transition">API Docs</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold text-white mb-4">Legal</h4>
-              <ul className="text-sm space-y-2">
-                <li><a href="#" className="hover:text-white transition">Privacy</a></li>
-                <li><a href="#" className="hover:text-white transition">Terms</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold text-white mb-4">Contact</h4>
-              <p className="text-sm">
-                For inquiries, contact the case administrator
-              </p>
-            </div>
-          </div>
-          <div className="border-t border-slate-700 pt-8 text-center text-sm">
-            <p>&copy; 2026 Charles Tanauan Official Affidavit & Evidence. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+        </section>
+      </main>
+      <footer className="border-t border-[#d6dde2] bg-white px-6 py-6 text-center text-xs leading-6 text-[#728089]">Private system · Access is restricted to approved accounts · No public registration</footer>
     </div>
   );
 }

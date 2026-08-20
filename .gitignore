@@ -1,0 +1,14 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+
+# Local credential and audit artifacts
+credentials.xlsx
+scripts/.secrets/
+.learnings/
+terminal_full_output/

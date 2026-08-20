@@ -198,6 +198,9 @@ importers:
       '@builder.io/vite-plugin-jsx-loc':
         specifier: ^0.1.1
         version: 0.1.1(vite@5.4.21(@types/node@20.19.43)(lightningcss@1.32.0))
+      '@cloudflare/workers-types':
+        specifier: ^5.20260820.1
+        version: 5.20260820.1
       '@tailwindcss/typography':
         specifier: ^0.5.15
         version: 0.5.20(tailwindcss@4.3.3)
@@ -245,7 +248,7 @@ importers:
         version: 0.31.10
       drizzle-orm:
         specifier: ^0.45.2
-        version: 0.45.2
+        version: 0.45.2(@cloudflare/workers-types@5.20260820.1)
       esbuild:
         specifier: ^0.25.0
         version: 0.25.12
@@ -458,6 +461,9 @@ packages:
 
   '@chevrotain/types@11.1.2':
     resolution: {integrity: sha512-U+HFai5+zmJCkK86QsaJtoITlboZHBqrVketcO2ROv865xfCMSFpELQoz1GkX5GzME8pTa+3kbKrZHQtI0gdbw==}
+
+  '@cloudflare/workers-types@5.20260820.1':
+    resolution: {integrity: sha512-KFRmtV4toMf1LL2yXylFTIs7YAS1IYo6jrJCneBG8I1VXHcKCIdqPROH6lGum+gZ+ZgdcNZqxDgjM1yEMgma2w==}
 
   '@date-fns/tz@1.5.0':
     resolution: {integrity: sha512-lwYN/vDPeNRULcepoE/LO2Pgx+7/RV+S9ARfbc9lr2DtGkOD7pAiruHvbR1RX3Qyf6ja47EWJDMsNK5vK08DJg==}
@@ -4511,6 +4517,8 @@ snapshots:
 
   '@chevrotain/types@11.1.2': {}
 
+  '@cloudflare/workers-types@5.20260820.1': {}
+
   '@date-fns/tz@1.5.0': {}
 
   '@drizzle-team/brocli@0.10.2': {}
@@ -6530,7 +6538,9 @@ snapshots:
       esbuild: 0.25.12
       tsx: 4.23.1
 
-  drizzle-orm@0.45.2: {}
+  drizzle-orm@0.45.2(@cloudflare/workers-types@5.20260820.1):
+    optionalDependencies:
+      '@cloudflare/workers-types': 5.20260820.1
 
   dunder-proto@1.0.1:
     dependencies:

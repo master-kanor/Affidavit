@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Security and Provenance at Every Layer</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #ffffff; color: #2B3A42; font-family: Georgia, 'Times New Roman', serif; position: relative; }
+    .vline { position: absolute; top: 0; bottom: 0; width: 1px; background: #2B3A42; opacity: .30; }
+    .hline { position: absolute; left: 0; right: 0; height: 1px; background: #2B3A42; opacity: .30; }
+    .kicker { font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; letter-spacing: 1.8px; color: #8B2635; }
+    .headline { font-family: 'Courier New', monospace; font-size: 38px; font-weight: 700; line-height: 1.14; }
+    .subline { margin-top: 13px; max-width: 910px; font-size: 16px; line-height: 1.4; color: #3E505B; }
+    .layer { position: absolute; top: 262px; width: 194px; height: 188px; border: 1px solid #2B3A42; background: #ffffff; }
+    .layer-num { height: 38px; border-bottom: 1px solid #2B3A42; display: flex; align-items: center; padding-left: 13px; font-family: 'Courier New', monospace; font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #8B2635; }
+    .layer-title { padding: 17px 14px 0 14px; font-family: 'Courier New', monospace; font-size: 15px; font-weight: 700; line-height: 1.25; }
+    .layer-copy { padding: 11px 14px 0 14px; font-size: 13px; line-height: 1.38; color: #3E505B; }
+    .connector { position: absolute; top: 356px; height: 1px; width: 30px; background: #2B3A42; }
+    .connector::after { content: '›'; position: absolute; right: -3px; top: -15px; color: #8B2635; font-size: 28px; }
+    .register { position: absolute; left: 78px; right: 78px; bottom: 48px; min-height: 128px; border: 1px solid #2B3A42; display: flex; }
+    .register-label { width: 212px; min-height: 126px; border-right: 1px solid #2B3A42; padding: 22px 16px 0 16px; font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; letter-spacing: .8px; color: #8B2635; }
+    .register-item { width: 33.33%; min-height: 126px; border-right: 1px solid #2B3A42; padding: 20px 16px 0 16px; }
+    .register-item:last-child { border-right: 0; }
+    .register-title { font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; letter-spacing: .5px; }
+    .register-copy { margin-top: 9px; font-size: 13px; line-height: 1.36; color: #3E505B; }
+    .prohibit { position: absolute; right: 78px; top: 116px; border: 1px solid #8B2635; padding: 9px 11px 0 11px; min-height: 35px; font-family: 'Courier New', monospace; font-size: 11px; color: #8B2635; font-weight: 700; letter-spacing: .55px; }
+    .folio { position: absolute; right: 78px; top: 55px; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 1px; color: #3E505B; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="vline" style="left: 5.7%;"></div><div class="vline" style="left: 50%;"></div><div class="vline" style="left: 94.3%;"></div>
+    <div class="hline" style="top: 8%;"></div><div class="hline" style="top: 92%;"></div>
+    <section style="position:absolute; left:78px; top:80px;">
+      <div class="kicker">08 / CHAIN OF CUSTODY</div>
+      <h1 class="headline" style="margin-top:16px;">Security and provenance at every layer.</h1>
+      <p class="subline">Authority, evidence visibility, source preservation, and auditability are enforced by a sequence of independent controls — not by a client-side promise.</p>
+    </section>
+    <div class="prohibit">NO CLIENT-SUPPLIED ROLE OR ACTOR ID</div>
+    <div class="folio">SECURITY MODEL / 09</div>
+
+    <div class="layer" style="left:78px;"><div class="layer-num">LAYER 01</div><div class="layer-title">ROLE-AWARE API CHECK</div><div class="layer-copy">Owner/Admin mutations; Guest Reviewer remains view-only. Authority derives from the validated session.</div></div>
+    <div class="layer" style="left:304px;"><div class="layer-num">LAYER 02</div><div class="layer-title">ROW-LEVEL SECURITY</div><div class="layer-copy">Database policy filters every case, resource, and relationship to the principal’s authorized scope.</div></div>
+    <div class="layer" style="left:530px;"><div class="layer-num">LAYER 03</div><div class="layer-title">SOURCE INTEGRITY</div><div class="layer-copy">Documentary routes compose editorial records but cannot update affidavit text versions.</div></div>
+    <div class="layer" style="left:756px;"><div class="layer-num">LAYER 04</div><div class="layer-title">AUDIT TRANSACTION</div><div class="layer-copy">Each mutation writes actor, action, before/after values, request context, and optional recommendation link.</div></div>
+    <div class="layer" style="left:982px;"><div class="layer-num">LAYER 05</div><div class="layer-title">CONTROLLED MEDIA</div><div class="layer-copy">Only normalized, approved provider URLs may render. Missing external evidence links are never invented.</div></div>
+    <div class="connector" style="left:272px;"></div><div class="connector" style="left:498px;"></div><div class="connector" style="left:724px;"></div><div class="connector" style="left:950px;"></div>
+
+    <section class="register">
+      <div class="register-label">PROVENANCE<br/>REGISTER</div>
+      <div class="register-item"><div class="register-title">SOURCE FACT</div><div class="register-copy">Canonical text and verified source references remain readable as their own class of material.</div></div>
+      <div class="register-item"><div class="register-title">EDITORIAL / AI SUGGESTION</div><div class="register-copy">Chapter order, narration, and relationship proposals remain visibly distinct until a reviewer accepts them.</div></div>
+      <div class="register-item"><div class="register-title">UNVERIFIED / REJECTED</div><div class="register-copy">Unverified or rejected material cannot silently qualify an approved documentary export or alter source history.</div></div>
+    </section>
+  </div>
+</body>
+</html>

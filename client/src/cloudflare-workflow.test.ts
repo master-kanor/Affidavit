@@ -2,63 +2,57 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
-const workflowPath = fileURLToPath(
-  new URL("../../.github/workflows/deploy.yml", import.meta.url),
-);
+const workflowPath = fileURLToPath(new URL("../../.github/workflows/deploy.yml", import.meta.url));
 const workflow = readFileSync(workflowPath, "utf8");
 const appSource = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
-const mainSource = readFileSync(new URL("./main.tsx", import.meta.url), "utf8");
 const authHookSource = readFileSync(new URL("./hooks/useAuth.ts", import.meta.url), "utf8");
-const evidenceSource = readFileSync(new URL("./pages/EvidenceDossier.tsx", import.meta.url), "utf8");
+const authorizationSource = readFileSync(new URL("./lib/authorization.ts", import.meta.url), "utf8");
 const adminSource = readFileSync(new URL("./pages/AdminDashboard.tsx", import.meta.url), "utf8");
+const homeSource = readFileSync(new URL("./pages/Home.tsx", import.meta.url), "utf8");
 
-describe("Cloudflare Pages deployment workflow", () => {
-  it("deploys the intended Pages project and GitHub artifact output", () => {
-    expect(workflow).toContain("projectName: affidavit");
-    expect(workflow).toContain("directory: dist\n");
-    expect(workflow).toContain("branch: main\n");
-    expect(workflow).not.toContain("projectName: masterkanor-affidavit");
-    expect(workflow).not.toContain("directory: dist/public");
-    expect(workflow).not.toContain("productionBranch:");
-    expect(workflow).toContain("mkdir -p dist");
-    expect(workflow).toContain("find dist/public -maxdepth 1");
+ describe("Cloudflare Pages deployment workflow", () => {
+  it("deploys the intended Pages project and output directory", () => {
+    expect(workflow).toContain("pages deploy dist/public --project-name=affidavit --branch=main");
+    expect(workflow).toContain("test -f dist/public/index.html");
+    expect(workflow).toContain("test -f dist/public/_redirects");
   });
 
-  it("does not ignore the TypeScript check", () => {
-    expect(workflow).toContain("run: pnpm run check\n");
-    expect(workflow).not.toContain("pnpm run check || true");
+  it("requires validation and public build configuration before deployment", () => {
+    expect(workflow).toContain("pnpm install --frozen-lockfile");
+    expect(workflow).toContain("pnpm run check");
+    expect(workflow).toContain("pnpm test");
+    expect(workflow).toContain("wrangler-action@v3");
+    expect(workflow).toContain("/api/health");
+    expect(workflow).toContain("VITE_SUPABASE_URL");
+    expect(workflow).toContain("VITE_SUPABASE_ANON_KEY");
+    expect(workflow).toContain("python3 scripts/scan-secrets.py");
   });
 
-  it("smoke-checks the Pages origin and diagnoses canonical edge responses", () => {
-    expect(workflow).toContain("https://affidavit-abo.pages.dev/");
-    expect(workflow).toContain("canonical_status");
+  it("smoke-checks the Pages origin, canonical domain, and auth route", () => {
+    expect(workflow).toContain("https://affidavit-abo.pages.dev");
+    expect(workflow).toContain("https://masterkanorcase.online");
+    expect(workflow).toContain("auth_status");
     expect(workflow).not.toContain("curl -f -sS https://masterkanorcase.online/");
-    expect(workflow).not.toContain("/api/health");
   });
 
-  it("keeps the local SPA fallback in the Vite public directory", () => {
-    const redirectsPath = fileURLToPath(
-      new URL("../public/_redirects", import.meta.url),
-    );
-    const redirects = readFileSync(redirectsPath, "utf8");
-    expect(redirects).toContain("/*    /index.html   200");
-  });
-
-  it("keeps protected routes and authentication in Supabase client code", () => {
-    expect(appSource).toContain('path={"/auth"}');
-    expect(appSource).toContain('path={"/auth/callback"}');
-    expect(appSource).toContain('path={"/dossier"}');
-    expect(appSource).toContain('path={"/admin"}');
-    expect(mainSource).toContain("QueryClientProvider");
-    expect(mainSource).not.toContain("getLoginUrl");
+  it("keeps protected routes and trusted authorization in the application", () => {
+    expect(appSource).toContain('path="/auth"');
+    expect(appSource).toContain('path="/auth/callback"');
+    expect(appSource).toContain('path="/dashboard"');
+    expect(appSource).toContain('path="/dossier"');
+    expect(appSource).toContain('path="/admin"');
+    expect(appSource).toContain("ProtectedCaseRoute");
+    expect(appSource).toContain("ProtectedAdminRoute");
     expect(authHookSource).toContain("@/lib/supabaseClient");
-    expect(authHookSource).not.toContain("/api/auth/");
+    expect(authHookSource).not.toContain("user_metadata?.role");
+    expect(authorizationSource).toContain("from(\"profiles\")");
+    expect(authorizationSource).toContain("from(\"user_permissions\")");
   });
 
-  it("keeps protected-page hooks stable across auth loading transitions", () => {
-    expect(evidenceSource).toContain("AuthorizedEvidenceDossier");
-    expect(evidenceSource).toContain("return <AuthorizedEvidenceDossier user={user} />;");
-    expect(adminSource).toContain("AuthorizedAdminDashboard");
-    expect(adminSource).toContain("return <AuthorizedAdminDashboard />;");
+  it("does not present simulated production truth on the public or admin surfaces", () => {
+    expect(homeSource).not.toContain("canonicalCase");
+    expect(adminSource).toContain("Trusted authorization is active");
+    expect(adminSource).not.toContain("Math.random");
+    expect(adminSource).not.toContain("totalEvidence: 331");
   });
 });

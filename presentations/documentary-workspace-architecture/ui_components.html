@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Components Separate Review, Editing, and Source Viewing</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #ffffff; color: #2B3A42; font-family: Georgia, 'Times New Roman', serif; position: relative; }
+    .rule { position: absolute; background: #2B3A42; opacity: .32; }
+    .kicker { font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; letter-spacing: 1.8px; color: #8B2635; }
+    .headline { font-family: 'Courier New', monospace; font-size: 37px; line-height: 1.15; font-weight: 700; }
+    .subhead { margin-top: 13px; max-width: 795px; color: #3E505B; font-size: 17px; line-height: 1.4; }
+    .shell { border: 1px solid #2B3A42; width: 1042px; min-height: 76px; display: flex; align-items: center; }
+    .shell-id { width: 142px; min-height: 74px; border-right: 1px solid #2B3A42; display: flex; align-items: center; justify-content: center; font-family: 'Courier New', monospace; font-size: 14px; font-weight: 700; color: #8B2635; letter-spacing: .8px; }
+    .shell-main { padding: 15px 20px 15px 20px; }
+    .shell-title { font-family: 'Courier New', monospace; font-size: 18px; font-weight: 700; letter-spacing: .35px; }
+    .shell-text { margin-top: 5px; font-size: 14px; color: #3E505B; }
+    .lane { width: 1042px; min-height: 106px; display: flex; border: 1px solid #2B3A42; border-top: 0; }
+    .lane-no { width: 142px; min-height: 105px; display: flex; align-items: center; justify-content: center; border-right: 1px solid #2B3A42; font-family: 'Courier New', monospace; font-size: 25px; font-weight: 700; color: #8B2635; }
+    .lane-title { width: 245px; min-height: 105px; border-right: 1px solid #2B3A42; padding: 22px 16px 16px 16px; font-family: 'Courier New', monospace; font-size: 15px; line-height: 1.25; font-weight: 700; letter-spacing: .4px; }
+    .module-row { width: 655px; min-height: 105px; display: flex; align-items: stretch; }
+    .module { width: 218px; border-right: 1px solid #2B3A42; padding: 16px 13px 14px 13px; }
+    .module:last-child { border-right: 0; }
+    .module-name { font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; color: #2B3A42; line-height: 1.25; }
+    .module-text { margin-top: 8px; color: #3E505B; font-size: 12px; line-height: 1.32; }
+    .integrity { border: 1px solid #8B2635; width: 1042px; min-height: 66px; margin-top: 22px; display: flex; align-items: center; }
+    .integrity-title { width: 190px; min-height: 64px; border-right: 1px solid #8B2635; display: flex; align-items: center; justify-content: center; font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; color: #8B2635; letter-spacing: .7px; }
+    .integrity-text { padding: 13px 20px 12px 20px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.38; color: #8B2635; }
+    .folio { position: absolute; right: 78px; bottom: 35px; font-family: 'Courier New', monospace; font-size: 12px; letter-spacing: 1px; color: #3E505B; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="rule" style="left: 73px; top: 57px; width: 1px; height: 606px;"></div>
+    <div class="rule" style="right: 73px; top: 57px; width: 1px; height: 606px;"></div>
+    <div class="rule" style="left: 73px; right: 73px; top: 57px; height: 1px;"></div>
+    <section style="position: absolute; left: 119px; top: 78px; width: 1042px;">
+      <div class="kicker">04 / FRONTEND RESPONSIBILITY MAP</div>
+      <h1 class="headline" style="margin-top: 16px;">Components separate review, editing, and source viewing.</h1>
+      <p class="subhead">Each component owns one bounded responsibility. The page can organize a documentary, but it cannot mutate the canonical affidavit through its editorial controls.</p>
+      <div class="shell" style="margin-top: 4px;">
+        <div class="shell-id">WORKSPACE</div>
+        <div class="shell-main"><div class="shell-title">DOCUMENTARY WORKSPACE PAGE + HEADER</div><div class="shell-text">Loads the authorized aggregate, exposes case status and permissions, and coordinates view-only, editing, review, conflict, and export states.</div></div>
+      </div>
+      <div class="lane">
+        <div class="lane-no">01</div>
+        <div class="lane-title">REVIEW + NAVIGATION</div>
+        <div class="module-row">
+          <div class="module"><div class="module-name">CHAPTER LIST</div><div class="module-text">Ordered chapters, selection state, keyboard reorder boundary, and count summaries.</div></div>
+          <div class="module"><div class="module-name">CHAPTER CARD</div><div class="module-text">Status, narration preview, item count, reviewer identity, and timestamp.</div></div>
+          <div class="module"><div class="module-name">REVIEW DIALOG</div><div class="module-text">Explicit submit, approve, reject, reopen, and archive actions with reason capture.</div></div>
+        </div>
+      </div>
+      <div class="lane">
+        <div class="lane-no">02</div>
+        <div class="lane-title">EDIT + COMPOSITION</div>
+        <div class="module-row">
+          <div class="module"><div class="module-name">EDITOR DRAWER</div><div class="module-text">Editorial title, description, and narration only; never source affidavit wording.</div></div>
+          <div class="module"><div class="module-name">ITEM GRID</div><div class="module-text">Ordered resource cards with caption, notes, removal, and controlled reordering.</div></div>
+          <div class="module"><div class="module-name">RESOURCE PICKER</div><div class="module-text">Searches only visible, case-scoped sections, evidence, testimony, events, and links.</div></div>
+        </div>
+      </div>
+      <div class="lane">
+        <div class="lane-no">03</div>
+        <div class="lane-title">PROVENANCE + AUDIT</div>
+        <div class="module-row">
+          <div class="module"><div class="module-name">RELATIONSHIP PANEL</div><div class="module-text">Displays source link, confidence, verification, and Accept / Modify / Reject decisions.</div></div>
+          <div class="module"><div class="module-name">AUDIT TIMELINE</div><div class="module-text">Shows actor, action, time, reason, and before/after summary from server records.</div></div>
+          <div class="module"><div class="module-name">EXPORT REVIEW</div><div class="module-text">Verifies approval readiness and shows the exact reproducible documentary snapshot.</div></div>
+        </div>
+      </div>
+      <div class="integrity" style="margin-top: 0px;"><div class="integrity-title">INTEGRITY BOUNDARY</div><div class="integrity-text">NARRATION, ORDER, CAPTIONS, AND EVIDENCE RELATIONSHIPS ARE EDITORIAL RECORDS. CANONICAL AFFIDAVIT TEXT LIVES IN A SEPARATE, READ-ONLY VERSIONED DOMAIN.</div></div>
+    </section>
+    <div class="folio">DOCUMENTARY WORKSPACE / 05</div>
+  </div>
+</body>
+</html>
