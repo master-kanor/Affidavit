@@ -823,17 +823,9 @@ function ExportTools({
               const text = canonicalCase.sections
                 .map(
                   section =>
-                    `${section.number} ${section.title}
-
-${section.sourceText.map(p => p.text).join("
-
-")}`
+                    `${section.number} ${section.title}\n\n${section.sourceText.map(p => p.text).join("\n\n")}`
                 )
-                .join("
-
----
-
-");
+                .join("\n\n---\n\n");
               download("official-affidavit-text-only.txt", text, "text/plain");
             }}
           >
