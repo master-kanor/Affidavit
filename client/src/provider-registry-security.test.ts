@@ -30,7 +30,7 @@ describe("AI provider registry security", () => {
     expect(correction).toContain(
       "revoke select on public.ai_provider_connections"
     );
-    expect(api).toContain("JSON.stringify({ enabled: false }))");
+    expect(api).toContain("JSON.stringify({ enabled: false })");
   });
 
   it("routes free models first and retries bounded transient failures", () => {
