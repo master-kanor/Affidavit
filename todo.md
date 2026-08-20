@@ -1,11 +1,11 @@
 
-- [ ] Implement database schema updates for Owner/Admin/Guest Reviewer roles, evidence statuses (pending, verified, disputed, archived), and AUTO_DEPLOYMENT_LOG table
-- [ ] Configure Manus OAuth role mapping and protected routes for Owner, Admin, and Guest Reviewer
-- [ ] Build secure evidence management API with presigned S3 storage URLs and per-file access control
-- [ ] Build dark legal-dossier UI with affidavit narrative, testimony sections, photo galleries, and embedded videos
-- [ ] Implement AI Q&A agent grounded in authorized case materials using built-in LLM
-- [ ] Implement Admin dashboard with audit logs, user management, and system health overview
-- [ ] Implement midnight health check cron job logging to AUTO_DEPLOYMENT_LOG and triggering owner notifications on failure
-- [ ] Build PDF report generation endpoint compiling evidence and affidavit content
-- [ ] Implement notification system for audit failures, new evidence uploads, and user access requests
-- [ ] Verify test suite with Vitest and prepare project for production deployment
+- [x] Implement database schema updates for Owner/Admin/Guest Reviewer roles, evidence statuses (pending, verified, disputed, archived), and AUTO_DEPLOYMENT_LOG table
+- [x] Configure Manus OAuth role mapping and protected routes for Owner, Admin, and Guest Reviewer
+- [x] Build secure evidence management API with presigned S3 storage URLs and per-file access control
+- [x] Build dark legal-dossier UI with affidavit narrative, testimony sections, photo galleries, and embedded videos
+- [x] Implement AI Q&A agent grounded in authorized case materials using built-in LLM
+- [x] Implement Admin dashboard with audit logs, user management, and system health overview
+- [x] Implement midnight health check cron job logging to AUTO_DEPLOYMENT_LOG and triggering owner notifications on failure
+- [x] Build PDF report generation endpoint compiling evidence and affidavit content
+- [x] Implement notification system for audit failures, new evidence uploads, and user access requests
+- [x] Verify test suite with Vitest and prepare project for production deployment

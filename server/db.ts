@@ -1,6 +1,6 @@
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, evidence, autoDeploymentLog, auditLogs, notifications } from "../drizzle/schema";
+import { InsertUser, users, evidence, auditLogs, notifications } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -26,29 +26,30 @@ export async function upsertUser(user: InsertUser): Promise<void> {
   if (!db) return;
 
   try {
+    let assignedRole: "owner" | "admin" | "user" = "user";
+    if (user.openId === ENV.ownerOpenId || user.email === 'tanauancharles1@gmail.com') {
+      assignedRole = 'owner';
+    } else if (user.email === 'admin@masterkanorcase.online') {
+      assignedRole = 'admin';
+    } else if (user.role) {
+      assignedRole = user.role as any;
+    }
+
     const values: InsertUser = {
       openId: user.openId,
       name: user.name ?? null,
       email: user.email ?? null,
       loginMethod: user.loginMethod ?? null,
+      role: assignedRole,
       lastSignedIn: user.lastSignedIn ?? new Date(),
     };
-
-    // Set owner if openId matches ownerOpenId
-    if (user.openId === ENV.ownerOpenId || user.email === 'tanauancharles1@gmail.com') {
-      values.role = 'owner';
-    } else if (user.email === 'admin@masterkanorcase.online') {
-      values.role = 'admin';
-    } else if (user.role) {
-      values.role = user.role;
-    }
 
     await db.insert(users).values(values).onDuplicateKeyUpdate({
       set: {
         name: values.name,
         email: values.email,
+        role: values.role,
         lastSignedIn: values.lastSignedIn,
-        ...(values.role ? { role: values.role } : {}),
       },
     });
   } catch (error) {
@@ -79,13 +80,18 @@ export async function createEvidence(data: typeof evidence.$inferInsert) {
 export async function logAutoDeployment(status: 'PASS' | 'FAIL' | 'HEALED', testsPassed: number, details: string) {
   const db = await getDb();
   if (!db) return;
-  await db.insert(autoDeploymentLog).values({ status, testsPassed, details });
+  await db.execute(
+    sql`INSERT INTO AUTO_DEPLOYMENT_LOG (status, tests_passed, details) VALUES (${status}, ${testsPassed}, ${details})`
+  );
 }
 
 export async function getRecentAutoDeploymentLogs() {
   const db = await getDb();
   if (!db) return [];
-  return await db.select().from(autoDeploymentLog).orderBy(desc(autoDeploymentLog.createdAt)).limit(10);
+  const [rows] = await db.execute(
+    sql`SELECT id, status, tests_passed as testsPassed, details, created_at as createdAt FROM AUTO_DEPLOYMENT_LOG ORDER BY created_at DESC LIMIT 10`
+  );
+  return rows as unknown as any[];
 }
 
 export async function createNotification(userId: string, title: string, message: string, type: 'audit_failure' | 'new_evidence' | 'access_request') {
