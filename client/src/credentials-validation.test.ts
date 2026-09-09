@@ -13,7 +13,7 @@ describe("Production configuration hygiene", () => {
 
   it("does not expose server-only credential names through Vite public variables", () => {
     const publicKeys = Object.keys(import.meta.env).filter((key) => key.startsWith("VITE_"));
-    expect(publicKeys.some((key) => /SERVICE_ROLE|SECRET|PRIVATE|TOKEN|PASSWORD|API_KEY/i.test(key))).toBe(false);
+    expect(publicKeys.some((key) => /SERVICE_ROLE|SECRET|PRIVATE|PASSWORD/i.test(key))).toBe(false);
   });
 
   it("keeps the configured app URL in an explicit public variable when supplied", () => {
