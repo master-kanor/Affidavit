@@ -14,6 +14,9 @@ export default defineConfig({
     ["html", { outputFolder: "playwright-report", open: "never" }],
     ["junit", { outputFile: "test-results/playwright.xml" }],
   ],
+  // GitHub Actions already provides commit metadata; avoid a remote base-diff fetch
+  // during preview startup because it is network-sensitive and unrelated to browser behavior.
+  captureGitInfo: { commit: true, diff: false },
   use: {
     baseURL: process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:4173",
     trace: "on-first-retry",
