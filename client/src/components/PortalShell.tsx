@@ -50,7 +50,7 @@ export function PortalShell({
   const [mobileOpen, setMobileOpen] = useState(false);
   const [, setLocation] = useLocation();
   const { logout } = useAuth();
-  const { profile, isOwner, isAdmin, can } = useAuthorization();
+  const { profile, isOwner, isAdmin, isClient, can } = useAuthorization();
   const manager = isOwner || isAdmin;
   const items = manager
     ? [...baseItems, ...managementItems]
@@ -131,8 +131,8 @@ export function PortalShell({
               {profile?.display_name || "Authorized account"}
             </p>
             <p className="mt-0.5 text-[10px] uppercase tracking-[0.14em] text-[#9eabb1]">
-              {profile?.role === "user"
-                ? "Guest Reviewer"
+              {isClient
+                ? "Client · Guest Reviewer"
                 : profile?.role || "Guest Reviewer"}
             </p>
           </div>
