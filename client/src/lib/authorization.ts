@@ -34,6 +34,8 @@ export interface AuthorizationState {
   isOwner: boolean;
   isAdmin: boolean;
   isGuestReviewer: boolean;
+  /** Existing database `user` accounts are presented as restricted Clients in the portal. */
+  isClient: boolean;
   can: (permission: PermissionKey) => boolean;
   canViewResource: (resourceType: ResourceType, resourceId: string) => boolean;
 }
@@ -44,6 +46,7 @@ const deniedState: AuthorizationState = {
   isOwner: false,
   isAdmin: false,
   isGuestReviewer: false,
+  isClient: false,
   can: () => false,
   canViewResource: () => false,
 };
@@ -57,6 +60,7 @@ export function createAuthorizationState(profile: AuthorizationProfile | null, p
     isOwner: activeProfile?.role === "owner",
     isAdmin: activeProfile?.role === "admin",
     isGuestReviewer: activeProfile?.role === "user",
+    isClient: activeProfile?.role === "user",
     can,
     canViewResource: (_resourceType, resourceId) => Boolean(activeProfile && (activeProfile.role === "owner" || resourceIds.has(resourceId))),
   };

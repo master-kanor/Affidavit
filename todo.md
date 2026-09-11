@@ -4166,3 +4166,10 @@
 - [ ] Replace the GitHub Actions homepage smoke check that receives a runner-specific Cloudflare 403 with a reliable deployment verification that does not falsely fail an otherwise successful Pages publish
 - [ ] Remove the unsupported `productionBranch` input from the Cloudflare Pages GitHub Action workflow and retain an explicit regression assertion for supported inputs
 - [ ] Force the Cloudflare Pages Action to deploy the GitHub `main` branch to production with its supported `branch` input, then verify the live asset hash changes
+
+## Current Enterprise Integration Continuation
+- [x] Make Playwright E2E startup deterministic in GitHub Actions by disabling remote Git diff collection while retaining local commit metadata
+- [ ] Validate Owner and Client route/procedure access boundaries with E2E and integration coverage
+- [ ] Verify GitHub, DockerHub, Cloudflare Pages, Supabase, and masterkanorcase.online deployment contracts without destructive database changes
+- [ ] Run full local and remote E2E, unit, type, build, security, API, domain, and database-preservation validation
+- [ ] Update the enterprise integration pull request and save a project checkpoint after verified changes

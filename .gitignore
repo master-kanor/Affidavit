@@ -12,3 +12,4 @@ credentials.xlsx
 scripts/.secrets/
 .learnings/
 terminal_full_output/
+.project-config.json
