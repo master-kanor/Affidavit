@@ -21,6 +21,9 @@ export const supabase = createClient(
   SUPABASE_URL || 'https://preview-placeholder.supabase.co',
   SUPABASE_ANON_KEY || 'preview-placeholder-anon-key',
   {
+    db: {
+      schema: 'public'
+    },
     auth: {
       autoRefreshToken: true,
       persistSession: true,
