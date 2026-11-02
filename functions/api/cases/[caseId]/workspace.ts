@@ -12,6 +12,7 @@ function serviceHeaders(env: Env) {
   return {
     apikey: env.SUPABASE_SERVICE_ROLE_KEY,
     Authorization: `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}`,
+    "Accept-Profile": "public",
     "Content-Type": "application/json",
   };
 }
