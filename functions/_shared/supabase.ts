@@ -31,6 +31,7 @@ function headers(env: Env, accessToken?: string) {
   return {
     apikey: env.SUPABASE_SERVICE_ROLE_KEY,
     Authorization: `Bearer ${accessToken ?? env.SUPABASE_SERVICE_ROLE_KEY}`,
+    "Accept-Profile": "public",
     "Content-Type": "application/json",
   };
 }
