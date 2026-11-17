@@ -97,7 +97,12 @@ jobs:
           E2E_OWNER_EMAIL: ${{ secrets.E2E_OWNER_EMAIL }}
           E2E_OWNER_PASSWORD: ${{ secrets.E2E_OWNER_PASSWORD }}
           WORKSPACE_URL: https://affidavit-abo.pages.dev
-        run: pnpm exec vitest run client/src/canonical-case-workspace.production.integration.test.ts
+        run: |
+          if [ -z "${E2E_OWNER_EMAIL:-}" ] || [ -z "${E2E_OWNER_PASSWORD:-}" ]; then
+            echo "::warning::Skipping canonical workspace integration test because E2E_OWNER_EMAIL and/or E2E_OWNER_PASSWORD is not configured."
+            exit 0
+          fi
+          pnpm exec vitest run client/src/canonical-case-workspace.production.integration.test.ts
 
       - name: Smoke check production origin and canonical domain
         env:

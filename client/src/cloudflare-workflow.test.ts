@@ -37,6 +37,11 @@ const homeSource = readFileSync(new URL("./pages/Home.tsx", import.meta.url), "u
     expect(workflow).not.toContain("curl -f -sS https://masterkanorcase.online/");
   });
 
+  it("keeps the optional owner integration check from failing deployments without test secrets", () => {
+    expect(workflow).toContain('if [ -z "${E2E_OWNER_EMAIL:-}" ] || [ -z "${E2E_OWNER_PASSWORD:-}" ]; then');
+    expect(workflow).toContain("Skipping canonical workspace integration test");
+  });
+
   it("keeps protected routes and trusted authorization in the application", () => {
     expect(appSource).toContain('path="/auth"');
     expect(appSource).toContain('path="/auth/callback"');
