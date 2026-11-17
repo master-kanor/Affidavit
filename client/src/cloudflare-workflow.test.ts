@@ -12,7 +12,7 @@ const homeSource = readFileSync(new URL("./pages/Home.tsx", import.meta.url), "u
 
  describe("Cloudflare Pages deployment workflow", () => {
   it("deploys the intended Pages project and output directory", () => {
-    expect(workflow).toContain("pages deploy dist/public --project-name=affidavit --branch=main");
+    expect(workflow).toContain("pages deploy dist/public --project-name=\"$CLOUDFLARE_PROJECT_NAME\" --branch=main");
     expect(workflow).toContain("test -f dist/public/index.html");
     expect(workflow).toContain("test -f dist/public/_redirects");
   });
@@ -28,6 +28,12 @@ const homeSource = readFileSync(new URL("./pages/Home.tsx", import.meta.url), "u
     expect(workflow).toContain("VITE_SUPABASE_URL");
     expect(workflow).toContain("VITE_SUPABASE_ANON_KEY");
     expect(workflow).toContain("python3 scripts/scan-secrets.py");
+  });
+
+  it("uses repository secrets for the Cloudflare project and public app URL", () => {
+    expect(workflow).toContain("CLOUDFLARE_PROJECT_NAME: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}");
+    expect(workflow).toContain("VITE_APP_URL: ${{ secrets.VITE_APP_URL }}");
+    expect(workflow).toContain("--project-name=\"$CLOUDFLARE_PROJECT_NAME\"");
   });
 
   it("smoke-checks the Pages origin, canonical domain, and auth route", () => {
