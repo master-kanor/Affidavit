@@ -4,6 +4,10 @@ import { describe, expect, it } from "vitest";
 
 const workflowPath = fileURLToPath(new URL("../../.github/workflows/deploy.yml", import.meta.url));
 const workflow = readFileSync(workflowPath, "utf8");
+const smokeTestSource = readFileSync(
+  new URL("../../scripts/smoke-test-deployment.sh", import.meta.url),
+  "utf8",
+);
 const appSource = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
 const authHookSource = readFileSync(new URL("./hooks/useAuth.ts", import.meta.url), "utf8");
 const authorizationSource = readFileSync(new URL("./lib/authorization.ts", import.meta.url), "utf8");
@@ -24,7 +28,7 @@ const homeSource = readFileSync(new URL("./pages/Home.tsx", import.meta.url), "u
     expect(workflow).toContain("npx --yes wrangler@3.90.0");
     expect(workflow).toContain("CLOUDFLARE_API_TOKEN");
     expect(workflow).toContain("CLOUDFLARE_ACCOUNT_ID");
-    expect(workflow).toContain("/api/health");
+    expect(smokeTestSource).toContain("$CANONICAL_URL/api/health");
     expect(workflow).toContain("VITE_SUPABASE_URL");
     expect(workflow).toContain("VITE_SUPABASE_ANON_KEY");
     expect(workflow).toContain("python3 scripts/scan-secrets.py");
@@ -39,7 +43,9 @@ const homeSource = readFileSync(new URL("./pages/Home.tsx", import.meta.url), "u
   it("smoke-checks the Pages origin, canonical domain, and auth route", () => {
     expect(workflow).toContain("https://affidavit-abo.pages.dev");
     expect(workflow).toContain("https://masterkanorcase.online");
-    expect(workflow).toContain("auth_status");
+    expect(workflow).toContain("bash scripts/smoke-test-deployment.sh");
+    expect(workflow).toContain("CANONICAL_URL");
+    expect(workflow).toContain("PAGES_URL");
     expect(workflow).not.toContain("curl -f -sS https://masterkanorcase.online/");
   });
 
