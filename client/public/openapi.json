@@ -1,0 +1,42 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Master Kanor Case API",
+    "version": "1.0.0",
+    "description": "APIs for the Master Kanor Case portal."
+  },
+  "servers": [
+    { "url": "https://masterkanorcase.online" }
+  ],
+  "paths": {
+    "/api/health": {
+      "get": {
+        "summary": "Health check",
+        "responses": {
+          "200": { "description": "Service is healthy" }
+        }
+      }
+    },
+    "/api/me": {
+      "get": {
+        "summary": "Current user profile",
+        "responses": {
+          "200": { "description": "Authenticated user profile" },
+          "401": { "description": "Authentication required" }
+        }
+      }
+    },
+    "/api/ai/ask": {
+      "post": {
+        "summary": "Ask the case assistant",
+        "responses": {
+          "200": { "description": "AI answer" },
+          "400": { "description": "Invalid request" },
+          "401": { "description": "Authentication required" },
+          "403": { "description": "Access denied" },
+          "503": { "description": "Service unavailable" }
+        }
+      }
+    }
+  }
+}
