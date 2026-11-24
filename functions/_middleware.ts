@@ -1,85 +1,63 @@
 import type { PagesFunction } from '@cloudflare/workers-types';
-import type { Env } from './_shared/supabase';
 
-function stripTags(value: string): string {
-  return value.replace(/<[^>]+>/g, '');
+const origin = 'https://masterkanorcase.online';
+
+// Register public, canonical pages here when publishing or removing them.
+const publicPages = new Map([
+  ['/', [
+    '# Master Kanor Case',
+    '',
+    'A private portal for controlled case review.',
+    '',
+    'The public gateway provides secure sign-in for authorized reviewers. Reviewers can access the cases, documents, and actions assigned to their accounts.',
+    '',
+    '[Authorized sign in](https://masterkanorcase.online/auth)',
+  ].join('\n') + '\n'],
+]);
+
+function acceptsMarkdown(accept: string): boolean {
+  return accept.split(',').some((entry) => {
+    const [type, ...params] = entry.trim().toLowerCase().split(';');
+    const quality = params.find((param) => param.trim().startsWith('q='));
+    const weight = quality === undefined ? 1 : Number(quality.trim().slice(2));
+    return type.trim() === 'text/markdown' && weight > 0 && weight <= 1;
+  });
 }
 
-function htmlToMarkdown(html: string): string {
-  let source = html;
-  source = source.replace(/<script[\s\S]*?<\/script>/gi, '');
-  source = source.replace(/<style[\s\S]*?<\/style>/gi, '');
-  source = source.replace(/<nav[\s\S]*?<\/nav>/gi, '');
-  source = source.replace(/<footer[\s\S]*?<\/footer>/gi, '');
+function escapeXml(value: string): string {
+  return value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+}
 
-  for (let level = 1; level <= 6; level += 1) {
-    const pattern = new RegExp(`<h${level}[^>]*>([\\s\\S]*?)</h${level}>`, 'gi');
-    source = source.replace(pattern, (_, text: string) => {
-      return `\n${'#'.repeat(level)} ${stripTags(text).trim()}\n`;
+export const onRequest: PagesFunction = async (context) => {
+  const { request } = context;
+  const { pathname } = new URL(request.url);
+  const readable = request.method === 'GET' || request.method === 'HEAD';
+  if (readable && pathname === '/sitemap.xml') {
+    const entries = [...publicPages.keys()].map((path) =>
+      `  <url><loc>${escapeXml(new URL(path, origin).href)}</loc></url>`
+    );
+    const xml = ['<?xml version="1.0" encoding="UTF-8"?>',
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+      ...entries, '</urlset>', ''].join('\n');
+    return new Response(request.method === 'HEAD' ? null : xml, {
+      headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': 'no-cache' },
     });
   }
 
-  source = source.replace(/<a[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi, (_, href: string, text: string) => {
-    const label = stripTags(text).trim();
-    return label ? `[${label}](${href})` : href;
-  });
-
-  source = source.replace(/<p[^>]*>([\s\S]*?)<\/p>/gi, (_, text: string) => {
-    const value = stripTags(text).trim();
-    return value ? `\n\n${value}\n\n` : '\n';
-  });
-
-  source = source.replace(/<li[^>]*>([\s\S]*?)<\/li>/gi, (_, text: string) => {
-    const value = stripTags(text).trim();
-    return value ? `\n- ${value}` : '';
-  });
-
-  source = source.replace(/<br\s*\/?>/gi, '\n');
-  source = source.replace(/<hr\s*\/?>/gi, '\n---\n');
-
-  source = stripTags(source);
-
-  source = source
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&nbsp;/g, ' ');
-
-  source = source.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
-  return source;
-}
-
-export const onRequest: PagesFunction<Env> = async (context) => {
-  const accept = context.request.headers.get('Accept') || '';
-  const wantsMarkdown = accept.toLowerCase().includes('text/markdown');
-
   const response = await context.next();
-  try {
-    response.headers.set(
-      'Link',
-      '</.well-known/api-catalog>; rel="api-catalog", </.well-known/openid-configuration>; rel="service-desc"'
-    );
-  } catch {
-    // ignore immutable headers
-  }
-  if (!wantsMarkdown) return response;
-
-  const contentType = response.headers.get('Content-Type') || '';
-  if (!contentType.toLowerCase().includes('text/html')) return response;
-
-  const html = await response.text();
-  const markdown = htmlToMarkdown(html);
-  const tokenCount = Math.max(1, Math.ceil(markdown.length / 4));
-
   const headers = new Headers(response.headers);
-  headers.set('Content-Type', 'text/markdown; charset=utf-8');
-  headers.set('x-markdown-tokens', String(tokenCount));
-  headers.set('Vary', 'Accept');
-
-  return new Response(markdown, {
-    status: response.status,
-    headers,
-  });
+  headers.append('Link', '</.well-known/api-catalog>; rel="api-catalog", </.well-known/openid-configuration>; rel="service-desc"');
+  const markdown = readable ? publicPages.get(pathname) : undefined;
+  if (markdown && response.status === 200 && headers.get('Content-Type')?.startsWith('text/html')) {
+    headers.append('Vary', 'Accept');
+    if (acceptsMarkdown(request.headers.get('Accept') ?? '')) {
+      for (const name of ['Content-Length', 'Content-Encoding', 'ETag', 'Last-Modified', 'Accept-Ranges']) {
+        headers.delete(name);
+      }
+      headers.set('Content-Type', 'text/markdown; charset=utf-8');
+      headers.set('Cache-Control', 'no-store');
+      return new Response(request.method === 'HEAD' ? null : markdown, { headers });
+    }
+  }
+  return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
 };
