@@ -9,8 +9,9 @@
     "url": "https://masterkanorcase.online",
     "protocols": [
       {
-        "type": "http",
-        "url": "https://masterkanorcase.online"
+        "type": "https",
+        "url": "https://masterkanorcase.online",
+        "endpoint": "https://masterkanorcase.online"
       }
     ]
   },
@@ -18,6 +19,7 @@
     {
       "type": "rest",
       "url": "https://masterkanorcase.online/api/health",
+      "endpoint": "https://masterkanorcase.online/api/health",
       "description": "Health check endpoint"
     }
   ],
