@@ -2,6 +2,12 @@
   "specVersion": "1.0",
   "name": "Master Kanor Case AI Catalog",
   "version": "1.0.0",
+  "entries": [
+    {
+      "name": "api",
+      "url": "https://masterkanorcase.online/.well-known/api-catalog"
+    }
+  ],
   "resources": [
     {
       "name": "api",

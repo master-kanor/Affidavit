@@ -2,7 +2,7 @@ import type { PagesFunction } from '@cloudflare/workers-types';
 
 const metadata = {
   resource: 'https://masterkanorcase.online',
-  authorization_servers: ['https://bftywnjdjyooyrbqahul.supabase.co/auth/v1'],
+  authorization_servers: ['https://masterkanorcase.online'],
   scopes_supported: ['openid', 'profile', 'email'],
   bearer_methods_supported: ['header'],
 };
