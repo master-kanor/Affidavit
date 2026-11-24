@@ -6,14 +6,20 @@
   },
   "agent": {
     "name": "Master Kanor Case Agent",
-    "url": "https://masterkanorcase.online"
+    "url": "https://masterkanorcase.online",
+    "protocols": ["http"]
   },
   "apis": [
     {
-      "name": "health",
-      "url": "https://masterkanorcase.online/api/health"
+      "type": "rest",
+      "url": "https://masterkanorcase.online/api/health",
+      "description": "Health check endpoint"
     }
   ],
+  "auth": {
+    "type": "oauth2",
+    "issuer": "https://masterkanorcase.online"
+  },
   "web": {
     "url": "https://masterkanorcase.online"
   }

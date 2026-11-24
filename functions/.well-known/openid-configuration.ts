@@ -16,6 +16,7 @@ const metadata = {
   agent_auth: {
     skill: 'https://masterkanorcase.online/auth.md',
     register_uri: 'https://bftywnjdjyooyrbqahul.supabase.co/auth/v1/signup',
+    claim_uri: 'https://masterkanorcase.online/auth.md',
     identity_types_supported: ['anonymous'],
     anonymous: {
       credential_types_supported: ['bearer'],

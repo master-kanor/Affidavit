@@ -2,9 +2,13 @@
   "specVersion": "1.0",
   "name": "Master Kanor Case AI Catalog",
   "version": "1.0.0",
+  "hostIdentifier": "masterkanorcase.online",
+  "hostDisplayName": "Master Kanor Case",
   "entries": [
     {
-      "name": "api",
+      "identifier": "api-catalog",
+      "displayName": "API Catalog",
+      "type": "catalog",
       "url": "https://masterkanorcase.online/.well-known/api-catalog"
     }
   ],

@@ -6,27 +6,25 @@ Agent authentication for the Master Kanor Case portal.
 
 AI agents acting on behalf of authorized users of the Master Kanor Case portal.
 
-## Registration
+## Registration Flow
 
-Agents register via OAuth 2.0 authorization code flow with PKCE.
+1. Discover authorization server metadata at https://masterkanorcase.online/.well-known/oauth-authorization-server
+2. Register an agent using the registration endpoint.
+3. Obtain bearer credentials via OAuth 2.0 authorization code with PKCE.
+4. Use `Authorization: Bearer <token>` on protected API requests.
 
-- Authorization server metadata: https://masterkanorcase.online/.well-known/oauth-authorization-server
-- Protected resource metadata: https://masterkanorcase.online/.well-known/oauth-protected-resource
-- Registration endpoint: https://masterkanorcase.online/.well-known/oauth-authorization-server
-
-Supported methods:
-- anonymous: agents may obtain bearer credentials for public discovery endpoints.
-- oauth2: authorization code with PKCE for user-scoped access.
-
-Registration request example:
-
+Registration endpoint:
 POST https://bftywnjdjyooyrbqahul.supabase.co/auth/v1/signup
-Content-Type: application/json
 
+Request body:
 {
   "email": "agent@example.com",
   "password": "replace-with-strong-secret"
 }
+
+Supported methods:
+- anonymous: agents may obtain bearer credentials for public discovery endpoints.
+- oauth2: authorization code with PKCE for user-scoped access.
 
 ## Credential use
 
