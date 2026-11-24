@@ -1,0 +1,10 @@
+{
+  "name": "Master Kanor Case AI Catalog",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "name": "api",
+      "url": "https://masterkanorcase.online/.well-known/api-catalog"
+    }
+  ]
+}

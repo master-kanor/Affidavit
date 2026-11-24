@@ -56,6 +56,14 @@ export const onRequest: PagesFunction<Env> = async (context) => {
   const wantsMarkdown = accept.toLowerCase().includes('text/markdown');
 
   const response = await context.next();
+  try {
+    response.headers.set(
+      'Link',
+      '</.well-known/api-catalog>; rel="api-catalog", </.well-known/openid-configuration>; rel="service-desc"'
+    );
+  } catch {
+    // ignore immutable headers
+  }
   if (!wantsMarkdown) return response;
 
   const contentType = response.headers.get('Content-Type') || '';

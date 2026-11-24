@@ -1,0 +1,7 @@
+{
+  "name": "master-kanor-case",
+  "version": "1.0.0",
+  "description": "Master Kanor Case portal MCP server card",
+  "transport": "http",
+  "url": "https://masterkanorcase.online"
+}

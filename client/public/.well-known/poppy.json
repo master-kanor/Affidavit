@@ -1,0 +1,6 @@
+{
+  "name": "Master Kanor Case",
+  "version": "1.0.0",
+  "description": "Poppy manifest for personal agent protocol",
+  "endpoint": "https://masterkanorcase.online"
+}

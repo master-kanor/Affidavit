@@ -1,0 +1,10 @@
+{
+  "name": "master-kanor-case",
+  "version": "1.0.0",
+  "description": "Master Kanor Case portal MCP server",
+  "capabilities": {
+    "tools": true,
+    "resources": true
+  },
+  "endpoint": "https://masterkanorcase.online"
+}
