@@ -1,7 +1,15 @@
 {
   "name": "master-kanor-case",
+  "serverInfo": {
+    "name": "master-kanor-case",
+    "version": "1.0.0"
+  },
   "version": "1.0.0",
-  "description": "Master Kanor Case portal MCP server card",
-  "transport": "http",
-  "url": "https://masterkanorcase.online"
+  "description": "Master Kanor Case portal MCP server",
+  "protocolVersion": "2024-11-05",
+  "capabilities": {
+    "tools": true,
+    "resources": true
+  },
+  "endpoint": "https://masterkanorcase.online"
 }

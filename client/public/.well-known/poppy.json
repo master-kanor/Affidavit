@@ -1,6 +1,20 @@
 {
-  "name": "Master Kanor Case",
-  "version": "1.0.0",
-  "description": "Poppy manifest for personal agent protocol",
-  "endpoint": "https://masterkanorcase.online"
+  "protocol_version": "1.0",
+  "organization": {
+    "name": "Master Kanor Case",
+    "domain": "masterkanorcase.online"
+  },
+  "agent": {
+    "name": "Master Kanor Case Agent",
+    "url": "https://masterkanorcase.online"
+  },
+  "apis": [
+    {
+      "name": "health",
+      "url": "https://masterkanorcase.online/api/health"
+    }
+  ],
+  "web": {
+    "url": "https://masterkanorcase.online"
+  }
 }

@@ -3,7 +3,22 @@
   "description": "Agent card for the Master Kanor Case portal",
   "url": "https://masterkanorcase.online",
   "version": "1.0.0",
+  "protocolVersion": "1.0",
   "capabilities": {
     "streaming": false
-  }
+  },
+  "skills": [
+    {
+      "id": "case-review",
+      "name": "Case Review",
+      "description": "Review case materials and evidence"
+    }
+  ],
+  "supportedInterfaces": [
+    {
+      "url": "https://masterkanorcase.online",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0"
+    }
+  ]
 }

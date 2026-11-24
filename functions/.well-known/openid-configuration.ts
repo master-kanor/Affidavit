@@ -13,6 +13,15 @@ const metadata = {
   subject_types_supported: ['public'],
   id_token_signing_alg_values_supported: ['RS256', 'HS256', 'ES256'],
   code_challenge_methods_supported: ['S256', 'plain'],
+  agent_auth: {
+    skill: 'https://masterkanorcase.online/auth.md',
+    register_uri: 'https://bftywnjdjyooyrbqahul.supabase.co/auth/v1/signup',
+    identity_types_supported: ['anonymous'],
+    anonymous: {
+      credential_types_supported: ['bearer'],
+      claim_uri: 'https://masterkanorcase.online/auth.md',
+    },
+  },
 };
 
 export const onRequest: PagesFunction = async () => {
