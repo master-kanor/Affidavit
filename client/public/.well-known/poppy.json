@@ -7,7 +7,12 @@
   "agent": {
     "name": "Master Kanor Case Agent",
     "url": "https://masterkanorcase.online",
-    "protocols": ["http"]
+    "protocols": [
+      {
+        "type": "http",
+        "url": "https://masterkanorcase.online"
+      }
+    ]
   },
   "apis": [
     {
