@@ -10,6 +10,8 @@ const metadata = {
   response_types_supported: ['code'],
   grant_types_supported: ['authorization_code', 'refresh_token'],
   code_challenge_methods_supported: ['S256', 'plain'],
+  poppy_domains: ['masterkanorcase.online'],
+  revocation_endpoint: 'https://bftywnjdjyooyrbqahul.supabase.co/auth/v1/logout',
   agent_auth: {
     skill: 'https://masterkanorcase.online/auth.md',
     register_uri: 'https://bftywnjdjyooyrbqahul.supabase.co/auth/v1/signup',

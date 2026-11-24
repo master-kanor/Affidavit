@@ -13,6 +13,8 @@ const metadata = {
   subject_types_supported: ['public'],
   id_token_signing_alg_values_supported: ['RS256', 'HS256', 'ES256'],
   code_challenge_methods_supported: ['S256', 'plain'],
+  poppy_domains: ['masterkanorcase.online'],
+  revocation_endpoint: 'https://bftywnjdjyooyrbqahul.supabase.co/auth/v1/logout',
   agent_auth: {
     skill: 'https://masterkanorcase.online/auth.md',
     register_uri: 'https://bftywnjdjyooyrbqahul.supabase.co/auth/v1/signup',
