@@ -78,7 +78,8 @@ jobs:
 
   browser-e2e:
     name: Chromium end-to-end tests
-    runs-on: ubuntu-latest
+    # Keep the runner compatible with the locked Playwright 1.55.0 release.
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - name: Checkout
