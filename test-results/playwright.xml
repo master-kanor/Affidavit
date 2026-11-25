@@ -1,0 +1,12 @@
+<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="27.389626">
+<testsuite name="public-gateway.e2e.test.ts" timestamp="2026-11-25T18:15:21.073Z" hostname="chromium" tests="4" failures="0" skipped="0" time="2.338" errors="0">
+<testcase name="public access gateway › shows a restricted gateway without case disclosure" classname="public-gateway.e2e.test.ts" time="0.731">
+</testcase>
+<testcase name="public access gateway › exposes manually provisioned sign-in only" classname="public-gateway.e2e.test.ts" time="0.354">
+</testcase>
+<testcase name="public access gateway › does not expose source text when a protected route is opened without a session" classname="public-gateway.e2e.test.ts" time="0.352">
+</testcase>
+<testcase name="mounts every protected page behind an authentication guard" classname="public-gateway.e2e.test.ts" time="0.901">
+</testcase>
+</testsuite>
+</testsuites>
