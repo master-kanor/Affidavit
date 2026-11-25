@@ -4,6 +4,7 @@ import {
   isVerifiedFreeModel,
 } from "../../_shared/ai-cost-policy";
 import { decryptCredential } from "../../_shared/credentials";
+import { requestModelAnswer } from "../../_shared/ai-provider-request";
 import type { Env } from "../../_shared/supabase";
 import { json, requireAuth } from "../../_shared/supabase";
 
@@ -241,28 +242,24 @@ export const onRequest: PagesFunction<Env> = async context => {
           : attempt.provider === "ollama"
             ? "https://ollama.com/v1"
             : attempt.base_url;
-      const modelResponse = await fetch(`${baseUrl}/chat/completions`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: attempt.model,
-          temperature: 0.1,
-          max_tokens: 1200,
-          messages,
-        }),
-      });
-      if (modelResponse.ok) {
-        const result = (await modelResponse.json()) as {
-          choices?: Array<{ message?: { content?: string } }>;
-        };
-        answer = result.choices?.[0]?.message?.content?.trim() ?? "";
-        if (answer) break;
-      }
-      if (![402, 408, 429, 500, 502, 503, 504].includes(modelResponse.status))
-        break;
+      const modelResult = await requestModelAnswer(
+        `${baseUrl}/chat/completions`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model: attempt.model,
+            temperature: 0.1,
+            max_tokens: 1200,
+            messages,
+          }),
+        }
+      );
+      answer = modelResult.answer;
+      if (answer || !modelResult.retryable) break;
     }
     if (!answer) throw new Error("Model provider returned an empty answer");
     return json(request, env, {
