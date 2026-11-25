@@ -1,10 +1,9 @@
 # Open Connect AI Factory — Docker Runtime
-# Isolated agent execution environment with all tooling.
 FROM node:24-alpine
 
-WORKDIR /workspace/app
+WORKDIR /workspace/app/open-connect
 
-# Install system dependencies for Chromium/Playwright
+# Install system dependencies
 RUN apk add --no-cache \
     chromium \
     nss \
@@ -13,32 +12,31 @@ RUN apk add --no-cache \
     harfbuzz \
     ca-certificates \
     ttf-freefont \
-    nodejs \
-    npm \
-    pnpm \
     git \
     python3 \
     make \
-    g++
+    g++ \
+    curl
 
-# Install Playwright browser dependencies
 ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 ENV CHROME_BIN=/usr/bin/chromium-browser
+ENV NODE_ENV=production
 
-# Copy project files
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-RUN pnpm install --frozen-lockfile
+# Copy package files and install dependencies
+COPY package.json ./
+RUN npm install
 
+# Copy source code
 COPY . .
 
-# Install Playwright Chromium
-RUN pnpm exec playwright install chromium --with-deps
+# Build TypeScript
+RUN npm run build
 
-# Expose ports
-EXPOSE 3000 8080
+# Expose port
+EXPOSE 3000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
   CMD wget --no-verbose --tries=1 --spider http://localhost:3000/health || exit 1
 
-CMD ["pnpm", "dev"]
+CMD ["npm", "start"]
