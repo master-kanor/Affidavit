@@ -11,7 +11,7 @@ async function mergeGate({github,context,core}) {
  } else if(context.eventName==='pull_request_review') numbers=[p.pull_request.number];
  else if(context.eventName==='workflow_run') numbers=(p.workflow_run.pull_requests||[]).map(pr=>pr.number);
  for(const number of numbers) {
-  try { await evaluate(number); } catch(error) { core.warning('Merge blocked for #'+number+': '+error.message); }
+  try { await evaluate(number); } catch(error) { core.setFailed('Merge blocked for #'+number+': '+error.message); }
  }
  async function evaluate(number) {
   const repo=context.repo;

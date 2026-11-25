@@ -23,9 +23,13 @@ async function coordinate({github, context, core}) {
     await upsert(p.issue.number,'intake','Issue received. Maintainers can use /agent status, /agent review, /agent fix, or /agent merge. No untrusted issue text is executed.');
     return;
   }
-  if (context.eventName !== 'issue_comment' || p.comment.user.type === 'Bot') return;
+  if (context.eventName !== 'issue_comment') return;
   const action = command(p.comment.body);
-  if (!action || !await authorized(github,context.repo,p.comment.user.login)) return;
+  if (!action) return;
+  if (p.comment.user.type === 'Bot') {
+    const ids = (process.env.TRUSTED_AGENT_BOT_IDS || '').split(',').map(id=>id.trim()).filter(Boolean);
+    if (action === 'merge' || !ids.includes(String(p.comment.user.id))) return;
+  } else if (!await authorized(github,context.repo,p.comment.user.login)) return;
   const task = {version:1,repository:context.repo.owner+'/'+context.repo.repo,number:p.issue.number,action,event_id:p.comment.id};
   let result;
   if (action === 'fix' || action === 'review') {
@@ -39,8 +43,10 @@ async function coordinate({github, context, core}) {
   async function upsert(number,key,body) {
     const marker = '<!-- agent-coordination:'+key+' -->';
     const comments = await github.paginate(github.rest.issues.listComments,{...context.repo,issue_number:number,per_page:100});
-    const old = comments.find(c=>c.user.type==='Bot' && c.body?.includes(marker));
-    if (!old) await github.rest.issues.createComment({...context.repo,issue_number:number,body:marker+'\n'+body});
+    const old = comments.find(c=>c.user.login==='github-actions[bot]' && c.body?.startsWith(marker+'\n'));
+    const next = marker+'\n'+body;
+    if (!old) await github.rest.issues.createComment({...context.repo,issue_number:number,body:next});
+    else if (old.body !== next) await github.rest.issues.updateComment({...context.repo,comment_id:old.id,body:next});
   }
 }
 module.exports=coordinate;
