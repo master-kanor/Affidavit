@@ -36,6 +36,9 @@ jobs:
       - name: Scan tracked source for credential patterns
         run: python3 scripts/scan-secrets.py
 
+      - name: Automation policy tests
+        run: node --test scripts/automation/*.test.cjs
+
       - name: TypeScript check
         run: pnpm run check
 
@@ -44,3 +47,21 @@ jobs:
 
       - name: Production build
         run: pnpm build
+
+  main-browser:
+    name: Main Chromium validation
+    if: github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:e2e
+        env:
+          CI: true
