@@ -14,7 +14,9 @@ describe("Chromium PR validation", () => {
   });
 
   it("keeps browser installation and actual end-to-end execution enabled", () => {
-    expect(browserJob).toContain("pnpm exec playwright install --with-deps chromium");
+    expect(browserJob).toContain(
+      "pnpm exec playwright install --with-deps chromium"
+    );
     expect(browserJob).toContain("run: pnpm test:e2e");
     expect(browserJob).not.toMatch(/continue-on-error:\s*true/);
     expect(browserJob).not.toMatch(/if:\s*(?:false|\$\{\{\s*false\s*\}\})/);
