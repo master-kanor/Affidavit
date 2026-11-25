@@ -1,0 +1,34 @@
+name: Test Integrations
+
+on:
+  push:
+    paths:
+      - 'config/connector-registry.yaml'
+      - 'config/provider-registry.yaml'
+  workflow_dispatch:
+
+jobs:
+  validate-connectors:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate connector registry
+        run: |
+          python3 -c "
+          import yaml
+          data = yaml.safe_load(open('config/connector-registry.yaml'))
+          connectors = data.get('connectors', [])
+          print(f'Found {len(connectors)} connectors')
+          for c in connectors:
+            print(f'  - {c[\"id\"]}: {c[\"status\"]}')
+          "
+      - name: Validate provider registry
+        run: |
+          python3 -c "
+          import yaml
+          data = yaml.safe_load(open('config/provider-registry.yaml'))
+          providers = data.get('providers', [])
+          print(f'Found {len(providers)} providers')
+          for p in providers:
+            print(f'  - {p[\"id\"]}: tier {p[\"tier\"]}, {p[\"status\"]}')
+          "

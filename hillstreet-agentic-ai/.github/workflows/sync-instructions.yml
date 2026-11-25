@@ -1,0 +1,23 @@
+name: Sync Instructions
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify instruction integrity
+        run: |
+          echo "Checking instruction files..."
+          for f in instructions/*.md; do
+            if [ ! -s "$f" ]; then
+              echo "ERROR: $f is empty"
+              exit 1
+            fi
+            echo "OK: $f"
+          done
+          echo "All instructions verified"

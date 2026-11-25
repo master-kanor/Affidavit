@@ -1,0 +1,50 @@
+# Model Routing Configuration
+# Capability-based model selection and fallback
+
+routing:
+  primary: open_connect_gateway
+  capability_based: true
+  load_balancing: true
+  health_checks: true
+  quota_monitoring: true
+  circuit_breaker: true
+
+  fallback_priority:
+    tier_1: authorized_free_models
+    tier_2: alternative_free_api_providers
+    tier_3: approved_self_hosted_models
+    tier_4: existing_supported_subscriptions
+    tier_5: approved_paid_providers
+
+models:
+  coding:
+    primary: kilo-code/kilo-auto/free
+    fallback: [open-code/default, openrouter/auto]
+    capabilities: [code_generation, debugging, refactoring, testing]
+
+  reasoning:
+    primary: chatgpt/gpt-4o
+    fallback: [openrouter/auto]
+    capabilities: [architectural_design, planning, complex_analysis]
+
+  lightweight:
+    primary: kilo-code/kilo-auto/free
+    fallback: [openrouter/auto, nvidia/nemotron]
+    capabilities: [quick_responses, simple_tasks]
+
+  embeddings:
+    primary: openrouter/embedding
+    fallback: []
+    capabilities: [text_embedding, similarity]
+
+circuit_breaker:
+  failure_threshold: 3
+  cooldown_seconds: 300
+  recovery_threshold: 2
+
+quota_management:
+  check_before_use: true
+  respect_rate_limits: true
+  respect_retry_after: true
+  queue_when_exhausted: true
+  never_rotate_accounts: true

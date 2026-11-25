@@ -1,0 +1,40 @@
+name: Validate Configuration
+
+on:
+  push:
+    paths:
+      - 'config/**'
+      - 'instructions/**'
+      - 'agents/**'
+      - 'platforms/**'
+      - 'projects/**'
+  pull_request:
+    paths:
+      - 'config/**'
+      - 'instructions/**'
+      - 'agents/**'
+      - 'platforms/**'
+      - 'projects/**'
+
+jobs:
+  validate-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate YAML files
+        run: |
+          for f in config/*.yaml; do
+            echo "Validating $f"
+            python3 -c "import yaml; yaml.safe_load(open('$f'))"
+          done
+
+  validate-markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check markdown files exist
+        run: |
+          test -f AGENTS.md || exit 1
+          test -f instructions/universal-master.md || exit 1
+          test -f config/agentic-ai.yaml || exit 1
+          echo "All required files present"

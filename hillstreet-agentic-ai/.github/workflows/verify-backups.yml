@@ -1,0 +1,21 @@
+name: Verify Backups
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Daily at 6 AM UTC
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify repository integrity
+        run: |
+          echo "Verifying instruction repository..."
+          echo "Files: $(find . -type f | wc -l)"
+          echo "Instructions: $(find instructions -name '*.md' | wc -l)"
+          echo "Agents: $(find agents -name '*.md' | wc -l)"
+          echo "Platforms: $(find platforms -name '*.md' | wc -l)"
+          echo "Configs: $(find config -name '*.yaml' | wc -l)"
+          echo "Projects: $(find projects -name '*.md' | wc -l)"

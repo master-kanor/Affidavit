@@ -1,0 +1,213 @@
+# Universal Agentic AI Configuration
+# Platform-neutral reference configuration
+
+agentic_ai:
+  version: "1.0"
+  language: en
+  mode: autonomous
+  execution_policy: governed_end_to_end
+
+  context:
+    recover_chat_history: true
+    recover_project_knowledge: true
+    persistent_memory: true
+    checkpoint_recovery: true
+    context_compaction: true
+    cross_session_continuity: true
+    project_isolation: true
+
+  intelligence:
+    proactive_discovery: true
+    autonomous_research: true
+    brainstorming: true
+    architecture_analysis: true
+    gap_analysis: true
+    root_cause_analysis: true
+    problem_solving: true
+    continuous_improvement: true
+
+  orchestration:
+    master_agent: true
+    specialized_subagents: true
+    dynamic_delegation: true
+    parallel_execution: true
+    dependency_aware_execution: true
+    persistent_task_queue: true
+    concurrency_limits: true
+    resource_locking: true
+    independent_verification: true
+
+  execution:
+    use_available_tools: true
+    routine_confirmation_required: false
+    automatic_dependency_resolution: true
+    automatic_error_investigation: true
+    authorized_auto_fix: true
+    authorized_auto_recovery: true
+    continue_independent_tasks: true
+    evidence_required: true
+    max_retry_attempts: 3
+
+  credentials:
+    preserve_working_credentials: true
+    automatic_revocation: false
+    automatic_deletion: false
+    automatic_rotation: false
+    overwrite_valid_credentials: false
+    validate_existing_references: true
+    supported_oauth_refresh: true
+    authorized_session_reuse: true
+    supported_automated_login: true
+    secure_secret_injection: true
+    expose_raw_secrets: false
+    bypass_authentication: false
+    project_scoped_access: true
+
+    approved_secret_sources:
+      - open_connect_credentials
+      - composio
+      - proton_pass
+      - onepassword
+      - cloud_secret_managers
+      - github_actions_secrets
+
+  integrations:
+    auto_discover: true
+    validate_connections: true
+    repair_configuration: true
+    authorized_reconnection: true
+    approved_connector_fallback: true
+    synchronize_secret_references: true
+    prevent_duplicate_connections: true
+
+    connector_sources:
+      - open_connect
+      - composio
+      - native_connectors
+      - mcp
+      - plugins
+      - skills
+      - authorized_apis
+
+  ai_gateway:
+    primary: open_connect
+    automatic_model_discovery: true
+    capability_based_routing: true
+    load_balancing: true
+    health_checks: true
+    quota_monitoring: true
+    rate_limit_handling: true
+    circuit_breaker: true
+    authorized_provider_fallback: true
+    respect_provider_limits: true
+    quota_circumvention: false
+
+    fallback_priority:
+      - authorized_free_models
+      - alternative_free_api_providers
+      - approved_self_hosted_models
+      - existing_supported_subscriptions
+      - approved_paid_providers
+
+    provider_candidates:
+      - openai
+      - openrouter
+      - nvidia
+      - google
+      - anthropic
+      - groq
+      - mistral
+      - huggingface
+      - ollama
+
+    subscription_execution_candidates:
+      - chatgpt
+      - codex
+      - claude_code
+      - supported_coding_agents
+
+  development:
+    inspect_existing_repository: true
+    upstream_release_monitoring: true
+    automatic_compatible_updates: true
+    auto_detect_bugs: true
+    authorized_auto_fix: true
+    auto_test: true
+    auto_security_scan: true
+    auto_code_review: true
+    auto_pull_request: true
+    auto_merge_when_policy_passes: true
+    auto_build: true
+    auto_release: true
+    auto_deploy_when_policy_passes: true
+    auto_rollback: true
+
+  infrastructure:
+    cloud_first: true
+    preserve_existing_resources: true
+    configuration_alignment: true
+    reusable_infrastructure: true
+    prevent_duplicate_resources: true
+    verified_migrations: true
+    automatic_source_decommission: false
+
+  backup:
+    enabled: true
+    incremental_where_supported: true
+    event_driven_sync: true
+    encrypted_storage: true
+    version_history: true
+    integrity_verification: true
+    restore_testing: true
+    preserve_recovery_checkpoints: true
+    include_raw_credentials: false
+
+  monitoring:
+    service_health: true
+    application_errors: true
+    authentication_failures: true
+    connector_failures: true
+    deployment_failures: true
+    storage_capacity: true
+    resource_consumption: true
+    provider_quotas: true
+    unexpected_costs: true
+    backup_failures: true
+
+  automation:
+    scheduled_execution: true
+    event_driven_execution: true
+    webhook_execution: true
+    persistent_workers: true
+    idempotency: true
+    bounded_retries: true
+    exponential_backoff: true
+    execution_limits: true
+    cancellation_support: true
+
+  financial:
+    prefer_free: true
+    prefer_open_source: true
+    prefer_existing_subscriptions: true
+    prefer_existing_infrastructure: true
+    automatic_paid_upgrades: false
+    unapproved_spending: false
+    additional_budget_usd: 0
+
+  governance:
+    least_privilege: true
+    audit_logging: true
+    respect_provider_policies: true
+    respect_branch_protection: true
+    unauthorized_privilege_expansion: false
+    bypass_mandatory_approvals: false
+    autonomous_policy_rewriting: false
+
+  completion:
+    target_verified_requirements_percent: 100
+    local_testing_only_is_complete: false
+    documentation_only_is_complete: false
+    live_integration_validation: true
+    operational_acceptance: true
+    report_unresolved_blockers: true
+    persist_continuation_checkpoint: true

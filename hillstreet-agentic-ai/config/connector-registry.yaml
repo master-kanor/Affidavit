@@ -1,0 +1,99 @@
+# Connector Registry
+# Available MCP servers, APIs, and connectors
+
+connectors:
+  - id: github
+    name: GitHub
+    type: api
+    category: version_control
+    auth_method: github_token
+    status: configured
+    capabilities: [repository_management, pull_requests, issues, releases, actions, secrets]
+
+  - id: docker
+    name: Docker Hub
+    type: registry
+    category: container_registry
+    auth_method: docker_hub_token
+    status: configured
+    capabilities: [build, scan, publish, version]
+
+  - id: cloudflare
+    name: Cloudflare
+    type: api
+    category: network_storage
+    auth_method: cloudflare_api_token
+    status: configured
+    capabilities: [dns, cdn, r2_storage, pages, workers, security]
+
+  - id: supabase
+    name: Supabase
+    type: api
+    category: database_auth
+    auth_method: supabase_service_key
+    status: configured
+    capabilities: [database, authentication, backups, realtime, storage]
+
+  - id: sentry
+    name: Sentry
+    type: api
+    category: observability
+    auth_method: sentry_dsn
+    status: configured
+    capabilities: [error_tracking, performance_monitoring, release_tracking]
+
+  - id: linear
+    name: Linear
+    type: api
+    category: project_management
+    auth_method: linear_api_key
+    status: configured
+    capabilities: [issue_management, project_tracking, triage]
+
+  - id: notion
+    name: Notion
+    type: api
+    category: knowledge_management
+    auth_method: notion_token
+    status: pending_credentials
+    capabilities: [page_management, database_management, documentation]
+
+  - id: databricks
+    name: Databricks
+    type: api
+    category: data_management
+    auth_method: databricks_token
+    status: pending_credentials
+    capabilities: [backup_processing, analytics, recovery]
+
+  - id: railway
+    name: Railway
+    type: api
+    category: deployment
+    auth_method: railway_token
+    status: configured
+    capabilities: [deploy, monitor, rollback]
+
+  - id: tencent
+    name: Tencent Cloud
+    type: api
+    category: cloud_infrastructure
+    auth_method: tencent_secret_id_key
+    status: pending_credentials
+    capabilities: [compute, storage, networking]
+
+  - id: composio
+    name: Composio
+    type: connector
+    category: oauth_management
+    auth_method: composio_api_key
+    status: available
+    capabilities: [managed_oauth, application_connections]
+
+  - id: open-connect
+    name: Open Connect
+    type: connector
+    category: ai_gateway
+    auth_method: open_connect_token
+    status: active
+    capabilities: [model_routing, agent_orchestration, tool_execution]

@@ -1,0 +1,70 @@
+# AI Provider Registry
+# Discovered and validated AI providers
+
+providers:
+  - id: kilo-code
+    name: Kilo Code
+    tier: 1
+    type: ide_agent
+    free_tier: true
+    capabilities: [code_generation, debugging, testing, file_editing]
+    status: active
+    endpoint: local://kilo
+    auth_method: session_token
+
+  - id: open-code
+    name: Open Code
+    tier: 1
+    type: cli_agent
+    free_tier: true
+    capabilities: [code_generation, shell_execution, git_operations]
+    status: available
+    endpoint: local://open-code
+    auth_method: session_token
+
+  - id: openrouter
+    name: OpenRouter
+    tier: 2
+    type: gateway
+    free_tier: true
+    capabilities: [multi_model_routing, fallback_routing]
+    status: available
+    endpoint: https://openrouter.ai/api/v1
+    auth_method: bearer_token
+
+  - id: nvidia
+    name: NVIDIA NIM
+    tier: 2
+    type: inference
+    free_tier: true
+    capabilities: [llm_inference, code_generation]
+    status: available
+    endpoint: https://integrate.api.nvidia.com/v1
+    auth_method: bearer_token
+
+  - id: chatgpt
+    name: ChatGPT
+    tier: 4
+    type: reasoning
+    free_tier: false
+    capabilities: [architectural_design, reasoning, planning, code_review]
+    status: available
+    endpoint: https://api.openai.com/v1
+    auth_method: bearer_token
+    subscription_required: true
+
+  - id: codex
+    name: Codex
+    tier: 4
+    type: engineering
+    free_tier: false
+    capabilities: [code_review, refactoring, test_generation]
+    status: available
+    endpoint: https://api.openai.com/v1
+    auth_method: bearer_token
+    allocation_required: true
+
+routing:
+  primary: kilo-code
+  fallback_chain: [kilo-code, open-code, openrouter, nvidia]
+  paid_fallback_requires_approval: [chatgpt, codex]
