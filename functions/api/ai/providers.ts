@@ -1,4 +1,5 @@
 import type { PagesFunction } from "@cloudflare/workers-types";
+import { isVerifiedFreeModel } from "../../_shared/ai-cost-policy";
 import {
   decryptCredential,
   encryptCredential,
@@ -103,15 +104,7 @@ async function discover(
         ""
       );
       const pricing = (item.pricing ?? {}) as Record<string, unknown>;
-      const openRouterFree =
-        connection.provider === "openrouter" &&
-        [pricing.prompt, pricing.completion, pricing.request].every(
-          value => value === undefined || Number(value) === 0
-        );
-      const free =
-        openRouterFree ||
-        connection.provider === "nvidia" ||
-        connection.provider === "ollama";
+      const free = isVerifiedFreeModel(connection.provider, id, pricing);
       return {
         id,
         name: String(item.name ?? item.display_name ?? id),
