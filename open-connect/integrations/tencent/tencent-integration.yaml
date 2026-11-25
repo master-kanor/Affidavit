@@ -1,0 +1,48 @@
+# Open Connect AI Factory — Tencent Cloud Integration
+# Future migration target for Railway workloads.
+version: "1.0"
+updated: "2026-11-25"
+
+services:
+  - id: tencent-cvm
+    name: Tencent Cloud Virtual Machine
+    type: compute
+    status: pending_credentials
+    role: future_hosting
+  - id: tencent-cos
+    name: Tencent Cloud Object Storage
+    type: storage
+    status: pending_credentials
+    role: future_storage
+  - id: tencent-cdn
+    name: Tencent Cloud CDN
+    type: content_delivery
+    status: pending_credentials
+    role: future_cdn
+  - id: tencent-vpc
+    name: Tencent Cloud VPC
+    type: networking
+    status: pending_credentials
+    role: future_networking
+
+auth:
+  secret_id: ${TENCENT_SECRET_ID}
+  secret_key: ${TENCENT_SECRET_KEY}
+  region: ${TENCENT_REGION}
+
+migration_plan:
+  from: railway
+  to: tencent_cloud
+  phases:
+    - phase: assessment
+      status: pending
+    - phase: networking_setup
+      status: pending
+    - phase: database_migration
+      status: pending
+    - phase: application_deployment
+      status: pending
+    - phase: traffic_cutover
+      status: pending
+    - phase: railway_decommission
+      status: pending

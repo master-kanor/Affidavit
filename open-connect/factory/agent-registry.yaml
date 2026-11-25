@@ -1,0 +1,171 @@
+# Open Connect AI Factory — Agent Registry
+# Centralized agent identities, capabilities, permissions, and versions.
+version: "1.0"
+factory: hillstreet-open-connect
+updated: "2026-11-25"
+
+agents:
+  - id: kilo-code
+    name: Kilo Code
+    type: ide_agent
+    role: agentic_development
+    provider: kilo
+    capabilities:
+      - code_generation
+      - refactoring
+      - debugging
+      - testing
+      - file_editing
+      - package_management
+    permissions:
+      - read:workspace
+      - write:workspace
+      - execute:local_commands
+    status: active
+    free_tier: true
+    default_model: kilo-auto/free
+
+  - id: open-code
+    name: Open Code
+    type: cli_agent
+    role: automated_development
+    provider: local
+    capabilities:
+      - code_generation
+      - shell_execution
+      - git_operations
+      - testing
+    permissions:
+      - read:workspace
+      - write:workspace
+      - execute:local_commands
+    status: available
+    free_tier: true
+
+  - id: chatgpt
+    name: ChatGPT
+    type: reasoning_agent
+    role: planning_architecture
+    provider: openai
+    capabilities:
+      - architectural_design
+      - reasoning
+      - planning
+      - code_review
+    permissions:
+      - read:workspace
+    status: available
+    free_tier: false
+    quota_tracking: required
+
+  - id: codex
+    name: Codex
+    type: engineering_agent
+    role: software_engineering_review
+    provider: openai
+    capabilities:
+      - code_review
+      - refactoring
+      - test_generation
+    permissions:
+      - read:workspace
+    status: available
+    free_tier: false
+    quota_tracking: required
+
+  - id: open-router-router
+    name: OpenRouter Gateway
+    type: gateway_agent
+    role: multi_model_routing
+    provider: openrouter
+    capabilities:
+      - model_selection
+      - fallback_routing
+      - quota_management
+      - provider_health
+    permissions:
+      - read:external_apis
+    status: active
+    free_tier: true
+
+  - id: nvidia-inference
+    name: NVIDIA NIM
+    type: inference_agent
+    role: alternative_inference
+    provider: nvidia
+    capabilities:
+      - llm_inference
+      - code_generation
+    permissions:
+      - read:external_apis
+    status: available
+    free_tier: true
+    quota_tracking: required
+
+  - id: linear-ai
+    name: Linear AI
+    type: project_agent
+    role: issue_investigation_delegation
+    provider: linear
+    capabilities:
+      - issue_triage
+      - issue_assignment
+      - priority_tracking
+      - project_management
+    permissions:
+      - read:linear
+      - write:linear
+    status: available
+    free_tier: true
+
+  - id: sentry-seer
+    name: Sentry Seer
+    type: observability_agent
+    role: application_diagnostics
+    provider: sentry
+    capabilities:
+      - error_detection
+      - diagnostic_analysis
+      - alert_correlation
+    permissions:
+      - read:sentry
+    status: available
+    free_tier: true
+
+  - id: notion-ai
+    name: Notion AI
+    type: knowledge_agent
+    role: knowledge_retrieval_documentation
+    provider: notion
+    capabilities:
+      - knowledge_retrieval
+      - documentation_generation
+      - sop_management
+    permissions:
+      - read:notion
+      - write:notion
+    status: available
+    free_tier: true
+
+  - id: custom-agent-factory
+    name: Custom AI Agent Factory
+    type: factory_agent
+    role: specialized_execution_workflows
+    provider: open_connect
+    capabilities:
+      - agent_spawning
+      - workflow_orchestration
+      - task_delegation
+      - concurrency_management
+    permissions:
+      - read:factory
+      - write:factory
+    status: active
+    free_tier: true
+
+default_agent: kilo-code
+fallback_chain:
+  - kilo-code
+  - open-code
+  - open-router-router
+  - nvidia-inference

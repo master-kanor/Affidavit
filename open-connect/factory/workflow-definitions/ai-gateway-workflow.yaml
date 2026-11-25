@@ -1,0 +1,47 @@
+# Open Connect AI Factory — Workflow Definition: AI Gateway Setup
+# Configure AI gateway with model routing, fallback, and quotas.
+version: "1.0"
+workflow_id: ai-gateway-setup-v1
+name: AI Gateway Configuration
+description: Configure AI gateway with free-tier model routing and fallback.
+agent: open-router-router
+timeout_seconds: 600
+
+steps:
+  - id: step-1-providers
+    name: Configure AI Providers
+    skill: skill-ai-gateway-setup
+    action: configure_ai_providers
+    timeout: 60
+    required: true
+    outputs:
+      - provider_config
+
+  - id: step-2-fallback
+    name: Setup Fallback Chain
+    skill: skill-ai-gateway-setup
+    action: setup_fallback_policy
+    timeout: 30
+    required: true
+    depends_on: [step-1-providers]
+    outputs:
+      - fallback_chain
+
+  - id: step-3-quotas
+    name: Verify Free Quotas
+    skill: skill-ai-gateway-setup
+    action: check_free_quotas
+    timeout: 60
+    required: true
+    depends_on: [step-2-fallback]
+    outputs:
+      - quota_status
+
+failure_handling:
+  on_step_failure:
+    max_repair_attempts: 3
+    fallback_to_local_agent: true
+
+success_actions:
+  - update_notion_documentation
+  - archive_audit_evidence

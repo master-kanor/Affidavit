@@ -1,0 +1,46 @@
+# Open Connect AI Factory — Workflow Definition: Sandbox Execution
+# Configure cloud browser, sandbox, and cloud computer.
+version: "1.0"
+workflow_id: sandbox-execution-v1
+name: Isolated Sandbox Execution
+description: Configure cloud browser, sandbox, and cloud computer for isolated execution.
+agent: custom-agent-factory
+timeout_seconds: 1800
+
+steps:
+  - id: step-1-sandbox
+    name: Configure Isolated Sandbox
+    skill: skill-sandbox-execution
+    action: configure_isolated_sandbox
+    timeout: 120
+    required: true
+    outputs:
+      - sandbox_config
+
+  - id: step-2-cloud-browser
+    name: Configure Cloud Browser
+    skill: skill-sandbox-execution
+    action: configure_cloud_browser
+    timeout: 120
+    required: true
+    depends_on: [step-1-sandbox]
+    outputs:
+      - browser_endpoint
+
+  - id: step-3-cloud-computer
+    name: Configure Cloud Computer
+    skill: skill-sandbox-execution
+    action: configure_cloud_computer
+    timeout: 120
+    required: false
+    depends_on: [step-2-cloud-browser]
+    outputs:
+      - computer_endpoint
+
+failure_handling:
+  on_step_failure:
+    max_repair_attempts: 3
+    isolate_failed_execution: true
+
+success_actions:
+  - archive_audit_evidence

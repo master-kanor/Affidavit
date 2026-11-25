@@ -1,0 +1,151 @@
+# Open Connect AI Factory — AI Gateway Provider Configuration
+# Model selection, fallback, quotas, and provider health.
+version: "1.0"
+factory: hillstreet-open-connect
+updated: "2026-11-25"
+
+providers:
+  - id: kilo-code
+    name: Kilo Code
+    type: ide_agent
+    endpoint: local://kilo
+    auth_method: session_token
+    free_tier: true
+    quota: unlimited
+    models:
+      - id: kilo-auto/free
+        name: Kilo Auto Free
+        type: chat
+        context_length: 128000
+        cost_per_1k_tokens: 0
+    capabilities:
+      - code_generation
+      - debugging
+      - testing
+      - file_editing
+    health_check: local_process
+    status: active
+    priority: 1
+
+  - id: open-code
+    name: Open Code
+    type: cli_agent
+    endpoint: local://open-code
+    auth_method: session_token
+    free_tier: true
+    quota: unlimited
+    models:
+      - id: open-code/default
+        name: Open Code Default
+        type: chat
+        context_length: 128000
+        cost_per_1k_tokens: 0
+    capabilities:
+      - code_generation
+      - shell_execution
+      - git_operations
+    health_check: local_process
+    status: available
+    priority: 2
+
+  - id: openrouter
+    name: OpenRouter
+    type: gateway
+    endpoint: https://openrouter.ai/api/v1
+    auth_method: bearer_token
+    free_tier: true
+    quota: check_required
+    models:
+      - id: openrouter/auto
+        name: OpenRouter Auto
+        type: chat
+        context_length: 128000
+        cost_per_1k_tokens: 0
+    capabilities:
+      - multi_model_routing
+      - fallback_routing
+    health_check: https://openrouter.ai/api/v1/models
+    status: available
+    priority: 3
+
+  - id: nvidia
+    name: NVIDIA NIM
+    type: inference
+    endpoint: https://integrate.api.nvidia.com/v1
+    auth_method: bearer_token
+    free_tier: true
+    quota: check_required
+    models:
+      - id: nvidia/nemotron
+        name: NVIDIA Nemotron
+        type: chat
+        context_length: 128000
+        cost_per_1k_tokens: 0
+    capabilities:
+      - llm_inference
+      - code_generation
+    health_check: https://integrate.api.nvidia.com/v1/health
+    status: available
+    priority: 4
+
+  - id: chatgpt
+    name: ChatGPT
+    type: reasoning
+    endpoint: https://api.openai.com/v1
+    auth_method: bearer_token
+    free_tier: false
+    quota: subscription_required
+    models:
+      - id: gpt-4o
+        name: GPT-4o
+        type: chat
+        context_length: 128000
+        cost_per_1k_tokens: 0.005
+    capabilities:
+      - architectural_design
+      - reasoning
+      - planning
+    health_check: https://api.openai.com/v1/models
+    status: available
+    priority: 5
+
+  - id: codex
+    name: Codex
+    type: engineering
+    endpoint: https://api.openai.com/v1
+    auth_method: bearer_token
+    free_tier: false
+    quota: allocation_required
+    models:
+      - id: codex-latest
+        name: Codex Latest
+        type: code
+        context_length: 128000
+        cost_per_1k_tokens: 0.005
+    capabilities:
+      - code_review
+      - refactoring
+    health_check: https://api.openai.com/v1/models
+    status: available
+    priority: 5
+
+fallback_policy:
+  primary: kilo-code
+  secondary: open-code
+  tertiary: openrouter
+  quaternary: nvidia
+  quinary: chatgpt (paid, requires approval)
+  senary: codex (paid, requires approval)
+
+quota_policy:
+  check_before_use: true
+  stop_when_exhausted: true
+  defer_when_no_free: true
+  notify_on_quota_low: true
+  quota_low_threshold_percent: 20
+
+health_check:
+  interval_seconds: 300
+  timeout_seconds: 30
+  failure_threshold: 3
+  recovery_threshold: 2

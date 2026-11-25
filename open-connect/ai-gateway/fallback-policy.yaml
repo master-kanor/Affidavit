@@ -1,0 +1,43 @@
+# Open Connect AI Factory — Fallback Policy
+# Free-tier execution policy and provider failover.
+version: "1.0"
+factory: hillstreet-open-connect
+updated: "2026-11-25"
+
+execution_policy:
+  step_1: check_available_authorized_model_quota
+  step_2: select_compatible_free_inference_provider
+  step_3: execute_with_designated_coding_agent
+  step_4: fallback_to_another_available_free_provider
+  step_5: stop_or_defer_when_free_quota_exhausted
+
+fallback_chain:
+  - provider: kilo-code
+    condition: available_and_healthy
+    action: execute_task
+  - provider: open-code
+    condition: kilo_unavailable_or_unhealthy
+    action: execute_task
+  - provider: openrouter
+    condition: local_agents_unavailable
+    action: route_to_free_model
+  - provider: nvidia
+    condition: openrouter_unavailable
+    action: route_to_free_model
+  - provider: chatgpt
+    condition: all_free_exhausted
+    action: require_approval_before_use
+  - provider: codex
+    condition: all_free_exhausted
+    action: require_approval_before_use
+
+quota_exhaustion_behavior:
+  action: stop_or_defer
+  notify: true
+  log: true
+  retry_after_minutes: 60
+
+paid_provider_access:
+  require_explicit_approval: true
+  approval_timeout_minutes: 60
+  max_spend_per_session_usd: 0

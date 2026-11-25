@@ -1,0 +1,46 @@
+# Open Connect AI Factory — Databricks Integration
+# Backup processing, analytics, recovery. Data management.
+version: "1.0"
+updated: "2026-11-25"
+
+services:
+  - id: databricks-workspace
+    name: Databricks Workspace
+    type: data_platform
+    provider: databricks
+    host: ${DATABRICKS_HOST}
+    token: ${DATABRICKS_TOKEN}
+    status: pending_integration
+    free_tier: false
+
+  - id: databricks-backup
+    name: Databricks Backup Processing
+    type: backup_processing
+    status: pending_integration
+
+  - id: databricks-analytics
+    name: Databricks Analytics
+    type: analytics
+    status: pending_integration
+
+  - id: databricks-recovery
+    name: Databricks Recovery
+    type: disaster_recovery
+    status: pending_integration
+
+automation:
+  backup_processing:
+    enabled: true
+    source: supabase_backups
+    target: databricks
+    schedule: daily
+  analytics:
+    enabled: true
+    source: audit_logs
+    target: databricks
+    schedule: weekly
+  recovery:
+    enabled: true
+    source: databricks_backups
+    target: supabase
+    on_demand: true

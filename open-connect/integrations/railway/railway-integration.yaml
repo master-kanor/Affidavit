@@ -1,0 +1,62 @@
+# Open Connect AI Factory — Railway Integration
+# Deploy, monitor, rollback. Current hosting (migration to Tencent planned).
+version: "1.0"
+workspace: Kobeplay Workspace
+updated: "2026-11-25"
+
+projects:
+  - id: master-runner
+    name: master-runner
+    status: discovered
+    role: central_automation_execution_layer
+  - id: open-connect
+    name: open-connect
+    status: discovered
+    role: ai_factory_implementation
+  - id: open-box
+    name: open-box
+    status: discovered
+    role: production_application
+  - id: open-system
+    name: open-system
+    status: discovered
+    role: production_application
+  - id: open-trade
+    name: open-trade
+    status: discovered
+    role: production_application
+  - id: open-affiliate
+    name: open-affiliate
+    status: discovered
+    role: affiliate_application
+  - id: eloquent-intuition
+    name: eloquent-intuition
+    status: discovered
+    role: experimental_application
+
+deployment:
+  strategy: blue_green
+  health_check_endpoint: /health
+  health_check_interval_seconds: 30
+  rollback_on_failure: true
+  auto_deploy_on_merge: true
+
+environments:
+  - name: production
+    type: production
+    auto_deploy: false
+    requires_approval: true
+  - name: staging
+    type: staging
+    auto_deploy: true
+    requires_approval: false
+  - name: development
+    type: development
+    auto_deploy: true
+    requires_approval: false
+
+migration:
+  target: tencent_cloud
+  timeline: future
+  current_provider: railway
+  preserve_during_migration: true

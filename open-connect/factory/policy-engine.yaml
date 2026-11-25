@@ -1,0 +1,89 @@
+# Open Connect AI Factory — Policy Engine
+# Permissions, spending limits, validation, and approval boundaries.
+version: "1.0"
+factory: hillstreet-open-connect
+updated: "2026-11-25"
+
+spending_controls:
+  free_tier_only: true
+  max_daily_spend_usd: 0
+  max_monthly_spend_usd: 0
+  require_approval_above_usd: 0
+  blocked_providers:
+    - paid_models_without_explicit_approval
+  allowed_free_providers:
+    - kilo-code
+    - open-code
+    - open-router-router
+    - nvidia-inference (free tier)
+    - linear-ai
+    - sentry-seer
+    - notion-ai
+
+permissions:
+  agent_scopes:
+    kilo-code:
+      - read:workspace
+      - write:workspace
+      - execute:local_commands
+      - read:github_secrets
+    open-code:
+      - read:workspace
+      - write:workspace
+      - execute:local_commands
+    open-router-router:
+      - read:external_apis
+      - read:quotas
+    custom-agent-factory:
+      - read:factory
+      - write:factory
+      - execute:isolated_tasks
+    sentry-seer:
+      - read:sentry
+    linear-ai:
+      - read:linear
+      - write:linear
+    notion-ai:
+      - read:notion
+      - write:notion
+
+validation_rules:
+  - rule: no_raw_secret_exposure
+    description: Agents must never receive raw secrets; only scoped references.
+    severity: critical
+    enforced: true
+  - rule: free_quota_first
+    description: Always attempt free-tier providers before paid ones.
+    severity: high
+    enforced: true
+  - rule: bounded_repair_attempts
+    description: Maximum 3 automated repair attempts before human review.
+    severity: medium
+    enforced: true
+  - rule: isolation_required
+    description: Untrusted code must run in isolated sandbox.
+    severity: high
+    enforced: true
+
+approval_boundaries:
+  - action: create_cloud_resources
+    requires_approval: true
+    approver: human
+  - action: modify_production_deployment
+    requires_approval: true
+    approver: human
+  - action: rotate_production_secrets
+    requires_approval: true
+    approver: human
+  - action: run_local_tests
+    requires_approval: false
+    approver: system
+  - action: read_documentation
+    requires_approval: false
+    approver: system
+
+execution_limits:
+  max_task_duration_seconds: 600
+  max_concurrent_executions: 5
+  max_repair_attempts: 3
+  sandbox_timeout_seconds: 300

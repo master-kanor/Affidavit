@@ -1,0 +1,70 @@
+# Open Connect AI Factory — Cloudflare Integration
+# DNS, CDN, R2, security. Network and storage.
+version: "1.0"
+account_id: ${CLOUDFLARE_ACCOUNT_ID}
+updated: "2026-11-25"
+
+services:
+  - id: cloudflare-dns
+    name: Cloudflare DNS
+    type: dns_management
+    domains:
+      - masterkanorcase.online
+      - admin.masterkanorcase.online
+    status: configured
+    free_tier: true
+
+  - id: cloudflare-cdn
+    name: Cloudflare CDN
+    type: content_delivery
+    enabled: true
+    caching:
+      - static_assets
+      - api_responses
+    status: configured
+    free_tier: true
+
+  - id: cloudflare-r2
+    name: Cloudflare R2
+    type: object_storage
+    bucket: case-evidence
+    endpoint: https://${CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
+    access_key: ${R2_ACCESS_KEY_ID}
+    secret_key: ${R2_SECRET_ACCESS_KEY}
+    status: configured
+    free_tier: true
+
+  - id: cloudflare-pages
+    name: Cloudflare Pages
+    type: hosting
+    project: affidavit
+    build_output: dist/public
+    compatibility_date: "2026-08-20"
+    compatibility_flags:
+      - nodejs_compat
+    status: configured
+    free_tier: true
+
+  - id: cloudflare-workers
+    name: Cloudflare Workers
+    type: serverless
+    status: available
+    free_tier: true
+
+  - id: cloudflare-security
+    name: Cloudflare Security
+    type: security
+    features:
+      - ssl_tls
+      - waf
+      - ddos_protection
+      - rate_limiting
+    status: configured
+    free_tier: true
+
+configuration:
+  cors_allowed_origin: https://masterkanorcase.online,https://admin.masterkanorcase.online
+  ssl_mode: full
+  always_use_https: true
+  auto_minify: true
+  brotli: true

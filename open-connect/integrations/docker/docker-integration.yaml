@@ -1,0 +1,75 @@
+# Open Connect AI Factory — Docker Integration
+# Build, scan, publish, version. Container registry.
+version: "1.0"
+registry: docker.io
+organization: hillstreet-ph
+updated: "2026-11-25"
+
+registries:
+  - id: docker-hub
+    name: Docker Hub
+    type: container_registry
+    url: https://index.docker.io/v1/
+    auth_method: docker_hub_token
+    status: configured
+    free_tier: true
+
+  - id: github-container-registry
+    name: GitHub Container Registry
+    type: container_registry
+    url: ghcr.io
+    auth_method: github_token
+    status: configured
+    free_tier: true
+
+images:
+  - name: open-connect/factory
+    description: Open Connect AI Factory runtime
+    dockerfile: open-connect/Dockerfile
+    context: /workspace/app
+    tags:
+      - latest
+      - ${GITHUB_SHA}
+      - ${VERSION}
+    registries:
+      - docker-hub
+      - github-container-registry
+    scan_on_push: true
+    vulnerability_threshold: high
+
+  - name: open-connect/sandbox
+    description: Isolated sandbox execution environment
+    dockerfile: open-connect/execution/sandbox/Dockerfile
+    context: /workspace/app
+    tags:
+      - latest
+    registries:
+      - docker-hub
+    scan_on_push: true
+
+  - name: open-connect/cloud-browser
+    description: Cloud browser execution environment
+    dockerfile: open-connect/execution/cloud-browser/Dockerfile
+    context: /workspace/app
+    tags:
+      - latest
+    registries:
+      - docker-hub
+    scan_on_push: true
+
+build:
+  platform: linux/amd64
+  load_from_cache: true
+  push_on_merge: true
+  push_on_release: true
+
+scanning:
+  tool: trivy
+  severity_threshold: high
+  fail_on_vulnerability: true
+  schedule: daily
+
+versioning:
+  strategy: semver
+  tag_format: v${MAJOR}.${MINOR}.${PATCH}
+  auto_increment_patch: true

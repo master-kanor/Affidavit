@@ -1,0 +1,76 @@
+# Open Connect AI Factory — Audit Engine
+# Execution evidence, logs, outcomes, and operational history.
+version: "1.0"
+factory: hillstreet-open-connect
+updated: "2026-11-25"
+
+audit:
+  enabled: true
+  log_all_executions: true
+  log_all_credential_access: true
+  log_all_model_calls: true
+  retention_days: 90
+  storage: open-connect-audit-log
+
+execution_evidence:
+  - field: agent_id
+    type: string
+    required: true
+  - field: task_id
+    type: string
+    required: true
+  - field: skill_id
+    type: string
+    required: false
+  - field: tool_id
+    type: string
+    required: false
+  - field: start_time
+    type: timestamp
+    required: true
+  - field: end_time
+    type: timestamp
+    required: true
+  - field: status
+    type: enum
+    values: [success, failure, partial, timed_out, cancelled]
+    required: true
+  - field: output
+    type: text
+    required: false
+  - field: error
+    type: text
+    required: false
+  - field: cost_usd
+    type: decimal
+    required: false
+  - field: tokens_used
+    type: integer
+    required: false
+
+outcome_tracking:
+  - metric: test_pass_rate
+    source: test_results
+    alert_threshold: 0.80
+  - metric: build_success_rate
+    source: build_results
+    alert_threshold: 0.90
+  - metric: deployment_success_rate
+    source: deployment_results
+    alert_threshold: 0.95
+  - metric: error_rate
+    source: sentry
+    alert_threshold: 0.05
+
+notifications:
+  on_failure:
+    - channel: linear
+      action: create_issue
+    - channel: sentry
+      action: create_alert
+  on_success:
+    - channel: notion
+      action: update_documentation
+  on_cost_threshold:
+    - channel: email
+      action: notify_admin

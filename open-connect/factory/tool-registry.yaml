@@ -1,0 +1,183 @@
+# Open Connect AI Factory — Tool Registry
+# MCP servers, APIs, applications, and connectors.
+version: "1.0"
+factory: hillstreet-open-connect
+updated: "2026-11-25"
+
+tools:
+  - id: mcp-github
+    name: GitHub MCP Server
+    type: mcp_server
+    category: version_control
+    endpoint: https://api.github.com
+    auth_method: github_token
+    capabilities:
+      - repository_management
+      - pull_requests
+      - issues
+      - releases
+      - actions
+      - secrets
+    status: configured
+    free_tier: true
+
+  - id: mcp-docker
+    name: Docker MCP Server
+    type: mcp_server
+    category: container_registry
+    endpoint: unix:///var/run/docker.sock
+    auth_method: none_local
+    capabilities:
+      - build
+      - scan
+      - publish
+      - version
+      - run
+    status: configured
+    free_tier: true
+
+  - id: mcp-cloudflare
+    name: Cloudflare MCP Server
+    type: mcp_server
+    category: network_storage
+    endpoint: https://api.cloudflare.com
+    auth_method: cloudflare_api_token
+    capabilities:
+      - dns_management
+      - cdn
+      - r2_storage
+      - workers
+      - pages_deployment
+      - security_rules
+    status: configured
+    free_tier: true
+
+  - id: mcp-supabase
+    name: Supabase MCP Server
+    type: mcp_server
+    category: database_auth
+    endpoint: https://api.supabase.com
+    auth_method: supabase_service_key
+    capabilities:
+      - database_management
+      - authentication
+      - backups
+      - realtime
+      - storage
+      - edge_functions
+    status: configured
+    free_tier: true
+
+  - id: mcp-sentry
+    name: Sentry MCP Server
+    type: mcp_server
+    category: observability
+    endpoint: https://sentry.io/api
+    auth_method: sentry_dsn
+    capabilities:
+      - error_tracking
+      - performance_monitoring
+      - release_tracking
+      - alerts
+    status: configured
+    free_tier: true
+
+  - id: mcp-linear
+    name: Linear MCP Server
+    type: mcp_server
+    category: project_management
+    endpoint: https://api.linear.app
+    auth_method: linear_api_key
+    capabilities:
+      - issue_management
+      - project_tracking
+      - team_management
+      - triage
+    status: configured
+    free_tier: true
+
+  - id: mcp-notion
+    name: Notion MCP Server
+    type: mcp_server
+    category: knowledge_management
+    endpoint: https://api.notion.com
+    auth_method: notion_token
+    capabilities:
+      - page_management
+      - database_management
+      - documentation
+      - sop_management
+    status: configured
+    free_tier: true
+
+  - id: mcp-databricks
+    name: Databricks MCP Server
+    type: mcp_server
+    category: data_management
+    endpoint: https://api.databricks.com
+    auth_method: databricks_token
+    capabilities:
+      - backup_processing
+      - analytics
+      - recovery
+      - data_pipelines
+    status: configured
+    free_tier: false
+
+  - id: mcp-railway
+    name: Railway MCP Server
+    type: mcp_server
+    category: deployment
+    endpoint: https://api.railway.app
+    auth_method: railway_token
+    capabilities:
+      - deploy
+      - monitor
+      - rollback
+      - environment_management
+    status: configured
+    free_tier: true
+
+  - id: mcp-tencent
+    name: Tencent Cloud MCP Server
+    type: mcp_server
+    category: cloud_infrastructure
+    endpoint: https://tencentcloudapi.com
+    auth_method: tencent_secret_id_key
+    capabilities:
+      - compute
+      - storage
+      - networking
+      - migration
+    status: pending_credentials
+    free_tier: false
+
+  - id: connector-composio
+    name: Composio Integration Platform
+    type: connector
+    category: oauth_management
+    endpoint: https://api.composio.dev
+    auth_method: composio_api_key
+    capabilities:
+      - managed_oauth
+      - application_connections
+      - credential_brokerage
+    status: available
+    free_tier: true
+
+  - id: connector-open-connect
+    name: Open Connect Gateway
+    type: connector
+    category: ai_gateway
+    endpoint: https://open-connect.hillstreet-ph.internal
+    auth_method: open_connect_token
+    capabilities:
+      - model_routing
+      - agent_orchestration
+      - tool_execution
+      - credential_brokerage
+    status: active
+    free_tier: true
+
+default_tool_timeout: 300000
+max_concurrent_tools: 10

@@ -1,0 +1,47 @@
+# Open Connect AI Factory — Workflow Definition: Observability Setup
+# Configure Sentry, Linear, and health monitoring.
+version: "1.0"
+workflow_id: observability-setup-v1
+name: Observability Configuration
+description: Configure error tracking, project management, and health monitoring.
+agent: sentry-seer
+timeout_seconds: 600
+
+steps:
+  - id: step-1-sentry
+    name: Configure Sentry
+    skill: skill-observability-setup
+    action: setup_sentry_dsn
+    timeout: 30
+    required: true
+    outputs:
+      - sentry_dsn
+
+  - id: step-2-linear
+    name: Link Linear Projects
+    skill: skill-observability-setup
+    action: link_linear_projects
+    timeout: 30
+    required: true
+    depends_on: [step-1-sentry]
+    outputs:
+      - linear_project_ids
+
+  - id: step-3-health
+    name: Configure Health Checks
+    skill: skill-observability-setup
+    action: configure_health_monitoring
+    timeout: 60
+    required: true
+    depends_on: [step-2-linear]
+    outputs:
+      - health_check_endpoints
+
+failure_handling:
+  on_step_failure:
+    max_repair_attempts: 3
+    create_linear_issue: true
+
+success_actions:
+  - update_notion_documentation
+  - archive_audit_evidence

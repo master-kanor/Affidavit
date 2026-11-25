@@ -1,0 +1,102 @@
+# Open Connect AI Factory — Workflow Definition: Project Setup
+# End-to-end autonomous project setup workflow.
+version: "1.0"
+workflow_id: project-setup-v1
+name: Full Autonomous Project Setup
+description: Complete end-to-end project setup from dependencies to deployment.
+agent: kilo-code
+timeout_seconds: 1800
+
+steps:
+  - id: step-1-environment
+    name: Environment Setup
+    skill: skill-project-setup
+    action: create_env_file
+    timeout: 30
+    required: true
+    outputs:
+      - env_file_created
+
+  - id: step-2-dependencies
+    name: Install Dependencies
+    skill: skill-project-setup
+    action: pnpm_install
+    timeout: 210
+    required: true
+    depends_on: [step-1-environment]
+    outputs:
+      - node_modules_installed
+
+  - id: step-3-type-check
+    name: Type Check
+    skill: skill-project-setup
+    action: pnpm_check
+    timeout: 210
+    required: true
+    depends_on: [step-2-dependencies]
+    outputs:
+      - type_check_passed
+
+  - id: step-4-build
+    name: Build
+    skill: skill-project-setup
+    action: pnpm_build
+    timeout: 210
+    required: true
+    depends_on: [step-3-type-check]
+    outputs:
+      - build_artifacts
+
+  - id: step-5-unit-tests
+    name: Unit Tests
+    skill: skill-project-setup
+    action: pnpm_test
+    timeout: 210
+    required: true
+    depends_on: [step-4-build]
+    outputs:
+      - test_results
+
+  - id: step-6-e2e-tests
+    name: E2E Tests
+    skill: skill-project-setup
+    action: pnpm_test_e2e
+    timeout: 210
+    required: false
+    depends_on: [step-5-unit-tests]
+    outputs:
+      - e2e_results
+
+  - id: step-7-docker-build
+    name: Docker Build & Scan
+    skill: skill-cicd-pipeline
+    action: configure_docker_pipeline
+    timeout: 120
+    required: false
+    depends_on: [step-4-build]
+    outputs:
+      - docker_image
+      - scan_results
+
+  - id: step-8-deploy
+    name: Deploy to Railway
+    skill: skill-cicd-pipeline
+    action: configure_railway_deployment
+    timeout: 120
+    required: false
+    depends_on: [step-7-docker-build]
+    requires_approval: true
+    outputs:
+      - deployment_url
+
+failure_handling:
+  on_step_failure:
+    max_repair_attempts: 3
+    notify_on_failure: true
+    create_linear_issue: true
+    create_sentry_alert: true
+
+success_actions:
+  - update_notion_documentation
+  - send_slack_notification
+  - archive_audit_evidence

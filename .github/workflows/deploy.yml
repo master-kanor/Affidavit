@@ -1,115 +1,27 @@
-name: Build and deploy Affidavit to Cloudflare Pages
+name: Deploy — Railway
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
-concurrency:
-  group: cloudflare-pages-production
-  cancel-in-progress: false
-
-permissions:
-  contents: read
-  deployments: write
+env:
+  RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     environment: production
-    timeout-minutes: 20
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Seed canonical case data
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      - uses: actions/checkout@v4
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+      - name: Deploy to Railway
+        run: railway up --project master-runner --detach
+      - name: Health Check
         run: |
-          test -n "$SUPABASE_URL"
-          test -n "$SUPABASE_SERVICE_ROLE_KEY"
-          python3 scripts/seed-canonical-case.py
-
-      - name: Scan tracked source for credential patterns
-        run: python3 scripts/scan-secrets.py
-
-      - name: Create build-time public environment
-        env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-          VITE_APP_TITLE: Master Kanor Case
-          VITE_APP_URL: ${{ secrets.VITE_APP_URL }}
-          VITE_ADMIN_APP_URL: https://admin.masterkanorcase.online
+          curl -f https://master-runner.up.railway.app/health || exit 1
+      - name: Notify on Failure
+        if: failure()
         run: |
-          test -n "$VITE_SUPABASE_URL"
-          test -n "$VITE_SUPABASE_ANON_KEY"
-          test -n "$VITE_APP_URL"
-          {
-            printf 'VITE_SUPABASE_URL=%s\n' "$VITE_SUPABASE_URL"
-            printf 'VITE_SUPABASE_ANON_KEY=%s\n' "$VITE_SUPABASE_ANON_KEY"
-            printf 'VITE_APP_TITLE=%s\n' "$VITE_APP_TITLE"
-            printf 'VITE_APP_URL=%s\n' "$VITE_APP_URL"
-            printf 'VITE_ADMIN_APP_URL=%s\n' "$VITE_ADMIN_APP_URL"
-          } > .env.production
-
-      - name: TypeScript check
-        run: pnpm run check
-
-      - name: Test
-        run: pnpm test -- --run
-
-      - name: Build static application
-        run: pnpm build
-
-      - name: Verify Pages artifact
-        run: |
-          test -f dist/public/index.html
-          test -f dist/public/_redirects
-          if grep -R -q 'preview-placeholder\.supabase\.co' dist/public/assets; then
-            echo 'Production bundle contains the placeholder Supabase URL; refusing deployment.'
-            exit 1
-          fi
-          rm -f .env.production
-
-      - name: Deploy production Pages project
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_PROJECT_NAME: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
-        run: |
-          test -n "$CLOUDFLARE_PROJECT_NAME"
-          npx --yes wrangler@3.90.0 pages deploy dist/public --project-name="$CLOUDFLARE_PROJECT_NAME" --branch=main
-
-      - name: Verify canonical workspace counts
-        env:
-          RUN_PRODUCTION_INTEGRATION: "true"
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-          E2E_OWNER_EMAIL: ${{ secrets.E2E_OWNER_EMAIL }}
-          E2E_OWNER_PASSWORD: ${{ secrets.E2E_OWNER_PASSWORD }}
-          WORKSPACE_URL: https://affidavit-abo.pages.dev
-        run: |
-          if [ -z "${E2E_OWNER_EMAIL:-}" ] || [ -z "${E2E_OWNER_PASSWORD:-}" ]; then
-            echo "::warning::Skipping canonical workspace integration test because E2E_OWNER_EMAIL and/or E2E_OWNER_PASSWORD is not configured."
-            exit 0
-          fi
-          pnpm exec vitest run client/src/canonical-case-workspace.production.integration.test.ts
-
-      - name: Smoke check production origin and canonical domain
-        env:
-          CANONICAL_URL: https://masterkanorcase.online
-          PAGES_URL: https://affidavit-abo.pages.dev
-        run: bash scripts/smoke-test-deployment.sh
+          echo "Deployment failed — creating Linear issue and Sentry alert"

@@ -1,0 +1,61 @@
+# Open Connect AI Factory — Notion Integration
+# SOPs, documentation, knowledge. Knowledge management.
+version: "1.0"
+updated: "2026-11-25"
+
+workspace:
+  id: ${NOTION_WORKSPACE_ID}
+  name: hillstreet-workspace
+  status: pending_identification
+
+services:
+  - id: notion-documentation
+    name: Notion Documentation
+    type: knowledge_base
+    provider: notion
+    token: ${NOTION_TOKEN}
+    status: pending_integration
+
+  - id: notion-sops
+    name: Notion SOPs
+    type: standard_operating_procedures
+    status: pending_integration
+
+  - id: notion-ai
+    name: Notion AI
+    type: knowledge_retrieval
+    provider: notion
+    capabilities:
+      - knowledge_retrieval
+      - documentation_generation
+      - sop_management
+    status: available
+    free_tier: true
+
+databases:
+  - id: project-docs
+    name: Project Documentation
+    type: database
+    status: pending_creation
+  - id: sop-library
+    name: SOP Library
+    type: database
+    status: pending_creation
+  - id: audit-logs
+    name: Audit Logs
+    type: database
+    status: pending_creation
+
+automation:
+  documentation_sync:
+    enabled: true
+    source: build_results
+    target: project-docs
+  sop_management:
+    enabled: true
+    source: policy_engine
+    target: sop-library
+  audit_logging:
+    enabled: true
+    source: audit_engine
+    target: audit-logs

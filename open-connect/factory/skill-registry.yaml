@@ -1,0 +1,162 @@
+# Open Connect AI Factory — Skill Registry
+# Reusable, version-controlled agent procedures.
+version: "1.0"
+factory: hillstreet-open-connect
+updated: "2026-11-25"
+
+skills:
+  - id: skill-project-setup
+    name: Full Project Setup
+    category: infrastructure
+    version: "1.0.0"
+    agent: kilo-code
+    description: End-to-end project setup including dependencies, env, database, build, tests.
+    steps:
+      - id: install_dependencies
+        action: pnpm_install
+        timeout: 210
+      - id: create_env
+        action: create_env_file
+        timeout: 30
+      - id: type_check
+        action: pnpm_check
+        timeout: 210
+      - id: build
+        action: pnpm_build
+        timeout: 210
+      - id: unit_tests
+        action: pnpm_test
+        timeout: 210
+      - id: e2e_tests
+        action: pnpm_test_e2e
+        timeout: 210
+    prerequisites:
+      - node_installed
+      - pnpm_installed
+    outputs:
+      - dist_directory
+      - test_results
+      - build_artifacts
+
+  - id: skill-ai-gateway-setup
+    name: AI Gateway Configuration
+    category: ai_infrastructure
+    version: "1.0.0"
+    agent: open-router-router
+    description: Configure AI gateway with model routing, fallback, and quotas.
+    steps:
+      - id: configure_providers
+        action: configure_ai_providers
+        timeout: 60
+      - id: setup_fallback_chain
+        action: setup_fallback_policy
+        timeout: 30
+      - id: verify_quotas
+        action: check_free_quotas
+        timeout: 60
+    prerequisites:
+      - openrouter_api_key
+      - nvidia_api_key
+    outputs:
+      - gateway_config
+      - provider_health_status
+
+  - id: skill-credential-broker-setup
+    name: Credential Broker Setup
+    category: security
+    version: "1.0.0"
+    agent: custom-agent-factory
+    description: Configure scoped credential access for agents.
+    steps:
+      - id: register_vaults
+        action: register_credential_vaults
+        timeout: 60
+      - id: define_scopes
+        action: define_agent_scopes
+        timeout: 30
+      - id: setup_rotation
+        action: configure_secret_rotation
+        timeout: 60
+    prerequisites:
+      - 1password_vault
+      - proton_pass_vault
+      - github_secrets
+    outputs:
+      - credential_broker_config
+      - scope_definitions
+
+  - id: skill-cicd-pipeline
+    name: CI/CD Pipeline Setup
+    category: deployment
+    version: "1.0.0"
+    agent: kilo-code
+    description: GitHub Actions workflows for build, test, deploy.
+    steps:
+      - id: create_workflows
+        action: create_github_actions
+        timeout: 60
+      - id: setup_docker_build
+        action: configure_docker_pipeline
+        timeout: 60
+      - id: setup_railway_deploy
+        action: configure_railway_deployment
+        timeout: 60
+    prerequisites:
+      - github_repository
+      - docker_hub_account
+      - railway_project
+    outputs:
+      - github_actions_workflows
+      - docker_images
+      - deployment_urls
+
+  - id: skill-observability-setup
+    name: Observability Configuration
+    category: monitoring
+    version: "1.0.0"
+    agent: sentry-seer
+    description: Configure Sentry, Linear, and health monitoring.
+    steps:
+      - id: configure_sentry
+        action: setup_sentry_dsn
+        timeout: 30
+      - id: configure_linear
+        action: link_linear_projects
+        timeout: 30
+      - id: setup_health_checks
+        action: configure_health_monitoring
+        timeout: 60
+    prerequisites:
+      - sentry_organization
+      - linear_workspace
+    outputs:
+      - sentry_dsn
+      - linear_project_ids
+      - health_check_endpoints
+
+  - id: skill-sandbox-execution
+    name: Isolated Sandbox Execution
+    category: execution
+    version: "1.0.0"
+    agent: custom-agent-factory
+    description: Configure cloud browser, sandbox, and cloud computer.
+    steps:
+      - id: setup_sandbox
+        action: configure_isolated_sandbox
+        timeout: 120
+      - id: setup_cloud_browser
+        action: configure_cloud_browser
+        timeout: 120
+      - id: setup_cloud_computer
+        action: configure_cloud_computer
+        timeout: 120
+    prerequisites:
+      - docker_available
+      - tencent_cloud_account
+    outputs:
+      - sandbox_config
+      - browser_endpoint
+      - computer_endpoint
+
+default_skill_timeout: 300000
+max_concurrent_skills: 5

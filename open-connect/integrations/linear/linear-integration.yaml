@@ -1,0 +1,83 @@
+# Open Connect AI Factory — Linear Integration
+# Triage, assign, track, prioritize. Development management.
+version: "1.0"
+updated: "2026-11-25"
+
+teams:
+  - id: hillstreet-kai
+    name: Hillstreet — KAI
+    type: primary
+    status: existing
+    projects:
+      - open-claw
+      - open-teleset
+      - open-trade
+  - id: master-kanor-mas
+    name: Master Kanor — MAS
+    type: secondary
+    status: existing
+    projects: []
+
+projects:
+  - id: open-claw
+    name: Open Claw
+    status: exists_in_linear
+    team: hillstreet-kai
+  - id: open-teleset
+    name: Open Teleset
+    status: exists_in_linear
+    team: hillstreet-kai
+  - id: open-trade
+    name: Open Trade
+    status: exists_in_linear
+    team: hillstreet-kai
+  - id: open-box
+    name: Open Box
+    status: not_found_in_linear
+    team: hillstreet-kai
+    action_required: create_project
+  - id: open-connect
+    name: Open Connect
+    status: not_found_in_linear
+    team: hillstreet-kai
+    action_required: create_project
+  - id: open-system
+    name: Open System
+    status: not_found_in_linear
+    team: hillstreet-kai
+    action_required: create_project
+  - id: open-tgate
+    name: Open TGate
+    status: not_found_in_linear
+    team: hillstreet-kai
+    action_required: create_project
+  - id: master-runner
+    name: Master Runner
+    status: not_found_in_linear
+    team: hillstreet-kai
+    action_required: create_project
+
+automation:
+  issue_triage:
+    enabled: true
+    auto_assign: true
+    auto_prioritize: true
+  issue_creation_from_errors:
+    enabled: true
+    source: sentry
+    team: hillstreet-kai
+  issue_creation_from_tests:
+    enabled: true
+    source: test_failures
+    team: hillstreet-kai
+  issue_creation_from_builds:
+    enabled: true
+    source: build_failures
+    team: hillstreet-kai
+
+labels:
+  - ai_generated
+  - autonomous_fix
+  - requires_human_review
+  - production_blocker
+  - free_tier_only

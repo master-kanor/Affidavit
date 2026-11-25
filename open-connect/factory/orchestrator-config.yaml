@@ -1,0 +1,71 @@
+# Open Connect AI Factory — Orchestrator Configuration
+# Task dispatch, concurrency management, execution tracking.
+version: "1.0"
+factory: hillstreet-open-connect
+updated: "2026-11-25"
+
+orchestrator:
+  id: master-runner
+  name: Master Runner
+  role: central_workflow_dispatch
+  location: railway_project_master-runner
+  status: active
+
+task_dispatch:
+  strategy: capability_based
+  max_concurrent_tasks: 5
+  default_timeout_seconds: 600
+  retry_policy:
+    max_retries: 3
+    backoff_strategy: exponential
+    base_delay_seconds: 5
+
+agent_assignment:
+  preferred_agent: kilo-code
+  fallback_agents:
+    - open-code
+    - open-router-router
+    - nvidia-inference
+  paid_agents_require_approval:
+    - chatgpt
+    - codex
+
+execution_tracking:
+  log_all_executions: true
+  track_tokens: true
+  track_cost: true
+  track_duration: true
+  store_evidence: true
+
+concurrency:
+  max_parallel_executions: 5
+  queue_strategy: fifo
+  priority_queues:
+    - name: critical
+      weight: 10
+    - name: high
+      weight: 5
+    - name: normal
+      weight: 1
+    - name: low
+      weight: 0
+
+workflow_engine:
+  enabled: true
+  definition_format: yaml
+  storage: open-connect-workflows
+  triggers:
+    - github_push
+    - github_pull_request
+    - sentry_error
+    - linear_issue
+    - scheduled_cron
+
+safety:
+  bounded_repair_attempts: 3
+  isolation_required: true
+  scoped_credentials: true
+  human_approval_for:
+    - cloud_resource_creation
+    - production_deployment
+    - secret_rotation

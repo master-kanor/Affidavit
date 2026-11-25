@@ -1,0 +1,139 @@
+# Open Connect AI Factory — GitHub Integration
+# Upstream sync, PRs, testing, releases. Source of truth.
+version: "1.0"
+organization: hillstreet-ph
+updated: "2026-11-25"
+
+repositories:
+  - name: master-runner
+    type: shared_infrastructure
+    role: central_automation_execution_layer
+    status: existing
+    railway_project: master-runner
+  - name: open-connect
+    type: production
+    role: ai_factory_implementation
+    status: existing
+    railway_project: open-connect
+  - name: open-gateway
+    type: ai_gateway
+    role: ai_gateway_implementation
+    status: existing
+  - name: open-box
+    type: production
+    role: production_application
+    status: existing
+    railway_project: open-box
+  - name: open-system
+    type: production
+    role: production_application
+    status: existing
+    railway_project: open-system
+  - name: open-trade
+    type: production
+    role: production_application
+    status: existing
+    railway_project: open-trade
+  - name: open-command
+    type: review
+    role: command_interface
+    status: existing
+  - name: open-template
+    type: template
+    role: project_template
+    status: existing
+  - name: open-teleset
+    type: production_candidate
+    role: candidate_application
+    status: existing
+  - name: open-tgate
+    type: production_candidate
+    role: candidate_application
+    status: existing
+  - name: open-kobeplay
+    type: review
+    role: kobeplay_integration
+    status: existing
+  - name: open-automation
+    type: shared_infrastructure
+    role: automation_tooling
+    status: existing
+  - name: open-video-editor
+    type: review
+    role: video_editing
+    status: existing
+  - name: zeabur-mcp-bridge
+    type: review
+    role: mcp_bridge
+    status: existing
+  - name: hillstreet
+    type: shared_infrastructure
+    role: hillstreet_core
+    status: existing
+  - name: kobe-connector
+    type: review
+    role: connector
+    status: existing
+  - name: teamily-runtime
+    type: review
+    role: teamily_runtime
+    status: existing
+  - name: OpenList-Frontend
+    type: review
+    role: frontend_application
+    status: existing
+  - name: open-claw
+    type: production_candidate
+    role: candidate_application
+    status: existing
+    linear_project: open-claw
+  - name: open-trade
+    type: production
+    role: production_application
+    status: existing
+    linear_project: open-trade
+  - name: openclaw-railway-template
+    type: template
+    role: railway_template
+    status: existing
+  - name: garage-railway-template
+    type: template
+    role: railway_template
+    status: existing
+  - name: garage-railway-template--NW2
+    type: template
+    role: railway_template_v2
+    status: existing
+
+automation:
+  upstream_sync:
+    enabled: true
+    schedule: "*/30 * * * *"
+    branches:
+      - main
+      - master
+  pull_requests:
+    enabled: true
+    auto_merge: false
+    required_checks:
+      - build
+      - test
+      - type_check
+  releases:
+    enabled: true
+    semantic_versioning: true
+    auto_changelog: true
+  testing:
+    enabled: true
+    on_push: true
+    on_pull_request: true
+  secrets:
+    configured_repositories:
+      - master-runner
+      - open-connect
+      - open-box
+      - open-system
+      - open-trade
+
+workflows_directory: .github/workflows
+default_branch: main

@@ -1,0 +1,48 @@
+# Open Connect AI Factory — Supabase Integration
+# Database, authentication, backups. Operational data.
+version: "1.0"
+updated: "2026-11-25"
+
+services:
+  - id: supabase-database
+    name: Supabase PostgreSQL
+    type: database
+    provider: supabase
+    connection_url: ${DATABASE_URL}
+    service_role_key: ${SUPABASE_SERVICE_ROLE_KEY}
+    anon_key: ${VITE_SUPABASE_ANON_KEY}
+    project_url: ${VITE_SUPABASE_URL}
+    status: configured
+    free_tier: true
+
+  - id: supabase-auth
+    name: Supabase Authentication
+    type: authentication
+    provider: supabase
+    status: configured
+    free_tier: true
+
+  - id: supabase-storage
+    name: Supabase Storage
+    type: storage
+    status: configured
+    free_tier: true
+
+  - id: supabase-backups
+    name: Supabase Backups
+    type: backup
+    retention_days: 7
+    automatic: true
+    status: configured
+    free_tier: true
+
+orm:
+  provider: drizzle
+  dialect: mysql
+  schema_location: drizzle/schema.ts
+  migrations_location: drizzle/migrations/
+  migration_command: pnpm db:push
+
+security:
+  row_level_security: true
+  api_rate_limiting: true

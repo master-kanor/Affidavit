@@ -1,0 +1,76 @@
+# Open Connect AI Factory — Sandbox Configuration
+# Isolated code execution and testing.
+version: "1.0"
+updated: "2026-11-25"
+
+sandboxes:
+  - id: default-sandbox
+    name: Default Isolated Sandbox
+    type: docker_container
+    image: open-connect/sandbox:latest
+    resource_limits:
+      cpu: 2
+      memory: 4g
+      storage: 10g
+    network:
+      isolated: true
+      allowed_domains: []
+    timeout_seconds: 300
+    status: configured
+
+  - id: test-sandbox
+    name: Test Execution Sandbox
+    type: docker_container
+    image: open-connect/sandbox:latest
+    resource_limits:
+      cpu: 4
+      memory: 8g
+      storage: 20g
+    network:
+      isolated: false
+      allowed_domains:
+        - registry.npmjs.org
+        - pnpm.js.org
+        - github.com
+    timeout_seconds: 600
+    status: configured
+
+cloud_browser:
+  - id: cloud-browser-default
+    name: Cloud Browser
+    type: playwright_chromium
+    endpoint: ${CLOUD_BROWSER_ENDPOINT}
+    headless: true
+    resource_limits:
+      cpu: 2
+      memory: 2g
+    timeout_seconds: 120
+    status: configured
+
+cloud_computer:
+  - id: cloud-computer-default
+    name: Custom Cloud Computer
+    type: tencent_cvm
+    endpoint: ${CLOUD_COMPUTER_ENDPOINT}
+    resource_limits:
+      cpu: 4
+      memory: 8g
+      storage: 50g
+    status: pending_credentials
+
+execution_rules:
+  - rule: isolated_workspace
+    description: All untrusted code runs in isolated workspace.
+    enforced: true
+  - rule: resource_limits
+    description: CPU, memory, and storage limits enforced.
+    enforced: true
+  - rule: execution_timeout
+    description: Maximum execution time enforced per task.
+    enforced: true
+  - rule: restricted_credentials
+    description: Agents receive scoped credentials only.
+    enforced: true
+  - rule: controlled_network
+    description: Network access restricted to allowed domains.
+    enforced: true

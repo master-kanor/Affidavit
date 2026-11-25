@@ -1,0 +1,63 @@
+# Open Connect AI Factory — Quota Tracking
+# Free-tier entitlements and spending controls.
+version: "1.0"
+factory: hillstreet-open-connect
+updated: "2026-11-25"
+
+quotas:
+  - provider: kilo-code
+    tier: free
+    limit: unlimited
+    reset_period: none
+    current_usage: 0
+    last_checked: null
+
+  - provider: open-code
+    tier: free
+    limit: unlimited
+    reset_period: none
+    current_usage: 0
+    last_checked: null
+
+  - provider: openrouter
+    tier: free
+    limit: check_required
+    reset_period: daily
+    current_usage: 0
+    last_checked: null
+
+  - provider: nvidia
+    tier: free
+    limit: check_required
+    reset_period: daily
+    current_usage: 0
+    last_checked: null
+
+  - provider: chatgpt
+    tier: paid_subscription
+    limit: subscription_based
+    reset_period: monthly
+    current_usage: 0
+    last_checked: null
+    requires_approval: true
+
+  - provider: codex
+    tier: paid_allocation
+    limit: allocation_based
+    reset_period: monthly
+    current_usage: 0
+    last_checked: null
+    requires_approval: true
+
+spending_limits:
+  max_daily_usd: 0
+  max_monthly_usd: 0
+  max_per_session_usd: 0
+  require_approval_above_usd: 0
+  hard_stop_at_limit: true
+
+monitoring:
+  check_quota_before_every_task: true
+  alert_at_percent: 80
+  critical_at_percent: 95
+  stop_at_percent: 100

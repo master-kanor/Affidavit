@@ -1,0 +1,54 @@
+# Open Connect AI Factory — Sentry Integration
+# Detect, diagnose, report errors. Observability.
+version: "1.0"
+organization: hillstreet
+updated: "2026-11-25"
+
+services:
+  - id: sentry-error-tracking
+    name: Sentry Error Tracking
+    type: error_monitoring
+    dsn: ${SENTRY_DSN}
+    environment: production
+    release_tracking: true
+    status: configured
+    free_tier: true
+
+  - id: sentry-performance
+    name: Sentry Performance Monitoring
+    type: performance_monitoring
+    tracing_sample_rate: 0.1
+    status: configured
+    free_tier: true
+
+  - id: sentry-seer
+    name: Sentry Seer
+    type: ai_diagnostics
+    provider: sentry
+    capabilities:
+      - error_detection
+      - diagnostic_analysis
+      - alert_correlation
+    status: available
+    free_tier: true
+
+integrations:
+  linear:
+    enabled: true
+    auto_create_issues: true
+  github:
+    enabled: true
+    link_commits: true
+  slack:
+    enabled: false
+
+alerts:
+  - type: error_rate_spike
+    threshold: 5%
+    channel: linear
+  - type: release_health
+    threshold: degraded
+    channel: linear
+  - type: transaction_slow
+    threshold: 2s
+    channel: linear
