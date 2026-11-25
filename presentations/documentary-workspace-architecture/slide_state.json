@@ -1,0 +1,122 @@
+{
+  "project_info": {
+    "title": "Documentary Workspace Architecture",
+    "created": 1787202408.629,
+    "last_updated": 1787202556.702,
+    "total_slides": 11
+  },
+  "slides": [
+    {
+      "id": "cover",
+      "state": "edited",
+      "pageNum": 1
+    },
+    {
+      "id": "projection",
+      "state": "edited",
+      "pageNum": 2
+    },
+    {
+      "id": "target_state",
+      "state": "edited",
+      "pageNum": 3
+    },
+    {
+      "id": "api_facade",
+      "state": "edited",
+      "pageNum": 4
+    },
+    {
+      "id": "ui_components",
+      "state": "edited",
+      "pageNum": 5
+    },
+    {
+      "id": "review_states",
+      "state": "edited",
+      "pageNum": 6
+    },
+    {
+      "id": "workspace_payload",
+      "state": "edited",
+      "pageNum": 7
+    },
+    {
+      "id": "api_surface",
+      "state": "edited",
+      "pageNum": 8
+    },
+    {
+      "id": "security",
+      "state": "edited",
+      "pageNum": 9
+    },
+    {
+      "id": "implementation",
+      "state": "edited",
+      "pageNum": 10
+    },
+    {
+      "id": "closing",
+      "state": "edited",
+      "pageNum": 11
+    }
+  ],
+  "outline": [
+    {
+      "id": "cover",
+      "title": "Documentary Workspace Architecture",
+      "summary": "Title slide introducing persistent UI, review-gated APIs, and source-preserving case presentation."
+    },
+    {
+      "id": "projection",
+      "title": "Editorial Projection, Not a Second Affidavit",
+      "summary": "Explain the separation between immutable canonical text and the documentary presentation layer."
+    },
+    {
+      "id": "target_state",
+      "title": "From Static Slices to a Persistent Workspace",
+      "summary": "Contrast current static chapter cards with the database-backed target state."
+    },
+    {
+      "id": "api_facade",
+      "title": "A Thin API Façade Protects the Record",
+      "summary": "Show the React-to-API-to-Supabase architecture and why mutations do not go directly from browser to database."
+    },
+    {
+      "id": "ui_components",
+      "title": "Components Separate Review, Editing, and Source Viewing",
+      "summary": "Map the principal documentary UI components to their responsibilities."
+    },
+    {
+      "id": "review_states",
+      "title": "Review Gates Form a Deliberate State Machine",
+      "summary": "Present Draft, Review, Approved, Archived, Rejected, and Reopen transitions."
+    },
+    {
+      "id": "workspace_payload",
+      "title": "One Aggregate Payload Keeps State Coherent",
+      "summary": "Show the DocumentaryWorkspace response composition and optimistic concurrency."
+    },
+    {
+      "id": "api_surface",
+      "title": "API Surface Follows the Documentary Lifecycle",
+      "summary": "Summarize endpoint groups for workspace, review, chapter, item, relationship, audit, and export operations."
+    },
+    {
+      "id": "security",
+      "title": "Security and Provenance at Every Layer",
+      "summary": "Describe role checks, RLS, source integrity, transactional audit, and controlled media behavior."
+    },
+    {
+      "id": "implementation",
+      "title": "Implementation Sequence Reduces Risk",
+      "summary": "Present staged delivery from schema normalization through end-to-end approval workflow."
+    },
+    {
+      "id": "closing",
+      "title": "Organized Presentation Without Rewriting History",
+      "summary": "Conclude with the key outcome: traceable, reviewable presentation while preserving the official affidavit."
+    }
+  ]
+}

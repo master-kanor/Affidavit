@@ -1,5 +1,6 @@
 # Complete Deployment Guide
 ## Master Kanor Case Evidence Website - Production Ready
+## Cloudflare Pages Deployment (Updated July 6, 2026)
 
 ---
 
@@ -7,10 +8,12 @@
 
 1. [Quick Start](#quick-start)
 2. [Prerequisites](#prerequisites)
-3. [Step-by-Step Deployment](#step-by-step-deployment)
-4. [Verification & Testing](#verification--testing)
-5. [Monitoring & Maintenance](#monitoring--maintenance)
-6. [Troubleshooting](#troubleshooting)
+3. [Cloudflare Pages Setup](#cloudflare-pages-setup)
+4. [Step-by-Step Deployment](#step-by-step-deployment)
+5. [Verification & Testing](#verification--testing)
+6. [Monitoring & Maintenance](#monitoring--maintenance)
+7. [Troubleshooting](#troubleshooting)
+8. [Production Domains](#production-domains)
 
 ---
 
@@ -567,3 +570,81 @@ For issues or questions:
 **Status:** ✅ Ready for Production Deployment
 **Last Updated:** July 5, 2026
 **Maintained By:** hoopstreet-projects
+
+
+---
+
+## CLOUDFLARE PAGES SETUP
+
+### Prerequisites
+
+- Cloudflare account with domain `masterkanorcase.online`
+- SSL/TLS enabled (Full Strict mode)
+- GitHub repository connected
+- All environment variables configured
+
+### Configuration
+
+**Domain:** masterkanorcase.online
+**Admin Subdomain:** admin.masterkanorcase.online
+**SSL Mode:** Full (Strict)
+**TLS Version:** 1.3
+**Always HTTPS:** Enabled
+
+### Deployment via Manus Publish Button
+
+1. **Open Management UI**
+   - Click the Publish button (top-right corner)
+
+2. **Select Deployment Target**
+   - Domain: `masterkanorcase.online`
+   - Environment: Production
+
+3. **Configure Environment Variables**
+   - VITE_APP_ID
+   - VITE_APP_TITLE
+   - VITE_OAUTH_PORTAL_URL
+   - DATABASE_URL
+   - OPENROUTER_API_KEY
+   - GEMINI_API_KEY
+
+4. **Review and Deploy**
+   - Click "Deploy"
+   - Monitor deployment progress
+   - Verify health checks pass
+
+### Production Domains
+
+**Main Domain:** https://masterkanorcase.online
+- Home page
+- Evidence galleries
+- Case information
+- Public access
+
+**Admin Domain:** https://admin.masterkanorcase.online
+- Admin dashboard
+- AI chat interface
+- System metrics
+- Content management
+
+### Health Checks
+
+```bash
+# Main domain
+curl -I https://masterkanorcase.online
+# Expected: HTTP 200 OK
+
+# Admin dashboard
+curl -I https://admin.masterkanorcase.online
+# Expected: HTTP 200 OK (with authentication redirect)
+```
+
+### Monitoring
+
+- Cloudflare Analytics Dashboard
+- Manus Management UI Dashboard
+- Real-time health checks
+- Automated alerts
+
+---
+

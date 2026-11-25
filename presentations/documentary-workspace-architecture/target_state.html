@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>From Static Slices to a Persistent Workspace</title>
+  <style>
+    * { box-sizing:border-box; margin:0; }
+    .slide-container { width:1280px; min-height:720px; background:#ffffff; color:#2B3A42; font-family:Georgia, 'Times New Roman', serif; position:relative; }
+    .rule { position:absolute; background:#2B3A42; opacity:.35; }
+    .kicker { font-family:'Courier New', monospace; font-size:13px; font-weight:700; letter-spacing:1.8px; color:#8B2635; }
+    .headline { font-family:'Courier New', monospace; font-size:38px; font-weight:700; line-height:1.14; }
+    .col-header { min-height:64px; border:1px solid #2B3A42; display:flex; align-items:center; padding:0 20px; font-family:'Courier New', monospace; font-size:17px; font-weight:700; letter-spacing:.5px; }
+    .current { background:#f4f6f6; color:#3E505B; }
+    .target { background:#2B3A42; color:#ffffff; }
+    .matrix-row { display:flex; min-height:88px; }
+    .cell { border:1px solid #2B3A42; border-top:0; display:flex; align-items:center; padding:15px 18px; font-size:15px; line-height:1.34; }
+    .label-cell { width:188px; font-family:'Courier New', monospace; font-size:13px; font-weight:700; letter-spacing:.6px; color:#8B2635; background:#fbf8f5; }
+    .small { font-size:13px; color:#3E505B; }
+    .target-text { font-size:15px; line-height:1.34; }
+    .bottom-note { position:absolute; left:78px; right:78px; bottom:46px; border-top:1px solid #2B3A42; padding-top:14px; display:flex; justify-content:space-between; font-family:'Courier New', monospace; font-size:12px; letter-spacing:.3px; color:#3E505B; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="rule" style="left:73px; top:57px; width:1px; height:605px;"></div><div class="rule" style="right:73px; top:57px; width:1px; height:605px;"></div>
+    <section style="position:absolute; left:98px; top:78px; right:98px;">
+      <div class="kicker">02 / TARGET OPERATING MODEL</div>
+      <h1 class="headline" style="margin-top:16px;">Replace static chapter slices with a persistent workspace.</h1>
+      <div style="display:flex; margin-top:42px; width:1084px;">
+        <div style="width:188px;"></div><div class="col-header current" style="width:424px;">TODAY — STATIC PRESENTATION</div><div class="col-header target" style="width:472px;">TARGET — DATABASE-BACKED WORKSPACE</div>
+      </div>
+      <div style="width:1084px;">
+        <div class="matrix-row"><div class="cell label-cell">CHAPTERS</div><div class="cell" style="width:424px;">In-memory grouping of canonical sections in a single frontend component.</div><div class="cell target-text" style="width:472px;">Persistent <b>documentaries</b>, <b>documentary_chapters</b>, and ordered <b>documentary_items</b>.</div></div>
+        <div class="matrix-row"><div class="cell label-cell">REVIEW</div><div class="cell" style="width:424px;">A fixed “needs approval” indicator with no recorded decision or reviewer.</div><div class="cell target-text" style="width:472px;">Draft, review, approved, rejected, and archived states with actor, reason, and time.</div></div>
+        <div class="matrix-row"><div class="cell label-cell">CONTROLS</div><div class="cell" style="width:424px;">Local client controls; no persistent mutation contract.</div><div class="cell target-text" style="width:472px;">Authenticated actions, validation, audit logging, and stale-write protection.</div></div>
+        <div class="matrix-row"><div class="cell label-cell">LINKAGE</div><div class="cell" style="width:424px;">Source-reference panels without durable, reviewable relationship records.</div><div class="cell target-text" style="width:472px;">Explicit case relationships with provenance, verification state, confidence, and approval.</div></div>
+      </div>
+    </section>
+    <div class="bottom-note"><span>DESIGN GOAL: TRACEABLE EDITORIAL ORGANIZATION</span><span>NOT A REWRITE OF THE AFFIDAVIT</span></div>
+  </div>
+</body>
+</html>

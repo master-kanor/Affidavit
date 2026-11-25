@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>API Surface Follows the Documentary Lifecycle</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #ffffff; color: #2B3A42; font-family: Georgia, 'Times New Roman', serif; position: relative; }
+    .rule-v { position: absolute; top: 0; bottom: 0; width: 1px; background: #2B3A42; opacity: .30; }
+    .rule-h { position: absolute; left: 0; right: 0; height: 1px; background: #2B3A42; opacity: .30; }
+    .kicker { font-family: 'Courier New', monospace; color: #8B2635; font-size: 13px; letter-spacing: 1.8px; font-weight: 700; }
+    .title { font-family: 'Courier New', monospace; font-size: 38px; font-weight: 700; line-height: 1.14; max-width: 810px; }
+    .subtitle { margin-top: 14px; color: #3E505B; font-size: 16px; line-height: 1.4; max-width: 850px; }
+    .api-row { display: flex; gap: 14px; }
+    .api-block { width: 258px; min-height: 172px; border: 1px solid #2B3A42; position: relative; }
+    .api-block.wide { width: 394px; }
+    .api-head { min-height: 43px; border-bottom: 1px solid #2B3A42; display: flex; align-items: center; padding-left: 14px; padding-right: 14px; font-family: 'Courier New', monospace; font-weight: 700; font-size: 14px; letter-spacing: .45px; }
+    .method { color: #8B2635; margin-right: 10px; }
+    .api-content { padding: 13px 14px 15px 14px; }
+    .route { font-family: 'Courier New', monospace; font-size: 11px; color: #3E505B; line-height: 1.35; overflow-wrap: anywhere; }
+    .outcome { margin-top: 12px; font-size: 14px; line-height: 1.32; color: #2B3A42; }
+    .tag { position: absolute; right: 12px; bottom: 11px; font-family: 'Courier New', monospace; font-size: 10px; color: #8B2635; letter-spacing: .8px; }
+    .flow-label { position: absolute; left: 76px; top: 222px; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 1.4px; color: #8B2635; }
+    .flow-rule { position: absolute; left: 76px; right: 76px; top: 246px; height: 1px; background: #8B2635; }
+    .common { position: absolute; left: 76px; right: 76px; bottom: 48px; min-height: 76px; border-top: 1px solid #2B3A42; border-bottom: 1px solid #2B3A42; display: flex; align-items: center; }
+    .common-label { width: 240px; font-family: 'Courier New', monospace; color: #8B2635; font-size: 13px; font-weight: 700; letter-spacing: .85px; }
+    .common-copy { font-size: 15px; color: #3E505B; line-height: 1.42; max-width: 830px; }
+    .folio { position: absolute; right: 76px; top: 36px; font-family: 'Courier New', monospace; font-size: 11px; color: #3E505B; letter-spacing: 1px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="rule-v" style="left: 6%;"></div><div class="rule-v" style="left: 50%;"></div><div class="rule-v" style="left: 94%;"></div>
+    <div class="rule-h" style="top: 8%;"></div><div class="rule-h" style="top: 92%;"></div>
+    <section style="position:absolute; left:76px; top:76px;">
+      <div class="kicker">07 / PROPOSED LOGICAL ENDPOINTS</div>
+      <h1 class="title" style="margin-top:15px;">API surface follows the documentary lifecycle.</h1>
+      <p class="subtitle">Each route group performs one controlled responsibility: retrieve an authorized workspace, change editorial structure, review a proposal, or generate a reproducible output.</p>
+    </section>
+    <div class="folio">DOCUMENTARY WORKSPACE / 08</div>
+    <div class="flow-label">LIFECYCLE ROUTE GROUPS</div><div class="flow-rule"></div>
+    <section style="position:absolute; left:76px; top:274px;">
+      <div class="api-row">
+        <div class="api-block"><div class="api-head"><span class="method">GET</span>WORKSPACE</div><div class="api-content"><div class="route">/documentaries/:id/workspace</div><div class="outcome">One authorized aggregate response for the full review surface.</div></div><div class="tag">READ</div></div>
+        <div class="api-block"><div class="api-head"><span class="method">PATCH</span>DOCUMENTARY</div><div class="api-content"><div class="route">/documentaries/:id</div><div class="outcome">Update editorial title and description with version checking.</div></div><div class="tag">MUTATE</div></div>
+        <div class="api-block"><div class="api-head"><span class="method">POST</span>REVIEW</div><div class="api-content"><div class="route">/documentaries/:id/review-actions</div><div class="outcome">Submit, approve, reject, reopen, or archive explicitly.</div></div><div class="tag">GATED</div></div>
+        <div class="api-block"><div class="api-head"><span class="method">POST</span>CHAPTERS</div><div class="api-content"><div class="route">/documentaries/:id/chapters</div><div class="outcome">Create, edit, reorder, and review persistent structure.</div></div><div class="tag">STRUCTURE</div></div>
+      </div>
+      <div class="api-row" style="margin-top:16px;">
+        <div class="api-block wide"><div class="api-head"><span class="method">POST / PATCH</span>ITEMS + RESOURCE SEARCH</div><div class="api-content"><div class="route">/cases/:caseId/resources · /documentary-chapters/:id/items</div><div class="outcome">Find permitted source material; add, caption, reorder, or remove an item from a chapter.</div></div><div class="tag">COMPOSITION</div></div>
+        <div class="api-block wide"><div class="api-head"><span class="method">POST</span>RELATIONSHIP REVIEW</div><div class="api-content"><div class="route">/case-relationships/:id/review</div><div class="outcome">Accept, modify, or reject a proposed mapping with provenance, confidence, and reviewer details.</div></div><div class="tag">TRACEABILITY</div></div>
+        <div class="api-block"><div class="api-head"><span class="method">GET / POST</span>AUDIT + EXPORT</div><div class="api-content"><div class="route">/documentaries/:id/audit · /export-check</div><div class="outcome">Show history and validate readiness for a reproducible approved output.</div></div><div class="tag">REPRODUCE</div></div>
+      </div>
+    </section>
+    <div class="common"><div class="common-label">COMMON CONTRACT</div><div class="common-copy">Every mutation derives the actor from the authenticated session, validates the expected version, enforces role and RLS policy, and writes an audit record in the same transaction. The client never supplies privileges or actor identity.</div></div>
+  </div>
+</body>
+</html>

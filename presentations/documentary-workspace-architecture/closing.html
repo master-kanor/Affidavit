@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Organized Presentation Without Rewriting History</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #ffffff; color: #2B3A42; font-family: Georgia, 'Times New Roman', serif; position: relative; }
+    .rule { position: absolute; background: #2B3A42; opacity: .32; }
+    .closing-field { position: absolute; left: 78px; top: 74px; width: 1124px; height: 318px; background: #2B3A42; color: #ffffff; border: 1px solid #2B3A42; }
+    .field-kicker { position: absolute; left: 34px; top: 32px; font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; letter-spacing: 1.8px; color: #e6c9ce; }
+    .field-title { position: absolute; left: 34px; top: 80px; width: 825px; font-family: 'Courier New', monospace; font-size: 44px; line-height: 1.08; font-weight: 700; letter-spacing: -1px; }
+    .field-copy { position: absolute; left: 36px; top: 210px; width: 670px; font-size: 18px; line-height: 1.42; color: #dbe3e6; }
+    .field-stamp { position: absolute; right: 34px; bottom: 34px; width: 267px; min-height: 64px; border: 1px solid #e5c18f; color: #e5c18f; display: flex; align-items: center; justify-content: center; text-align: center; font-family: 'Courier New', monospace; font-size: 11px; font-weight: 700; letter-spacing: 1px; line-height: 1.45; }
+    .outcomes { position: absolute; left: 78px; top: 449px; width: 1124px; min-height: 154px; display: flex; border-top: 1px solid #2B3A42; border-bottom: 1px solid #2B3A42; }
+    .outcome { width: 33.333%; padding: 23px 24px 0 0; }
+    .outcome + .outcome { border-left: 1px solid #2B3A42; padding-left: 26px; }
+    .outcome-label { font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; letter-spacing: .8px; color: #8B2635; }
+    .outcome-title { margin-top: 11px; font-family: 'Courier New', monospace; font-size: 18px; font-weight: 700; line-height: 1.25; }
+    .outcome-copy { margin-top: 10px; font-size: 14px; line-height: 1.37; color: #3E505B; }
+    .authority { position: absolute; left: 78px; bottom: 44px; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: .55px; color: #8B2635; }
+    .folio { position: absolute; right: 78px; bottom: 44px; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 1px; color: #3E505B; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="rule" style="left: 73px; top: 48px; width: 1px; height: 620px;"></div>
+    <div class="rule" style="right: 73px; top: 48px; width: 1px; height: 620px;"></div>
+    <div class="rule" style="left: 73px; right: 73px; top: 48px; height: 1px;"></div>
+    <section class="closing-field">
+      <div class="field-kicker">DOCUMENTARY WORKSPACE / DESIGN OUTCOME</div>
+      <h1 class="field-title">Organized presentation without rewriting history.</h1>
+      <p class="field-copy">The system makes the case easier to build, review, trace, and reproduce while keeping the official affidavit distinct, immutable, and source-preserving.</p>
+      <div class="field-stamp">EDITORIAL PROJECTION<br/>NOT A SECOND AFFIDAVIT</div>
+    </section>
+    <section class="outcomes">
+      <div class="outcome"><div class="outcome-label">01 / OFFICIAL RECORD</div><div class="outcome-title">Affidavit text remains unchanged.</div><div class="outcome-copy">Canonical source versions stay isolated from documentary narration, captions, sequencing, and review decisions.</div></div>
+      <div class="outcome"><div class="outcome-label">02 / EVIDENCE PRESENTATION</div><div class="outcome-title">Evidence becomes visible and reviewable.</div><div class="outcome-copy">Explicit relationships make supporting resources, verification state, and provenance easier to inspect.</div></div>
+      <div class="outcome"><div class="outcome-label">03 / CASE AUTHORITY</div><div class="outcome-title">Owner/Admin retain the final decision.</div><div class="outcome-copy">The system proposes and records; authorized reviewers decide what can be approved, exported, or archived.</div></div>
+    </section>
+    <div class="authority">NO AUTOMATIC FACT CREATION · NO SILENT SOURCE MODIFICATION</div>
+    <div class="folio">DOCUMENTARY WORKSPACE / 11</div>
+  </div>
+</body>
+</html>

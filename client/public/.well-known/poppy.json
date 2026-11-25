@@ -1,0 +1,33 @@
+{
+  "protocol_version": "0.1",
+  "organization": {
+    "name": "Master Kanor Case",
+    "domain": "masterkanorcase.online"
+  },
+  "agent": {
+    "name": "Master Kanor Case Agent",
+    "url": "https://masterkanorcase.online",
+    "protocols": [
+      {
+        "type": "https",
+        "url": "https://masterkanorcase.online",
+        "endpoint": "https://masterkanorcase.online"
+      }
+    ]
+  },
+  "apis": [
+    {
+      "type": "rest",
+      "url": "https://masterkanorcase.online/api/health",
+      "endpoint": "https://masterkanorcase.online/api/health",
+      "description": "Health check endpoint"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "issuer": "https://masterkanorcase.online"
+  },
+  "web": {
+    "url": "https://masterkanorcase.online"
+  }
+}

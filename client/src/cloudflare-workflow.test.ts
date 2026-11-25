@@ -1,0 +1,78 @@
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { describe, expect, it } from "vitest";
+
+const workflowPath = fileURLToPath(new URL("../../.github/workflows/deploy.yml", import.meta.url));
+const workflow = readFileSync(workflowPath, "utf8");
+const smokeTestSource = readFileSync(
+  new URL("../../scripts/smoke-test-deployment.sh", import.meta.url),
+  "utf8",
+);
+const appSource = readFileSync(new URL("./App.tsx", import.meta.url), "utf8");
+const authHookSource = readFileSync(new URL("./hooks/useAuth.ts", import.meta.url), "utf8");
+const authorizationSource = readFileSync(new URL("./lib/authorization.ts", import.meta.url), "utf8");
+const adminSource = readFileSync(new URL("./pages/AdminDashboard.tsx", import.meta.url), "utf8");
+const homeSource = readFileSync(new URL("./pages/Home.tsx", import.meta.url), "utf8");
+
+ describe("Cloudflare Pages deployment workflow", () => {
+  it("deploys the intended Pages project and output directory", () => {
+    expect(workflow).toContain("pages deploy dist/public --project-name=\"$CLOUDFLARE_PROJECT_NAME\" --branch=main");
+    expect(workflow).toContain("test -f dist/public/index.html");
+    expect(workflow).toContain("test -f dist/public/_redirects");
+  });
+
+  it("requires validation and public build configuration before deployment", () => {
+    expect(workflow).toContain("pnpm install --frozen-lockfile");
+    expect(workflow).toContain("pnpm run check");
+    expect(workflow).toContain("pnpm test");
+    expect(workflow).toContain("npx --yes wrangler@3.90.0");
+    expect(workflow).toContain("CLOUDFLARE_API_TOKEN");
+    expect(workflow).toContain("CLOUDFLARE_ACCOUNT_ID");
+    expect(smokeTestSource).toContain("$CANONICAL_URL/api/health");
+    expect(workflow).toContain("VITE_SUPABASE_URL");
+    expect(workflow).toContain("VITE_SUPABASE_ANON_KEY");
+    expect(workflow).toContain("python3 scripts/scan-secrets.py");
+  });
+
+  it("uses repository secrets for the Cloudflare project and public app URL", () => {
+    expect(workflow).toContain("CLOUDFLARE_PROJECT_NAME: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}");
+    expect(workflow).toContain("VITE_APP_URL: ${{ secrets.VITE_APP_URL }}");
+    expect(workflow).toContain("--project-name=\"$CLOUDFLARE_PROJECT_NAME\"");
+  });
+
+  it("smoke-checks the Pages origin, canonical domain, and auth route", () => {
+    expect(workflow).toContain("https://affidavit-abo.pages.dev");
+    expect(workflow).toContain("https://masterkanorcase.online");
+    expect(workflow).toContain("bash scripts/smoke-test-deployment.sh");
+    expect(workflow).toContain("CANONICAL_URL");
+    expect(workflow).toContain("PAGES_URL");
+    expect(workflow).not.toContain("curl -f -sS https://masterkanorcase.online/");
+  });
+
+  it("keeps the optional owner integration check from failing deployments without test secrets", () => {
+    expect(workflow).toContain('if [ -z "${E2E_OWNER_EMAIL:-}" ] || [ -z "${E2E_OWNER_PASSWORD:-}" ]; then');
+    expect(workflow).toContain("Skipping canonical workspace integration test");
+  });
+
+  it("keeps protected routes and trusted authorization in the application", () => {
+    expect(appSource).toContain('path="/auth"');
+    expect(appSource).toContain('path="/auth/callback"');
+    expect(appSource).toContain('path="/dashboard"');
+    expect(appSource).toContain('path="/dossier"');
+    expect(appSource).toContain('path="/admin"');
+    expect(appSource).toContain("ProtectedCaseRoute");
+    expect(appSource).toContain("ProtectedAdminRoute");
+    expect(authHookSource).toContain("@/lib/supabaseClient");
+    expect(authHookSource).not.toContain("user_metadata?.role");
+    expect(authorizationSource).toContain("from(\"profiles\")");
+    expect(authorizationSource).toContain("from(\"user_permissions\")");
+  });
+
+  it("does not present simulated production truth on the public or admin surfaces", () => {
+    expect(homeSource).not.toContain("canonicalCase");
+    expect(adminSource).toContain("Owner authority remains protected at the database layer");
+    expect(adminSource).toMatch(/Every\s+access change is recorded in the audit log/);
+    expect(adminSource).not.toContain("Math.random");
+    expect(adminSource).not.toContain("totalEvidence: 331");
+  });
+});

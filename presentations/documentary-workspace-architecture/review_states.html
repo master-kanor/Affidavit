@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Review Gates Form a Deliberate State Machine</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #ffffff; color: #2B3A42; font-family: Georgia, 'Times New Roman', serif; position: relative; }
+    .rule { position: absolute; background: #2B3A42; opacity: .30; }
+    .kicker { font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; letter-spacing: 1.8px; color: #8B2635; }
+    .headline { font-family: 'Courier New', monospace; font-size: 38px; line-height: 1.14; font-weight: 700; }
+    .subline { margin-top: 13px; font-size: 17px; line-height: 1.4; color: #3E505B; }
+    .state { position: absolute; width: 174px; height: 100px; border: 1px solid #2B3A42; background: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .state strong { font-family: 'Courier New', monospace; font-size: 19px; letter-spacing: .8px; }
+    .state span { margin-top: 8px; font-size: 12px; color: #3E505B; text-align: center; line-height: 1.25; width: 138px; }
+    .state.review { background: #f8f1e8; }
+    .state.approved { background: #2B3A42; color: #ffffff; }
+    .state.approved span { color: #e8eef0; }
+    .state.exception { border-color: #8B2635; color: #8B2635; }
+    .state.exception span { color: #8B2635; }
+    .connector { position: absolute; height: 1px; background: #2B3A42; }
+    .connector::after { content: '›'; position: absolute; right: -4px; top: -15px; color: #2B3A42; font-size: 28px; }
+    .connector.red { background: #8B2635; }
+    .connector.red::after { color: #8B2635; }
+    .turn { position: absolute; border-left: 1px solid #8B2635; border-bottom: 1px solid #8B2635; }
+    .turn::after { content: '›'; position: absolute; right: -5px; bottom: -15px; color: #8B2635; font-size: 28px; }
+    .policy { position: absolute; left: 78px; right: 78px; bottom: 57px; height: 145px; border: 1px solid #2B3A42; display: flex; }
+    .policy-title { width: 220px; border-right: 1px solid #2B3A42; padding: 24px 19px 0 19px; font-family: 'Courier New', monospace; font-size: 14px; font-weight: 700; letter-spacing: .8px; color: #8B2635; }
+    .policy-row { flex: 1; display: flex; align-items: stretch; }
+    .policy-cell { width: 33.33%; padding: 23px 20px 0 20px; border-right: 1px solid #2B3A42; }
+    .policy-cell:last-child { border-right: 0; }
+    .policy-cell strong { font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: .5px; }
+    .policy-cell p { margin-top: 10px; font-size: 14px; line-height: 1.35; color: #3E505B; }
+    .folio { position: absolute; right: 78px; top: 54px; font-family: 'Courier New', monospace; font-size: 12px; letter-spacing: 1px; color: #3E505B; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="rule" style="left: 73px; top: 56px; width: 1px; height: 608px;"></div>
+    <div class="rule" style="right: 73px; top: 56px; width: 1px; height: 608px;"></div>
+    <div class="rule" style="left: 73px; right: 73px; top: 82px; height: 1px;"></div>
+    <section style="position:absolute; left:78px; top:110px;">
+      <div class="kicker">05 / DOCUMENTARY GOVERNANCE</div>
+      <h1 class="headline" style="margin-top:16px;">Review gates form a deliberate state machine.</h1>
+      <p class="subline">Editorial changes follow an explicit decision trail. Neither a chapter nor an evidence relationship is approved by default.</p>
+    </section>
+    <div class="folio">STATE MODEL / 06</div>
+
+    <div class="state" style="left:118px; top:290px;"><strong>DRAFT</strong><span>Editable Owner/Admin proposal</span></div>
+    <div class="state review" style="left:367px; top:290px;"><strong>REVIEW</strong><span>Explicit decision pending</span></div>
+    <div class="state approved" style="left:616px; top:290px;"><strong>APPROVED</strong><span>Eligible for controlled export</span></div>
+    <div class="state" style="left:865px; top:290px;"><strong>ARCHIVED</strong><span>Read-only historical record</span></div>
+    <div class="state exception" style="left:365px; top:447px;"><strong>REJECTED</strong><span>Reason required; returns to drafting</span></div>
+
+    <div class="connector" style="left:292px; top:340px; width:75px;"></div>
+    <div class="connector" style="left:541px; top:340px; width:75px;"></div>
+    <div class="connector" style="left:790px; top:340px; width:75px;"></div>
+    <div class="turn" style="left:454px; top:390px; width:0; height:57px;"></div>
+    <div class="turn" style="left:365px; top:495px; width:89px; height:0; transform: rotate(180deg);"></div>
+    <div class="connector red" style="left:452px; top:390px; width:0;"></div>
+    <div class="connector red" style="left:452px; top:495px; width:89px;"></div>
+    <div style="position:absolute; left:426px; top:408px; font-family:'Courier New', monospace; font-size:11px; font-weight:700; color:#8B2635; letter-spacing:.5px;">REJECT</div>
+    <div style="position:absolute; left:472px; top:476px; font-family:'Courier New', monospace; font-size:11px; font-weight:700; color:#8B2635; letter-spacing:.5px;">REVISE</div>
+    <div style="position:absolute; left:688px; top:267px; font-family:'Courier New', monospace; font-size:11px; color:#3E505B; letter-spacing:.4px;">REOPEN → REVIEW</div>
+
+    <section class="policy">
+      <div class="policy-title">APPROVAL<br/>CONDITIONS</div>
+      <div class="policy-row">
+        <div class="policy-cell"><strong>AUTHORIZED ACTOR</strong><p>Only Owner/Admin can submit, approve, reject, reopen, or archive a documentary.</p></div>
+        <div class="policy-cell"><strong>RELATIONSHIP CHECK</strong><p>Approval is blocked when included items retain rejected, pending, or unauthorized relationships.</p></div>
+        <div class="policy-cell"><strong>SEPARATE RECORD</strong><p>Chapter and item decisions are recorded apart from the official affidavit source text.</p></div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Documentary Workspace Architecture</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #ffffff; color: #2B3A42; font-family: Georgia, 'Times New Roman', serif; position: relative; }
+    .grid-v { position: absolute; top: 0; bottom: 0; width: 1px; background: #2B3A42; opacity: .38; }
+    .grid-h { position: absolute; left: 0; right: 0; height: 1px; background: #2B3A42; opacity: .38; }
+    .label { font-family: 'Courier New', monospace; font-size: 14px; letter-spacing: 2px; font-weight: 700; color: #8B2635; }
+    .title { font-family: 'Courier New', monospace; font-weight: 700; font-size: 54px; line-height: 1.08; letter-spacing: -1.5px; max-width: 650px; }
+    .subtitle { margin-top: 26px; max-width: 610px; font-size: 22px; line-height: 1.4; color: #3E505B; }
+    .meta { margin-top: 78px; display: flex; gap: 14px; align-items: center; font-family: 'Courier New', monospace; font-size: 13px; color: #3E505B; letter-spacing: .6px; }
+    .stamp { border: 1px solid #8B2635; color: #8B2635; padding: 9px 12px; font-weight: 700; }
+    .folio { position: absolute; right: 62px; bottom: 54px; text-align: right; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.7; color: #3E505B; }
+    .monogram { position: absolute; right: 92px; top: 112px; width: 352px; height: 352px; border: 1px solid #2B3A42; display: flex; align-items: center; justify-content: center; }
+    .monogram::before, .monogram::after { content: ''; position: absolute; background: #2B3A42; opacity: .55; }
+    .monogram::before { height: 1px; left: -36px; right: -36px; }
+    .monogram::after { width: 1px; top: -36px; bottom: -36px; }
+    .mono-inner { font-family: 'Courier New', monospace; font-size: 102px; font-weight: 700; letter-spacing: -10px; color: #2B3A42; }
+    .micro { position: absolute; right: 112px; top: 494px; width: 310px; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.65; letter-spacing: 1px; text-transform: uppercase; color: #3E505B; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="grid-v" style="left: 6%;"></div><div class="grid-v" style="left: 50%;"></div><div class="grid-v" style="left: 94%;"></div>
+    <div class="grid-h" style="top: 8%;"></div><div class="grid-h" style="top: 58%;"></div><div class="grid-h" style="top: 92%;"></div>
+    <section style="position:absolute; left:78px; top:108px;">
+      <div class="label">CASE PRESENTATION SYSTEM / ARCHITECTURE SUMMARY</div>
+      <h1 class="title" style="margin-top:28px;">Documentary Workspace Architecture</h1>
+      <p class="subtitle">Persistent UI, review-gated APIs, and source-preserving case presentation.</p>
+      <div class="meta"><span class="stamp">MASTER KANOR AFFIDAVIT</span><span>OWNER / ADMIN REVIEW MODEL</span></div>
+    </section>
+    <div class="monogram"><div class="mono-inner">D/W</div></div>
+    <div class="micro">OFFICIAL AFFIDAVIT REMAINS IMMUTABLE<br/>DOCUMENTARY IS A REVIEWABLE EDITORIAL PROJECTION<br/>REVISION 01 · ARCHITECTURE DECK</div>
+    <div class="folio">DOCUMENTARY WORKSPACE<br/>API + UI ARCHITECTURE</div>
+  </div>
+</body>
+</html>
