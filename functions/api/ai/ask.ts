@@ -1,5 +1,8 @@
 import type { PagesFunction } from "@cloudflare/workers-types";
-import { canRouteModel, isVerifiedFreeModel } from "../../_shared/ai-cost-policy";
+import {
+  canRouteModel,
+  isVerifiedFreeModel,
+} from "../../_shared/ai-cost-policy";
 import { decryptCredential } from "../../_shared/credentials";
 import type { Env } from "../../_shared/supabase";
 import { json, requireAuth } from "../../_shared/supabase";
@@ -199,10 +202,22 @@ export const onRequest: PagesFunction<Env> = async context => {
         route.ai_provider_models.map(model => ({
           ...route,
           model: model.provider_model_id,
-          isFree: model.is_free && isVerifiedFreeModel(route.provider, model.provider_model_id, model.pricing),
+          isFree:
+            model.is_free &&
+            isVerifiedFreeModel(
+              route.provider,
+              model.provider_model_id,
+              model.pricing
+            ),
         }))
       )
-      .filter(route => canRouteModel(route.isFree, route.paid_backup, env.AI_ALLOW_PAID_FALLBACK))
+      .filter(route =>
+        canRouteModel(
+          route.isFree,
+          route.paid_backup,
+          env.AI_ALLOW_PAID_FALLBACK
+        )
+      )
       .sort(
         (a, b) => Number(b.isFree) - Number(a.isFree) || a.priority - b.priority
       )
