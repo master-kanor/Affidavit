@@ -3,6 +3,10 @@ import fs from "node:fs";
 
 const api = fs.readFileSync("functions/api/ai/providers.ts", "utf8");
 const ask = fs.readFileSync("functions/api/ai/ask.ts", "utf8");
+const requestPolicy = fs.readFileSync(
+  "functions/_shared/ai-provider-request.ts",
+  "utf8"
+);
 const vault = fs.readFileSync("functions/_shared/credentials.ts", "utf8");
 const migration = fs.readFileSync(
   "supabase/migrations/20260820000008_ai_provider_registry.sql",
@@ -36,6 +40,7 @@ describe("AI provider registry security", () => {
   it("routes free models first and retries bounded transient failures", () => {
     expect(ask).toContain("Number(b.isFree) - Number(a.isFree)");
     expect(ask).toContain(".slice(0, 8)");
-    expect(ask).toContain("402, 408, 429, 500, 502, 503, 504");
+    expect(ask).toContain("await requestModelAnswer(");
+    expect(requestPolicy).toContain("402, 408, 429, 500, 502, 503, 504");
   });
 });

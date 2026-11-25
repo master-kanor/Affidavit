@@ -3,6 +3,8 @@ export interface Env {
   SUPABASE_SERVICE_ROLE_KEY: string;
   CORS_ALLOWED_ORIGIN?: string;
   AI_ENABLED?: string;
+  /** Disabled unless explicitly set to true; connection opt-in is also required. */
+  AI_ALLOW_PAID_FALLBACK?: string;
   AI_PROVIDER?: "nvidia" | "openrouter";
   AI_MODEL?: string;
   NVIDIA_API_KEY?: string;
