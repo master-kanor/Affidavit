@@ -1,0 +1,44 @@
+name: Deploy All (Pages + Workers)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-all-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  deployments: write
+  actions: write
+
+jobs:
+  deploy-pages:
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
+
+  deploy-workers:
+    uses: ./.github/workflows/deploy-workers.yml
+    secrets: inherit
+    needs: deploy-pages
+
+  smoke-check:
+    runs-on: ubuntu-latest
+    needs: [deploy-pages, deploy-workers]
+    timeout-minutes: 5
+    steps:
+      - name: Full smoke check
+        run: |
+          echo "=== Pages ==="
+          for path in "" "/auth" "/admin"; do
+            status=$(curl -s -o /dev/null -w "%{http_code}" "https://masterkanorcase.online${path}")
+            echo "https://masterkanorcase.online${path}: ${status}"
+          done
+          echo "=== Workers ==="
+          for path in "/health"; do
+            status=$(curl -s -o /dev/null -w "%{http_code}" "https://api.masterkanorcase.online${path}" || echo "000")
+            echo "https://api.masterkanorcase.online${path}: ${status}"
+          done
+          echo "All smoke checks complete."

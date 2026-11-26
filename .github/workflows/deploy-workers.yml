@@ -1,0 +1,68 @@
+name: Deploy Workers to Cloudflare
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'workers/**'
+      - 'functions/**'
+      - '.github/workflows/deploy-workers.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: cloudflare-workers-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  deploy-workers:
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Wrangler
+        run: npm install -g wrangler@3.90.0
+
+      - name: Deploy AI Gateway Worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          wrangler deploy workers/ai-gateway.js --name=ai-gateway
+
+      - name: Deploy Evidence Proxy Worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          wrangler deploy workers/evidence-proxy.js --name=evidence-proxy
+
+      - name: Deploy API Handler Worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          wrangler deploy functions/api-handler.js --name=api-handler
+
+      - name: Smoke check Workers
+        env:
+          API_URL: https://api.masterkanorcase.online
+        run: |
+          for endpoint in "/health" "/ai/health" "/evidence/health"; do
+            status=$(curl -s -o /dev/null -w "%{http_code}" "${API_URL}${endpoint}" || echo "000")
+            echo "${endpoint}: ${status}"
+            if [ "$status" != "200" ] && [ "$status" != "404" ]; then
+              echo "::warning::${endpoint} returned ${status}"
+            fi
+          done
