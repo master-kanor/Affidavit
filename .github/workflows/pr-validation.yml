@@ -2,7 +2,7 @@ name: Pull Request Validation
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, ready_for_review]
 
 permissions:
   contents: read
@@ -38,6 +38,9 @@ jobs:
 
       - name: Scan source for credential patterns
         run: python3 scripts/scan-secrets.py
+
+      - name: Automation policy tests
+        run: node --test scripts/automation/*.test.cjs
 
       - name: TypeScript check
         run: pnpm check

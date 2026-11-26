@@ -1,9 +1,16 @@
 name: Build and deploy Affidavit to Cloudflare Pages
 
 on:
-  push:
+  workflow_run:
+    workflows: [CI/CD Pipeline]
+    types: [completed]
     branches: [main]
   workflow_dispatch:
+    inputs:
+      seed_canonical:
+        description: Explicitly seed canonical production data after validation
+        type: boolean
+        default: false
 
 concurrency:
   group: cloudflare-pages-production
@@ -12,15 +19,37 @@ concurrency:
 permissions:
   contents: read
   deployments: write
+  actions: read
 
 jobs:
+  validate-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      sha: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/github-script@v7
+        id: source
+        with:
+          script: |
+            await require('./scripts/automation/deploy-gate.cjs')({github, context, core});
+
   build-and-deploy:
+    if: vars.AGENT_PRODUCTION_DEPLOY_ENABLED == 'true'
+    needs: validate-source
     runs-on: ubuntu-latest
     environment: production
     timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.validate-source.outputs.sha }}
+          persist-credentials: false
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -33,15 +62,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Seed canonical case data
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: |
-          test -n "$SUPABASE_URL"
-          test -n "$SUPABASE_SERVICE_ROLE_KEY"
-          python3 scripts/seed-canonical-case.py
 
       - name: Scan tracked source for credential patterns
         run: python3 scripts/scan-secrets.py
@@ -83,6 +103,25 @@ jobs:
             exit 1
           fi
           rm -f .env.production
+
+      - name: Recheck main has not advanced
+        uses: actions/github-script@v7
+        env:
+          VERIFIED_SHA: ${{ needs.validate-source.outputs.sha }}
+        with:
+          script: |
+            const {data} = await github.rest.repos.getBranch({...context.repo, branch: 'main'});
+            if (data.commit.sha !== process.env.VERIFIED_SHA) core.setFailed('Main advanced; wait for its own validated deployment');
+
+      - name: Seed canonical case data
+        if: github.event_name == 'workflow_dispatch' && inputs.seed_canonical
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          test -n "$SUPABASE_URL"
+          test -n "$SUPABASE_SERVICE_ROLE_KEY"
+          python3 scripts/seed-canonical-case.py
 
       - name: Deploy production Pages project
         env:
