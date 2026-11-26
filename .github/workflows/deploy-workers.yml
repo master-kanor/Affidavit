@@ -9,7 +9,6 @@ on:
       - '.github/workflows/deploy-workers.yml'
   workflow_dispatch:
   workflow_call:
-    secrets: inherit
 
 concurrency:
   group: cloudflare-workers-production

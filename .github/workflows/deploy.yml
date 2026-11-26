@@ -12,7 +12,6 @@ on:
         type: boolean
         default: false
   workflow_call:
-    secrets: inherit
 
 concurrency:
   group: cloudflare-pages-production

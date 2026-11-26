@@ -1,4 +1,4 @@
-name: Deploy All (Pages + Workers)
+name: Deploy All (Pages + Workers) Smoke Check
 
 on:
   push:
@@ -11,24 +11,15 @@ concurrency:
 
 permissions:
   contents: read
-  deployments: write
-  actions: write
 
 jobs:
-  deploy-pages:
-    uses: ./.github/workflows/deploy.yml
-    secrets: inherit
-
-  deploy-workers:
-    uses: ./.github/workflows/deploy-workers.yml
-    secrets: inherit
-    needs: deploy-pages
-
   smoke-check:
     runs-on: ubuntu-latest
-    needs: [deploy-pages, deploy-workers]
     timeout-minutes: 5
     steps:
+      - name: Wait for deployments
+        run: sleep 30
+
       - name: Full smoke check
         run: |
           echo "=== Pages ==="
