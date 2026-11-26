@@ -40,21 +40,21 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          wrangler deploy workers/ai-gateway.js --name=ai-gateway
+          wrangler deploy workers/ai-gateway.js --name=ai-gateway --compatibility-date=2026-08-20
 
       - name: Deploy Evidence Proxy Worker
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          wrangler deploy workers/evidence-proxy.js --name=evidence-proxy
+          wrangler deploy workers/evidence-proxy.js --name=evidence-proxy --compatibility-date=2026-08-20
 
       - name: Deploy API Handler Worker
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          wrangler deploy functions/api-handler.js --name=api-handler
+          wrangler deploy functions/api-handler.js --name=api-handler --compatibility-date=2026-08-20
 
       - name: Smoke check Workers
         env:
